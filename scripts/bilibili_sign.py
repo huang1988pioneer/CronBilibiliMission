@@ -110,8 +110,6 @@ def check_login(cookie):
 def live_sign(cookie, csrf):
     response = request_json(
         "https://api.live.bilibili.com/xlive/web-ucenter/v1/sign/DoSign",
-        method="POST",
-        data={"csrf": csrf, "csrf_token": csrf},
         cookie=cookie,
     )
 
