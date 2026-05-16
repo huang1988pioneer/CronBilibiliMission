@@ -1,11 +1,33 @@
 {
+  "completed": true,
+  "completed_at_taipei": "2026-05-16T20:03:20+08:00",
   "date": "2026-05-16",
-  "dice": 6,
-  "sign_message": "签到活动已下线，无法使用。",
-  "sign_status": "sign_unavailable",
-  "signed": true,
-  "signed_at_taipei": "2026-05-16T19:48:42+08:00",
-  "target_hour_24h": 12,
+  "dice": 4,
+  "login_status": "logged_in",
+  "reward_after": {
+    "data": {
+      "coins": 0,
+      "email": true,
+      "identify_card": false,
+      "login": true,
+      "safe_question": false,
+      "share": true,
+      "tel": true,
+      "watch": true
+    },
+    "message": "OK",
+    "status": "reward_checked"
+  },
+  "share_status": "share_reported",
+  "target_hour_24h": 10,
+  "task": "daily_experience",
   "timezone": "Asia/Taipei",
+  "video": {
+    "aid": 116577022248634,
+    "bvid": "BV17Q5a6ZEj8",
+    "cid": 38346557884,
+    "title": "天热如何快速吃上饭，5分钟搞定超级过瘾的糖醋凉面，昨天做了点卤肉，今天吃上肉夹馍了～"
+  },
+  "watch_status": "watch_reported",
   "weekday": 6
 }
