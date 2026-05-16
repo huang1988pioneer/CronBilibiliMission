@@ -1,6 +1,9 @@
 {
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-05-16T20:16:23+08:00",
   "date": "2026-05-16",
   "dice": 5,
   "initial_done": true,
@@ -21,7 +24,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 11,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -31,6 +34,6 @@
     "cid": 26013275020,
     "title": "万斯的无奈"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 6
 }
