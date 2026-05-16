@@ -1,0 +1,36 @@
+{
+  "completed": true,
+  "confirmations_done": [],
+  "date": "2026-05-16",
+  "dice": 5,
+  "initial_done": true,
+  "initial_done_at_taipei": "2026-05-16T20:13:42+08:00",
+  "login_status": "logged_in",
+  "missing_after": [],
+  "reward_after": {
+    "data": {
+      "coins": 0,
+      "email": true,
+      "identify_card": false,
+      "login": true,
+      "safe_question": false,
+      "share": true,
+      "tel": true,
+      "watch": true
+    },
+    "message": "OK",
+    "status": "reward_checked"
+  },
+  "share_status": "share_reported",
+  "target_hour_24h": 11,
+  "task": "daily_experience",
+  "timezone": "Asia/Taipei",
+  "video": {
+    "aid": 116578398045464,
+    "bvid": "BV1ss5q6QEXN",
+    "cid": 26013275020,
+    "title": "万斯的无奈"
+  },
+  "watch_status": "watch_reported",
+  "weekday": 6
+}
