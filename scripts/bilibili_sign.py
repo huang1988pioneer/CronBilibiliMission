@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 import json
 import os
+import random
 import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+from datetime import datetime
+from pathlib import Path
+from zoneinfo import ZoneInfo
 
 
 USER_AGENT = (
@@ -12,6 +16,10 @@ USER_AGENT = (
     "AppleWebKit/537.36 (KHTML, like Gecko) "
     "Chrome/124.0.0.0 Safari/537.36"
 )
+TAIPEI = ZoneInfo("Asia/Taipei")
+LOG_DIR = Path("logs")
+PLAN_FILE = LOG_DIR / "daily_plan.json"
+EVENT_LOG = LOG_DIR / "bilibili_sign.jsonl"
 
 
 def env_value(*names):
@@ -114,20 +122,122 @@ def live_sign(cookie, csrf):
         data = response.get("data") or {}
         text = data.get("text") or data.get("specialText") or "Sign completed"
         print(text)
-        return
+        return {"status": "signed", "message": text, "response": response}
 
     already_signed_messages = ("already", "已", "重复", "signed")
     if any(token in message for token in already_signed_messages):
         print(f"Already signed: {message}")
-        return
+        return {"status": "already_signed", "message": message, "response": response}
 
     raise RuntimeError(f"Sign failed: {response}")
 
 
-def main():
+def append_event(event):
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
+    event["created_at_taipei"] = datetime.now(TAIPEI).isoformat(timespec="seconds")
+    with EVENT_LOG.open("a", encoding="utf-8") as file:
+        file.write(json.dumps(event, ensure_ascii=False, sort_keys=True) + "\n")
+
+
+def read_plan():
+    if not PLAN_FILE.exists():
+        return {}
+
+    with PLAN_FILE.open("r", encoding="utf-8") as file:
+        return json.load(file)
+
+
+def write_plan(plan):
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
+    with PLAN_FILE.open("w", encoding="utf-8") as file:
+        json.dump(plan, file, ensure_ascii=False, indent=2, sort_keys=True)
+        file.write("\n")
+
+
+def today_plan(now):
+    today = now.date().isoformat()
+    plan = read_plan()
+    if plan.get("date") == today:
+        return plan
+
+    weekday = now.isoweekday()
+    dice = random.SystemRandom().randint(1, 6)
+    plan = {
+        "date": today,
+        "timezone": "Asia/Taipei",
+        "weekday": weekday,
+        "dice": dice,
+        "target_hour_24h": weekday + dice,
+        "signed": False,
+    }
+    write_plan(plan)
+    append_event(
+        {
+            "event": "plan_created",
+            "date": today,
+            "weekday": weekday,
+            "dice": dice,
+            "target_hour_24h": plan["target_hour_24h"],
+        }
+    )
+    return plan
+
+
+def run_scheduled():
+    now = datetime.now(TAIPEI)
+    plan = today_plan(now)
+    date = now.date().isoformat()
+    current_hour = now.hour
+    target_hour = int(plan["target_hour_24h"])
+
+    if plan.get("signed"):
+        print(f"{date} already signed. Target hour was {target_hour}:00 Taipei.")
+        append_event({"event": "skip", "reason": "already_signed", "date": date})
+        return
+
+    if current_hour < target_hour:
+        print(f"Waiting. Now {current_hour}:00 Taipei, target is {target_hour}:00.")
+        append_event(
+            {
+                "event": "skip",
+                "reason": "before_target_hour",
+                "date": date,
+                "current_hour_24h": current_hour,
+                "target_hour_24h": target_hour,
+            }
+        )
+        return
+
     auth = build_cookie()
     check_login(auth["cookie"])
-    live_sign(auth["cookie"], auth["csrf"])
+    result = live_sign(auth["cookie"], auth["csrf"])
+    plan["signed"] = True
+    plan["signed_at_taipei"] = now.isoformat(timespec="seconds")
+    plan["sign_status"] = result["status"]
+    plan["sign_message"] = result["message"]
+    write_plan(plan)
+    append_event(
+        {
+            "event": "sign",
+            "date": date,
+            "weekday": plan["weekday"],
+            "dice": plan["dice"],
+            "target_hour_24h": target_hour,
+            "status": result["status"],
+            "message": result["message"],
+        }
+    )
+
+
+def main():
+    if "--scheduled" in sys.argv:
+        run_scheduled()
+        return
+
+    auth = build_cookie()
+    check_login(auth["cookie"])
+    result = live_sign(auth["cookie"], auth["csrf"])
+    append_event({"event": "manual_sign", "status": result["status"], "message": result["message"]})
 
 
 if __name__ == "__main__":
