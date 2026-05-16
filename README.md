@@ -38,9 +38,23 @@
 
 例如週一擲到 1 就在 02:00 後執行，擲到 6 就在 07:00 後執行。任務執行後，當天還會在目標時間後 1、3、6 小時重新確認每日登入、觀看、分享狀態；如果仍未完成，會補跑缺少的任務。每日擲骰結果、補跑檢查與任務結果會記錄在 `logs/`，並由 GitHub Actions 自動提交回 repo。
 
-## 執行方式
+## 自動執行
 
-GitHub Actions 會在每天台北時間 02:05 到 19:05 每小時檢查一次，命中當天擲骰算出的時間才會執行每日經驗任務，並在後續確認點補查補跑。也可以到 `Actions` 頁面手動執行 `Bilibili Daily Experience Tasks`。
+GitHub Actions 會在每天台北時間 02:05 到 19:05 每小時檢查一次，命中當天擲骰算出的時間才會執行每日經驗任務，並在後續確認點補查補跑。
+
+## 使用者手動執行
+
+使用者可以在 GitHub 網頁手動執行：
+
+1. 打開 Repo 的 `Actions` 頁面。
+2. 點左側 `Bilibili Daily Experience Tasks`。
+3. 點右上 `Run workflow`。
+4. Branch 保持 `main`。
+5. 點綠色 `Run workflow`。
+
+手動執行也會套用同一套台北時間規則：如果還沒到當天目標時間，會只記錄 `before_target_hour`；如果已到時間或補查時間，才會執行或確認任務。
+
+## 本機測試
 
 本機測試：
 
@@ -55,4 +69,3 @@ python3 scripts/bilibili_sign.py
 
 - Cookie 屬於敏感資料，請只放在 GitHub Secrets，不要提交到程式碼。
 - 若 Bilibili Cookie 過期，Action 會登入檢查失敗，需要重新更新 Secrets。
-- Test commit marker.
