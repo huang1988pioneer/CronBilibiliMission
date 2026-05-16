@@ -106,8 +106,14 @@ def check_login(cookie):
 
     uname = data.get("uname") or "Bilibili user"
     mid = data.get("mid") or "unknown"
-    print(f"Logged in as {uname} ({mid})")
-    return {"status": "logged_in", "uname": uname, "mid": mid}
+    account_coins = data.get("money")
+    print(f"Logged in as {uname} ({mid}), account coins: {account_coins}")
+    return {
+        "status": "logged_in",
+        "uname": uname,
+        "mid": mid,
+        "account_coins": account_coins,
+    }
 
 
 def response_status(response, success_status, failed_status):
@@ -379,6 +385,7 @@ def run_scheduled():
 
     plan["completed"] = result["complete"]
     plan["login_status"] = result["login"]["status"]
+    plan["account_coins"] = result["login"].get("account_coins")
     plan["watch_status"] = result["watch"]["status"]
     plan["share_status"] = result["share"]["status"]
     if result["video"] is not None:
@@ -396,6 +403,7 @@ def run_scheduled():
             "dice": plan["dice"],
             "target_hour_24h": target_hour,
             "login_status": result["login"]["status"],
+            "account_coins": result["login"].get("account_coins"),
             "watch_status": result["watch"]["status"],
             "share_status": result["share"]["status"],
             "video": result["video"],
@@ -418,6 +426,7 @@ def main():
         {
             "event": "manual_experience_tasks",
             "login_status": result["login"]["status"],
+            "account_coins": result["login"].get("account_coins"),
             "watch_status": result["watch"]["status"],
             "share_status": result["share"]["status"],
             "video": result["video"],
