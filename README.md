@@ -55,3 +55,4 @@ python3 scripts/bilibili_sign.py
 
 - Cookie 屬於敏感資料，請只放在 GitHub Secrets，不要提交到程式碼。
 - 若 Bilibili Cookie 過期，Action 會登入檢查失敗，需要重新更新 Secrets。
+- Test commit marker.
