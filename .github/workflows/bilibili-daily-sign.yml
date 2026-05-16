@@ -36,7 +36,7 @@ jobs:
 
       - name: Commit sign records
         run: |
-          if git diff --quiet -- logs; then
+          if [ -z "$(git status --porcelain logs)" ]; then
             echo "No sign record changes."
             exit 0
           fi

@@ -122,7 +122,12 @@ def live_sign(cookie, csrf):
         print(text)
         return {"status": "signed", "message": text, "response": response}
 
-    already_signed_messages = ("already", "已", "重复", "signed")
+    unavailable_messages = ("活动已下线", "无法使用", "activity offline", "unavailable")
+    if any(token in message for token in unavailable_messages):
+        print(f"Sign unavailable: {message}")
+        return {"status": "sign_unavailable", "message": message, "response": response}
+
+    already_signed_messages = ("already", "重复", "signed", "已经签到", "已签到")
     if any(token in message for token in already_signed_messages):
         print(f"Already signed: {message}")
         return {"status": "already_signed", "message": message, "response": response}
