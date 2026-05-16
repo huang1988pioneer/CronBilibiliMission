@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
+import argparse
 import json
+import logging
 import os
 import random
 import sys
-import urllib.error
+import time
 import urllib.parse
-import urllib.request
 from datetime import datetime
+from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from zoneinfo import ZoneInfo
+
+from requests import Session
+from requests import exceptions as request_exceptions
 
 
 USER_AGENT = (
@@ -20,8 +25,56 @@ TAIPEI = ZoneInfo("Asia/Taipei")
 LOG_DIR = Path("logs")
 PLAN_FILE = LOG_DIR / "daily_experience_plan.json"
 EVENT_LOG = LOG_DIR / "bilibili_experience.jsonl"
+RUNTIME_LOG = LOG_DIR / "bilibili_experience.log"
 TASK_NAME = "daily_experience"
 CONFIRM_AFTER_HOURS = (1, 3, 6)
+REQUEST_TIMEOUT_SECONDS = 20
+MAX_REQUEST_ATTEMPTS = 5
+RETRY_STATUS_CODES = {429, 500, 502, 503, 504}
+
+
+class BilibiliError(RuntimeError):
+    """Base error for predictable Bilibili task failures."""
+
+
+class LoginExpiredError(BilibiliError):
+    """Raised when cookie credentials are missing or expired."""
+
+
+class RequestFailedError(BilibiliError):
+    """Raised when an HTTP request cannot be completed."""
+
+
+class ApiResponseError(BilibiliError):
+    """Raised when an API response is syntactically valid but unsuccessful."""
+
+
+def setup_logging(debug=False):
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG if debug else logging.INFO)
+    logger.handlers.clear()
+
+    formatter = logging.Formatter(
+        "%(asctime)s %(levelname)s %(name)s: %(message)s",
+        datefmt="%Y-%m-%dT%H:%M:%S%z",
+    )
+
+    stream_handler = logging.StreamHandler()
+    stream_handler.setLevel(logging.DEBUG if debug else logging.INFO)
+    stream_handler.setFormatter(formatter)
+
+    file_handler = RotatingFileHandler(
+        RUNTIME_LOG,
+        maxBytes=512 * 1024,
+        backupCount=3,
+        encoding="utf-8",
+    )
+    file_handler.setLevel(logging.DEBUG)
+    file_handler.setFormatter(formatter)
+
+    logger.addHandler(stream_handler)
+    logger.addHandler(file_handler)
 
 
 def env_value(*names):
@@ -46,7 +99,7 @@ def build_cookie():
         missing.append("DedeUserID")
 
     if missing:
-        raise RuntimeError(f"Missing required environment variables: {', '.join(missing)}")
+        raise LoginExpiredError(f"Missing required environment variables: {', '.join(missing)}")
 
     return {
         "cookie": (
@@ -58,62 +111,163 @@ def build_cookie():
     }
 
 
-def request_json(url, method="GET", data=None, cookie="", referer="https://www.bilibili.com/"):
-    headers = {
-        "User-Agent": USER_AGENT,
-        "Referer": referer,
-        "Cookie": cookie,
-    }
+class BilibiliClient:
+    def __init__(
+        self,
+        cookie,
+        csrf,
+        timeout=REQUEST_TIMEOUT_SECONDS,
+        max_attempts=MAX_REQUEST_ATTEMPTS,
+    ):
+        self.cookie = cookie
+        self.csrf = csrf
+        self.timeout = timeout
+        self.max_attempts = max_attempts
+        self.session = Session()
+        self.session.headers.update(
+            {
+                "User-Agent": USER_AGENT,
+                "Referer": "https://www.bilibili.com/",
+                "Cookie": cookie,
+            }
+        )
 
-    encoded_data = None
-    if data is not None:
-        encoded_data = urllib.parse.urlencode(data).encode("utf-8")
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
+    def request_json(self, url, method="GET", data=None, referer="https://www.bilibili.com/"):
+        headers = {"Referer": referer}
+        last_error = None
 
-    request = urllib.request.Request(
-        url,
-        data=encoded_data,
-        headers=headers,
-        method=method,
-    )
+        for attempt in range(1, self.max_attempts + 1):
+            try:
+                response = self.session.request(
+                    method,
+                    url,
+                    data=data,
+                    headers=headers,
+                    timeout=self.timeout,
+                )
+                if response.status_code in RETRY_STATUS_CODES:
+                    last_error = RequestFailedError(f"HTTP {response.status_code}: {response.text[:500]}")
+                    if attempt == self.max_attempts:
+                        raise last_error
+                    self._sleep_before_retry(attempt, f"HTTP {response.status_code}")
+                    continue
 
-    try:
-        with urllib.request.urlopen(request, timeout=20) as response:
-            payload = response.read().decode("utf-8")
-    except urllib.error.HTTPError as error:
-        payload = error.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"HTTP {error.code}: {payload}") from error
-    except urllib.error.URLError as error:
-        raise RuntimeError(f"Request failed: {error}") from error
+                response.raise_for_status()
+                payload = response.text
+                break
+            except (request_exceptions.Timeout, request_exceptions.ConnectionError) as error:
+                last_error = error
+                if attempt == self.max_attempts:
+                    raise RequestFailedError(f"Request failed after retries: {error}") from error
+                self._sleep_before_retry(attempt, str(error))
+            except request_exceptions.HTTPError as error:
+                status_code = error.response.status_code if error.response is not None else "unknown"
+                payload = error.response.text[:500] if error.response is not None else ""
+                raise RequestFailedError(f"HTTP {status_code}: {payload}") from error
+        else:
+            raise RequestFailedError(f"Request failed: {last_error}")
 
-    try:
-        return json.loads(payload)
-    except json.JSONDecodeError as error:
-        raise RuntimeError(f"Invalid JSON response: {payload[:500]}") from error
+        try:
+            result = json.loads(payload)
+        except json.JSONDecodeError as error:
+            raise RequestFailedError(f"Invalid JSON response: {payload[:500]}") from error
 
+        if result.get("code") == -101:
+            raise LoginExpiredError(f"Cookie expired or not logged in: {result}")
+        return result
 
-def check_login(cookie):
-    response = request_json(
-        "https://api.bilibili.com/x/web-interface/nav",
-        cookie=cookie,
-    )
-    if response.get("code") != 0:
-        raise RuntimeError(f"Login check failed: {response}")
+    def _sleep_before_retry(self, attempt, reason):
+        wait_seconds = min(30, (2 ** (attempt - 1)) + random.SystemRandom().uniform(0, 1.5))
+        logging.warning("Transient request failure (%s), retrying in %.1fs", reason, wait_seconds)
+        time.sleep(wait_seconds)
 
-    data = response.get("data") or {}
-    if not data.get("isLogin"):
-        raise RuntimeError("Login check failed: cookie is not logged in")
+    def check_login(self):
+        response = self.request_json("https://api.bilibili.com/x/web-interface/nav")
+        if response.get("code") != 0:
+            raise ApiResponseError(f"Login check failed: {response}")
 
-    uname = data.get("uname") or "Bilibili user"
-    mid = data.get("mid") or "unknown"
-    account_coins = data.get("money")
-    print(f"Logged in as {uname} ({mid}), account coins: {account_coins}")
-    return {
-        "status": "logged_in",
-        "uname": uname,
-        "mid": mid,
-        "account_coins": account_coins,
-    }
+        data = response.get("data") or {}
+        if not data.get("isLogin"):
+            raise LoginExpiredError("Login check failed: cookie is not logged in")
+
+        uname = data.get("uname") or "Bilibili user"
+        mid = data.get("mid") or "unknown"
+        account_coins = data.get("money")
+        logging.info("Logged in as %s (%s), account coins: %s", uname, mid, account_coins)
+        return {
+            "status": "logged_in",
+            "uname": uname,
+            "mid": mid,
+            "account_coins": account_coins,
+        }
+
+    def get_daily_reward(self):
+        response = self.request_json(
+            "https://api.bilibili.com/x/member/web/exp/reward",
+            referer="https://account.bilibili.com/account/home",
+        )
+        if response.get("code") != 0:
+            return response_status(response, "reward_checked", "reward_check_failed")
+        return {"status": "reward_checked", "message": "OK", "data": response.get("data") or {}}
+
+    def get_video_info(self):
+        popular = self.request_json("https://api.bilibili.com/x/web-interface/popular?ps=20&pn=1")
+        if popular.get("code") != 0:
+            raise ApiResponseError(f"Failed to get popular videos: {popular}")
+
+        videos = (popular.get("data") or {}).get("list") or []
+        candidates = [video for video in videos if video.get("aid") and video.get("bvid")]
+        if not candidates:
+            raise ApiResponseError("No playable video found from popular list")
+
+        video = random.SystemRandom().choice(candidates)
+        if not video.get("cid"):
+            detail = self.request_json(
+                "https://api.bilibili.com/x/web-interface/view?"
+                + urllib.parse.urlencode({"bvid": video["bvid"]})
+            )
+            if detail.get("code") == 0:
+                video.update(detail.get("data") or {})
+
+        if not video.get("cid"):
+            raise ApiResponseError(f"Video is missing cid: {video.get('bvid')}")
+
+        return {
+            "aid": video["aid"],
+            "bvid": video["bvid"],
+            "cid": video["cid"],
+            "title": video.get("title") or "",
+        }
+
+    def watch_video(self, video):
+        data = {
+            "aid": video["aid"],
+            "bvid": video["bvid"],
+            "cid": video["cid"],
+            "played_time": 60,
+            "realtime": 60,
+            "start_ts": int(datetime.now(TAIPEI).timestamp()) - 60,
+            "type": 3,
+            "dt": 2,
+            "play_type": 1,
+            "csrf": self.csrf,
+        }
+        response = self.request_json(
+            "https://api.bilibili.com/x/click-interface/web/heartbeat",
+            method="POST",
+            data=data,
+            referer=f"https://www.bilibili.com/video/{video['bvid']}/",
+        )
+        return response_status(response, "watch_reported", "watch_failed")
+
+    def share_video(self, video):
+        response = self.request_json(
+            "https://api.bilibili.com/x/web-interface/share/add",
+            method="POST",
+            data={"aid": video["aid"], "csrf": self.csrf},
+            referer=f"https://www.bilibili.com/video/{video['bvid']}/",
+        )
+        return response_status(response, "share_reported", "share_failed")
 
 
 def response_status(response, success_status, failed_status):
@@ -122,17 +276,6 @@ def response_status(response, success_status, failed_status):
     if code == 0:
         return {"status": success_status, "message": message or "OK", "response": response}
     return {"status": failed_status, "message": message or f"code={code}", "response": response}
-
-
-def get_daily_reward(cookie):
-    response = request_json(
-        "https://api.bilibili.com/x/member/web/exp/reward",
-        cookie=cookie,
-        referer="https://account.bilibili.com/account/home",
-    )
-    if response.get("code") != 0:
-        return response_status(response, "reward_checked", "reward_check_failed")
-    return {"status": "reward_checked", "message": "OK", "data": response.get("data") or {}}
 
 
 def reward_data(reward):
@@ -153,81 +296,13 @@ def missing_experience_tasks(reward):
     return missing
 
 
-def get_video_info(cookie):
-    popular = request_json(
-        "https://api.bilibili.com/x/web-interface/popular?ps=20&pn=1",
-        cookie=cookie,
-    )
-    if popular.get("code") != 0:
-        raise RuntimeError(f"Failed to get popular videos: {popular}")
-
-    videos = (popular.get("data") or {}).get("list") or []
-    candidates = [video for video in videos if video.get("aid") and video.get("bvid")]
-    if not candidates:
-        raise RuntimeError("No playable video found from popular list")
-
-    video = random.SystemRandom().choice(candidates)
-    if not video.get("cid"):
-        detail = request_json(
-            "https://api.bilibili.com/x/web-interface/view?"
-            + urllib.parse.urlencode({"bvid": video["bvid"]}),
-            cookie=cookie,
-        )
-        if detail.get("code") == 0:
-            video.update(detail.get("data") or {})
-
-    if not video.get("cid"):
-        raise RuntimeError(f"Video is missing cid: {video.get('bvid')}")
-
-    return {
-        "aid": video["aid"],
-        "bvid": video["bvid"],
-        "cid": video["cid"],
-        "title": video.get("title") or "",
-    }
-
-
-def watch_video(cookie, csrf, video):
-    data = {
-        "aid": video["aid"],
-        "bvid": video["bvid"],
-        "cid": video["cid"],
-        "played_time": 60,
-        "realtime": 60,
-        "start_ts": int(datetime.now(TAIPEI).timestamp()) - 60,
-        "type": 3,
-        "dt": 2,
-        "play_type": 1,
-        "csrf": csrf,
-    }
-    response = request_json(
-        "https://api.bilibili.com/x/click-interface/web/heartbeat",
-        method="POST",
-        data=data,
-        cookie=cookie,
-        referer=f"https://www.bilibili.com/video/{video['bvid']}/",
-    )
-    return response_status(response, "watch_reported", "watch_failed")
-
-
-def share_video(cookie, csrf, video):
-    response = request_json(
-        "https://api.bilibili.com/x/web-interface/share/add",
-        method="POST",
-        data={"aid": video["aid"], "csrf": csrf},
-        cookie=cookie,
-        referer=f"https://www.bilibili.com/video/{video['bvid']}/",
-    )
-    return response_status(response, "share_reported", "share_failed")
-
-
-def run_experience_tasks(cookie, csrf, mode="full"):
-    login = check_login(cookie)
-    before_reward = get_daily_reward(cookie)
+def run_experience_tasks(client, mode="full", dry_run=False):
+    login = client.check_login()
+    before_reward = client.get_daily_reward()
     before_missing = missing_experience_tasks(before_reward)
 
     if mode == "confirm" and not before_missing:
-        print("Daily experience tasks already complete.")
+        logging.info("Daily experience tasks already complete.")
         return {
             "login": login,
             "video": None,
@@ -240,22 +315,36 @@ def run_experience_tasks(cookie, csrf, mode="full"):
             "complete": True,
         }
 
-    video = get_video_info(cookie)
-    print(f"Selected video: {video['bvid']} {video['title']}")
+    video = client.get_video_info()
+    logging.info("Selected video: %s %s", video["bvid"], video["title"])
+
+    if dry_run:
+        logging.info("Dry run enabled; skipping watch and share API calls.")
+        return {
+            "login": login,
+            "video": video,
+            "watch": {"status": "watch_skipped", "message": "dry run"},
+            "share": {"status": "share_skipped", "message": "dry run"},
+            "reward_before": before_reward,
+            "reward_after": before_reward,
+            "missing_before": before_missing,
+            "missing_after": before_missing,
+            "complete": reward_complete(before_reward),
+        }
 
     if mode == "full" or "watch" in before_missing:
-        watch = watch_video(cookie, csrf, video)
-        print(f"Watch task: {watch['status']} {watch['message']}")
+        watch = client.watch_video(video)
+        logging.info("Watch task: %s %s", watch["status"], watch["message"])
     else:
         watch = {"status": "watch_skipped", "message": "already complete"}
 
     if mode == "full" or "share" in before_missing:
-        share = share_video(cookie, csrf, video)
-        print(f"Share task: {share['status']} {share['message']}")
+        share = client.share_video(video)
+        logging.info("Share task: %s %s", share["status"], share["message"])
     else:
         share = {"status": "share_skipped", "message": "already complete"}
 
-    after_reward = get_daily_reward(cookie)
+    after_reward = client.get_daily_reward()
     after_missing = missing_experience_tasks(after_reward)
     return {
         "login": login,
@@ -323,7 +412,7 @@ def today_plan(now):
     return plan
 
 
-def run_scheduled():
+def run_scheduled(dry_run=False):
     now = datetime.now(TAIPEI)
     plan = today_plan(now)
     date = now.date().isoformat()
@@ -331,7 +420,7 @@ def run_scheduled():
     target_hour = int(plan["target_hour_24h"])
 
     if current_hour < target_hour:
-        print(f"Waiting. Now {current_hour}:00 Taipei, target is {target_hour}:00.")
+        logging.info("Waiting. Now %s:00 Taipei, target is %s:00.", current_hour, target_hour)
         append_event(
             {
                 "event": "skip",
@@ -356,7 +445,7 @@ def run_scheduled():
                 break
 
     if run_type is None:
-        print(f"No due experience check. Now {current_hour}:00 Taipei, target was {target_hour}:00.")
+        logging.info("No due experience check. Now %s:00 Taipei, target was %s:00.", current_hour, target_hour)
         append_event(
             {
                 "event": "skip",
@@ -370,10 +459,11 @@ def run_scheduled():
         return
 
     auth = build_cookie()
+    client = BilibiliClient(auth["cookie"], auth["csrf"])
     result = run_experience_tasks(
-        auth["cookie"],
-        auth["csrf"],
+        client,
         mode="confirm" if run_type == "confirm" else "full",
+        dry_run=dry_run,
     )
     if run_type == "initial":
         plan["initial_done"] = True
@@ -396,6 +486,7 @@ def run_scheduled():
     append_event(
         {
             "event": "experience_tasks",
+            "dry_run": dry_run,
             "run_type": run_type,
             "confirm_after_hours": confirm_after_hours,
             "date": date,
@@ -415,21 +506,38 @@ def run_scheduled():
     )
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="Run Bilibili daily experience tasks.")
+    parser.add_argument("--scheduled", action="store_true", help="Use the hourly scheduled run window.")
+    parser.add_argument("--dry-run", action="store_true", help="Check login/reward/video without posting watch/share actions.")
+    parser.add_argument("--debug", action="store_true", help="Enable verbose runtime logging.")
+    return parser.parse_args()
+
+
 def main():
-    if "--scheduled" in sys.argv:
-        run_scheduled()
+    args = parse_args()
+    setup_logging(debug=args.debug)
+    if args.scheduled:
+        run_scheduled(dry_run=args.dry_run)
         return
 
     auth = build_cookie()
-    result = run_experience_tasks(auth["cookie"], auth["csrf"])
+    client = BilibiliClient(auth["cookie"], auth["csrf"])
+    result = run_experience_tasks(client, dry_run=args.dry_run)
+    now = datetime.now(TAIPEI)
     append_event(
         {
             "event": "manual_experience_tasks",
+            "dry_run": args.dry_run,
+            "date": now.date().isoformat(),
             "login_status": result["login"]["status"],
             "account_coins": result["login"].get("account_coins"),
             "watch_status": result["watch"]["status"],
             "share_status": result["share"]["status"],
             "video": result["video"],
+            "missing_before": result["missing_before"],
+            "missing_after": result["missing_after"],
+            "complete": result["complete"],
             "reward_after": result["reward_after"],
         }
     )
@@ -438,6 +546,9 @@ def main():
 if __name__ == "__main__":
     try:
         main()
+    except BilibiliError as error:
+        logging.error("%s", error)
+        sys.exit(1)
     except Exception as error:
-        print(error, file=sys.stderr)
+        logging.exception("Unexpected failure: %s", error)
         sys.exit(1)

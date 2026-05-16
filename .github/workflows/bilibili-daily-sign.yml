@@ -27,12 +27,20 @@ jobs:
         with:
           python-version: "3.x"
 
+      - name: Install dependencies
+        run: python3 -m pip install -r requirements.txt
+
       - name: Run Bilibili experience tasks
         env:
           SESSDATA: ${{ secrets.SESSDATA }}
           bili_jct: ${{ secrets.bili_jct }}
           DedeUserID: ${{ secrets.DedeUserID }}
-        run: python3 scripts/bilibili_sign.py --scheduled
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            python3 scripts/bilibili_sign.py
+          else
+            python3 scripts/bilibili_sign.py --scheduled
+          fi
 
       - name: Commit experience records
         run: |

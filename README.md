@@ -52,18 +52,25 @@ GitHub Actions 會在每天台北時間 02:05 到 19:05 每小時檢查一次，
 4. Branch 保持 `main`。
 5. 點綠色 `Run workflow`。
 
-手動執行也會套用同一套台北時間規則：如果還沒到當天目標時間，會只記錄 `before_target_hour`；如果已到時間或補查時間，才會執行或確認任務。
+手動執行會直接執行每日經驗任務，並把結果寫入 `logs/bilibili_experience.jsonl` 後由 GitHub Actions 提交回 repo；不會套用自動排程的擲骰時間限制。
 
 ## 本機測試
 
 本機測試：
 
 ```bash
+python3 -m pip install -r requirements.txt
 export SESSDATA="你的 SESSDATA"
 export bili_jct="你的 bili_jct"
 export DedeUserID="你的 DedeUserID"
 python3 scripts/bilibili_sign.py
 ```
+
+常用參數：
+
+- `--scheduled`：套用台北時間排程與補查規則。
+- `--dry-run`：只檢查登入、獎勵狀態與影片資料，不送出觀看或分享請求。
+- `--debug`：輸出更詳細的執行紀錄。
 
 ## 注意事項
 
