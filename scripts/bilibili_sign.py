@@ -18,9 +18,10 @@ USER_AGENT = (
 )
 TAIPEI = ZoneInfo("Asia/Taipei")
 LOG_DIR = Path("logs")
-PLAN_FILE = LOG_DIR / "daily_plan.json"
+PLAN_FILE = LOG_DIR / "daily_experience_plan.json"
 EVENT_LOG = LOG_DIR / "bilibili_experience.jsonl"
 TASK_NAME = "daily_experience"
+CONFIRM_AFTER_HOURS = (1, 3, 6)
 
 
 def env_value(*names):
@@ -128,6 +129,24 @@ def get_daily_reward(cookie):
     return {"status": "reward_checked", "message": "OK", "data": response.get("data") or {}}
 
 
+def reward_data(reward):
+    return reward.get("data") or {}
+
+
+def reward_complete(reward):
+    data = reward_data(reward)
+    return bool(data.get("login") and data.get("watch") and data.get("share"))
+
+
+def missing_experience_tasks(reward):
+    data = reward_data(reward)
+    missing = []
+    for task in ("login", "watch", "share"):
+        if not data.get(task):
+            missing.append(task)
+    return missing
+
+
 def get_video_info(cookie):
     popular = request_json(
         "https://api.bilibili.com/x/web-interface/popular?ps=20&pn=1",
@@ -196,19 +215,42 @@ def share_video(cookie, csrf, video):
     return response_status(response, "share_reported", "share_failed")
 
 
-def run_experience_tasks(cookie, csrf):
+def run_experience_tasks(cookie, csrf, mode="full"):
     login = check_login(cookie)
     before_reward = get_daily_reward(cookie)
+    before_missing = missing_experience_tasks(before_reward)
+
+    if mode == "confirm" and not before_missing:
+        print("Daily experience tasks already complete.")
+        return {
+            "login": login,
+            "video": None,
+            "watch": {"status": "watch_skipped", "message": "already complete"},
+            "share": {"status": "share_skipped", "message": "already complete"},
+            "reward_before": before_reward,
+            "reward_after": before_reward,
+            "missing_before": before_missing,
+            "missing_after": [],
+            "complete": True,
+        }
+
     video = get_video_info(cookie)
     print(f"Selected video: {video['bvid']} {video['title']}")
 
-    watch = watch_video(cookie, csrf, video)
-    print(f"Watch task: {watch['status']} {watch['message']}")
+    if mode == "full" or "watch" in before_missing:
+        watch = watch_video(cookie, csrf, video)
+        print(f"Watch task: {watch['status']} {watch['message']}")
+    else:
+        watch = {"status": "watch_skipped", "message": "already complete"}
 
-    share = share_video(cookie, csrf, video)
-    print(f"Share task: {share['status']} {share['message']}")
+    if mode == "full" or "share" in before_missing:
+        share = share_video(cookie, csrf, video)
+        print(f"Share task: {share['status']} {share['message']}")
+    else:
+        share = {"status": "share_skipped", "message": "already complete"}
 
     after_reward = get_daily_reward(cookie)
+    after_missing = missing_experience_tasks(after_reward)
     return {
         "login": login,
         "video": video,
@@ -216,6 +258,9 @@ def run_experience_tasks(cookie, csrf):
         "share": share,
         "reward_before": before_reward,
         "reward_after": after_reward,
+        "missing_before": before_missing,
+        "missing_after": after_missing,
+        "complete": reward_complete(after_reward),
     }
 
 
@@ -256,7 +301,8 @@ def today_plan(now):
         "weekday": weekday,
         "dice": dice,
         "target_hour_24h": weekday + dice,
-        "completed": False,
+        "initial_done": False,
+        "confirmations_done": [],
     }
     write_plan(plan)
     append_event(
@@ -278,11 +324,6 @@ def run_scheduled():
     current_hour = now.hour
     target_hour = int(plan["target_hour_24h"])
 
-    if plan.get("completed"):
-        print(f"{date} experience tasks already completed. Target hour was {target_hour}:00 Taipei.")
-        append_event({"event": "skip", "reason": "already_completed", "date": date})
-        return
-
     if current_hour < target_hour:
         print(f"Waiting. Now {current_hour}:00 Taipei, target is {target_hour}:00.")
         append_event(
@@ -296,19 +337,60 @@ def run_scheduled():
         )
         return
 
+    run_type = None
+    confirm_after_hours = None
+    confirmations_done = {int(hour) for hour in plan.get("confirmations_done", [])}
+    if not plan.get("initial_done"):
+        run_type = "initial"
+    else:
+        for offset in CONFIRM_AFTER_HOURS:
+            if current_hour >= target_hour + offset and offset not in confirmations_done:
+                run_type = "confirm"
+                confirm_after_hours = offset
+                break
+
+    if run_type is None:
+        print(f"No due experience check. Now {current_hour}:00 Taipei, target was {target_hour}:00.")
+        append_event(
+            {
+                "event": "skip",
+                "reason": "no_due_check",
+                "date": date,
+                "current_hour_24h": current_hour,
+                "target_hour_24h": target_hour,
+                "confirmations_done": sorted(confirmations_done),
+            }
+        )
+        return
+
     auth = build_cookie()
-    result = run_experience_tasks(auth["cookie"], auth["csrf"])
-    plan["completed"] = True
-    plan["completed_at_taipei"] = now.isoformat(timespec="seconds")
+    result = run_experience_tasks(
+        auth["cookie"],
+        auth["csrf"],
+        mode="confirm" if run_type == "confirm" else "full",
+    )
+    if run_type == "initial":
+        plan["initial_done"] = True
+        plan["initial_done_at_taipei"] = now.isoformat(timespec="seconds")
+    else:
+        confirmations_done.add(confirm_after_hours)
+        plan["confirmations_done"] = sorted(confirmations_done)
+        plan[f"confirmed_after_{confirm_after_hours}h_at_taipei"] = now.isoformat(timespec="seconds")
+
+    plan["completed"] = result["complete"]
     plan["login_status"] = result["login"]["status"]
     plan["watch_status"] = result["watch"]["status"]
     plan["share_status"] = result["share"]["status"]
-    plan["video"] = result["video"]
+    if result["video"] is not None:
+        plan["video"] = result["video"]
+    plan["missing_after"] = result["missing_after"]
     plan["reward_after"] = result["reward_after"]
     write_plan(plan)
     append_event(
         {
             "event": "experience_tasks",
+            "run_type": run_type,
+            "confirm_after_hours": confirm_after_hours,
             "date": date,
             "weekday": plan["weekday"],
             "dice": plan["dice"],
@@ -317,6 +399,9 @@ def run_scheduled():
             "watch_status": result["watch"]["status"],
             "share_status": result["share"]["status"],
             "video": result["video"],
+            "missing_before": result["missing_before"],
+            "missing_after": result["missing_after"],
+            "complete": result["complete"],
             "reward_after": result["reward_after"],
         }
     )
