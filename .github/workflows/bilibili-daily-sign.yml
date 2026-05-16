@@ -1,4 +1,4 @@
-name: Bilibili Daily Sign
+name: Bilibili Daily Experience Tasks
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  sign:
+  experience:
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
@@ -27,21 +27,21 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Run Bilibili sign
+      - name: Run Bilibili experience tasks
         env:
           SESSDATA: ${{ secrets.SESSDATA }}
           bili_jct: ${{ secrets.bili_jct }}
           DedeUserID: ${{ secrets.DedeUserID }}
         run: python3 scripts/bilibili_sign.py --scheduled
 
-      - name: Commit sign records
+      - name: Commit experience records
         run: |
           if [ -z "$(git status --porcelain logs)" ]; then
-            echo "No sign record changes."
+            echo "No experience record changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add logs
-          git commit -m "Record Bilibili sign run"
+          git commit -m "Record Bilibili experience run"
           git push

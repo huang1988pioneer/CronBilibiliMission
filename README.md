@@ -1,6 +1,6 @@
 # CronBilibiliMission
 
-使用 GitHub Actions 執行 Bilibili 每日直播簽到。
+使用 GitHub Actions 執行 Bilibili 每日經驗任務。
 
 ## 需要設定的 GitHub Secrets
 
@@ -12,7 +12,16 @@
 | `bili_jct` | Bilibili Cookie 中的 `bili_jct` |
 | `DedeUserID` | Bilibili Cookie 中的 `DedeUserID` |
 
-## 自動簽到時間
+## 每日經驗任務
+
+目前會嘗試執行：
+
+- 每日登入：檢查 Cookie 是否仍為登入狀態。
+- 每日觀看影片：隨機取得一支熱門影片並上報觀看進度。
+- 每日分享影片：呼叫影片分享 API。
+- 每日獎勵查詢：執行前後查詢每日獎勵狀態並寫入紀錄。
+
+## 自動執行時間
 
 排程以台北時間與 24 小時制計算。每天第一次執行時會隨機擲 1 到 6 點，並加上星期數：
 
@@ -26,11 +35,11 @@
 | 週六 | 6 | 07:00-12:59 |
 | 週日 | 7 | 08:00-13:59 |
 
-例如週一擲到 1 就在 02:00 後簽到，擲到 6 就在 07:00 後簽到。每日擲骰結果與簽到結果會記錄在 `logs/`，並由 GitHub Actions 自動提交回 repo。
+例如週一擲到 1 就在 02:00 後執行，擲到 6 就在 07:00 後執行。每日擲骰結果與任務結果會記錄在 `logs/`，並由 GitHub Actions 自動提交回 repo。
 
 ## 執行方式
 
-GitHub Actions 會在每天台北時間 02:05 到 13:05 每小時檢查一次，命中當天擲骰算出的時間才會真正打卡簽到。也可以到 `Actions` 頁面手動執行 `Bilibili Daily Sign`。
+GitHub Actions 會在每天台北時間 02:05 到 13:05 每小時檢查一次，命中當天擲骰算出的時間才會真正執行每日經驗任務。也可以到 `Actions` 頁面手動執行 `Bilibili Daily Experience Tasks`。
 
 本機測試：
 
