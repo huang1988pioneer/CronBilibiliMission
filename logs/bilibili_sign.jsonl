@@ -1,0 +1,2 @@
+{"created_at_taipei": "2026-05-16T19:48:42+08:00", "date": "2026-05-16", "dice": 6, "event": "plan_created", "target_hour_24h": 12, "weekday": 6}
+{"created_at_taipei": "2026-05-16T19:48:44+08:00", "date": "2026-05-16", "dice": 6, "event": "sign", "message": "签到活动已下线，无法使用。", "status": "sign_unavailable", "target_hour_24h": 12, "weekday": 6}
