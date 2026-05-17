@@ -1,10 +1,37 @@
 {
+  "account_coins": 3,
+  "completed": true,
   "confirmations_done": [],
   "date": "2026-05-17",
   "dice": 6,
-  "initial_done": false,
+  "initial_done": true,
+  "initial_done_at_taipei": "2026-05-17T16:35:27+08:00",
+  "login_status": "logged_in",
+  "missing_after": [],
+  "reward_after": {
+    "data": {
+      "coins": 0,
+      "email": true,
+      "identify_card": false,
+      "login": true,
+      "safe_question": false,
+      "share": true,
+      "tel": true,
+      "watch": true
+    },
+    "message": "OK",
+    "status": "reward_checked"
+  },
+  "share_status": "share_reported",
   "target_hour_24h": 13,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
+  "video": {
+    "aid": 116576552486898,
+    "bvid": "BV1yF5e63EyT",
+    "cid": 38344524908,
+    "title": "《攻击型祝福》"
+  },
+  "watch_status": "watch_reported",
   "weekday": 7
 }
