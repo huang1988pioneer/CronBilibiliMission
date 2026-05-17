@@ -1,7 +1,10 @@
 {
   "account_coins": 3,
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-05-17T20:06:31+08:00",
   "date": "2026-05-17",
   "dice": 6,
   "initial_done": true,
@@ -22,7 +25,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 13,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -32,6 +35,6 @@
     "cid": 38344524908,
     "title": "《攻击型祝福》"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 7
 }
