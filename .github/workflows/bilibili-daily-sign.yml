@@ -36,6 +36,8 @@ jobs:
           bili_jct: ${{ secrets.bili_jct }}
           DedeUserID: ${{ secrets.DedeUserID }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_API_KEY2: ${{ secrets.RESEND_API_KEY2 }}
+          RESEND_API_KEY3: ${{ secrets.RESEND_API_KEY3 }}
           RESEND_FROM: ${{ secrets.RESEND_FROM }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then

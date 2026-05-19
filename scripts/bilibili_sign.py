@@ -45,6 +45,11 @@ DEFAULT_EMAIL_NOTIFY_TO = (
     "huang1988pioneer@gmail.com,"
     "chbondg@hotmail.com"
 )
+RESEND_RECIPIENTS = (
+    ("RESEND_API_KEY", "goldshoot0720@gmail.com"),
+    ("RESEND_API_KEY3", "huang1988pioneer@gmail.com"),
+    ("RESEND_API_KEY2", "chbondg@hotmail.com"),
+)
 DEFAULT_RESEND_FROM = "Bilibili Monitor <onboarding@resend.dev>"
 RESEND_EMAILS_URL = "https://api.resend.com/emails"
 
@@ -565,15 +570,16 @@ def coin_balance_alert_already_sent(start_date, current_date):
 
 
 def email_notification_configured():
-    return bool(env_value("RESEND_API_KEY") or (env_value("SMTP_USERNAME") and env_value("SMTP_PASSWORD")))
+    return bool(resend_recipient_configs() or (env_value("SMTP_USERNAME") and env_value("SMTP_PASSWORD")))
 
 
 def email_config():
     username = env_value("SMTP_USERNAME")
-    provider = "resend" if env_value("RESEND_API_KEY") else "smtp"
+    resend_recipients = resend_recipient_configs()
+    provider = "resend" if resend_recipients else "smtp"
     return {
         "provider": provider,
-        "resend_api_key": env_value("RESEND_API_KEY"),
+        "resend_recipients": resend_recipients,
         "resend_from": env_value("RESEND_FROM") or DEFAULT_RESEND_FROM,
         "host": env_value("SMTP_HOST") or DEFAULT_SMTP_HOST,
         "port": parse_int(env_value("SMTP_PORT")) or DEFAULT_SMTP_PORT,
@@ -583,6 +589,14 @@ def email_config():
         "recipient": env_value("EMAIL_NOTIFY_TO") or DEFAULT_EMAIL_NOTIFY_TO,
         "starttls": env_bool("SMTP_STARTTLS", default=True),
     }
+
+
+def resend_recipient_configs():
+    return [
+        {"api_key_name": api_key_name, "api_key": env_value(api_key_name), "recipient": recipient}
+        for api_key_name, recipient in RESEND_RECIPIENTS
+        if env_value(api_key_name)
+    ]
 
 
 def notify_level_upgrade(previous_level, result):
@@ -752,23 +766,43 @@ def send_email(config, subject, body):
 
 
 def send_resend_email(config, subject, body):
-    payload = {
-        "from": config["resend_from"],
-        "to": email_recipients(config["recipient"]),
-        "subject": subject,
-        "text": body,
-    }
-    response = Session().post(
-        RESEND_EMAILS_URL,
-        headers={
-            "Authorization": f"Bearer {config['resend_api_key']}",
-            "Content-Type": "application/json",
-        },
-        data=json.dumps(payload),
-        timeout=REQUEST_TIMEOUT_SECONDS,
-    )
-    if response.status_code >= 400:
-        raise ApiResponseError(f"Resend email failed: HTTP {response.status_code}: {response.text[:500]}")
+    results = []
+    failures = []
+
+    for recipient_config in config["resend_recipients"]:
+        payload = {
+            "from": config["resend_from"],
+            "to": [recipient_config["recipient"]],
+            "subject": subject,
+            "text": body,
+        }
+        response = Session().post(
+            RESEND_EMAILS_URL,
+            headers={
+                "Authorization": f"Bearer {recipient_config['api_key']}",
+                "Content-Type": "application/json",
+            },
+            data=json.dumps(payload),
+            timeout=REQUEST_TIMEOUT_SECONDS,
+        )
+        result = {
+            "api_key_name": recipient_config["api_key_name"],
+            "recipient": recipient_config["recipient"],
+            "status_code": response.status_code,
+        }
+        if response.status_code >= 400:
+            result["message"] = response.text[:500]
+            failures.append(result)
+        else:
+            try:
+                result["response"] = response.json()
+            except ValueError:
+                result["response"] = response.text[:500]
+        results.append(result)
+
+    config["send_results"] = results
+    if failures:
+        raise ApiResponseError(f"Resend email failed for {len(failures)} recipient(s): {failures}")
 
 
 def send_smtp_email(config, subject, body):
@@ -787,14 +821,6 @@ def send_smtp_email(config, subject, body):
         if config["username"] and config["password"]:
             smtp.login(config["username"], config["password"])
         smtp.send_message(message)
-
-
-def email_recipients(value):
-    return [
-        recipient.strip()
-        for recipient in value.split(",")
-        if recipient.strip()
-    ]
 
 
 def read_plan():
