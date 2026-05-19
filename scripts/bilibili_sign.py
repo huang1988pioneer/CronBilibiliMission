@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import argparse
-import smtplib
 import json
 import logging
 import os
@@ -9,7 +8,6 @@ import sys
 import time
 import urllib.parse
 from datetime import datetime, timedelta
-from email.message import EmailMessage
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -47,6 +45,8 @@ DEFAULT_EMAIL_NOTIFY_TO = (
     "huang1988pioneer@gmail.com,"
     "chbondg@hotmail.com"
 )
+DEFAULT_RESEND_FROM = "Bilibili Monitor <onboarding@resend.dev>"
+RESEND_EMAILS_URL = "https://api.resend.com/emails"
 
 
 class BilibiliError(RuntimeError):
@@ -565,13 +565,16 @@ def coin_balance_alert_already_sent(start_date, current_date):
 
 
 def email_notification_configured():
-    required = ("SMTP_USERNAME", "SMTP_PASSWORD")
-    return all(env_value(name) for name in required)
+    return bool(env_value("RESEND_API_KEY") or (env_value("SMTP_USERNAME") and env_value("SMTP_PASSWORD")))
 
 
 def email_config():
     username = env_value("SMTP_USERNAME")
+    provider = "resend" if env_value("RESEND_API_KEY") else "smtp"
     return {
+        "provider": provider,
+        "resend_api_key": env_value("RESEND_API_KEY"),
+        "resend_from": env_value("RESEND_FROM") or DEFAULT_RESEND_FROM,
         "host": env_value("SMTP_HOST") or DEFAULT_SMTP_HOST,
         "port": parse_int(env_value("SMTP_PORT")) or DEFAULT_SMTP_PORT,
         "username": username,
@@ -603,7 +606,7 @@ def notify_level_upgrade(previous_level, result):
     body = build_level_upgrade_email_body(previous_level, current_level, result)
     try:
         send_email(config, subject, body)
-    except (OSError, smtplib.SMTPException) as error:
+    except (OSError, RequestFailedError, ApiResponseError) as error:
         logging.error("Level upgrade email failed: %s", error)
         return {
             "status": "email_failed",
@@ -666,7 +669,7 @@ def notify_coin_balance_issue(result, date):
     body = build_coin_balance_email_body(streak, current_coins, result, date)
     try:
         send_email(config, subject, body)
-    except (OSError, smtplib.SMTPException) as error:
+    except (OSError, RequestFailedError, ApiResponseError) as error:
         logging.error("Coin balance email failed: %s", error)
         return {
             "status": "email_failed",
@@ -741,6 +744,37 @@ def build_coin_balance_email_body(streak, current_coins, result, date):
 
 
 def send_email(config, subject, body):
+    if config["provider"] == "resend":
+        send_resend_email(config, subject, body)
+        return
+
+    send_smtp_email(config, subject, body)
+
+
+def send_resend_email(config, subject, body):
+    payload = {
+        "from": config["resend_from"],
+        "to": email_recipients(config["recipient"]),
+        "subject": subject,
+        "text": body,
+    }
+    response = Session().post(
+        RESEND_EMAILS_URL,
+        headers={
+            "Authorization": f"Bearer {config['resend_api_key']}",
+            "Content-Type": "application/json",
+        },
+        data=json.dumps(payload),
+        timeout=REQUEST_TIMEOUT_SECONDS,
+    )
+    if response.status_code >= 400:
+        raise ApiResponseError(f"Resend email failed: HTTP {response.status_code}: {response.text[:500]}")
+
+
+def send_smtp_email(config, subject, body):
+    import smtplib
+    from email.message import EmailMessage
+
     message = EmailMessage()
     message["From"] = config["sender"]
     message["To"] = config["recipient"]
@@ -753,6 +787,14 @@ def send_email(config, subject, body):
         if config["username"] and config["password"]:
             smtp.login(config["username"], config["password"])
         smtp.send_message(message)
+
+
+def email_recipients(value):
+    return [
+        recipient.strip()
+        for recipient in value.split(",")
+        if recipient.strip()
+    ]
 
 
 def read_plan():

@@ -35,8 +35,8 @@ jobs:
           SESSDATA: ${{ secrets.SESSDATA }}
           bili_jct: ${{ secrets.bili_jct }}
           DedeUserID: ${{ secrets.DedeUserID }}
-          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             python3 scripts/bilibili_sign.py
