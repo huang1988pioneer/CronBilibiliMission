@@ -193,12 +193,26 @@ class BilibiliClient:
         uname = data.get("uname") or "Bilibili user"
         mid = data.get("mid") or "unknown"
         account_coins = data.get("money")
-        logging.info("Logged in as %s (%s), account coins: %s", uname, mid, account_coins)
+        level_info = summarize_level_info(data.get("level_info") or {})
+        logging.info(
+            (
+                "Logged in as %s (%s), account coins: %s, level: Lv%s, exp: %s, "
+                "exp to next: %s, days at 15 exp/day: %s"
+            ),
+            uname,
+            mid,
+            account_coins,
+            level_info.get("current_level"),
+            level_info.get("current_exp"),
+            level_info.get("exp_to_next_level"),
+            level_info.get("days_to_next_level_at_15_exp_per_day"),
+        )
         return {
             "status": "logged_in",
             "uname": uname,
             "mid": mid,
             "account_coins": account_coins,
+            "level_info": level_info,
         }
 
     def get_daily_reward(self):
@@ -276,6 +290,37 @@ def response_status(response, success_status, failed_status):
     if code == 0:
         return {"status": success_status, "message": message or "OK", "response": response}
     return {"status": failed_status, "message": message or f"code={code}", "response": response}
+
+
+def summarize_level_info(level_info):
+    current_level = level_info.get("current_level")
+    current_exp = parse_int(level_info.get("current_exp"))
+    next_exp = parse_int(level_info.get("next_exp"))
+    exp_to_next_level = None
+    days_to_next_level_at_15_exp_per_day = None
+
+    if current_exp is not None and next_exp is not None:
+        exp_to_next_level = max(0, next_exp - current_exp)
+        days_to_next_level_at_15_exp_per_day = ceil_div(exp_to_next_level, 15)
+
+    return {
+        "current_level": current_level,
+        "current_exp": current_exp,
+        "next_level_exp": next_exp,
+        "exp_to_next_level": exp_to_next_level,
+        "days_to_next_level_at_15_exp_per_day": days_to_next_level_at_15_exp_per_day,
+    }
+
+
+def ceil_div(value, divisor):
+    return -(-value // divisor)
+
+
+def parse_int(value):
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
 
 
 def reward_data(reward):
@@ -476,6 +521,7 @@ def run_scheduled(dry_run=False):
     plan["completed"] = result["complete"]
     plan["login_status"] = result["login"]["status"]
     plan["account_coins"] = result["login"].get("account_coins")
+    plan["level_info"] = result["login"].get("level_info")
     plan["watch_status"] = result["watch"]["status"]
     plan["share_status"] = result["share"]["status"]
     if result["video"] is not None:
@@ -495,6 +541,7 @@ def run_scheduled(dry_run=False):
             "target_hour_24h": target_hour,
             "login_status": result["login"]["status"],
             "account_coins": result["login"].get("account_coins"),
+            "level_info": result["login"].get("level_info"),
             "watch_status": result["watch"]["status"],
             "share_status": result["share"]["status"],
             "video": result["video"],
@@ -532,6 +579,7 @@ def main():
             "date": now.date().isoformat(),
             "login_status": result["login"]["status"],
             "account_coins": result["login"].get("account_coins"),
+            "level_info": result["login"].get("level_info"),
             "watch_status": result["watch"]["status"],
             "share_status": result["share"]["status"],
             "video": result["video"],
