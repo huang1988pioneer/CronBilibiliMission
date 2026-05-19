@@ -7,7 +7,7 @@ import random
 import sys
 import time
 import urllib.parse
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -31,6 +31,13 @@ CONFIRM_AFTER_HOURS = (1, 3, 6)
 REQUEST_TIMEOUT_SECONDS = 20
 MAX_REQUEST_ATTEMPTS = 5
 RETRY_STATUS_CODES = {429, 500, 502, 503, 504}
+BASE_DAILY_EXPERIENCE = 15
+LEVEL_EXP_THRESHOLDS = {
+    3: 1500,
+    4: 4500,
+    5: 10800,
+    6: 28800,
+}
 
 
 class BilibiliError(RuntimeError):
@@ -197,7 +204,7 @@ class BilibiliClient:
         logging.info(
             (
                 "Logged in as %s (%s), account coins: %s, level: Lv%s, exp: %s, "
-                "exp to next: %s, days at 15 exp/day: %s"
+                "exp to next: %s, days at %s exp/day: %s"
             ),
             uname,
             mid,
@@ -205,6 +212,7 @@ class BilibiliClient:
             level_info.get("current_level"),
             level_info.get("current_exp"),
             level_info.get("exp_to_next_level"),
+            BASE_DAILY_EXPERIENCE,
             level_info.get("days_to_next_level_at_15_exp_per_day"),
         )
         return {
@@ -298,10 +306,14 @@ def summarize_level_info(level_info):
     next_exp = parse_int(level_info.get("next_exp"))
     exp_to_next_level = None
     days_to_next_level_at_15_exp_per_day = None
+    level_breakthrough_dates_at_15_exp_per_day = {}
 
     if current_exp is not None and next_exp is not None:
         exp_to_next_level = max(0, next_exp - current_exp)
-        days_to_next_level_at_15_exp_per_day = ceil_div(exp_to_next_level, 15)
+        days_to_next_level_at_15_exp_per_day = ceil_div(exp_to_next_level, BASE_DAILY_EXPERIENCE)
+
+    if current_exp is not None:
+        level_breakthrough_dates_at_15_exp_per_day = estimate_level_breakthrough_dates(current_exp)
 
     return {
         "current_level": current_level,
@@ -309,7 +321,25 @@ def summarize_level_info(level_info):
         "next_level_exp": next_exp,
         "exp_to_next_level": exp_to_next_level,
         "days_to_next_level_at_15_exp_per_day": days_to_next_level_at_15_exp_per_day,
+        "level_breakthrough_dates_at_15_exp_per_day": level_breakthrough_dates_at_15_exp_per_day,
     }
+
+
+def estimate_level_breakthrough_dates(current_exp, today=None):
+    today = today or datetime.now(TAIPEI).date()
+    dates = {}
+
+    for level, required_exp in LEVEL_EXP_THRESHOLDS.items():
+        exp_remaining = max(0, required_exp - current_exp)
+        days_remaining = ceil_div(exp_remaining, BASE_DAILY_EXPERIENCE)
+        dates[f"lv{level}"] = {
+            "required_exp": required_exp,
+            "exp_remaining": exp_remaining,
+            "days_at_15_exp_per_day": days_remaining,
+            "estimated_date": (today + timedelta(days=days_remaining)).isoformat(),
+        }
+
+    return dates
 
 
 def ceil_div(value, divisor):
