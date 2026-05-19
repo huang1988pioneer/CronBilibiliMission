@@ -40,6 +40,13 @@ LEVEL_EXP_THRESHOLDS = {
     5: 10800,
     6: 28800,
 }
+DEFAULT_SMTP_HOST = "smtp.gmail.com"
+DEFAULT_SMTP_PORT = 587
+DEFAULT_EMAIL_NOTIFY_TO = (
+    "goldshoot0720@gmail.com,"
+    "huang1988pioneer@gmail.com,"
+    "chbondg@hotmail.com"
+)
 
 
 class BilibiliError(RuntimeError):
@@ -558,18 +565,19 @@ def coin_balance_alert_already_sent(start_date, current_date):
 
 
 def email_notification_configured():
-    required = ("SMTP_HOST", "EMAIL_NOTIFY_TO")
+    required = ("SMTP_USERNAME", "SMTP_PASSWORD")
     return all(env_value(name) for name in required)
 
 
 def email_config():
+    username = env_value("SMTP_USERNAME")
     return {
-        "host": env_value("SMTP_HOST"),
-        "port": parse_int(env_value("SMTP_PORT")) or 587,
-        "username": env_value("SMTP_USERNAME"),
+        "host": env_value("SMTP_HOST") or DEFAULT_SMTP_HOST,
+        "port": parse_int(env_value("SMTP_PORT")) or DEFAULT_SMTP_PORT,
+        "username": username,
         "password": env_value("SMTP_PASSWORD"),
-        "sender": env_value("SMTP_FROM") or env_value("SMTP_USERNAME") or env_value("EMAIL_NOTIFY_TO"),
-        "recipient": env_value("EMAIL_NOTIFY_TO"),
+        "sender": env_value("SMTP_FROM") or username,
+        "recipient": env_value("EMAIL_NOTIFY_TO") or DEFAULT_EMAIL_NOTIFY_TO,
         "starttls": env_bool("SMTP_STARTTLS", default=True),
     }
 
