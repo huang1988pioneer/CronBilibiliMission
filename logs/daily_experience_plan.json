@@ -1,37 +1,10 @@
 {
-  "account_coins": 5,
-  "completed": true,
   "confirmations_done": [],
-  "date": "2026-05-19",
-  "dice": 6,
-  "initial_done": true,
-  "initial_done_at_taipei": "2026-05-19T18:47:56+08:00",
-  "login_status": "logged_in",
-  "missing_after": [],
-  "reward_after": {
-    "data": {
-      "coins": 0,
-      "email": true,
-      "identify_card": false,
-      "login": true,
-      "safe_question": false,
-      "share": true,
-      "tel": true,
-      "watch": true
-    },
-    "message": "OK",
-    "status": "reward_checked"
-  },
-  "share_status": "share_reported",
-  "target_hour_24h": 8,
+  "date": "2026-05-20",
+  "dice": 3,
+  "initial_done": false,
+  "target_hour_24h": 6,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
-  "video": {
-    "aid": 116595359745632,
-    "bvid": "BV1rZLc6jEcc",
-    "cid": 38425920739,
-    "title": "成本低，利润高！月入过万就靠它了"
-  },
-  "watch_status": "watch_reported",
-  "weekday": 2
+  "weekday": 3
 }
