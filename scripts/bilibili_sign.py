@@ -483,12 +483,28 @@ def read_event_log():
 
 
 def latest_coin_record_before(date):
+    coin_records = coin_records_before(date)
+    if not coin_records:
+        return None
+
+    return coin_records[-1]
+
+
+def coin_records_before(date):
+    return [
+        record
+        for record in coin_records_by_date()
+        if record["date"] < date
+    ]
+
+
+def coin_records_by_date():
     latest_by_date = {}
 
     for event in read_event_log():
         event_date = event.get("date")
         coins = parse_float(event.get("account_coins"))
-        if event_date is None or coins is None or event_date >= date:
+        if event_date is None or coins is None:
             continue
         latest_by_date[event_date] = {
             "date": event_date,
@@ -496,10 +512,49 @@ def latest_coin_record_before(date):
             "created_at_taipei": event.get("created_at_taipei"),
         }
 
-    if not latest_by_date:
-        return None
+    return [
+        latest_by_date[date]
+        for date in sorted(latest_by_date)
+    ]
 
-    return latest_by_date[sorted(latest_by_date)[-1]]
+
+def stagnant_coin_balance_streak(date, current_coins):
+    if current_coins is None:
+        return []
+
+    records = coin_records_before(date)
+    records.append(
+        {
+            "date": date,
+            "account_coins": current_coins,
+            "created_at_taipei": datetime.now(TAIPEI).isoformat(timespec="seconds"),
+        }
+    )
+
+    if len(records) < 2:
+        return records
+
+    streak = [records[-1]]
+    for record in reversed(records[:-1]):
+        next_record = streak[0]
+        if next_record["account_coins"] > record["account_coins"]:
+            break
+        streak.insert(0, record)
+
+    return streak
+
+
+def coin_balance_alert_already_sent(start_date, current_date):
+    for event in read_event_log():
+        event_date = event.get("date")
+        if event_date is None or event_date < start_date or event_date >= current_date:
+            continue
+
+        notification = event.get("coin_balance_notification") or {}
+        if notification.get("status") == "email_sent":
+            return True
+
+    return False
 
 
 def email_notification_configured():
@@ -558,24 +613,40 @@ def notify_level_upgrade(previous_level, result):
     }
 
 
-def notify_coin_balance_issue(previous_coin_record, result, date):
+def notify_coin_balance_issue(result, date):
     current_coins = parse_float(result["login"].get("account_coins"))
-    if previous_coin_record is None or current_coins is None:
+    if current_coins is None:
         return {"status": "email_skipped", "reason": "insufficient_coin_history"}
 
+    streak = stagnant_coin_balance_streak(date, current_coins)
+    if len(streak) < 3:
+        return {
+            "status": "email_skipped",
+            "reason": "stagnant_coin_streak_below_threshold",
+            "streak_days": len(streak),
+        }
+
+    if coin_balance_alert_already_sent(streak[0]["date"], date):
+        return {
+            "status": "email_skipped",
+            "reason": "coin_balance_alert_already_sent",
+            "streak_days": len(streak),
+            "streak": streak,
+        }
+
+    previous_coin_record = streak[-2]
     previous_coins = previous_coin_record["account_coins"]
-    if current_coins > previous_coins:
-        return {"status": "email_skipped", "reason": "coin_balance_increased"}
 
     if not email_notification_configured():
         logging.info(
-            "Coin balance did not increase from %s to %s, but email notification is not configured.",
-            previous_coins,
-            current_coins,
+            "Coin balance did not increase for %s recorded days, but email notification is not configured.",
+            len(streak),
         )
         return {
             "status": "email_skipped",
             "reason": "email_not_configured",
+            "streak_days": len(streak),
+            "streak": streak,
             "previous_date": previous_coin_record["date"],
             "previous_coins": previous_coins,
             "current_date": date,
@@ -583,8 +654,8 @@ def notify_coin_balance_issue(previous_coin_record, result, date):
         }
 
     config = email_config()
-    subject = "Bilibili coin balance did not increase"
-    body = build_coin_balance_email_body(previous_coin_record, current_coins, result, date)
+    subject = "Bilibili coin balance has not increased for 3 days"
+    body = build_coin_balance_email_body(streak, current_coins, result, date)
     try:
         send_email(config, subject, body)
     except (OSError, smtplib.SMTPException) as error:
@@ -592,6 +663,8 @@ def notify_coin_balance_issue(previous_coin_record, result, date):
         return {
             "status": "email_failed",
             "message": str(error),
+            "streak_days": len(streak),
+            "streak": streak,
             "previous_date": previous_coin_record["date"],
             "previous_coins": previous_coins,
             "current_date": date,
@@ -602,6 +675,8 @@ def notify_coin_balance_issue(previous_coin_record, result, date):
     return {
         "status": "email_sent",
         "recipient": config["recipient"],
+        "streak_days": len(streak),
+        "streak": streak,
         "previous_date": previous_coin_record["date"],
         "previous_coins": previous_coins,
         "current_date": date,
@@ -624,18 +699,28 @@ def build_level_upgrade_email_body(previous_level, current_level, result):
     return "\n".join(lines)
 
 
-def build_coin_balance_email_body(previous_coin_record, current_coins, result, date):
+def build_coin_balance_email_body(streak, current_coins, result, date):
+    first_record = streak[0]
+    previous_record = streak[-2]
+    streak_lines = [
+        f"- {record['date']}: {record['account_coins']}"
+        for record in streak
+    ]
     lines = [
-        f"Bilibili account {result['login'].get('uname')} coin balance did not increase.",
+        f"Bilibili account {result['login'].get('uname')} coin balance has not increased for {len(streak)} recorded days.",
         "",
         "Automatic coin spending is disabled in this workflow.",
         "If you did not spend coins elsewhere, the daily coin reward may not have been credited.",
         "Please check whether the Bilibili cookie secrets need to be refreshed.",
         "",
-        f"Previous date: {previous_coin_record['date']}",
-        f"Previous coins: {previous_coin_record['account_coins']}",
+        f"First stagnant date: {first_record['date']}",
+        f"Previous date: {previous_record['date']}",
+        f"Previous coins: {previous_record['account_coins']}",
         f"Current date: {date}",
         f"Current coins: {current_coins}",
+        "",
+        "Recent coin records:",
+        *streak_lines,
         "",
         "Secrets to check:",
         "SESSDATA",
@@ -757,7 +842,6 @@ def run_scheduled(dry_run=False):
     auth = build_cookie()
     client = BilibiliClient(auth["cookie"], auth["csrf"])
     previous_level = latest_recorded_level()
-    previous_coin_record = latest_coin_record_before(date)
     result = run_experience_tasks(
         client,
         mode="confirm" if run_type == "confirm" else "full",
@@ -771,7 +855,7 @@ def run_scheduled(dry_run=False):
     coin_balance_notification = (
         {"status": "email_skipped", "reason": "dry_run"}
         if dry_run
-        else notify_coin_balance_issue(previous_coin_record, result, date)
+        else notify_coin_balance_issue(result, date)
     )
     if run_type == "initial":
         plan["initial_done"] = True
@@ -840,7 +924,6 @@ def main():
     now = datetime.now(TAIPEI)
     date = now.date().isoformat()
     previous_level = latest_recorded_level()
-    previous_coin_record = latest_coin_record_before(date)
     result = run_experience_tasks(client, dry_run=args.dry_run)
     level_upgrade_notification = (
         {"status": "email_skipped", "reason": "dry_run"}
@@ -850,7 +933,7 @@ def main():
     coin_balance_notification = (
         {"status": "email_skipped", "reason": "dry_run"}
         if args.dry_run
-        else notify_coin_balance_issue(previous_coin_record, result, date)
+        else notify_coin_balance_issue(result, date)
     )
     append_event(
         {
