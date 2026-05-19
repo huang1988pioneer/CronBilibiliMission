@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import smtplib
 import json
 import logging
 import os
@@ -8,6 +9,7 @@ import sys
 import time
 import urllib.parse
 from datetime import datetime, timedelta
+from email.message import EmailMessage
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -90,6 +92,13 @@ def env_value(*names):
         if value:
             return value
     return ""
+
+
+def env_bool(name, default=False):
+    value = os.environ.get(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
 
 
 def build_cookie():
@@ -441,6 +450,109 @@ def append_event(event):
         file.write(json.dumps(event, ensure_ascii=False, sort_keys=True) + "\n")
 
 
+def latest_recorded_level():
+    if not EVENT_LOG.exists():
+        return None
+
+    with EVENT_LOG.open("r", encoding="utf-8") as file:
+        lines = file.readlines()
+
+    for line in reversed(lines):
+        try:
+            event = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+
+        level_info = event.get("level_info") or {}
+        current_level = parse_int(level_info.get("current_level"))
+        if current_level is not None:
+            return current_level
+
+    return None
+
+
+def email_notification_configured():
+    required = ("SMTP_HOST", "EMAIL_NOTIFY_TO")
+    return all(env_value(name) for name in required)
+
+
+def notify_level_upgrade(previous_level, result):
+    level_info = result["login"].get("level_info") or {}
+    current_level = parse_int(level_info.get("current_level"))
+
+    if previous_level is None or current_level is None or current_level <= previous_level:
+        return {"status": "email_skipped", "reason": "no_level_upgrade"}
+
+    if not email_notification_configured():
+        logging.info(
+            "Level upgraded from Lv%s to Lv%s, but email notification is not configured.",
+            previous_level,
+            current_level,
+        )
+        return {"status": "email_skipped", "reason": "email_not_configured"}
+
+    config = {
+        "host": env_value("SMTP_HOST"),
+        "port": parse_int(env_value("SMTP_PORT")) or 587,
+        "username": env_value("SMTP_USERNAME"),
+        "password": env_value("SMTP_PASSWORD"),
+        "sender": env_value("SMTP_FROM") or env_value("SMTP_USERNAME") or env_value("EMAIL_NOTIFY_TO"),
+        "recipient": env_value("EMAIL_NOTIFY_TO"),
+        "starttls": env_bool("SMTP_STARTTLS", default=True),
+    }
+
+    subject = f"Bilibili level upgraded: Lv{previous_level} -> Lv{current_level}"
+    body = build_level_upgrade_email_body(previous_level, current_level, result)
+    try:
+        send_email(config, subject, body)
+    except (OSError, smtplib.SMTPException) as error:
+        logging.error("Level upgrade email failed: %s", error)
+        return {
+            "status": "email_failed",
+            "previous_level": previous_level,
+            "current_level": current_level,
+            "message": str(error),
+        }
+
+    logging.info("Level upgrade email sent to %s.", config["recipient"])
+    return {
+        "status": "email_sent",
+        "previous_level": previous_level,
+        "current_level": current_level,
+        "recipient": config["recipient"],
+    }
+
+
+def build_level_upgrade_email_body(previous_level, current_level, result):
+    level_info = result["login"].get("level_info") or {}
+    lines = [
+        f"Bilibili account {result['login'].get('uname')} upgraded from Lv{previous_level} to Lv{current_level}.",
+        "",
+        f"Current exp: {level_info.get('current_exp')}",
+        f"Next level exp: {level_info.get('next_level_exp')}",
+        f"Exp to next level: {level_info.get('exp_to_next_level')}",
+        f"Days to next level at {BASE_DAILY_EXPERIENCE} exp/day: {level_info.get('days_to_next_level_at_15_exp_per_day')}",
+        f"Account coins: {result['login'].get('account_coins')}",
+        f"Checked at: {datetime.now(TAIPEI).isoformat(timespec='seconds')}",
+    ]
+    return "\n".join(lines)
+
+
+def send_email(config, subject, body):
+    message = EmailMessage()
+    message["From"] = config["sender"]
+    message["To"] = config["recipient"]
+    message["Subject"] = subject
+    message.set_content(body)
+
+    with smtplib.SMTP(config["host"], config["port"], timeout=REQUEST_TIMEOUT_SECONDS) as smtp:
+        if config["starttls"]:
+            smtp.starttls()
+        if config["username"] and config["password"]:
+            smtp.login(config["username"], config["password"])
+        smtp.send_message(message)
+
+
 def read_plan():
     if not PLAN_FILE.exists():
         return {}
@@ -535,10 +647,16 @@ def run_scheduled(dry_run=False):
 
     auth = build_cookie()
     client = BilibiliClient(auth["cookie"], auth["csrf"])
+    previous_level = latest_recorded_level()
     result = run_experience_tasks(
         client,
         mode="confirm" if run_type == "confirm" else "full",
         dry_run=dry_run,
+    )
+    level_upgrade_notification = (
+        {"status": "email_skipped", "reason": "dry_run"}
+        if dry_run
+        else notify_level_upgrade(previous_level, result)
     )
     if run_type == "initial":
         plan["initial_done"] = True
@@ -552,6 +670,7 @@ def run_scheduled(dry_run=False):
     plan["login_status"] = result["login"]["status"]
     plan["account_coins"] = result["login"].get("account_coins")
     plan["level_info"] = result["login"].get("level_info")
+    plan["level_upgrade_notification"] = level_upgrade_notification
     plan["watch_status"] = result["watch"]["status"]
     plan["share_status"] = result["share"]["status"]
     if result["video"] is not None:
@@ -572,6 +691,7 @@ def run_scheduled(dry_run=False):
             "login_status": result["login"]["status"],
             "account_coins": result["login"].get("account_coins"),
             "level_info": result["login"].get("level_info"),
+            "level_upgrade_notification": level_upgrade_notification,
             "watch_status": result["watch"]["status"],
             "share_status": result["share"]["status"],
             "video": result["video"],
@@ -600,7 +720,13 @@ def main():
 
     auth = build_cookie()
     client = BilibiliClient(auth["cookie"], auth["csrf"])
+    previous_level = latest_recorded_level()
     result = run_experience_tasks(client, dry_run=args.dry_run)
+    level_upgrade_notification = (
+        {"status": "email_skipped", "reason": "dry_run"}
+        if args.dry_run
+        else notify_level_upgrade(previous_level, result)
+    )
     now = datetime.now(TAIPEI)
     append_event(
         {
@@ -610,6 +736,7 @@ def main():
             "login_status": result["login"]["status"],
             "account_coins": result["login"].get("account_coins"),
             "level_info": result["login"].get("level_info"),
+            "level_upgrade_notification": level_upgrade_notification,
             "watch_status": result["watch"]["status"],
             "share_status": result["share"]["status"],
             "video": result["video"],

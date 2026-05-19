@@ -35,6 +35,13 @@ jobs:
           SESSDATA: ${{ secrets.SESSDATA }}
           bili_jct: ${{ secrets.bili_jct }}
           DedeUserID: ${{ secrets.DedeUserID }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM }}
+          SMTP_STARTTLS: ${{ secrets.SMTP_STARTTLS }}
+          EMAIL_NOTIFY_TO: ${{ secrets.EMAIL_NOTIFY_TO }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             python3 scripts/bilibili_sign.py
