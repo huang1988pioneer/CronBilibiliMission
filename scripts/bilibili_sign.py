@@ -362,6 +362,13 @@ def parse_int(value):
         return None
 
 
+def parse_float(value):
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
 def reward_data(reward):
     return reward.get("data") or {}
 
@@ -451,18 +458,7 @@ def append_event(event):
 
 
 def latest_recorded_level():
-    if not EVENT_LOG.exists():
-        return None
-
-    with EVENT_LOG.open("r", encoding="utf-8") as file:
-        lines = file.readlines()
-
-    for line in reversed(lines):
-        try:
-            event = json.loads(line)
-        except json.JSONDecodeError:
-            continue
-
+    for event in reversed(read_event_log()):
         level_info = event.get("level_info") or {}
         current_level = parse_int(level_info.get("current_level"))
         if current_level is not None:
@@ -471,9 +467,56 @@ def latest_recorded_level():
     return None
 
 
+def read_event_log():
+    if not EVENT_LOG.exists():
+        return []
+
+    events = []
+    with EVENT_LOG.open("r", encoding="utf-8") as file:
+        for line in file:
+            try:
+                events.append(json.loads(line))
+            except json.JSONDecodeError:
+                continue
+
+    return events
+
+
+def latest_coin_record_before(date):
+    latest_by_date = {}
+
+    for event in read_event_log():
+        event_date = event.get("date")
+        coins = parse_float(event.get("account_coins"))
+        if event_date is None or coins is None or event_date >= date:
+            continue
+        latest_by_date[event_date] = {
+            "date": event_date,
+            "account_coins": coins,
+            "created_at_taipei": event.get("created_at_taipei"),
+        }
+
+    if not latest_by_date:
+        return None
+
+    return latest_by_date[sorted(latest_by_date)[-1]]
+
+
 def email_notification_configured():
     required = ("SMTP_HOST", "EMAIL_NOTIFY_TO")
     return all(env_value(name) for name in required)
+
+
+def email_config():
+    return {
+        "host": env_value("SMTP_HOST"),
+        "port": parse_int(env_value("SMTP_PORT")) or 587,
+        "username": env_value("SMTP_USERNAME"),
+        "password": env_value("SMTP_PASSWORD"),
+        "sender": env_value("SMTP_FROM") or env_value("SMTP_USERNAME") or env_value("EMAIL_NOTIFY_TO"),
+        "recipient": env_value("EMAIL_NOTIFY_TO"),
+        "starttls": env_bool("SMTP_STARTTLS", default=True),
+    }
 
 
 def notify_level_upgrade(previous_level, result):
@@ -491,15 +534,7 @@ def notify_level_upgrade(previous_level, result):
         )
         return {"status": "email_skipped", "reason": "email_not_configured"}
 
-    config = {
-        "host": env_value("SMTP_HOST"),
-        "port": parse_int(env_value("SMTP_PORT")) or 587,
-        "username": env_value("SMTP_USERNAME"),
-        "password": env_value("SMTP_PASSWORD"),
-        "sender": env_value("SMTP_FROM") or env_value("SMTP_USERNAME") or env_value("EMAIL_NOTIFY_TO"),
-        "recipient": env_value("EMAIL_NOTIFY_TO"),
-        "starttls": env_bool("SMTP_STARTTLS", default=True),
-    }
+    config = email_config()
 
     subject = f"Bilibili level upgraded: Lv{previous_level} -> Lv{current_level}"
     body = build_level_upgrade_email_body(previous_level, current_level, result)
@@ -523,6 +558,57 @@ def notify_level_upgrade(previous_level, result):
     }
 
 
+def notify_coin_balance_issue(previous_coin_record, result, date):
+    current_coins = parse_float(result["login"].get("account_coins"))
+    if previous_coin_record is None or current_coins is None:
+        return {"status": "email_skipped", "reason": "insufficient_coin_history"}
+
+    previous_coins = previous_coin_record["account_coins"]
+    if current_coins > previous_coins:
+        return {"status": "email_skipped", "reason": "coin_balance_increased"}
+
+    if not email_notification_configured():
+        logging.info(
+            "Coin balance did not increase from %s to %s, but email notification is not configured.",
+            previous_coins,
+            current_coins,
+        )
+        return {
+            "status": "email_skipped",
+            "reason": "email_not_configured",
+            "previous_date": previous_coin_record["date"],
+            "previous_coins": previous_coins,
+            "current_date": date,
+            "current_coins": current_coins,
+        }
+
+    config = email_config()
+    subject = "Bilibili coin balance did not increase"
+    body = build_coin_balance_email_body(previous_coin_record, current_coins, result, date)
+    try:
+        send_email(config, subject, body)
+    except (OSError, smtplib.SMTPException) as error:
+        logging.error("Coin balance email failed: %s", error)
+        return {
+            "status": "email_failed",
+            "message": str(error),
+            "previous_date": previous_coin_record["date"],
+            "previous_coins": previous_coins,
+            "current_date": date,
+            "current_coins": current_coins,
+        }
+
+    logging.info("Coin balance email sent to %s.", config["recipient"])
+    return {
+        "status": "email_sent",
+        "recipient": config["recipient"],
+        "previous_date": previous_coin_record["date"],
+        "previous_coins": previous_coins,
+        "current_date": date,
+        "current_coins": current_coins,
+    }
+
+
 def build_level_upgrade_email_body(previous_level, current_level, result):
     level_info = result["login"].get("level_info") or {}
     lines = [
@@ -533,6 +619,29 @@ def build_level_upgrade_email_body(previous_level, current_level, result):
         f"Exp to next level: {level_info.get('exp_to_next_level')}",
         f"Days to next level at {BASE_DAILY_EXPERIENCE} exp/day: {level_info.get('days_to_next_level_at_15_exp_per_day')}",
         f"Account coins: {result['login'].get('account_coins')}",
+        f"Checked at: {datetime.now(TAIPEI).isoformat(timespec='seconds')}",
+    ]
+    return "\n".join(lines)
+
+
+def build_coin_balance_email_body(previous_coin_record, current_coins, result, date):
+    lines = [
+        f"Bilibili account {result['login'].get('uname')} coin balance did not increase.",
+        "",
+        "Automatic coin spending is disabled in this workflow.",
+        "If you did not spend coins elsewhere, the daily coin reward may not have been credited.",
+        "Please check whether the Bilibili cookie secrets need to be refreshed.",
+        "",
+        f"Previous date: {previous_coin_record['date']}",
+        f"Previous coins: {previous_coin_record['account_coins']}",
+        f"Current date: {date}",
+        f"Current coins: {current_coins}",
+        "",
+        "Secrets to check:",
+        "SESSDATA",
+        "bili_jct / BILI_JCT",
+        "DedeUserID / DEDEUSERID",
+        "",
         f"Checked at: {datetime.now(TAIPEI).isoformat(timespec='seconds')}",
     ]
     return "\n".join(lines)
@@ -648,6 +757,7 @@ def run_scheduled(dry_run=False):
     auth = build_cookie()
     client = BilibiliClient(auth["cookie"], auth["csrf"])
     previous_level = latest_recorded_level()
+    previous_coin_record = latest_coin_record_before(date)
     result = run_experience_tasks(
         client,
         mode="confirm" if run_type == "confirm" else "full",
@@ -657,6 +767,11 @@ def run_scheduled(dry_run=False):
         {"status": "email_skipped", "reason": "dry_run"}
         if dry_run
         else notify_level_upgrade(previous_level, result)
+    )
+    coin_balance_notification = (
+        {"status": "email_skipped", "reason": "dry_run"}
+        if dry_run
+        else notify_coin_balance_issue(previous_coin_record, result, date)
     )
     if run_type == "initial":
         plan["initial_done"] = True
@@ -671,6 +786,7 @@ def run_scheduled(dry_run=False):
     plan["account_coins"] = result["login"].get("account_coins")
     plan["level_info"] = result["login"].get("level_info")
     plan["level_upgrade_notification"] = level_upgrade_notification
+    plan["coin_balance_notification"] = coin_balance_notification
     plan["watch_status"] = result["watch"]["status"]
     plan["share_status"] = result["share"]["status"]
     if result["video"] is not None:
@@ -692,6 +808,7 @@ def run_scheduled(dry_run=False):
             "account_coins": result["login"].get("account_coins"),
             "level_info": result["login"].get("level_info"),
             "level_upgrade_notification": level_upgrade_notification,
+            "coin_balance_notification": coin_balance_notification,
             "watch_status": result["watch"]["status"],
             "share_status": result["share"]["status"],
             "video": result["video"],
@@ -720,23 +837,31 @@ def main():
 
     auth = build_cookie()
     client = BilibiliClient(auth["cookie"], auth["csrf"])
+    now = datetime.now(TAIPEI)
+    date = now.date().isoformat()
     previous_level = latest_recorded_level()
+    previous_coin_record = latest_coin_record_before(date)
     result = run_experience_tasks(client, dry_run=args.dry_run)
     level_upgrade_notification = (
         {"status": "email_skipped", "reason": "dry_run"}
         if args.dry_run
         else notify_level_upgrade(previous_level, result)
     )
-    now = datetime.now(TAIPEI)
+    coin_balance_notification = (
+        {"status": "email_skipped", "reason": "dry_run"}
+        if args.dry_run
+        else notify_coin_balance_issue(previous_coin_record, result, date)
+    )
     append_event(
         {
             "event": "manual_experience_tasks",
             "dry_run": args.dry_run,
-            "date": now.date().isoformat(),
+            "date": date,
             "login_status": result["login"]["status"],
             "account_coins": result["login"].get("account_coins"),
             "level_info": result["login"].get("level_info"),
             "level_upgrade_notification": level_upgrade_notification,
+            "coin_balance_notification": coin_balance_notification,
             "watch_status": result["watch"]["status"],
             "share_status": result["share"]["status"],
             "video": result["video"],
