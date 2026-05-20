@@ -6,39 +6,42 @@
     "streak_days": 1
   },
   "completed": false,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-05-20T18:36:41+08:00",
   "date": "2026-05-20",
   "dice": 3,
   "initial_done": true,
   "initial_done_at_taipei": "2026-05-20T06:50:53+08:00",
   "level_info": {
-    "current_exp": 290,
+    "current_exp": 300,
     "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 81,
-    "exp_to_next_level": 1210,
+    "days_to_next_level_at_15_exp_per_day": 80,
+    "exp_to_next_level": 1200,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
-        "days_at_15_exp_per_day": 81,
-        "estimated_date": "2026-08-09",
-        "exp_remaining": 1210,
+        "days_at_15_exp_per_day": 80,
+        "estimated_date": "2026-08-08",
+        "exp_remaining": 1200,
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 281,
-        "estimated_date": "2027-02-25",
-        "exp_remaining": 4210,
+        "days_at_15_exp_per_day": 280,
+        "estimated_date": "2027-02-24",
+        "exp_remaining": 4200,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 701,
-        "estimated_date": "2028-04-20",
-        "exp_remaining": 10510,
+        "days_at_15_exp_per_day": 700,
+        "estimated_date": "2028-04-19",
+        "exp_remaining": 10500,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1901,
-        "estimated_date": "2031-08-03",
-        "exp_remaining": 28510,
+        "days_at_15_exp_per_day": 1900,
+        "estimated_date": "2031-08-02",
+        "exp_remaining": 28500,
         "required_exp": 28800
       }
     },
@@ -71,11 +74,11 @@
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116594621548405,
-    "bvid": "BV1MNLA6hEbp",
-    "cid": 38421989563,
-    "title": "开启百亩河道清道夫老巢治理行动第二天"
+    "aid": 116600158097214,
+    "bvid": "BV1NXLq64ERU",
+    "cid": 38445581554,
+    "title": "《监狱来的妈妈》杀人犯变影后？“女性叙事”绝不能为犯罪洗白"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 3
 }
