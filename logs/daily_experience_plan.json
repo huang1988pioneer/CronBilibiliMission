@@ -3,17 +3,14 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
   "completed": true,
-  "confirmations_done": [
-    1
-  ],
-  "confirmed_after_1h_at_taipei": "2026-05-27T20:38:09+08:00",
-  "date": "2026-05-27",
-  "dice": 3,
+  "confirmations_done": [],
+  "date": "2026-05-28",
+  "dice": 2,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-05-27T07:51:14+08:00",
+  "initial_done_at_taipei": "2026-05-28T07:03:42+08:00",
   "level_info": {
     "current_exp": 390,
     "current_level": 2,
@@ -22,25 +19,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 74,
-        "estimated_date": "2026-08-09",
+        "estimated_date": "2026-08-10",
         "exp_remaining": 1110,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 274,
-        "estimated_date": "2027-02-25",
+        "estimated_date": "2027-02-26",
         "exp_remaining": 4110,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 694,
-        "estimated_date": "2028-04-20",
+        "estimated_date": "2028-04-21",
         "exp_remaining": 10410,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 1894,
-        "estimated_date": "2031-08-03",
+        "estimated_date": "2031-08-04",
         "exp_remaining": 28410,
         "required_exp": 28800
       }
@@ -67,16 +64,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
+  "share_status": "share_reported",
   "target_hour_24h": 6,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116623579159102,
-    "bvid": "BV1K3Gz6pEoo",
-    "cid": 38554766008,
-    "title": "全世界笑点下降1000倍而我不变"
+    "aid": 116645976741582,
+    "bvid": "BV153Gm6sEWo",
+    "cid": 38650576929,
+    "title": "终于来到胖东来，狠狠逛吃一番，太香了！"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 3
+  "watch_status": "watch_reported",
+  "weekday": 4
 }
