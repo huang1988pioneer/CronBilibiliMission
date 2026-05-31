@@ -27,6 +27,7 @@ PLAN_FILE = LOG_DIR / "daily_experience_plan.json"
 EVENT_LOG = LOG_DIR / "bilibili_experience.jsonl"
 RUNTIME_LOG = LOG_DIR / "bilibili_experience.log"
 TASK_NAME = "daily_experience"
+EVENT_LOG_RETENTION_DAYS = 30
 CONFIRM_AFTER_HOURS = (1, 3, 6)
 REQUEST_TIMEOUT_SECONDS = 20
 MAX_REQUEST_ATTEMPTS = 5
@@ -467,6 +468,62 @@ def append_event(event):
     event["created_at_taipei"] = datetime.now(TAIPEI).isoformat(timespec="seconds")
     with EVENT_LOG.open("a", encoding="utf-8") as file:
         file.write(json.dumps(event, ensure_ascii=False, sort_keys=True) + "\n")
+    prune_event_log()
+
+
+def event_record_date(event):
+    event_date = event.get("date")
+    if event_date:
+        try:
+            return datetime.fromisoformat(event_date).date()
+        except ValueError:
+            pass
+
+    created_at = event.get("created_at_taipei")
+    if created_at:
+        try:
+            return datetime.fromisoformat(created_at).astimezone(TAIPEI).date()
+        except ValueError:
+            pass
+
+    return None
+
+
+def prune_event_log(now=None):
+    if not EVENT_LOG.exists():
+        return
+
+    today = (now or datetime.now(TAIPEI)).date()
+    cutoff_date = today - timedelta(days=EVENT_LOG_RETENTION_DAYS - 1)
+    retained_lines = []
+    pruned_count = 0
+
+    with EVENT_LOG.open("r", encoding="utf-8") as file:
+        for line in file:
+            try:
+                event = json.loads(line)
+            except json.JSONDecodeError:
+                retained_lines.append(line)
+                continue
+
+            record_date = event_record_date(event)
+            if record_date is None or record_date >= cutoff_date:
+                retained_lines.append(json.dumps(event, ensure_ascii=False, sort_keys=True) + "\n")
+            else:
+                pruned_count += 1
+
+    if pruned_count == 0:
+        return
+
+    temp_log = EVENT_LOG.with_suffix(EVENT_LOG.suffix + ".tmp")
+    with temp_log.open("w", encoding="utf-8") as file:
+        file.writelines(retained_lines)
+    temp_log.replace(EVENT_LOG)
+    logging.info(
+        "Pruned %s event log records older than %s.",
+        pruned_count,
+        cutoff_date.isoformat(),
+    )
 
 
 def latest_recorded_level():
