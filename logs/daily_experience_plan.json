@@ -1,10 +1,79 @@
 {
+  "account_coins": 20,
+  "coin_balance_notification": {
+    "reason": "stagnant_coin_streak_below_threshold",
+    "status": "email_skipped",
+    "streak_days": 1
+  },
+  "completed": true,
   "confirmations_done": [],
   "date": "2026-06-05",
   "dice": 6,
-  "initial_done": false,
+  "initial_done": true,
+  "initial_done_at_taipei": "2026-06-05T19:39:31+08:00",
+  "level_info": {
+    "current_exp": 485,
+    "current_level": 2,
+    "days_to_next_level_at_15_exp_per_day": 68,
+    "exp_to_next_level": 1015,
+    "level_breakthrough_dates_at_15_exp_per_day": {
+      "lv3": {
+        "days_at_15_exp_per_day": 68,
+        "estimated_date": "2026-08-12",
+        "exp_remaining": 1015,
+        "required_exp": 1500
+      },
+      "lv4": {
+        "days_at_15_exp_per_day": 268,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 4015,
+        "required_exp": 4500
+      },
+      "lv5": {
+        "days_at_15_exp_per_day": 688,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 10315,
+        "required_exp": 10800
+      },
+      "lv6": {
+        "days_at_15_exp_per_day": 1888,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 28315,
+        "required_exp": 28800
+      }
+    },
+    "next_level_exp": 1500
+  },
+  "level_upgrade_notification": {
+    "reason": "no_level_upgrade",
+    "status": "email_skipped"
+  },
+  "login_status": "logged_in",
+  "missing_after": [],
+  "reward_after": {
+    "data": {
+      "coins": 0,
+      "email": true,
+      "identify_card": false,
+      "login": true,
+      "safe_question": false,
+      "share": true,
+      "tel": true,
+      "watch": true
+    },
+    "message": "OK",
+    "status": "reward_checked"
+  },
+  "share_status": "share_reported",
   "target_hour_24h": 11,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
+  "video": {
+    "aid": 116679329712224,
+    "bvid": "BV1cmVz6DEmi",
+    "cid": 38795414239,
+    "title": "初代跑男团战力排行"
+  },
+  "watch_status": "watch_reported",
   "weekday": 5
 }
