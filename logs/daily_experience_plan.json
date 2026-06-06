@@ -1,82 +1,10 @@
 {
-  "account_coins": 22,
-  "coin_balance_notification": {
-    "reason": "stagnant_coin_streak_below_threshold",
-    "status": "email_skipped",
-    "streak_days": 1
-  },
-  "completed": true,
-  "confirmations_done": [
-    1
-  ],
-  "confirmed_after_1h_at_taipei": "2026-06-06T22:54:04+08:00",
-  "date": "2026-06-06",
-  "dice": 3,
-  "initial_done": true,
-  "initial_done_at_taipei": "2026-06-06T16:17:24+08:00",
-  "level_info": {
-    "current_exp": 515,
-    "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 66,
-    "exp_to_next_level": 985,
-    "level_breakthrough_dates_at_15_exp_per_day": {
-      "lv3": {
-        "days_at_15_exp_per_day": 66,
-        "estimated_date": "2026-08-11",
-        "exp_remaining": 985,
-        "required_exp": 1500
-      },
-      "lv4": {
-        "days_at_15_exp_per_day": 266,
-        "estimated_date": "2027-02-27",
-        "exp_remaining": 3985,
-        "required_exp": 4500
-      },
-      "lv5": {
-        "days_at_15_exp_per_day": 686,
-        "estimated_date": "2028-04-22",
-        "exp_remaining": 10285,
-        "required_exp": 10800
-      },
-      "lv6": {
-        "days_at_15_exp_per_day": 1886,
-        "estimated_date": "2031-08-05",
-        "exp_remaining": 28285,
-        "required_exp": 28800
-      }
-    },
-    "next_level_exp": 1500
-  },
-  "level_upgrade_notification": {
-    "reason": "no_level_upgrade",
-    "status": "email_skipped"
-  },
-  "login_status": "logged_in",
-  "missing_after": [],
-  "reward_after": {
-    "data": {
-      "coins": 0,
-      "email": true,
-      "identify_card": false,
-      "login": true,
-      "safe_question": false,
-      "share": true,
-      "tel": true,
-      "watch": true
-    },
-    "message": "OK",
-    "status": "reward_checked"
-  },
-  "share_status": "share_skipped",
-  "target_hour_24h": 9,
+  "confirmations_done": [],
+  "date": "2026-06-07",
+  "dice": 6,
+  "initial_done": false,
+  "target_hour_24h": 13,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
-  "video": {
-    "aid": 116700670395936,
-    "bvid": "BV1HL7m6JECt",
-    "cid": 38895551923,
-    "title": "霸总腌入味，王鹤棣太让人笑幻了……【不舒服学】逐帧分析"
-  },
-  "watch_status": "watch_skipped",
-  "weekday": 6
+  "weekday": 7
 }
