@@ -3,17 +3,14 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
-  "completed": true,
-  "confirmations_done": [
-    1
-  ],
-  "confirmed_after_1h_at_taipei": "2026-06-10T20:41:15+08:00",
-  "date": "2026-06-10",
+  "completed": false,
+  "confirmations_done": [],
+  "date": "2026-06-11",
   "dice": 3,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-06-10T07:53:48+08:00",
+  "initial_done_at_taipei": "2026-06-11T07:15:21+08:00",
   "level_info": {
     "current_exp": 575,
     "current_level": 2,
@@ -22,25 +19,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 62,
-        "estimated_date": "2026-08-11",
+        "estimated_date": "2026-08-12",
         "exp_remaining": 925,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 262,
-        "estimated_date": "2027-02-27",
+        "estimated_date": "2027-02-28",
         "exp_remaining": 3925,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 682,
-        "estimated_date": "2028-04-22",
+        "estimated_date": "2028-04-23",
         "exp_remaining": 10225,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 1882,
-        "estimated_date": "2031-08-05",
+        "estimated_date": "2031-08-06",
         "exp_remaining": 28225,
         "required_exp": 28800
       }
@@ -52,7 +49,9 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [],
+  "missing_after": [
+    "share"
+  ],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -60,23 +59,23 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": true,
+      "share": false,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 6,
+  "share_status": "share_failed",
+  "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116695570124126,
-    "bvid": "BV1dd7r6oEpf",
-    "cid": 38944837339,
-    "title": "鲁豫对话张泉灵：从时代的同窗，到彼此的镜像，聊聊那些彼此望见过的时刻 | 陈鲁豫·慢谈EP19【视频播客】"
+    "aid": 116714109014293,
+    "bvid": "BV1wEEg62EDP",
+    "cid": 38957157201,
+    "title": "Blender原创动画 |工程展示|Lan library"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 3
+  "watch_status": "watch_reported",
+  "weekday": 4
 }
