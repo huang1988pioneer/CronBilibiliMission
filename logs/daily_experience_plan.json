@@ -1,44 +1,47 @@
 {
-  "account_coins": 25,
+  "account_coins": 26,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-06-10T20:41:15+08:00",
   "date": "2026-06-10",
   "dice": 3,
   "initial_done": true,
   "initial_done_at_taipei": "2026-06-10T07:53:48+08:00",
   "level_info": {
-    "current_exp": 560,
+    "current_exp": 575,
     "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 63,
-    "exp_to_next_level": 940,
+    "days_to_next_level_at_15_exp_per_day": 62,
+    "exp_to_next_level": 925,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
-        "days_at_15_exp_per_day": 63,
-        "estimated_date": "2026-08-12",
-        "exp_remaining": 940,
+        "days_at_15_exp_per_day": 62,
+        "estimated_date": "2026-08-11",
+        "exp_remaining": 925,
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 263,
-        "estimated_date": "2027-02-28",
-        "exp_remaining": 3940,
+        "days_at_15_exp_per_day": 262,
+        "estimated_date": "2027-02-27",
+        "exp_remaining": 3925,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 683,
-        "estimated_date": "2028-04-23",
-        "exp_remaining": 10240,
+        "days_at_15_exp_per_day": 682,
+        "estimated_date": "2028-04-22",
+        "exp_remaining": 10225,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1883,
-        "estimated_date": "2031-08-06",
-        "exp_remaining": 28240,
+        "days_at_15_exp_per_day": 1882,
+        "estimated_date": "2031-08-05",
+        "exp_remaining": 28225,
         "required_exp": 28800
       }
     },
@@ -64,7 +67,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 6,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -74,6 +77,6 @@
     "cid": 38944837339,
     "title": "鲁豫对话张泉灵：从时代的同窗，到彼此的镜像，聊聊那些彼此望见过的时刻 | 陈鲁豫·慢谈EP19【视频播客】"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 3
 }
