@@ -1,44 +1,47 @@
 {
-  "account_coins": 26,
+  "account_coins": 27,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "completed": false,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-06-11T21:04:56+08:00",
   "date": "2026-06-11",
   "dice": 3,
   "initial_done": true,
   "initial_done_at_taipei": "2026-06-11T07:15:21+08:00",
   "level_info": {
-    "current_exp": 575,
+    "current_exp": 585,
     "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 62,
-    "exp_to_next_level": 925,
+    "days_to_next_level_at_15_exp_per_day": 61,
+    "exp_to_next_level": 915,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
-        "days_at_15_exp_per_day": 62,
-        "estimated_date": "2026-08-12",
-        "exp_remaining": 925,
+        "days_at_15_exp_per_day": 61,
+        "estimated_date": "2026-08-11",
+        "exp_remaining": 915,
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 262,
-        "estimated_date": "2027-02-28",
-        "exp_remaining": 3925,
+        "days_at_15_exp_per_day": 261,
+        "estimated_date": "2027-02-27",
+        "exp_remaining": 3915,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 682,
-        "estimated_date": "2028-04-23",
-        "exp_remaining": 10225,
+        "days_at_15_exp_per_day": 681,
+        "estimated_date": "2028-04-22",
+        "exp_remaining": 10215,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1882,
-        "estimated_date": "2031-08-06",
-        "exp_remaining": 28225,
+        "days_at_15_exp_per_day": 1881,
+        "estimated_date": "2031-08-05",
+        "exp_remaining": 28215,
         "required_exp": 28800
       }
     },
@@ -71,11 +74,11 @@
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116714109014293,
-    "bvid": "BV1wEEg62EDP",
-    "cid": 38957157201,
-    "title": "Blender原创动画 |工程展示|Lan library"
+    "aid": 116713236466246,
+    "bvid": "BV1jpEM6NErB",
+    "cid": 38952371436,
+    "title": "干嘛猫的vlog（做饭、锻炼、按摩，休息日回血的一天~）"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 4
 }
