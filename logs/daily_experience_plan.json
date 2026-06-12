@@ -1,79 +1,10 @@
 {
-  "account_coins": 28,
-  "coin_balance_notification": {
-    "reason": "stagnant_coin_streak_below_threshold",
-    "status": "email_skipped",
-    "streak_days": 1
-  },
-  "completed": true,
   "confirmations_done": [],
-  "date": "2026-06-12",
-  "dice": 3,
-  "initial_done": true,
-  "initial_done_at_taipei": "2026-06-12T20:39:10+08:00",
-  "level_info": {
-    "current_exp": 600,
-    "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 60,
-    "exp_to_next_level": 900,
-    "level_breakthrough_dates_at_15_exp_per_day": {
-      "lv3": {
-        "days_at_15_exp_per_day": 60,
-        "estimated_date": "2026-08-11",
-        "exp_remaining": 900,
-        "required_exp": 1500
-      },
-      "lv4": {
-        "days_at_15_exp_per_day": 260,
-        "estimated_date": "2027-02-27",
-        "exp_remaining": 3900,
-        "required_exp": 4500
-      },
-      "lv5": {
-        "days_at_15_exp_per_day": 680,
-        "estimated_date": "2028-04-22",
-        "exp_remaining": 10200,
-        "required_exp": 10800
-      },
-      "lv6": {
-        "days_at_15_exp_per_day": 1880,
-        "estimated_date": "2031-08-05",
-        "exp_remaining": 28200,
-        "required_exp": 28800
-      }
-    },
-    "next_level_exp": 1500
-  },
-  "level_upgrade_notification": {
-    "reason": "no_level_upgrade",
-    "status": "email_skipped"
-  },
-  "login_status": "logged_in",
-  "missing_after": [],
-  "reward_after": {
-    "data": {
-      "coins": 0,
-      "email": true,
-      "identify_card": false,
-      "login": true,
-      "safe_question": false,
-      "share": true,
-      "tel": true,
-      "watch": true
-    },
-    "message": "OK",
-    "status": "reward_checked"
-  },
-  "share_status": "share_failed",
+  "date": "2026-06-13",
+  "dice": 2,
+  "initial_done": false,
   "target_hour_24h": 8,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
-  "video": {
-    "aid": 116729560696780,
-    "bvid": "BV1ibEY6TE2e",
-    "cid": 39028392667,
-    "title": "为什么有钱有才华的Tim，反而没有性张力？"
-  },
-  "watch_status": "watch_reported",
-  "weekday": 5
+  "weekday": 6
 }
