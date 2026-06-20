@@ -1,10 +1,81 @@
 {
+  "account_coins": 35,
+  "coin_balance_notification": {
+    "reason": "stagnant_coin_streak_below_threshold",
+    "status": "email_skipped",
+    "streak_days": 2
+  },
+  "completed": false,
   "confirmations_done": [],
   "date": "2026-06-20",
   "dice": 4,
-  "initial_done": false,
+  "initial_done": true,
+  "initial_done_at_taipei": "2026-06-20T13:14:56+08:00",
+  "level_info": {
+    "current_exp": 705,
+    "current_level": 2,
+    "days_to_next_level_at_15_exp_per_day": 53,
+    "exp_to_next_level": 795,
+    "level_breakthrough_dates_at_15_exp_per_day": {
+      "lv3": {
+        "days_at_15_exp_per_day": 53,
+        "estimated_date": "2026-08-12",
+        "exp_remaining": 795,
+        "required_exp": 1500
+      },
+      "lv4": {
+        "days_at_15_exp_per_day": 253,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 3795,
+        "required_exp": 4500
+      },
+      "lv5": {
+        "days_at_15_exp_per_day": 673,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 10095,
+        "required_exp": 10800
+      },
+      "lv6": {
+        "days_at_15_exp_per_day": 1873,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 28095,
+        "required_exp": 28800
+      }
+    },
+    "next_level_exp": 1500
+  },
+  "level_upgrade_notification": {
+    "reason": "no_level_upgrade",
+    "status": "email_skipped"
+  },
+  "login_status": "logged_in",
+  "missing_after": [
+    "share"
+  ],
+  "reward_after": {
+    "data": {
+      "coins": 0,
+      "email": true,
+      "identify_card": false,
+      "login": true,
+      "safe_question": false,
+      "share": false,
+      "tel": true,
+      "watch": true
+    },
+    "message": "OK",
+    "status": "reward_checked"
+  },
+  "share_status": "share_failed",
   "target_hour_24h": 10,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
+  "video": {
+    "aid": 116759189259299,
+    "bvid": "BV1USj36xEP1",
+    "cid": 39161954570,
+    "title": "大家好，我是铁蛋，今天小卖部正式关门了，聚是一团火，散是满天星，感谢大家并肩作战，说不伤心是假的，天下无不散的宴席，愿我们此去繁花似锦，江湖再见！"
+  },
+  "watch_status": "watch_reported",
   "weekday": 6
 }
