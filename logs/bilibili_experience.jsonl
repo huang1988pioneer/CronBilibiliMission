@@ -123,3 +123,4 @@
 {"created_at_taipei": "2026-06-21T03:27:12+08:00", "date": "2026-06-21", "dice": 4, "event": "experience_plan_created", "target_hour_24h": 11, "weekday": 7}
 {"created_at_taipei": "2026-06-21T03:27:12+08:00", "current_hour_24h": 3, "date": "2026-06-21", "event": "skip", "reason": "before_target_hour", "target_hour_24h": 11}
 {"created_at_taipei": "2026-06-21T05:19:12+08:00", "current_hour_24h": 5, "date": "2026-06-21", "event": "skip", "reason": "before_target_hour", "target_hour_24h": 11}
+{"created_at_taipei": "2026-06-21T07:09:34+08:00", "current_hour_24h": 7, "date": "2026-06-21", "event": "skip", "reason": "before_target_hour", "target_hour_24h": 11}
