@@ -3,19 +3,14 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
-  "completed": true,
-  "confirmations_done": [
-    1,
-    3
-  ],
-  "confirmed_after_1h_at_taipei": "2026-06-21T16:57:22+08:00",
-  "confirmed_after_3h_at_taipei": "2026-06-21T19:46:23+08:00",
-  "date": "2026-06-21",
-  "dice": 4,
+  "completed": false,
+  "confirmations_done": [],
+  "date": "2026-06-22",
+  "dice": 1,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-06-21T12:17:33+08:00",
+  "initial_done_at_taipei": "2026-06-22T03:42:22+08:00",
   "level_info": {
     "current_exp": 735,
     "current_level": 2,
@@ -24,25 +19,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 51,
-        "estimated_date": "2026-08-11",
+        "estimated_date": "2026-08-12",
         "exp_remaining": 765,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 251,
-        "estimated_date": "2027-02-27",
+        "estimated_date": "2027-02-28",
         "exp_remaining": 3765,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 671,
-        "estimated_date": "2028-04-22",
+        "estimated_date": "2028-04-23",
         "exp_remaining": 10065,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 1871,
-        "estimated_date": "2031-08-05",
+        "estimated_date": "2031-08-06",
         "exp_remaining": 28065,
         "required_exp": 28800
       }
@@ -54,7 +49,9 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [],
+  "missing_after": [
+    "share"
+  ],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -62,23 +59,23 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": true,
+      "share": false,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 11,
+  "share_status": "share_failed",
+  "target_hour_24h": 2,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116747445208084,
-    "bvid": "BV1caJw6ZEwT",
-    "cid": 39110183696,
-    "title": "你懂白鹿吗？——内娱嘉欣"
+    "aid": 116774490085009,
+    "bvid": "BV1dJjv6PEpz",
+    "cid": 39230508893,
+    "title": "⚡秒 开 仙 人⚡"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 7
+  "watch_status": "watch_reported",
+  "weekday": 1
 }
