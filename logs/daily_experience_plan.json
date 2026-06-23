@@ -5,11 +5,13 @@
     "status": "email_skipped",
     "streak_days": 1
   },
-  "completed": false,
+  "completed": true,
   "confirmations_done": [
-    1
+    1,
+    3
   ],
   "confirmed_after_1h_at_taipei": "2026-06-23T13:01:33+08:00",
+  "confirmed_after_3h_at_taipei": "2026-06-23T16:31:17+08:00",
   "date": "2026-06-23",
   "dice": 5,
   "initial_done": true,
@@ -52,9 +54,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -62,22 +62,22 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_failed",
+  "share_status": "share_reported",
   "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116787710528262,
-    "bvid": "BV1dTjh6dE12",
-    "cid": 39288506781,
-    "title": "这个骗子估计晚上睡觉都会想起那几个字，作为一个销冠必须拿的住一切"
+    "aid": 116785781149073,
+    "bvid": "BV1bdj46qEwz",
+    "cid": 39278084993,
+    "title": "同性恋不能生孩子，为什么没有被自然选择淘汰？"
   },
   "watch_status": "watch_skipped",
   "weekday": 2
