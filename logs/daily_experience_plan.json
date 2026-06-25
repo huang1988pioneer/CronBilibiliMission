@@ -1,44 +1,47 @@
 {
-  "account_coins": 40,
+  "account_coins": 41,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-06-25T13:05:50+08:00",
   "date": "2026-06-25",
   "dice": 4,
   "initial_done": true,
   "initial_done_at_taipei": "2026-06-25T08:18:57+08:00",
   "level_info": {
-    "current_exp": 780,
+    "current_exp": 795,
     "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 48,
-    "exp_to_next_level": 720,
+    "days_to_next_level_at_15_exp_per_day": 47,
+    "exp_to_next_level": 705,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
-        "days_at_15_exp_per_day": 48,
-        "estimated_date": "2026-08-12",
-        "exp_remaining": 720,
+        "days_at_15_exp_per_day": 47,
+        "estimated_date": "2026-08-11",
+        "exp_remaining": 705,
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 248,
-        "estimated_date": "2027-02-28",
-        "exp_remaining": 3720,
+        "days_at_15_exp_per_day": 247,
+        "estimated_date": "2027-02-27",
+        "exp_remaining": 3705,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 668,
-        "estimated_date": "2028-04-23",
-        "exp_remaining": 10020,
+        "days_at_15_exp_per_day": 667,
+        "estimated_date": "2028-04-22",
+        "exp_remaining": 10005,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1868,
-        "estimated_date": "2031-08-06",
-        "exp_remaining": 28020,
+        "days_at_15_exp_per_day": 1867,
+        "estimated_date": "2031-08-05",
+        "exp_remaining": 28005,
         "required_exp": 28800
       }
     },
@@ -64,7 +67,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 8,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -74,6 +77,6 @@
     "cid": 39361187760,
     "title": "六代机！双航母！坦克加蓬！十五大军事成果盘点【上】"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 4
 }
