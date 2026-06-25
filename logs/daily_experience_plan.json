@@ -8,10 +8,12 @@
   "completed": true,
   "confirmations_done": [
     1,
-    3
+    3,
+    6
   ],
   "confirmed_after_1h_at_taipei": "2026-06-25T13:05:50+08:00",
   "confirmed_after_3h_at_taipei": "2026-06-25T17:22:31+08:00",
+  "confirmed_after_6h_at_taipei": "2026-06-25T20:21:50+08:00",
   "date": "2026-06-25",
   "dice": 4,
   "initial_done": true,
