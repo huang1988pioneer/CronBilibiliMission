@@ -5,8 +5,11 @@
     "status": "email_skipped",
     "streak_days": 1
   },
-  "completed": false,
-  "confirmations_done": [],
+  "completed": true,
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-06-28T16:21:30+08:00",
   "date": "2026-06-28",
   "dice": 3,
   "initial_done": true,
@@ -49,9 +52,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -59,23 +60,23 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_failed",
+  "share_status": "share_reported",
   "target_hour_24h": 10,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116813815878671,
-    "bvid": "BV18A7B6iEDh",
-    "cid": 39415516514,
-    "title": "仙人鸣人vs佩恩六道"
+    "aid": 116822372255660,
+    "bvid": "BV1DR7W6eEf7",
+    "cid": 39457981319,
+    "title": "两个“主线剧情”编剧创作这一集……主角莫蒂还给另一个莫蒂打电话了？不对劲……（瑞克和莫蒂·第九集第六集预测）"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 7
 }
