@@ -1,44 +1,47 @@
 {
-  "account_coins": 46,
+  "account_coins": 47,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "completed": false,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-07-01T16:14:22+08:00",
   "date": "2026-07-01",
   "dice": 6,
   "initial_done": true,
   "initial_done_at_taipei": "2026-07-01T11:58:25+08:00",
   "level_info": {
-    "current_exp": 870,
+    "current_exp": 880,
     "current_level": 2,
     "days_to_next_level_at_15_exp_per_day": 42,
-    "exp_to_next_level": 630,
+    "exp_to_next_level": 620,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 42,
         "estimated_date": "2026-08-12",
-        "exp_remaining": 630,
+        "exp_remaining": 620,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 242,
         "estimated_date": "2027-02-28",
-        "exp_remaining": 3630,
+        "exp_remaining": 3620,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 662,
         "estimated_date": "2028-04-23",
-        "exp_remaining": 9930,
+        "exp_remaining": 9920,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 1862,
         "estimated_date": "2031-08-06",
-        "exp_remaining": 27930,
+        "exp_remaining": 27920,
         "required_exp": 28800
       }
     },
@@ -71,11 +74,11 @@
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116820191222405,
-    "bvid": "BV1pm7n6kExn",
-    "cid": 39444087034,
-    "title": "\"超算小姐，这一次，我一定要带你出去...\""
+    "aid": 116822456142675,
+    "bvid": "BV1k37s6XE2C",
+    "cid": 39458443046,
+    "title": "【乘风2026】总决赛-《想见你想见你想见你》张月&陈瑶 愿所有想念都能在我们的歌声里靠岸"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 3
 }
