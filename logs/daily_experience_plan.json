@@ -3,21 +3,14 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
-  "completed": true,
-  "confirmations_done": [
-    1,
-    3,
-    6
-  ],
-  "confirmed_after_1h_at_taipei": "2026-07-12T14:04:16+08:00",
-  "confirmed_after_3h_at_taipei": "2026-07-12T16:28:55+08:00",
-  "confirmed_after_6h_at_taipei": "2026-07-12T18:28:03+08:00",
-  "date": "2026-07-12",
+  "completed": false,
+  "confirmations_done": [],
+  "date": "2026-07-13",
   "dice": 2,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-07-12T10:48:59+08:00",
+  "initial_done_at_taipei": "2026-07-13T03:06:20+08:00",
   "level_info": {
     "current_exp": 1045,
     "current_level": 2,
@@ -26,25 +19,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 31,
-        "estimated_date": "2026-08-12",
+        "estimated_date": "2026-08-13",
         "exp_remaining": 455,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 231,
-        "estimated_date": "2027-02-28",
+        "estimated_date": "2027-03-01",
         "exp_remaining": 3455,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 651,
-        "estimated_date": "2028-04-23",
+        "estimated_date": "2028-04-24",
         "exp_remaining": 9755,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 1851,
-        "estimated_date": "2031-08-06",
+        "estimated_date": "2031-08-07",
         "exp_remaining": 27755,
         "required_exp": 28800
       }
@@ -56,7 +49,9 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [],
+  "missing_after": [
+    "share"
+  ],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -64,23 +59,23 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": true,
+      "share": false,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 9,
+  "share_status": "share_failed",
+  "target_hour_24h": 3,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116870791301418,
-    "bvid": "BV1JkTD6wEsH",
-    "cid": 39691422207,
-    "title": "猫和老鼠 | 当高手遇到高手"
+    "aid": 116894715611326,
+    "bvid": "BV1R9N76oEXy",
+    "cid": 39816528426,
+    "title": "吾从人族来，自当为人族竭尽全力！"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 7
+  "watch_status": "watch_reported",
+  "weekday": 1
 }
