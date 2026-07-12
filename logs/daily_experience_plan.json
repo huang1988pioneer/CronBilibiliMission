@@ -7,9 +7,11 @@
   },
   "completed": false,
   "confirmations_done": [
-    1
+    1,
+    3
   ],
   "confirmed_after_1h_at_taipei": "2026-07-12T14:04:16+08:00",
+  "confirmed_after_3h_at_taipei": "2026-07-12T16:28:55+08:00",
   "date": "2026-07-12",
   "dice": 2,
   "initial_done": true,
@@ -69,15 +71,15 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_failed",
+  "share_status": "share_reported",
   "target_hour_24h": 9,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116895487434096,
-    "bvid": "BV1GKNn6tEiR",
-    "cid": 39824065858,
-    "title": "当洪水漫过家门，他们逆流而来！"
+    "aid": 116870791301418,
+    "bvid": "BV1JkTD6wEsH",
+    "cid": 39691422207,
+    "title": "猫和老鼠 | 当高手遇到高手"
   },
   "watch_status": "watch_skipped",
   "weekday": 7
