@@ -21,6 +21,7 @@
 - 每日分享影片：呼叫影片分享 API。
 - 每日獎勵查詢：執行前後查詢每日獎勵狀態並寫入紀錄。
 - 帳號硬幣數：記錄目前帳號持有的硬幣數 `account_coins`。
+- 每日匯總：依當日 plan / 事件紀錄產生 `logs/daily_summary.md`，並寫入 GitHub Actions 的 Job Summary。
 
 ## 自動執行時間
 
@@ -37,6 +38,21 @@
 | 週日 | 7 | 08:00-13:59 |
 
 例如週一擲到 1 就在 02:00 後執行，擲到 6 就在 07:00 後執行。任務執行後，當天還會在目標時間後 1、3、6 小時重新確認每日登入、觀看、分享狀態；如果仍未完成，會補跑缺少的任務。每日擲骰結果、補跑檢查與任務結果會記錄在 `logs/`，並由 GitHub Actions 自動提交回 repo。
+
+## 每日匯總
+
+每次 Action 執行（含 skip、首次任務、補查、手動）結束後都會產生每日匯總：
+
+| 輸出 | 說明 |
+| --- | --- |
+| GitHub Job Summary | 在 Actions 執行結果頁可直接閱讀 |
+| `logs/daily_summary.md` | 寫入 repo，隨其他 `logs/` 紀錄一併 commit |
+
+也可本機只重算匯總：
+
+```bash
+python3 scripts/bilibili_sign.py --summary-only
+```
 
 ## 自動執行
 
@@ -71,6 +87,7 @@ python3 scripts/bilibili_sign.py
 - `--scheduled`：套用台北時間排程與補查規則。
 - `--dry-run`：只檢查登入、獎勵狀態與影片資料，不送出觀看或分享請求。
 - `--debug`：輸出更詳細的執行紀錄。
+- `--summary-only`：只依現有 `logs/` 產生每日匯總，不呼叫 Bilibili API。
 
 ## 注意事項
 

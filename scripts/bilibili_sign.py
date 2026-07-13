@@ -26,9 +26,19 @@ LOG_DIR = Path("logs")
 PLAN_FILE = LOG_DIR / "daily_experience_plan.json"
 EVENT_LOG = LOG_DIR / "bilibili_experience.jsonl"
 RUNTIME_LOG = LOG_DIR / "bilibili_experience.log"
+SUMMARY_FILE = LOG_DIR / "daily_summary.md"
 TASK_NAME = "daily_experience"
 EVENT_LOG_RETENTION_DAYS = 30
 CONFIRM_AFTER_HOURS = (1, 3, 6)
+WEEKDAY_NAMES = {
+    1: "週一",
+    2: "週二",
+    3: "週三",
+    4: "週四",
+    5: "週五",
+    6: "週六",
+    7: "週日",
+}
 REQUEST_TIMEOUT_SECONDS = 20
 MAX_REQUEST_ATTEMPTS = 5
 RETRY_STATUS_CODES = {429, 500, 502, 503, 504}
@@ -1037,56 +1047,303 @@ def run_scheduled(dry_run=False):
     )
 
 
+def events_for_date(date):
+    return [event for event in read_event_log() if event.get("date") == date]
+
+
+def plan_for_date(date):
+    plan = read_plan()
+    if plan.get("date") == date and plan.get("task") == TASK_NAME:
+        return plan
+    return {}
+
+
+def task_runs_for_date(date):
+    return [
+        event
+        for event in events_for_date(date)
+        if event.get("event") in {"experience_tasks", "manual_experience_tasks"}
+    ]
+
+
+def bool_mark(value):
+    return "✓" if value else "✗"
+
+
+def escape_markdown_cell(value):
+    return str(value).replace("|", "\\|").replace("\n", " ")
+
+
+def format_video(video):
+    if not video:
+        return "—"
+    bvid = video.get("bvid") or "unknown"
+    title = video.get("title") or ""
+    if title:
+        return f"`{escape_markdown_cell(bvid)}` {escape_markdown_cell(title)}"
+    return f"`{escape_markdown_cell(bvid)}`"
+
+
+def format_run_type(event):
+    run_type = event.get("run_type")
+    if run_type == "initial":
+        return "首次"
+    if run_type == "confirm":
+        hours = event.get("confirm_after_hours")
+        if hours is not None:
+            return f"+{hours}h 補查"
+        return "補查"
+    if event.get("event") == "manual_experience_tasks":
+        return "手動"
+    return run_type or "—"
+
+
+def reward_flags(reward):
+    data = reward_data(reward or {})
+    return {
+        "login": bool(data.get("login")),
+        "watch": bool(data.get("watch")),
+        "share": bool(data.get("share")),
+    }
+
+
+def overall_status_label(plan, runs):
+    if plan.get("completed") or any(run.get("complete") for run in runs):
+        confirmations = {int(hour) for hour in plan.get("confirmations_done", [])}
+        if plan.get("initial_done") and all(hour in confirmations for hour in CONFIRM_AFTER_HOURS):
+            return "已完成（含 1h / 3h / 6h 補查）"
+        if plan.get("completed") or (runs and runs[-1].get("complete")):
+            return "已完成每日經驗（補查未全部跑完）"
+        return "已完成"
+    if runs:
+        return "進行中 / 尚未全部完成"
+    if plan:
+        if not plan.get("initial_done"):
+            return "等待首次執行"
+        return "進行中"
+    return "尚無今日紀錄"
+
+
+def build_daily_summary_markdown(date=None):
+    now = datetime.now(TAIPEI)
+    date = date or now.date().isoformat()
+    plan = plan_for_date(date)
+    runs = task_runs_for_date(date)
+    latest = runs[-1] if runs else {}
+    level_info = plan.get("level_info") or latest.get("level_info") or {}
+    reward = plan.get("reward_after") or latest.get("reward_after") or {}
+    flags = reward_flags(reward)
+    weekday = plan.get("weekday") or latest.get("weekday")
+    if weekday is None:
+        try:
+            weekday = datetime.fromisoformat(date).isoweekday()
+        except ValueError:
+            weekday = None
+    weekday_name = WEEKDAY_NAMES.get(weekday, "—")
+    dice = plan.get("dice", latest.get("dice", "—"))
+    target_hour = plan.get("target_hour_24h", latest.get("target_hour_24h", "—"))
+    coins = plan.get("account_coins", latest.get("account_coins"))
+    confirmations = sorted(int(hour) for hour in plan.get("confirmations_done", []))
+    missing_after = plan.get("missing_after")
+    if missing_after is None:
+        missing_after = latest.get("missing_after") or []
+
+    lines = [
+        f"# Bilibili 每日經驗匯總 — {date}（{weekday_name}）",
+        "",
+        f"**總結：{overall_status_label(plan, runs)}**",
+        "",
+        "## 排程",
+        "",
+        "| 項目 | 結果 |",
+        "| --- | --- |",
+        f"| 擲骰 | **{dice}** |",
+        f"| 目標時段 | **{target_hour}:00** 後 |",
+        f"| 首次執行 | {plan.get('initial_done_at_taipei') or ('已完成' if plan.get('initial_done') else '尚未')} |",
+        f"| 補查 1h / 3h / 6h | {' / '.join('✓' if hour in confirmations else '—' for hour in CONFIRM_AFTER_HOURS)} |",
+        "",
+        "## 任務進度",
+        "",
+    ]
+
+    if runs:
+        lines.extend(
+            [
+                "| 時間 | 類型 | 完成 | 登入 | 觀看 | 分享 | 影片 |",
+                "| --- | --- | --- | --- | --- | --- | --- |",
+            ]
+        )
+        for run in runs:
+            run_flags = reward_flags(run.get("reward_after"))
+            lines.append(
+                "| {time} | {run_type} | {complete} | {login} | {watch} | {share} | {video} |".format(
+                    time=run.get("created_at_taipei") or "—",
+                    run_type=format_run_type(run),
+                    complete=bool_mark(run.get("complete")),
+                    login=run.get("login_status") or ("✓" if run_flags["login"] else "—"),
+                    watch=run.get("watch_status") or "—",
+                    share=run.get("share_status") or "—",
+                    video=format_video(run.get("video")),
+                )
+            )
+        lines.append("")
+    else:
+        lines.extend(["尚無任務執行紀錄。", ""])
+
+    lines.extend(
+        [
+            "**獎勵狀態（最新）**",
+            "",
+            f"- 登入：{bool_mark(flags['login'])}",
+            f"- 觀看：{bool_mark(flags['watch'])}",
+            f"- 分享：{bool_mark(flags['share'])}",
+            f"- 缺少任務：{', '.join(missing_after) if missing_after else '無'}",
+            "",
+            "## 帳號狀態",
+            "",
+            "| 項目 | 數值 |",
+            "| --- | --- |",
+            f"| 等級 | **Lv.{level_info.get('current_level', '—')}** |",
+            f"| 經驗 | **{level_info.get('current_exp', '—')}** / {level_info.get('next_level_exp', '—')}（還差 **{level_info.get('exp_to_next_level', '—')}**） |",
+            f"| 預估升下一級 | 約 **{level_info.get('days_to_next_level_at_15_exp_per_day', '—')}** 天（每日 {BASE_DAILY_EXPERIENCE} exp） |",
+            f"| 硬幣 | **{coins if coins is not None else '—'}** |",
+            f"| 登入狀態 | {plan.get('login_status') or latest.get('login_status') or '—'} |",
+            "",
+        ]
+    )
+
+    breakthroughs = level_info.get("level_breakthrough_dates_at_15_exp_per_day") or {}
+    if breakthroughs:
+        lines.extend(
+            [
+                "升等預估（每日 15 exp）：",
+                "",
+                "| 目標 | 預估日期 | 剩餘天數 |",
+                "| --- | --- | ---: |",
+            ]
+        )
+        for level in (3, 4, 5, 6):
+            item = breakthroughs.get(f"lv{level}") or {}
+            lines.append(
+                f"| Lv.{level} | {item.get('estimated_date', '—')} | {item.get('days_at_15_exp_per_day', '—')} |"
+            )
+        lines.append("")
+
+    notes = []
+    failed_shares = [
+        run for run in runs if str(run.get("share_status") or "").endswith("failed")
+    ]
+    if failed_shares:
+        notes.append("分享曾失敗，後續補查有機會補上。")
+    if plan.get("completed") and all(hour in confirmations for hour in CONFIRM_AFTER_HOURS):
+        notes.append("今日全流程已結束。")
+    elif plan and not plan.get("initial_done"):
+        notes.append("尚未到首次執行時段，或首次任務尚未跑完。")
+    if notes:
+        lines.extend(["## 備註", ""])
+        for index, note in enumerate(notes, start=1):
+            lines.append(f"{index}. {note}")
+        lines.append("")
+
+    lines.extend(
+        [
+            "---",
+            f"_產生時間（台北）：{now.isoformat(timespec='seconds')}_",
+            "",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def write_github_step_summary(markdown):
+    summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if not summary_path:
+        return False
+
+    path = Path(summary_path)
+    with path.open("a", encoding="utf-8") as file:
+        file.write(markdown)
+        if not markdown.endswith("\n"):
+            file.write("\n")
+    return True
+
+
+def emit_daily_summary(date=None):
+    markdown = build_daily_summary_markdown(date=date)
+    LOG_DIR.mkdir(parents=True, exist_ok=True)
+    SUMMARY_FILE.write_text(markdown, encoding="utf-8")
+    if write_github_step_summary(markdown):
+        logging.info("Daily summary written to %s and GitHub Step Summary.", SUMMARY_FILE)
+    else:
+        logging.info("Daily summary written to %s.", SUMMARY_FILE)
+    return markdown
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Run Bilibili daily experience tasks.")
     parser.add_argument("--scheduled", action="store_true", help="Use the hourly scheduled run window.")
     parser.add_argument("--dry-run", action="store_true", help="Check login/reward/video without posting watch/share actions.")
     parser.add_argument("--debug", action="store_true", help="Enable verbose runtime logging.")
+    parser.add_argument(
+        "--summary-only",
+        action="store_true",
+        help="Only generate today's daily summary from existing logs.",
+    )
     return parser.parse_args()
 
 
 def main():
     args = parse_args()
     setup_logging(debug=args.debug)
-    if args.scheduled:
-        run_scheduled(dry_run=args.dry_run)
+    if args.summary_only:
+        emit_daily_summary()
         return
 
-    auth = build_cookie()
-    client = BilibiliClient(auth["cookie"], auth["csrf"])
-    now = datetime.now(TAIPEI)
-    date = now.date().isoformat()
-    previous_level = latest_recorded_level()
-    result = run_experience_tasks(client, dry_run=args.dry_run)
-    level_upgrade_notification = (
-        {"status": "email_skipped", "reason": "dry_run"}
-        if args.dry_run
-        else notify_level_upgrade(previous_level, result)
-    )
-    coin_balance_notification = (
-        {"status": "email_skipped", "reason": "dry_run"}
-        if args.dry_run
-        else notify_coin_balance_issue(result, date)
-    )
-    append_event(
-        {
-            "event": "manual_experience_tasks",
-            "dry_run": args.dry_run,
-            "date": date,
-            "login_status": result["login"]["status"],
-            "account_coins": result["login"].get("account_coins"),
-            "level_info": result["login"].get("level_info"),
-            "level_upgrade_notification": level_upgrade_notification,
-            "coin_balance_notification": coin_balance_notification,
-            "watch_status": result["watch"]["status"],
-            "share_status": result["share"]["status"],
-            "video": result["video"],
-            "missing_before": result["missing_before"],
-            "missing_after": result["missing_after"],
-            "complete": result["complete"],
-            "reward_after": result["reward_after"],
-        }
-    )
+    try:
+        if args.scheduled:
+            run_scheduled(dry_run=args.dry_run)
+            return
+
+        auth = build_cookie()
+        client = BilibiliClient(auth["cookie"], auth["csrf"])
+        now = datetime.now(TAIPEI)
+        date = now.date().isoformat()
+        previous_level = latest_recorded_level()
+        result = run_experience_tasks(client, dry_run=args.dry_run)
+        level_upgrade_notification = (
+            {"status": "email_skipped", "reason": "dry_run"}
+            if args.dry_run
+            else notify_level_upgrade(previous_level, result)
+        )
+        coin_balance_notification = (
+            {"status": "email_skipped", "reason": "dry_run"}
+            if args.dry_run
+            else notify_coin_balance_issue(result, date)
+        )
+        append_event(
+            {
+                "event": "manual_experience_tasks",
+                "dry_run": args.dry_run,
+                "date": date,
+                "login_status": result["login"]["status"],
+                "account_coins": result["login"].get("account_coins"),
+                "level_info": result["login"].get("level_info"),
+                "level_upgrade_notification": level_upgrade_notification,
+                "coin_balance_notification": coin_balance_notification,
+                "watch_status": result["watch"]["status"],
+                "share_status": result["share"]["status"],
+                "video": result["video"],
+                "missing_before": result["missing_before"],
+                "missing_after": result["missing_after"],
+                "complete": result["complete"],
+                "reward_after": result["reward_after"],
+            }
+        )
+    finally:
+        try:
+            emit_daily_summary()
+        except Exception as error:
+            logging.exception("Failed to emit daily summary: %s", error)
 
 
 if __name__ == "__main__":

@@ -55,5 +55,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add logs
-          git commit -m "Record Bilibili experience run"
+          git commit -m "Record Bilibili experience run and daily summary"
           git push
