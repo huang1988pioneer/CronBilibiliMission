@@ -1,44 +1,47 @@
 {
-  "account_coins": 60,
+  "account_coins": 61,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-07-15T07:53:39+08:00",
   "date": "2026-07-15",
   "dice": 3,
   "initial_done": true,
   "initial_done_at_taipei": "2026-07-15T06:56:34+08:00",
   "level_info": {
-    "current_exp": 1075,
+    "current_exp": 1090,
     "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 29,
-    "exp_to_next_level": 425,
+    "days_to_next_level_at_15_exp_per_day": 28,
+    "exp_to_next_level": 410,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
-        "days_at_15_exp_per_day": 29,
-        "estimated_date": "2026-08-13",
-        "exp_remaining": 425,
+        "days_at_15_exp_per_day": 28,
+        "estimated_date": "2026-08-12",
+        "exp_remaining": 410,
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 229,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 3425,
+        "days_at_15_exp_per_day": 228,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 3410,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 649,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 9725,
+        "days_at_15_exp_per_day": 648,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 9710,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1849,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 27725,
+        "days_at_15_exp_per_day": 1848,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 27710,
         "required_exp": 28800
       }
     },
@@ -64,7 +67,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 6,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -74,6 +77,6 @@
     "cid": 39938819851,
     "title": "Bro有话说2"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 3
 }
