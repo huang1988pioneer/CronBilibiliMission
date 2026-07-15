@@ -1,44 +1,47 @@
 {
-  "account_coins": 61,
+  "account_coins": 62,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-07-16T06:02:55+08:00",
   "date": "2026-07-16",
   "dice": 1,
   "initial_done": true,
   "initial_done_at_taipei": "2026-07-16T05:00:46+08:00",
   "level_info": {
-    "current_exp": 1090,
+    "current_exp": 1105,
     "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 28,
-    "exp_to_next_level": 410,
+    "days_to_next_level_at_15_exp_per_day": 27,
+    "exp_to_next_level": 395,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
-        "days_at_15_exp_per_day": 28,
-        "estimated_date": "2026-08-13",
-        "exp_remaining": 410,
+        "days_at_15_exp_per_day": 27,
+        "estimated_date": "2026-08-12",
+        "exp_remaining": 395,
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 228,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 3410,
+        "days_at_15_exp_per_day": 227,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 3395,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 648,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 9710,
+        "days_at_15_exp_per_day": 647,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 9695,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1848,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 27710,
+        "days_at_15_exp_per_day": 1847,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 27695,
         "required_exp": 28800
       }
     },
@@ -64,7 +67,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 5,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -74,6 +77,6 @@
     "cid": 39942492100,
     "title": "我放弃ASMR的原因"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 4
 }
