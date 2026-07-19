@@ -5,40 +5,43 @@
     "status": "email_skipped",
     "streak_days": 1
   },
-  "completed": false,
-  "confirmations_done": [],
+  "completed": true,
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-07-19T16:19:22+08:00",
   "date": "2026-07-19",
   "dice": 5,
   "initial_done": true,
   "initial_done_at_taipei": "2026-07-19T13:53:39+08:00",
   "level_info": {
-    "current_exp": 1145,
+    "current_exp": 1150,
     "current_level": 2,
     "days_to_next_level_at_15_exp_per_day": 24,
-    "exp_to_next_level": 355,
+    "exp_to_next_level": 350,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 24,
         "estimated_date": "2026-08-12",
-        "exp_remaining": 355,
+        "exp_remaining": 350,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 224,
         "estimated_date": "2027-02-28",
-        "exp_remaining": 3355,
+        "exp_remaining": 3350,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 644,
         "estimated_date": "2028-04-23",
-        "exp_remaining": 9655,
+        "exp_remaining": 9650,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 1844,
         "estimated_date": "2031-08-06",
-        "exp_remaining": 27655,
+        "exp_remaining": 27650,
         "required_exp": 28800
       }
     },
@@ -49,9 +52,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -59,14 +60,14 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 12,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -76,6 +77,6 @@
     "cid": 40081032462,
     "title": "新三国up锐评老三国08：我笑诸位竟无一计诛杀董卓！"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 7
 }
