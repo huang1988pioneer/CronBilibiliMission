@@ -5,11 +5,13 @@
     "status": "email_skipped",
     "streak_days": 1
   },
-  "completed": false,
+  "completed": true,
   "confirmations_done": [
-    1
+    1,
+    3
   ],
   "confirmed_after_1h_at_taipei": "2026-07-20T07:57:42+08:00",
+  "confirmed_after_3h_at_taipei": "2026-07-20T11:15:02+08:00",
   "date": "2026-07-20",
   "dice": 5,
   "initial_done": true,
@@ -52,9 +54,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -62,22 +62,22 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_failed",
+  "share_status": "share_reported",
   "target_hour_24h": 6,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116944510387854,
-    "bvid": "BV1psKB6wE2t",
-    "cid": 40089158505,
-    "title": "来杯好茶摇一摇，但是英语版"
+    "aid": 116936188891466,
+    "bvid": "BV1qyNo6TEX3",
+    "cid": 40049903204,
+    "title": "躲在超市后门拆炸弹的三人"
   },
   "watch_status": "watch_skipped",
   "weekday": 1
