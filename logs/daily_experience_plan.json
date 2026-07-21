@@ -7,9 +7,11 @@
   },
   "completed": false,
   "confirmations_done": [
-    1
+    1,
+    3
   ],
   "confirmed_after_1h_at_taipei": "2026-07-21T10:43:27+08:00",
+  "confirmed_after_3h_at_taipei": "2026-07-21T13:51:28+08:00",
   "date": "2026-07-21",
   "dice": 5,
   "initial_done": true,
@@ -74,10 +76,10 @@
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116949811994055,
-    "bvid": "BV1prK26pEiK",
-    "cid": 40116093587,
-    "title": "完全看不懂中国网络梗的日本人，再也不怕了！"
+    "aid": 116941809452925,
+    "bvid": "BV1mBKN65Ew4",
+    "cid": 40079789002,
+    "title": "四个一起冒烟！狂！大司马杯最搞笑一幕：导播可以开摄像头了。"
   },
   "watch_status": "watch_skipped",
   "weekday": 2
