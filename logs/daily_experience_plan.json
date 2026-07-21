@@ -8,10 +8,12 @@
   "completed": false,
   "confirmations_done": [
     1,
-    3
+    3,
+    6
   ],
   "confirmed_after_1h_at_taipei": "2026-07-21T10:43:27+08:00",
   "confirmed_after_3h_at_taipei": "2026-07-21T13:51:28+08:00",
+  "confirmed_after_6h_at_taipei": "2026-07-21T16:29:28+08:00",
   "date": "2026-07-21",
   "dice": 5,
   "initial_done": true,
@@ -76,10 +78,10 @@
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116941809452925,
-    "bvid": "BV1mBKN65Ew4",
-    "cid": 40079789002,
-    "title": "四个一起冒烟！狂！大司马杯最搞笑一幕：导播可以开摄像头了。"
+    "aid": 116933689087889,
+    "bvid": "BV1isKE68ErK",
+    "cid": 40030702670,
+    "title": "我的悲伤是狗叫的"
   },
   "watch_status": "watch_skipped",
   "weekday": 2
