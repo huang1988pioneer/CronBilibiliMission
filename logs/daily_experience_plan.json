@@ -1,44 +1,47 @@
 {
-  "account_coins": 67,
+  "account_coins": 68,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
-  "completed": false,
-  "confirmations_done": [],
+  "completed": true,
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-07-22T07:55:53+08:00",
   "date": "2026-07-22",
   "dice": 3,
   "initial_done": true,
   "initial_done_at_taipei": "2026-07-22T06:57:11+08:00",
   "level_info": {
-    "current_exp": 1175,
+    "current_exp": 1185,
     "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 22,
-    "exp_to_next_level": 325,
+    "days_to_next_level_at_15_exp_per_day": 21,
+    "exp_to_next_level": 315,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
-        "days_at_15_exp_per_day": 22,
-        "estimated_date": "2026-08-13",
-        "exp_remaining": 325,
+        "days_at_15_exp_per_day": 21,
+        "estimated_date": "2026-08-12",
+        "exp_remaining": 315,
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 222,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 3325,
+        "days_at_15_exp_per_day": 221,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 3315,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 642,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 9625,
+        "days_at_15_exp_per_day": 641,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 9615,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1842,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 27625,
+        "days_at_15_exp_per_day": 1841,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 27615,
         "required_exp": 28800
       }
     },
@@ -49,9 +52,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -59,23 +60,23 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_failed",
+  "share_status": "share_reported",
   "target_hour_24h": 6,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116952160863790,
-    "bvid": "BV11XKp6oE57",
-    "cid": 40131430516,
-    "title": "极寒末日96分钟无删减合集"
+    "aid": 116957663857205,
+    "bvid": "BV1s4Kh6mESh",
+    "cid": 40163542358,
+    "title": "高市民调骤跌丨“现在向中国投降，是代价最小的时候”"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 3
 }
