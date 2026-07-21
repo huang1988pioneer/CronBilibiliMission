@@ -1,44 +1,47 @@
 {
-  "account_coins": 66,
+  "account_coins": 67,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "completed": false,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-07-21T10:43:27+08:00",
   "date": "2026-07-21",
   "dice": 5,
   "initial_done": true,
   "initial_done_at_taipei": "2026-07-21T07:00:40+08:00",
   "level_info": {
-    "current_exp": 1165,
+    "current_exp": 1175,
     "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 23,
-    "exp_to_next_level": 335,
+    "days_to_next_level_at_15_exp_per_day": 22,
+    "exp_to_next_level": 325,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
-        "days_at_15_exp_per_day": 23,
-        "estimated_date": "2026-08-13",
-        "exp_remaining": 335,
+        "days_at_15_exp_per_day": 22,
+        "estimated_date": "2026-08-12",
+        "exp_remaining": 325,
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 223,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 3335,
+        "days_at_15_exp_per_day": 222,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 3325,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 643,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 9635,
+        "days_at_15_exp_per_day": 642,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 9625,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1843,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 27635,
+        "days_at_15_exp_per_day": 1842,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 27625,
         "required_exp": 28800
       }
     },
@@ -71,11 +74,11 @@
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116915485808224,
-    "bvid": "BV1CWNX6NE1A",
-    "cid": 39926499786,
-    "title": "耗时9999小时！一口气看完熊出没末路大合集！"
+    "aid": 116949811994055,
+    "bvid": "BV1prK26pEiK",
+    "cid": 40116093587,
+    "title": "完全看不懂中国网络梗的日本人，再也不怕了！"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 2
 }
