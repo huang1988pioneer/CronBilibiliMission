@@ -5,13 +5,15 @@
     "status": "email_skipped",
     "streak_days": 1
   },
-  "completed": false,
+  "completed": true,
   "confirmations_done": [
     1,
-    3
+    3,
+    6
   ],
   "confirmed_after_1h_at_taipei": "2026-07-24T13:50:08+08:00",
   "confirmed_after_3h_at_taipei": "2026-07-24T16:27:44+08:00",
+  "confirmed_after_6h_at_taipei": "2026-07-24T19:03:15+08:00",
   "date": "2026-07-24",
   "dice": 5,
   "initial_done": true,
@@ -54,9 +56,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -64,22 +64,22 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_failed",
+  "share_status": "share_reported",
   "target_hour_24h": 10,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116952160863790,
-    "bvid": "BV11XKp6oE57",
-    "cid": 40131430516,
-    "title": "极寒末日96分钟无删减合集"
+    "aid": 116951724590402,
+    "bvid": "BV1uuKm6PEKu",
+    "cid": 40129990432,
+    "title": "入伏了，解暑实力排行"
   },
   "watch_status": "watch_skipped",
   "weekday": 5
