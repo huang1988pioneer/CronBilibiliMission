@@ -7,9 +7,11 @@
   },
   "completed": false,
   "confirmations_done": [
-    1
+    1,
+    3
   ],
   "confirmed_after_1h_at_taipei": "2026-07-24T13:50:08+08:00",
+  "confirmed_after_3h_at_taipei": "2026-07-24T16:27:44+08:00",
   "date": "2026-07-24",
   "dice": 5,
   "initial_done": true,
@@ -74,10 +76,10 @@
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116944510387854,
-    "bvid": "BV1psKB6wE2t",
-    "cid": 40089158505,
-    "title": "来杯好茶摇一摇，但是英语版"
+    "aid": 116952160863790,
+    "bvid": "BV11XKp6oE57",
+    "cid": 40131430516,
+    "title": "极寒末日96分钟无删减合集"
   },
   "watch_status": "watch_skipped",
   "weekday": 5
