@@ -1,15 +1,17 @@
 {
-  "account_coins": 72,
+  "account_coins": 73,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
-  "completed": false,
+  "completed": true,
   "confirmations_done": [
-    1
+    1,
+    3
   ],
   "confirmed_after_1h_at_taipei": "2026-07-27T04:57:57+08:00",
+  "confirmed_after_3h_at_taipei": "2026-07-27T06:58:35+08:00",
   "date": "2026-07-27",
   "dice": 2,
   "initial_done": true,
@@ -52,9 +54,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -62,22 +62,22 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_failed",
+  "share_status": "share_reported",
   "target_hour_24h": 3,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116985983731565,
-    "bvid": "BV1tH3E6cEhz",
-    "cid": 40315915544,
-    "title": "蛇塑女爱豆摇身一变成了白娘子？！"
+    "aid": 116974508118143,
+    "bvid": "BV1yagv6eE25",
+    "cid": 40255752825,
+    "title": "陈翔六点半：有人在这里被爱过，有人在这里学会了爱"
   },
   "watch_status": "watch_skipped",
   "weekday": 1
