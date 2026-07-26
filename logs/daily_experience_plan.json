@@ -3,21 +3,14 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
-  "completed": true,
-  "confirmations_done": [
-    1,
-    3,
-    6
-  ],
-  "confirmed_after_1h_at_taipei": "2026-07-26T14:06:10+08:00",
-  "confirmed_after_3h_at_taipei": "2026-07-26T17:12:43+08:00",
-  "confirmed_after_6h_at_taipei": "2026-07-26T19:18:52+08:00",
-  "date": "2026-07-26",
-  "dice": 3,
+  "completed": false,
+  "confirmations_done": [],
+  "date": "2026-07-27",
+  "dice": 2,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-07-26T10:57:34+08:00",
+  "initial_done_at_taipei": "2026-07-27T03:10:56+08:00",
   "level_info": {
     "current_exp": 1250,
     "current_level": 2,
@@ -26,25 +19,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 17,
-        "estimated_date": "2026-08-12",
+        "estimated_date": "2026-08-13",
         "exp_remaining": 250,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 217,
-        "estimated_date": "2027-02-28",
+        "estimated_date": "2027-03-01",
         "exp_remaining": 3250,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 637,
-        "estimated_date": "2028-04-23",
+        "estimated_date": "2028-04-24",
         "exp_remaining": 9550,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 1837,
-        "estimated_date": "2031-08-06",
+        "estimated_date": "2031-08-07",
         "exp_remaining": 27550,
         "required_exp": 28800
       }
@@ -56,7 +49,9 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [],
+  "missing_after": [
+    "share"
+  ],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -64,23 +59,23 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": true,
+      "share": false,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 10,
+  "share_status": "share_failed",
+  "target_hour_24h": 3,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 116968837350964,
-    "bvid": "BV12VgQ6DEZX",
-    "cid": 40224096292,
-    "title": "挑战全天打卡一线城市差评垫底门店，到底能离谱到什么程度？"
+    "aid": 116974944260321,
+    "bvid": "BV1bpgv66Ees",
+    "cid": 40259292069,
+    "title": "一口气看懂王虹获菲尔兹奖：挂谷猜想到底有多难？"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 7
+  "watch_status": "watch_reported",
+  "weekday": 1
 }
