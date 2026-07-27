@@ -1,44 +1,47 @@
 {
-  "account_coins": 73,
+  "account_coins": 74,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-07-28T05:10:38+08:00",
   "date": "2026-07-28",
   "dice": 1,
   "initial_done": true,
   "initial_done_at_taipei": "2026-07-28T03:26:58+08:00",
   "level_info": {
-    "current_exp": 1265,
+    "current_exp": 1280,
     "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 16,
-    "exp_to_next_level": 235,
+    "days_to_next_level_at_15_exp_per_day": 15,
+    "exp_to_next_level": 220,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
-        "days_at_15_exp_per_day": 16,
-        "estimated_date": "2026-08-13",
-        "exp_remaining": 235,
+        "days_at_15_exp_per_day": 15,
+        "estimated_date": "2026-08-12",
+        "exp_remaining": 220,
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 216,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 3235,
+        "days_at_15_exp_per_day": 215,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 3220,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 636,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 9535,
+        "days_at_15_exp_per_day": 635,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 9520,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1836,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 27535,
+        "days_at_15_exp_per_day": 1835,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 27520,
         "required_exp": 28800
       }
     },
@@ -64,7 +67,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 3,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -74,6 +77,6 @@
     "cid": 40217479053,
     "title": "连续21天十点睡六点起，我真的会变健康吗？"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 2
 }
