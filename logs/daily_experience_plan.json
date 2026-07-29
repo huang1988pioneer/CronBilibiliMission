@@ -1,44 +1,47 @@
 {
-  "account_coins": 75,
+  "account_coins": 76,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-07-30T07:00:25+08:00",
   "date": "2026-07-30",
   "dice": 2,
   "initial_done": true,
   "initial_done_at_taipei": "2026-07-30T06:01:16+08:00",
   "level_info": {
-    "current_exp": 1295,
+    "current_exp": 1310,
     "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 14,
-    "exp_to_next_level": 205,
+    "days_to_next_level_at_15_exp_per_day": 13,
+    "exp_to_next_level": 190,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
-        "days_at_15_exp_per_day": 14,
-        "estimated_date": "2026-08-13",
-        "exp_remaining": 205,
+        "days_at_15_exp_per_day": 13,
+        "estimated_date": "2026-08-12",
+        "exp_remaining": 190,
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 214,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 3205,
+        "days_at_15_exp_per_day": 213,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 3190,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 634,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 9505,
+        "days_at_15_exp_per_day": 633,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 9490,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1834,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 27505,
+        "days_at_15_exp_per_day": 1833,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 27490,
         "required_exp": 28800
       }
     },
@@ -64,7 +67,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 6,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -74,6 +77,6 @@
     "cid": 40407797334,
     "title": "铃：妈妈，我活到头了"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 4
 }
