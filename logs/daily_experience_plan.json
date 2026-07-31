@@ -7,9 +7,11 @@
   },
   "completed": true,
   "confirmations_done": [
-    1
+    1,
+    3
   ],
   "confirmed_after_1h_at_taipei": "2026-07-31T14:14:13+08:00",
+  "confirmed_after_3h_at_taipei": "2026-07-31T17:44:44+08:00",
   "date": "2026-07-31",
   "dice": 4,
   "initial_done": true,
