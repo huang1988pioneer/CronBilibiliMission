@@ -6,39 +6,42 @@
     "streak_days": 2
   },
   "completed": false,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-03T04:55:43+08:00",
   "date": "2026-08-03",
   "dice": 2,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-03T03:09:56+08:00",
   "level_info": {
-    "current_exp": 1355,
+    "current_exp": 1365,
     "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 10,
-    "exp_to_next_level": 145,
+    "days_to_next_level_at_15_exp_per_day": 9,
+    "exp_to_next_level": 135,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
-        "days_at_15_exp_per_day": 10,
-        "estimated_date": "2026-08-13",
-        "exp_remaining": 145,
+        "days_at_15_exp_per_day": 9,
+        "estimated_date": "2026-08-12",
+        "exp_remaining": 135,
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 210,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 3145,
+        "days_at_15_exp_per_day": 209,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 3135,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 630,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 9445,
+        "days_at_15_exp_per_day": 629,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 9435,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1830,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 27445,
+        "days_at_15_exp_per_day": 1829,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 27435,
         "required_exp": 28800
       }
     },
@@ -71,11 +74,11 @@
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117017927490105,
-    "bvid": "BV1gDGu6VEtq",
-    "cid": 40489127515,
-    "title": "万蛇之王！全世界最大的剧毒蛇它终于来了"
+    "aid": 116997660614502,
+    "bvid": "BV1hM3q6QEmu",
+    "cid": 40380205128,
+    "title": "“欢迎玩家进入副本，好戏开场…”"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 1
 }
