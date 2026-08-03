@@ -8,10 +8,12 @@
   "completed": false,
   "confirmations_done": [
     1,
-    3
+    3,
+    6
   ],
   "confirmed_after_1h_at_taipei": "2026-08-03T04:55:43+08:00",
   "confirmed_after_3h_at_taipei": "2026-08-03T06:56:45+08:00",
+  "confirmed_after_6h_at_taipei": "2026-08-03T10:49:50+08:00",
   "date": "2026-08-03",
   "dice": 2,
   "initial_done": true,
@@ -71,15 +73,15 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_failed",
+  "share_status": "share_reported",
   "target_hour_24h": 3,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117014890875297,
-    "bvid": "BV1unGP6bEwv",
-    "cid": 40336230237,
-    "title": "此男难道只有脸吗？演技才是他的硬通货啊！口轮匝肌都能用来演戏也是很牛了，赶快让此男多演戏造福观众吧"
+    "aid": 117007022295731,
+    "bvid": "BV12L3x67ECs",
+    "cid": 40430338225,
+    "title": "【揽佬】中国人能飞～黄皮肤才对～讲中文才飞～中国就是美"
   },
   "watch_status": "watch_skipped",
   "weekday": 1
