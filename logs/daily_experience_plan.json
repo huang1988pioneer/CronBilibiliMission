@@ -1,44 +1,47 @@
 {
-  "account_coins": 80,
+  "account_coins": 81,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "completed": false,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-04T12:14:13+08:00",
   "date": "2026-08-04",
   "dice": 6,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-04T08:09:01+08:00",
   "level_info": {
-    "current_exp": 1370,
+    "current_exp": 1380,
     "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 9,
-    "exp_to_next_level": 130,
+    "days_to_next_level_at_15_exp_per_day": 8,
+    "exp_to_next_level": 120,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
-        "days_at_15_exp_per_day": 9,
-        "estimated_date": "2026-08-13",
-        "exp_remaining": 130,
+        "days_at_15_exp_per_day": 8,
+        "estimated_date": "2026-08-12",
+        "exp_remaining": 120,
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 209,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 3130,
+        "days_at_15_exp_per_day": 208,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 3120,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 629,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 9430,
+        "days_at_15_exp_per_day": 628,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 9420,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1829,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 27430,
+        "days_at_15_exp_per_day": 1828,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 27420,
         "required_exp": 28800
       }
     },
@@ -71,11 +74,11 @@
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117024118284186,
-    "bvid": "BV1RQ3X6qEPN",
-    "cid": 40521565556,
-    "title": "当哥哥跟弟弟不同的年龄差"
+    "aid": 117018917407373,
+    "bvid": "BV127G36CE1g",
+    "cid": 40495547056,
+    "title": "“你可能不知道忧郁是什么感觉，但你一定听过这些歌”"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 2
 }
