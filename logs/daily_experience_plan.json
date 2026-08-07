@@ -5,11 +5,13 @@
     "status": "email_skipped",
     "streak_days": 1
   },
-  "completed": false,
+  "completed": true,
   "confirmations_done": [
-    1
+    1,
+    3
   ],
   "confirmed_after_1h_at_taipei": "2026-08-07T12:54:32+08:00",
+  "confirmed_after_3h_at_taipei": "2026-08-07T14:08:52+08:00",
   "date": "2026-08-07",
   "dice": 4,
   "initial_done": true,
@@ -52,9 +54,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -62,22 +62,22 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_failed",
+  "share_status": "share_reported",
   "target_hour_24h": 9,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117037321949692,
-    "bvid": "BV1ipuA64EpU",
-    "cid": 40593984005,
-    "title": "《三国语言版三国杀》"
+    "aid": 117045878326881,
+    "bvid": "BV1BQMS6FE9h",
+    "cid": 40638219946,
+    "title": "宋美龄：唯一女性战犯，曾想用核弹炸中国"
   },
   "watch_status": "watch_skipped",
   "weekday": 5
