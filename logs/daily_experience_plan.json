@@ -6,39 +6,42 @@
     "streak_days": 1
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-08T11:25:47+08:00",
   "date": "2026-08-08",
   "dice": 2,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-08T09:39:41+08:00",
   "level_info": {
-    "current_exp": 1430,
+    "current_exp": 1445,
     "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 5,
-    "exp_to_next_level": 70,
+    "days_to_next_level_at_15_exp_per_day": 4,
+    "exp_to_next_level": 55,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
-        "days_at_15_exp_per_day": 5,
-        "estimated_date": "2026-08-13",
-        "exp_remaining": 70,
+        "days_at_15_exp_per_day": 4,
+        "estimated_date": "2026-08-12",
+        "exp_remaining": 55,
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 205,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 3070,
+        "days_at_15_exp_per_day": 204,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 3055,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 625,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 9370,
+        "days_at_15_exp_per_day": 624,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 9355,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1825,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 27370,
+        "days_at_15_exp_per_day": 1824,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 27355,
         "required_exp": 28800
       }
     },
@@ -64,7 +67,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 8,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -74,6 +77,6 @@
     "cid": 40600735550,
     "title": "哥哥升入高三后离奇去世，这所无人毕业的高中到底藏了什么？"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 6
 }
