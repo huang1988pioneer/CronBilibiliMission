@@ -1,44 +1,47 @@
 {
-  "account_coins": 86,
+  "account_coins": 87,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-10T05:31:59+08:00",
   "date": "2026-08-10",
   "dice": 3,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-10T04:32:10+08:00",
   "level_info": {
-    "current_exp": 1460,
+    "current_exp": 1475,
     "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 3,
-    "exp_to_next_level": 40,
+    "days_to_next_level_at_15_exp_per_day": 2,
+    "exp_to_next_level": 25,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
-        "days_at_15_exp_per_day": 3,
-        "estimated_date": "2026-08-13",
-        "exp_remaining": 40,
+        "days_at_15_exp_per_day": 2,
+        "estimated_date": "2026-08-12",
+        "exp_remaining": 25,
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 203,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 3040,
+        "days_at_15_exp_per_day": 202,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 3025,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 623,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 9340,
+        "days_at_15_exp_per_day": 622,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 9325,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1823,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 27340,
+        "days_at_15_exp_per_day": 1822,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 27325,
         "required_exp": 28800
       }
     },
@@ -64,7 +67,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 4,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -74,6 +77,6 @@
     "cid": 40680229744,
     "title": "不要“做”挑战？（第二十一期）"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 1
 }
