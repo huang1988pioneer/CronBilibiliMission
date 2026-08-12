@@ -1,57 +1,60 @@
 {
-  "account_coins": 88,
+  "account_coins": 89,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
-  "completed": false,
-  "confirmations_done": [],
+  "completed": true,
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-12T09:57:28+08:00",
   "date": "2026-08-12",
   "dice": 4,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-12T07:39:45+08:00",
   "level_info": {
-    "current_exp": 1490,
-    "current_level": 2,
-    "days_to_next_level_at_15_exp_per_day": 1,
-    "exp_to_next_level": 10,
+    "current_exp": 1500,
+    "current_level": 3,
+    "days_to_next_level_at_15_exp_per_day": 200,
+    "exp_to_next_level": 3000,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
-        "days_at_15_exp_per_day": 1,
-        "estimated_date": "2026-08-13",
-        "exp_remaining": 10,
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-08-12",
+        "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 201,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 3010,
+        "days_at_15_exp_per_day": 200,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 3000,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 621,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 9310,
+        "days_at_15_exp_per_day": 620,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 9300,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1821,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 27310,
+        "days_at_15_exp_per_day": 1820,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 27300,
         "required_exp": 28800
       }
     },
-    "next_level_exp": 1500
+    "next_level_exp": 4500
   },
   "level_upgrade_notification": {
-    "reason": "no_level_upgrade",
-    "status": "email_skipped"
+    "current_level": 3,
+    "previous_level": 2,
+    "recipient": "goldshoot0720@gmail.com,huang1988pioneer@gmail.com,chbondg@hotmail.com",
+    "status": "email_sent"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -59,23 +62,23 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_failed",
+  "share_status": "share_reported",
   "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117047589608193,
-    "bvid": "BV1J4un6mEV1",
-    "cid": 40649886792,
-    "title": "“那些只打高端局的神级串烧”"
+    "aid": 117070641569122,
+    "bvid": "BV1JMud6mE6T",
+    "cid": 40779776721,
+    "title": "当人脉哥请同学回家吃饭！"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 3
 }
