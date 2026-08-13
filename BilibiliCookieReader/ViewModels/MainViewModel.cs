@@ -1,9 +1,11 @@
 using Avalonia.Controls;
 using Avalonia.Input.Platform;
+using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
 using BilibiliCookieReader.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Text.Json;
 
 namespace BilibiliCookieReader.ViewModels;
 
@@ -11,6 +13,9 @@ public partial class MainViewModel : ViewModelBase
 {
     private TopLevel? _topLevel;
     private BilibiliCookieSet? _cookies;
+    private readonly DailyHotSearchRecorder _dailyHotSearchRecorder = new();
+    private readonly DailyRankingRecorder _dailyRankingRecorder = new();
+    private CancellationTokenSource? _backgroundServicesCancellation;
 
     public IReadOnlyList<BilibiliAccountOption> Accounts { get; } =
     [
@@ -57,6 +62,309 @@ public partial class MainViewModel : ViewModelBase
 
     [ObservableProperty]
     public partial bool IsBusy { get; set; }
+
+    [ObservableProperty]
+    public partial bool HasAccountStatus { get; set; }
+
+    [ObservableProperty]
+    public partial string AccountUserName { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string AccountLevelText { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string AccountExperienceText { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string AccountCoinsText { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial bool HasAccountSignature { get; set; }
+
+    [ObservableProperty]
+    public partial string AccountSignature { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial bool HasAccountAvatar { get; set; }
+
+    [ObservableProperty]
+    public partial Bitmap? AccountAvatar { get; set; }
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(OpenLatestDynamicCommand))]
+    public partial bool HasLatestDynamic { get; set; }
+
+    [ObservableProperty]
+    public partial string LatestDynamicType { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LatestDynamicText { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LatestDynamicPublishedText { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LatestDynamicUrl { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial bool HasLatestDynamicCover { get; set; }
+
+    [ObservableProperty]
+    public partial Bitmap? LatestDynamicCover { get; set; }
+
+    [ObservableProperty]
+    public partial bool HasLatestSubmission { get; set; }
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(OpenLatestSubmissionCommand))]
+    public partial bool HasLatestSubmissionLink { get; set; }
+
+    [ObservableProperty]
+    public partial string LatestSubmissionHeading { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LatestSubmissionTitle { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LatestSubmissionMetaText { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LatestSubmissionUrl { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial bool HasLatestSubmissionCover { get; set; }
+
+    [ObservableProperty]
+    public partial Bitmap? LatestSubmissionCover { get; set; }
+
+    [ObservableProperty]
+    public partial bool HasFavoriteInfo { get; set; }
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(OpenLatestFavoriteCommand))]
+    public partial bool HasLatestFavoriteLink { get; set; }
+
+    [ObservableProperty]
+    public partial string FavoriteHeading { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string FavoriteFolderText { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LatestFavoriteTitle { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LatestFavoriteMetaText { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LatestFavoriteUrl { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial bool HasLatestFavoriteCover { get; set; }
+
+    [ObservableProperty]
+    public partial Bitmap? LatestFavoriteCover { get; set; }
+
+    [ObservableProperty]
+    public partial bool HasBangumiFollow { get; set; }
+
+    [ObservableProperty]
+    public partial bool HasLatestAnime { get; set; }
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(OpenLatestAnimeCommand))]
+    public partial bool HasLatestAnimeLink { get; set; }
+
+    [ObservableProperty]
+    public partial string AnimeHeading { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LatestAnimeTitle { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LatestAnimeProgress { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LatestAnimeUrl { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial bool HasLatestAnimeCover { get; set; }
+
+    [ObservableProperty]
+    public partial Bitmap? LatestAnimeCover { get; set; }
+
+    [ObservableProperty]
+    public partial bool HasLatestDrama { get; set; }
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(OpenLatestDramaCommand))]
+    public partial bool HasLatestDramaLink { get; set; }
+
+    [ObservableProperty]
+    public partial string DramaHeading { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LatestDramaTitle { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LatestDramaProgress { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LatestDramaUrl { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial bool HasLatestDramaCover { get; set; }
+
+    [ObservableProperty]
+    public partial Bitmap? LatestDramaCover { get; set; }
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(OpenHomepageRecommendationCommand))]
+    public partial bool HasHomepageRecommendation { get; set; }
+
+    [ObservableProperty]
+    public partial string HomepageRecommendationTitle { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string HomepageRecommendationMetaText { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string HomepageRecommendationUrl { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial bool HasHomepageRecommendationCover { get; set; }
+
+    [ObservableProperty]
+    public partial Bitmap? HomepageRecommendationCover { get; set; }
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(OpenDynamicFeedCommand))]
+    public partial bool HasDynamicFeed { get; set; }
+
+    [ObservableProperty]
+    public partial string DynamicFeedHeading { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string DynamicFeedText { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string DynamicFeedMetaText { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string DynamicFeedUrl { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial bool HasDynamicFeedCover { get; set; }
+
+    [ObservableProperty]
+    public partial Bitmap? DynamicFeedCover { get; set; }
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(OpenBangumiRecommendationCommand))]
+    public partial bool HasBangumiRecommendation { get; set; }
+
+    [ObservableProperty]
+    public partial string BangumiRecommendationTitle { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string BangumiRecommendationSubtitle { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string BangumiRecommendationMetaText { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string BangumiRecommendationUrl { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial bool HasBangumiRecommendationCover { get; set; }
+
+    [ObservableProperty]
+    public partial Bitmap? BangumiRecommendationCover { get; set; }
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(OpenLiveRecommendationCommand))]
+    public partial bool HasLiveRecommendation { get; set; }
+
+    [ObservableProperty]
+    public partial string LiveRecommendationTitle { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LiveRecommendationMetaText { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string LiveRecommendationUrl { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial bool HasLiveRecommendationCover { get; set; }
+
+    [ObservableProperty]
+    public partial Bitmap? LiveRecommendationCover { get; set; }
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(OpenPopularVideoCommand))]
+    public partial bool HasPopularVideo { get; set; }
+
+    [ObservableProperty]
+    public partial string PopularVideoTitle { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string PopularVideoMetaText { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string PopularVideoUrl { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial bool HasPopularVideoCover { get; set; }
+
+    [ObservableProperty]
+    public partial Bitmap? PopularVideoCover { get; set; }
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(OpenRankingVideoCommand))]
+    public partial bool HasRankingVideo { get; set; }
+
+    [ObservableProperty]
+    public partial string RankingVideoHeading { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string RankingVideoTitle { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string RankingVideoMetaText { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string RankingVideoUrl { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial bool HasRankingVideoCover { get; set; }
+
+    [ObservableProperty]
+    public partial Bitmap? RankingVideoCover { get; set; }
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(OpenHotSearchCommand))]
+    public partial bool HasHotSearch { get; set; }
+
+    [ObservableProperty]
+    public partial string HotSearchSummary { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string HotSearchTopKeyword { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string HotSearchUrl { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string BackgroundHotSearchStatus { get; set; } = "每日熱搜背景紀錄尚未啟動";
+
+    [ObservableProperty]
+    public partial bool IsBackgroundHotSearchError { get; set; }
+
+    [ObservableProperty]
+    public partial string BackgroundRankingStatus { get; set; } = "每日排行榜背景紀錄尚未啟動";
+
+    [ObservableProperty]
+    public partial bool IsBackgroundRankingError { get; set; }
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(UpdateGitHubSecretsCommand))]
@@ -118,6 +426,99 @@ public partial class MainViewModel : ViewModelBase
         LoadGitHubSettings();
         ShowSavedExpiryReminder();
         _ = TryFillGhTokenAsync();
+        StartBackgroundServices();
+    }
+
+    public void StopBackgroundServices()
+    {
+        _backgroundServicesCancellation?.Cancel();
+        _backgroundServicesCancellation?.Dispose();
+        _backgroundServicesCancellation = null;
+    }
+
+    private void StartBackgroundServices()
+    {
+        if (_backgroundServicesCancellation is not null)
+            return;
+        _backgroundServicesCancellation = new CancellationTokenSource();
+        _ = RunBackgroundHotSearchAsync(_backgroundServicesCancellation.Token);
+        _ = RunBackgroundRankingAsync(_backgroundServicesCancellation.Token);
+    }
+
+    private async Task RunBackgroundRankingAsync(CancellationToken cancellationToken)
+    {
+        using var timer = new PeriodicTimer(TimeSpan.FromHours(1));
+        while (!cancellationToken.IsCancellationRequested)
+        {
+            BackgroundRankingStatus = "每日排行榜：背景檢查全部＋20 分類中…";
+            IsBackgroundRankingError = false;
+            try
+            {
+                var result = await _dailyRankingRecorder.RecordTodayAsync(
+                    cancellationToken: cancellationToken);
+                var action = result.Changed ? "已更新" : "今日已完成";
+                var completion = result.Complete ? "完整" : "部分完成，1 小時後補抓";
+                BackgroundRankingStatus =
+                    $"每日排行榜：{action} {result.CategoryCount}/{result.ExpectedCategoryCount} 類（{completion}） · {result.CapturedAtTaipei:yyyy-MM-dd HH:mm} 台北 · {result.LogPath}";
+                IsBackgroundRankingError = !result.Complete;
+            }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
+                break;
+            }
+            catch (Exception ex) when (ex is HttpRequestException or IOException or JsonException or UnauthorizedAccessException)
+            {
+                IsBackgroundRankingError = true;
+                BackgroundRankingStatus = $"每日排行榜：背景紀錄失敗，1 小時後重試 · {ex.Message}";
+            }
+
+            try
+            {
+                if (!await timer.WaitForNextTickAsync(cancellationToken))
+                    break;
+            }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
+                break;
+            }
+        }
+    }
+
+    private async Task RunBackgroundHotSearchAsync(CancellationToken cancellationToken)
+    {
+        using var timer = new PeriodicTimer(TimeSpan.FromHours(1));
+        while (!cancellationToken.IsCancellationRequested)
+        {
+            BackgroundHotSearchStatus = "每日熱搜：背景檢查中…";
+            IsBackgroundHotSearchError = false;
+            try
+            {
+                var result = await _dailyHotSearchRecorder.RecordTodayAsync(
+                    cancellationToken: cancellationToken);
+                var action = result.Recorded ? "已記錄" : "今日已記錄";
+                BackgroundHotSearchStatus =
+                    $"每日熱搜：{action} {result.EntryCount} 筆 · {result.CapturedAtTaipei:yyyy-MM-dd HH:mm} 台北 · {_dailyHotSearchRecorder.LogPath}";
+            }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
+                break;
+            }
+            catch (Exception ex) when (ex is HttpRequestException or IOException or JsonException or UnauthorizedAccessException)
+            {
+                IsBackgroundHotSearchError = true;
+                BackgroundHotSearchStatus = $"每日熱搜：背景紀錄失敗，1 小時後重試 · {ex.Message}";
+            }
+
+            try
+            {
+                if (!await timer.WaitForNextTickAsync(cancellationToken))
+                    break;
+            }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
+                break;
+            }
+        }
     }
 
     private void LoadGitHubSettings()
@@ -141,6 +542,7 @@ public partial class MainViewModel : ViewModelBase
 
     public void LoadFromPath(string? path)
     {
+        ClearAccountStatus();
         if (string.IsNullOrWhiteSpace(path))
         {
             SetStatus("請先選擇 cookies.txt。", isError: true);
@@ -278,16 +680,163 @@ public partial class MainViewModel : ViewModelBase
             return;
 
         IsBusy = true;
+        ClearAccountStatus();
         SetStatus("正在向 Bilibili 驗證登入…", isError: false);
         try
         {
             var result = await BilibiliNavClient.CheckAsync(_cookies);
+            if (result.Ok)
+                ApplyAccountStatus(result);
             SetStatus(result.Message, isError: !result.Ok);
         }
         finally
         {
             IsBusy = false;
         }
+    }
+
+    [RelayCommand(CanExecute = nameof(HasLatestDynamic))]
+    private async Task OpenLatestDynamicAsync()
+    {
+        if (_topLevel is null
+            || !Uri.TryCreate(LatestDynamicUrl, UriKind.Absolute, out var uri))
+        {
+            return;
+        }
+
+        await _topLevel.Launcher.LaunchUriAsync(uri);
+    }
+
+    [RelayCommand(CanExecute = nameof(HasLatestSubmissionLink))]
+    private async Task OpenLatestSubmissionAsync()
+    {
+        if (_topLevel is null
+            || !Uri.TryCreate(LatestSubmissionUrl, UriKind.Absolute, out var uri))
+        {
+            return;
+        }
+
+        await _topLevel.Launcher.LaunchUriAsync(uri);
+    }
+
+    [RelayCommand(CanExecute = nameof(HasLatestFavoriteLink))]
+    private async Task OpenLatestFavoriteAsync()
+    {
+        if (_topLevel is null
+            || !Uri.TryCreate(LatestFavoriteUrl, UriKind.Absolute, out var uri))
+        {
+            return;
+        }
+
+        await _topLevel.Launcher.LaunchUriAsync(uri);
+    }
+
+    [RelayCommand(CanExecute = nameof(HasLatestAnimeLink))]
+    private async Task OpenLatestAnimeAsync()
+    {
+        if (_topLevel is null
+            || !Uri.TryCreate(LatestAnimeUrl, UriKind.Absolute, out var uri))
+        {
+            return;
+        }
+
+        await _topLevel.Launcher.LaunchUriAsync(uri);
+    }
+
+    [RelayCommand(CanExecute = nameof(HasLatestDramaLink))]
+    private async Task OpenLatestDramaAsync()
+    {
+        if (_topLevel is null
+            || !Uri.TryCreate(LatestDramaUrl, UriKind.Absolute, out var uri))
+        {
+            return;
+        }
+
+        await _topLevel.Launcher.LaunchUriAsync(uri);
+    }
+
+    [RelayCommand(CanExecute = nameof(HasHomepageRecommendation))]
+    private async Task OpenHomepageRecommendationAsync()
+    {
+        if (_topLevel is null
+            || !Uri.TryCreate(HomepageRecommendationUrl, UriKind.Absolute, out var uri))
+        {
+            return;
+        }
+
+        await _topLevel.Launcher.LaunchUriAsync(uri);
+    }
+
+    [RelayCommand(CanExecute = nameof(HasDynamicFeed))]
+    private async Task OpenDynamicFeedAsync()
+    {
+        if (_topLevel is null
+            || !Uri.TryCreate(DynamicFeedUrl, UriKind.Absolute, out var uri))
+        {
+            return;
+        }
+
+        await _topLevel.Launcher.LaunchUriAsync(uri);
+    }
+
+    [RelayCommand(CanExecute = nameof(HasBangumiRecommendation))]
+    private async Task OpenBangumiRecommendationAsync()
+    {
+        if (_topLevel is null
+            || !Uri.TryCreate(BangumiRecommendationUrl, UriKind.Absolute, out var uri))
+        {
+            return;
+        }
+
+        await _topLevel.Launcher.LaunchUriAsync(uri);
+    }
+
+    [RelayCommand(CanExecute = nameof(HasLiveRecommendation))]
+    private async Task OpenLiveRecommendationAsync()
+    {
+        if (_topLevel is null
+            || !Uri.TryCreate(LiveRecommendationUrl, UriKind.Absolute, out var uri))
+        {
+            return;
+        }
+
+        await _topLevel.Launcher.LaunchUriAsync(uri);
+    }
+
+    [RelayCommand(CanExecute = nameof(HasPopularVideo))]
+    private async Task OpenPopularVideoAsync()
+    {
+        if (_topLevel is null
+            || !Uri.TryCreate(PopularVideoUrl, UriKind.Absolute, out var uri))
+        {
+            return;
+        }
+
+        await _topLevel.Launcher.LaunchUriAsync(uri);
+    }
+
+    [RelayCommand(CanExecute = nameof(HasRankingVideo))]
+    private async Task OpenRankingVideoAsync()
+    {
+        if (_topLevel is null
+            || !Uri.TryCreate(RankingVideoUrl, UriKind.Absolute, out var uri))
+        {
+            return;
+        }
+
+        await _topLevel.Launcher.LaunchUriAsync(uri);
+    }
+
+    [RelayCommand(CanExecute = nameof(HasHotSearch))]
+    private async Task OpenHotSearchAsync()
+    {
+        if (_topLevel is null
+            || !Uri.TryCreate(HotSearchUrl, UriKind.Absolute, out var uri))
+        {
+            return;
+        }
+
+        await _topLevel.Launcher.LaunchUriAsync(uri);
     }
 
     [RelayCommand]
@@ -350,6 +899,7 @@ public partial class MainViewModel : ViewModelBase
 
     private void Apply(CookieSession session)
     {
+        ClearAccountStatus();
         _cookies = session.Cookies;
         HasResult = session.HasAny;
         HasAllThree = session.HasAll;
@@ -399,6 +949,547 @@ public partial class MainViewModel : ViewModelBase
         OnPropertyChanged(nameof(WindowTitle));
     }
 
+    private void ApplyAccountStatus(NavCheckResult result)
+    {
+        AccountUserName = result.UserName ?? SelectedAccount.UserName;
+        AccountLevelText = result.Level is null ? "—" : $"Lv.{result.Level}";
+        AccountExperienceText = FormatExperience(result);
+        AccountCoinsText = result.Coins is null ? "—" : $"{result.Coins:N1}";
+        AccountSignature = result.ProfileSignature ?? string.Empty;
+        HasAccountSignature = !string.IsNullOrWhiteSpace(AccountSignature);
+        SetAccountAvatar(result.ProfileImage);
+        SetLatestDynamic(result.LatestDynamic);
+        SetLatestSubmission(result.LatestSubmission);
+        SetFavoriteInfo(result.Favorite);
+        SetBangumiFollow(result.BangumiFollow);
+        SetHomepageRecommendation(result.HomepageRecommendation);
+        SetDynamicFeed(result.DynamicFeed);
+        SetBangumiRecommendation(result.BangumiRecommendation);
+        SetLiveRecommendation(result.LiveRecommendation);
+        SetPopularVideo(result.PopularVideo);
+        SetRankingVideo(result.RankingVideo);
+        SetHotSearch(result.HotSearch);
+        HasAccountStatus = true;
+    }
+
+    private static string FormatExperience(NavCheckResult result)
+    {
+        if (result.CurrentExperience is null)
+            return "—";
+        if (result.Level >= 6)
+            return $"{result.CurrentExperience:N0}（已達 Lv.6）";
+        if (result.NextExperience is null)
+            return $"{result.CurrentExperience:N0}";
+
+        var remaining = Math.Max(0, result.NextExperience.Value - result.CurrentExperience.Value);
+        return $"{result.CurrentExperience:N0} / {result.NextExperience:N0}（還差 {remaining:N0}）";
+    }
+
+    private void ClearAccountStatus()
+    {
+        HasAccountStatus = false;
+        AccountUserName = string.Empty;
+        AccountLevelText = string.Empty;
+        AccountExperienceText = string.Empty;
+        AccountCoinsText = string.Empty;
+        HasAccountSignature = false;
+        AccountSignature = string.Empty;
+        AccountAvatar?.Dispose();
+        AccountAvatar = null;
+        HasAccountAvatar = false;
+        HasLatestDynamic = false;
+        LatestDynamicType = string.Empty;
+        LatestDynamicText = string.Empty;
+        LatestDynamicPublishedText = string.Empty;
+        LatestDynamicUrl = string.Empty;
+        LatestDynamicCover?.Dispose();
+        LatestDynamicCover = null;
+        HasLatestDynamicCover = false;
+        HasLatestSubmission = false;
+        HasLatestSubmissionLink = false;
+        LatestSubmissionHeading = string.Empty;
+        LatestSubmissionTitle = string.Empty;
+        LatestSubmissionMetaText = string.Empty;
+        LatestSubmissionUrl = string.Empty;
+        LatestSubmissionCover?.Dispose();
+        LatestSubmissionCover = null;
+        HasLatestSubmissionCover = false;
+        HasFavoriteInfo = false;
+        HasLatestFavoriteLink = false;
+        FavoriteHeading = string.Empty;
+        FavoriteFolderText = string.Empty;
+        LatestFavoriteTitle = string.Empty;
+        LatestFavoriteMetaText = string.Empty;
+        LatestFavoriteUrl = string.Empty;
+        LatestFavoriteCover?.Dispose();
+        LatestFavoriteCover = null;
+        HasLatestFavoriteCover = false;
+        HasBangumiFollow = false;
+        HasLatestAnime = false;
+        HasLatestAnimeLink = false;
+        AnimeHeading = string.Empty;
+        LatestAnimeTitle = string.Empty;
+        LatestAnimeProgress = string.Empty;
+        LatestAnimeUrl = string.Empty;
+        LatestAnimeCover?.Dispose();
+        LatestAnimeCover = null;
+        HasLatestAnimeCover = false;
+        HasLatestDrama = false;
+        HasLatestDramaLink = false;
+        DramaHeading = string.Empty;
+        LatestDramaTitle = string.Empty;
+        LatestDramaProgress = string.Empty;
+        LatestDramaUrl = string.Empty;
+        LatestDramaCover?.Dispose();
+        LatestDramaCover = null;
+        HasLatestDramaCover = false;
+        HasHomepageRecommendation = false;
+        HomepageRecommendationTitle = string.Empty;
+        HomepageRecommendationMetaText = string.Empty;
+        HomepageRecommendationUrl = string.Empty;
+        HomepageRecommendationCover?.Dispose();
+        HomepageRecommendationCover = null;
+        HasHomepageRecommendationCover = false;
+        HasDynamicFeed = false;
+        DynamicFeedHeading = string.Empty;
+        DynamicFeedText = string.Empty;
+        DynamicFeedMetaText = string.Empty;
+        DynamicFeedUrl = string.Empty;
+        DynamicFeedCover?.Dispose();
+        DynamicFeedCover = null;
+        HasDynamicFeedCover = false;
+        HasBangumiRecommendation = false;
+        BangumiRecommendationTitle = string.Empty;
+        BangumiRecommendationSubtitle = string.Empty;
+        BangumiRecommendationMetaText = string.Empty;
+        BangumiRecommendationUrl = string.Empty;
+        BangumiRecommendationCover?.Dispose();
+        BangumiRecommendationCover = null;
+        HasBangumiRecommendationCover = false;
+        HasLiveRecommendation = false;
+        LiveRecommendationTitle = string.Empty;
+        LiveRecommendationMetaText = string.Empty;
+        LiveRecommendationUrl = string.Empty;
+        LiveRecommendationCover?.Dispose();
+        LiveRecommendationCover = null;
+        HasLiveRecommendationCover = false;
+        HasPopularVideo = false;
+        PopularVideoTitle = string.Empty;
+        PopularVideoMetaText = string.Empty;
+        PopularVideoUrl = string.Empty;
+        PopularVideoCover?.Dispose();
+        PopularVideoCover = null;
+        HasPopularVideoCover = false;
+        HasRankingVideo = false;
+        RankingVideoHeading = string.Empty;
+        RankingVideoTitle = string.Empty;
+        RankingVideoMetaText = string.Empty;
+        RankingVideoUrl = string.Empty;
+        RankingVideoCover?.Dispose();
+        RankingVideoCover = null;
+        HasRankingVideoCover = false;
+        HasHotSearch = false;
+        HotSearchSummary = string.Empty;
+        HotSearchTopKeyword = string.Empty;
+        HotSearchUrl = string.Empty;
+    }
+
+    private void SetAccountAvatar(byte[]? image)
+    {
+        AccountAvatar?.Dispose();
+        AccountAvatar = null;
+        HasAccountAvatar = false;
+        if (image is null || image.Length == 0)
+            return;
+
+        try
+        {
+            using var stream = new MemoryStream(image, writable: false);
+            AccountAvatar = new Bitmap(stream);
+            HasAccountAvatar = true;
+        }
+        catch (Exception ex) when (ex is ArgumentException or InvalidOperationException)
+        {
+            AccountAvatar = null;
+        }
+    }
+
+    private void SetLatestDynamic(LatestDynamicInfo? dynamic)
+    {
+        LatestDynamicCover?.Dispose();
+        LatestDynamicCover = null;
+        HasLatestDynamicCover = false;
+        HasLatestDynamic = dynamic is not null;
+        LatestDynamicType = dynamic?.Type ?? string.Empty;
+        LatestDynamicText = dynamic?.Text ?? string.Empty;
+        LatestDynamicPublishedText = dynamic?.PublishedAt is null
+            ? string.Empty
+            : dynamic.PublishedAt.Value
+                .ToOffset(TimeSpan.FromHours(8))
+                .ToString("yyyy-MM-dd HH:mm");
+        LatestDynamicUrl = dynamic?.Url ?? string.Empty;
+
+        if (dynamic?.CoverImage is null || dynamic.CoverImage.Length == 0)
+            return;
+
+        try
+        {
+            using var stream = new MemoryStream(dynamic.CoverImage, writable: false);
+            LatestDynamicCover = new Bitmap(stream);
+            HasLatestDynamicCover = true;
+        }
+        catch (Exception ex) when (ex is ArgumentException or InvalidOperationException)
+        {
+            LatestDynamicCover = null;
+        }
+    }
+
+    private void SetLatestSubmission(LatestSubmissionInfo? submission)
+    {
+        LatestSubmissionCover?.Dispose();
+        LatestSubmissionCover = null;
+        HasLatestSubmissionCover = false;
+        HasLatestSubmission = submission is not null;
+        LatestSubmissionHeading = submission?.TotalCount is null
+            ? "最新投稿"
+            : $"投稿 {submission.TotalCount:N0}";
+        LatestSubmissionTitle = submission?.Title ?? "尚無影片投稿";
+        var metadata = new List<string>();
+        if (submission?.PublishedAt is not null)
+        {
+            metadata.Add(submission.PublishedAt.Value
+                .ToOffset(TimeSpan.FromHours(8))
+                .ToString("yyyy-MM-dd HH:mm"));
+        }
+        if (!string.IsNullOrWhiteSpace(submission?.PlayCount))
+            metadata.Add($"播放 {submission.PlayCount}");
+        LatestSubmissionMetaText = string.Join(" · ", metadata);
+        LatestSubmissionUrl = submission?.Url ?? string.Empty;
+        HasLatestSubmissionLink = !string.IsNullOrWhiteSpace(LatestSubmissionUrl);
+
+        if (submission?.CoverImage is null || submission.CoverImage.Length == 0)
+            return;
+
+        try
+        {
+            using var stream = new MemoryStream(submission.CoverImage, writable: false);
+            LatestSubmissionCover = new Bitmap(stream);
+            HasLatestSubmissionCover = true;
+        }
+        catch (Exception ex) when (ex is ArgumentException or InvalidOperationException)
+        {
+            LatestSubmissionCover = null;
+        }
+    }
+
+    private void SetFavoriteInfo(FavoriteInfo? favorite)
+    {
+        LatestFavoriteCover?.Dispose();
+        LatestFavoriteCover = null;
+        HasLatestFavoriteCover = false;
+        HasFavoriteInfo = favorite is not null;
+        FavoriteHeading = favorite is null ? string.Empty : $"收藏 {favorite.FolderCount:N0}";
+        FavoriteFolderText = favorite is null
+            ? string.Empty
+            : $"{favorite.FolderTitle} · {favorite.ItemCount:N0} 部影片";
+        LatestFavoriteTitle = favorite?.LatestTitle ?? "收藏夾內尚無影片";
+        LatestFavoriteMetaText = favorite?.FavoritedAt is null
+            ? string.Empty
+            : $"收藏於 {favorite.FavoritedAt.Value.ToOffset(TimeSpan.FromHours(8)):yyyy-MM-dd HH:mm}";
+        LatestFavoriteUrl = favorite?.Url ?? string.Empty;
+        HasLatestFavoriteLink = !string.IsNullOrWhiteSpace(LatestFavoriteUrl);
+
+        if (favorite?.CoverImage is null || favorite.CoverImage.Length == 0)
+            return;
+
+        try
+        {
+            using var stream = new MemoryStream(favorite.CoverImage, writable: false);
+            LatestFavoriteCover = new Bitmap(stream);
+            HasLatestFavoriteCover = true;
+        }
+        catch (Exception ex) when (ex is ArgumentException or InvalidOperationException)
+        {
+            LatestFavoriteCover = null;
+        }
+    }
+
+    private void SetBangumiFollow(BangumiFollowInfo? follow)
+    {
+        LatestAnimeCover?.Dispose();
+        LatestAnimeCover = null;
+        HasLatestAnimeCover = false;
+        LatestDramaCover?.Dispose();
+        LatestDramaCover = null;
+        HasLatestDramaCover = false;
+        HasBangumiFollow = follow is not null;
+
+        SetFollowedSeason(
+            follow?.LatestAnime,
+            follow?.AnimeCount,
+            "追番",
+            value => HasLatestAnime = value,
+            value => HasLatestAnimeLink = value,
+            value => AnimeHeading = value,
+            value => LatestAnimeTitle = value,
+            value => LatestAnimeProgress = value,
+            value => LatestAnimeUrl = value,
+            value => LatestAnimeCover = value,
+            value => HasLatestAnimeCover = value);
+        SetFollowedSeason(
+            follow?.LatestDrama,
+            follow?.DramaCount,
+            "追劇",
+            value => HasLatestDrama = value,
+            value => HasLatestDramaLink = value,
+            value => DramaHeading = value,
+            value => LatestDramaTitle = value,
+            value => LatestDramaProgress = value,
+            value => LatestDramaUrl = value,
+            value => LatestDramaCover = value,
+            value => HasLatestDramaCover = value);
+    }
+
+    private static void SetFollowedSeason(
+        FollowedSeasonInfo? season,
+        int? count,
+        string label,
+        Action<bool> setVisible,
+        Action<bool> setLink,
+        Action<string> setHeading,
+        Action<string> setTitle,
+        Action<string> setProgress,
+        Action<string> setUrl,
+        Action<Bitmap?> setCover,
+        Action<bool> setHasCover)
+    {
+        setVisible(count is not null);
+        setHeading(count is null ? label : $"{label} {count:N0}");
+        setTitle(season?.Title ?? "尚無追蹤作品");
+        setProgress(season?.Progress ?? string.Empty);
+        setUrl(season?.Url ?? string.Empty);
+        setLink(!string.IsNullOrWhiteSpace(season?.Url));
+        if (season?.CoverImage is null || season.CoverImage.Length == 0)
+            return;
+
+        try
+        {
+            using var stream = new MemoryStream(season.CoverImage, writable: false);
+            setCover(new Bitmap(stream));
+            setHasCover(true);
+        }
+        catch (Exception ex) when (ex is ArgumentException or InvalidOperationException)
+        {
+            setCover(null);
+        }
+    }
+
+    private void SetHomepageRecommendation(HomepageRecommendationInfo? recommendation)
+    {
+        HomepageRecommendationCover?.Dispose();
+        HomepageRecommendationCover = null;
+        HasHomepageRecommendationCover = false;
+        HasHomepageRecommendation = recommendation is not null;
+        HomepageRecommendationTitle = recommendation?.Title ?? string.Empty;
+        HomepageRecommendationMetaText = recommendation is null
+            ? string.Empty
+            : string.Join(
+                " · ",
+                new[] { recommendation.Uploader, recommendation.Statistics }
+                    .Where(value => !string.IsNullOrWhiteSpace(value)));
+        HomepageRecommendationUrl = recommendation?.Url ?? string.Empty;
+
+        if (recommendation?.CoverImage is null || recommendation.CoverImage.Length == 0)
+            return;
+
+        try
+        {
+            using var stream = new MemoryStream(recommendation.CoverImage, writable: false);
+            HomepageRecommendationCover = new Bitmap(stream);
+            HasHomepageRecommendationCover = true;
+        }
+        catch (Exception ex) when (ex is ArgumentException or InvalidOperationException)
+        {
+            HomepageRecommendationCover = null;
+        }
+    }
+
+    private void SetDynamicFeed(DynamicFeedInfo? feed)
+    {
+        DynamicFeedCover?.Dispose();
+        DynamicFeedCover = null;
+        HasDynamicFeedCover = false;
+        HasDynamicFeed = feed is not null;
+        DynamicFeedHeading = feed is null
+            ? string.Empty
+            : string.Join(
+                " · ",
+                new[] { feed.Author, feed.Type }
+                    .Where(value => !string.IsNullOrWhiteSpace(value)));
+        DynamicFeedText = feed?.Text ?? string.Empty;
+        DynamicFeedMetaText = feed?.PublishedAt is null
+            ? string.Empty
+            : feed.PublishedAt.Value.ToOffset(TimeSpan.FromHours(8)).ToString("yyyy-MM-dd HH:mm");
+        DynamicFeedUrl = feed?.Url ?? string.Empty;
+
+        if (feed?.CoverImage is null || feed.CoverImage.Length == 0)
+            return;
+
+        try
+        {
+            using var stream = new MemoryStream(feed.CoverImage, writable: false);
+            DynamicFeedCover = new Bitmap(stream);
+            HasDynamicFeedCover = true;
+        }
+        catch (Exception ex) when (ex is ArgumentException or InvalidOperationException)
+        {
+            DynamicFeedCover = null;
+        }
+    }
+
+    private void SetBangumiRecommendation(BangumiRecommendationInfo? recommendation)
+    {
+        BangumiRecommendationCover?.Dispose();
+        BangumiRecommendationCover = null;
+        HasBangumiRecommendationCover = false;
+        HasBangumiRecommendation = recommendation is not null;
+        BangumiRecommendationTitle = recommendation?.Title ?? string.Empty;
+        BangumiRecommendationSubtitle = recommendation?.Subtitle ?? string.Empty;
+        BangumiRecommendationMetaText = recommendation is null
+            ? string.Empty
+            : string.Join(
+                " · ",
+                new[] { recommendation.Progress, recommendation.Rating, recommendation.Badge }
+                    .Where(value => !string.IsNullOrWhiteSpace(value)));
+        BangumiRecommendationUrl = recommendation?.Url ?? string.Empty;
+
+        if (recommendation?.CoverImage is null || recommendation.CoverImage.Length == 0)
+            return;
+
+        try
+        {
+            using var stream = new MemoryStream(recommendation.CoverImage, writable: false);
+            BangumiRecommendationCover = new Bitmap(stream);
+            HasBangumiRecommendationCover = true;
+        }
+        catch (Exception ex) when (ex is ArgumentException or InvalidOperationException)
+        {
+            BangumiRecommendationCover = null;
+        }
+    }
+
+    private void SetLiveRecommendation(LiveRecommendationInfo? recommendation)
+    {
+        LiveRecommendationCover?.Dispose();
+        LiveRecommendationCover = null;
+        HasLiveRecommendationCover = false;
+        HasLiveRecommendation = recommendation is not null;
+        LiveRecommendationTitle = recommendation?.Title ?? string.Empty;
+        LiveRecommendationMetaText = recommendation is null
+            ? string.Empty
+            : string.Join(
+                " · ",
+                new[]
+                {
+                    recommendation.Uploader,
+                    recommendation.Area,
+                    recommendation.Online is null ? string.Empty : $"人氣 {recommendation.Online:N0}",
+                }.Where(value => !string.IsNullOrWhiteSpace(value)));
+        LiveRecommendationUrl = recommendation?.Url ?? string.Empty;
+
+        if (recommendation?.CoverImage is null || recommendation.CoverImage.Length == 0)
+            return;
+
+        try
+        {
+            using var stream = new MemoryStream(recommendation.CoverImage, writable: false);
+            LiveRecommendationCover = new Bitmap(stream);
+            HasLiveRecommendationCover = true;
+        }
+        catch (Exception ex) when (ex is ArgumentException or InvalidOperationException)
+        {
+            LiveRecommendationCover = null;
+        }
+    }
+
+    private void SetPopularVideo(PopularVideoInfo? popular)
+    {
+        PopularVideoCover?.Dispose();
+        PopularVideoCover = null;
+        HasPopularVideoCover = false;
+        HasPopularVideo = popular is not null;
+        PopularVideoTitle = popular?.Title ?? string.Empty;
+        PopularVideoMetaText = popular is null
+            ? string.Empty
+            : string.Join(
+                " · ",
+                new[]
+                {
+                    popular.Uploader,
+                    popular.Views is null ? string.Empty : $"播放 {popular.Views:N0}",
+                    popular.Danmaku is null ? string.Empty : $"彈幕 {popular.Danmaku:N0}",
+                    popular.Reason,
+                }.Where(value => !string.IsNullOrWhiteSpace(value)));
+        PopularVideoUrl = popular?.Url ?? string.Empty;
+
+        if (popular?.CoverImage is null || popular.CoverImage.Length == 0)
+            return;
+
+        try
+        {
+            using var stream = new MemoryStream(popular.CoverImage, writable: false);
+            PopularVideoCover = new Bitmap(stream);
+            HasPopularVideoCover = true;
+        }
+        catch (Exception ex) when (ex is ArgumentException or InvalidOperationException)
+        {
+            PopularVideoCover = null;
+        }
+    }
+
+    private void SetRankingVideo(RankingVideoInfo? ranking)
+    {
+        RankingVideoCover?.Dispose();
+        RankingVideoCover = null;
+        HasRankingVideoCover = false;
+        HasRankingVideo = ranking is not null;
+        RankingVideoHeading = ranking is null ? string.Empty : $"全站排行榜 · 第 {ranking.Position} 名";
+        RankingVideoTitle = ranking?.Title ?? string.Empty;
+        RankingVideoMetaText = ranking is null
+            ? string.Empty
+            : string.Join(
+                " · ",
+                new[]
+                {
+                    ranking.Uploader,
+                    ranking.Views is null ? string.Empty : $"播放 {ranking.Views:N0}",
+                    ranking.Danmaku is null ? string.Empty : $"彈幕 {ranking.Danmaku:N0}",
+                }.Where(value => !string.IsNullOrWhiteSpace(value)));
+        RankingVideoUrl = ranking?.Url ?? string.Empty;
+
+        if (ranking?.CoverImage is null || ranking.CoverImage.Length == 0)
+            return;
+
+        try
+        {
+            using var stream = new MemoryStream(ranking.CoverImage, writable: false);
+            RankingVideoCover = new Bitmap(stream);
+            HasRankingVideoCover = true;
+        }
+        catch (Exception ex) when (ex is ArgumentException or InvalidOperationException)
+        {
+            RankingVideoCover = null;
+        }
+    }
+
+    private void SetHotSearch(HotSearchInfo? hotSearch)
+    {
+        HasHotSearch = hotSearch is not null;
+        HotSearchSummary = hotSearch?.Summary ?? string.Empty;
+        HotSearchTopKeyword = hotSearch?.TopKeyword ?? string.Empty;
+        HotSearchUrl = hotSearch?.Url ?? string.Empty;
+    }
+
     private async Task<bool> CopyTextAsync(string text)
     {
         var clipboard = _topLevel?.Clipboard;
@@ -442,6 +1533,7 @@ public partial class MainViewModel : ViewModelBase
         ConfirmOverwriteSecrets = false;
         foreach (var field in Fields)
             field.Clear(RevealValues);
+        ClearAccountStatus();
         ClearExpiryReminder();
         SetStatus($"已切換至 {value.DisplayName}，請選擇該帳號的 cookies.txt。", isError: false);
     }

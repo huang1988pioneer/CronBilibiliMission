@@ -47,7 +47,7 @@ FORM: Operate / distilled workbench. FINISH: unreviewed and undocumented is unfi
     </Border>
 
     <Grid Margin="24" RowDefinitions="Auto,*" RowSpacing="20">
-      <Grid ColumnDefinitions="*,Auto">
+      <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="8">
         <StackPanel Spacing="6">
           <TextBlock Classes="title" Text="Bilibili Cookie 讀取器" />
           <TextBlock Classes="muted"
@@ -60,6 +60,24 @@ FORM: Operate / distilled workbench. FINISH: unreviewed and undocumented is unfi
                      FontSize="12"
                      FontWeight="SemiBold"
                      Foreground="#9B1B4A" />
+        </Border>
+        <Border Grid.Row="1"
+                Grid.ColumnSpan="2"
+                Background="#F7F8FA"
+                CornerRadius="8"
+                Padding="10,7">
+          <StackPanel Spacing="3">
+            <TextBlock Text="{Binding BackgroundHotSearchStatus}"
+                       FontSize="11"
+                       TextWrapping="Wrap"
+                       Classes.error="{Binding IsBackgroundHotSearchError}"
+                       Classes.ok="{Binding !IsBackgroundHotSearchError}" />
+            <TextBlock Text="{Binding BackgroundRankingStatus}"
+                       FontSize="11"
+                       TextWrapping="Wrap"
+                       Classes.error="{Binding IsBackgroundRankingError}"
+                       Classes.ok="{Binding !IsBackgroundRankingError}" />
+          </StackPanel>
         </Border>
       </Grid>
 
@@ -173,6 +191,526 @@ FORM: Operate / distilled workbench. FINISH: unreviewed and undocumented is unfi
 
         <Border Grid.Column="1" Classes="panel" Padding="8,8,8,16">
           <DockPanel>
+            <ScrollViewer DockPanel.Dock="Top"
+                          MaxHeight="340"
+                          VerticalScrollBarVisibility="Auto"
+                          IsVisible="{Binding HasAccountStatus}">
+            <Border Classes="accountstatus"
+                    Margin="12,4,12,8">
+              <Grid ColumnDefinitions="*,Auto"
+                    RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                    ColumnSpacing="20"
+                    RowSpacing="8">
+                <Grid ColumnDefinitions="Auto,*"
+                      ColumnSpacing="10"
+                      VerticalAlignment="Center">
+                  <Ellipse Width="44"
+                           Height="44"
+                           IsVisible="{Binding HasAccountAvatar}">
+                    <Ellipse.Fill>
+                      <ImageBrush Source="{Binding AccountAvatar}"
+                                  Stretch="UniformToFill" />
+                    </Ellipse.Fill>
+                  </Ellipse>
+                  <StackPanel Grid.Column="1"
+                              Spacing="2"
+                              VerticalAlignment="Center">
+                    <TextBlock Text="{Binding AccountUserName}"
+                               FontSize="14"
+                               FontWeight="SemiBold" />
+                    <TextBlock Classes="muted"
+                               Text="Bilibili 帳號狀態"
+                               FontSize="11" />
+                  </StackPanel>
+                </Grid>
+                <WrapPanel Grid.Column="1"
+                           ItemSpacing="20"
+                           LineSpacing="6"
+                           VerticalAlignment="Center">
+                  <StackPanel Orientation="Horizontal" Spacing="6">
+                    <TextBlock Classes="muted" Text="等級" FontSize="12" />
+                    <TextBlock Text="{Binding AccountLevelText}"
+                               FontSize="13"
+                               FontWeight="SemiBold" />
+                  </StackPanel>
+                  <StackPanel Orientation="Horizontal" Spacing="6">
+                    <TextBlock Classes="muted" Text="經驗" FontSize="12" />
+                    <TextBlock Text="{Binding AccountExperienceText}"
+                               FontSize="13"
+                               FontWeight="SemiBold" />
+                  </StackPanel>
+                  <StackPanel Orientation="Horizontal" Spacing="6">
+                    <TextBlock Classes="muted" Text="硬幣" FontSize="12" />
+                    <TextBlock Text="{Binding AccountCoinsText}"
+                               FontSize="13"
+                               FontWeight="SemiBold" />
+                  </StackPanel>
+                </WrapPanel>
+                <Grid Grid.Row="1"
+                      Grid.ColumnSpan="2"
+                      ColumnDefinitions="Auto,*"
+                      ColumnSpacing="8"
+                      IsVisible="{Binding HasAccountSignature}">
+                  <TextBlock Classes="muted"
+                             Text="個人簡介"
+                             FontSize="12" />
+                  <TextBlock Grid.Column="1"
+                             Text="{Binding AccountSignature}"
+                             FontSize="12"
+                             TextWrapping="Wrap" />
+                </Grid>
+                <Grid Grid.Row="2"
+                      Grid.ColumnSpan="2"
+                      RowDefinitions="Auto,Auto"
+                      RowSpacing="8"
+                      IsVisible="{Binding HasLatestDynamic}">
+                  <Separator />
+                  <Grid Grid.Row="1"
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="12">
+                    <Image Width="112"
+                           Height="63"
+                           Stretch="UniformToFill"
+                           Source="{Binding LatestDynamicCover}"
+                           IsVisible="{Binding HasLatestDynamicCover}" />
+                    <StackPanel Grid.Column="1"
+                                Spacing="4"
+                                VerticalAlignment="Center">
+                      <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="最新動態"
+                                   FontSize="12"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Classes="muted"
+                                   Text="{Binding LatestDynamicType}"
+                                   FontSize="11" />
+                        <TextBlock Classes="muted"
+                                   Text="{Binding LatestDynamicPublishedText}"
+                                   FontSize="11" />
+                      </StackPanel>
+                      <TextBlock Text="{Binding LatestDynamicText}"
+                                 FontSize="12"
+                                 TextWrapping="Wrap"
+                                 TextTrimming="CharacterEllipsis"
+                                 MaxHeight="38" />
+                    </StackPanel>
+                    <Button Grid.Column="2"
+                            Classes="secondary"
+                            Content="開啟"
+                            VerticalAlignment="Center"
+                            Command="{Binding OpenLatestDynamicCommand}" />
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="3"
+                      Grid.ColumnSpan="2"
+                      RowDefinitions="Auto,Auto"
+                      RowSpacing="8"
+                      IsVisible="{Binding HasLatestSubmission}">
+                  <Separator />
+                  <Grid Grid.Row="1"
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="12">
+                    <Image Width="112"
+                           Height="63"
+                           Stretch="UniformToFill"
+                           Source="{Binding LatestSubmissionCover}"
+                           IsVisible="{Binding HasLatestSubmissionCover}" />
+                    <StackPanel Grid.Column="1"
+                                Spacing="4"
+                                VerticalAlignment="Center">
+                      <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="{Binding LatestSubmissionHeading}"
+                                   FontSize="12"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Classes="muted"
+                                   Text="{Binding LatestSubmissionMetaText}"
+                                   FontSize="11" />
+                      </StackPanel>
+                      <TextBlock Text="{Binding LatestSubmissionTitle}"
+                                 FontSize="12"
+                                 TextWrapping="Wrap"
+                                 TextTrimming="CharacterEllipsis"
+                                 MaxHeight="38" />
+                    </StackPanel>
+                    <Button Grid.Column="2"
+                            Classes="secondary"
+                            Content="播放"
+                            VerticalAlignment="Center"
+                            Command="{Binding OpenLatestSubmissionCommand}" />
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="4"
+                      Grid.ColumnSpan="2"
+                      RowDefinitions="Auto,Auto"
+                      RowSpacing="8"
+                      IsVisible="{Binding HasFavoriteInfo}">
+                  <Separator />
+                  <Grid Grid.Row="1"
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="12">
+                    <Image Width="96"
+                           Height="54"
+                           Stretch="UniformToFill"
+                           Source="{Binding LatestFavoriteCover}"
+                           IsVisible="{Binding HasLatestFavoriteCover}" />
+                    <StackPanel Grid.Column="1"
+                                Spacing="3"
+                                VerticalAlignment="Center">
+                      <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="{Binding FavoriteHeading}"
+                                   FontSize="12"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Classes="muted"
+                                   Text="{Binding FavoriteFolderText}"
+                                   FontSize="11" />
+                      </StackPanel>
+                      <TextBlock Text="{Binding LatestFavoriteTitle}"
+                                 FontSize="12"
+                                 TextWrapping="Wrap"
+                                 TextTrimming="CharacterEllipsis"
+                                 MaxHeight="34" />
+                      <TextBlock Classes="muted"
+                                 Text="{Binding LatestFavoriteMetaText}"
+                                 FontSize="11" />
+                    </StackPanel>
+                    <Button Grid.Column="2"
+                            Classes="secondary"
+                            Content="播放"
+                            VerticalAlignment="Center"
+                            IsEnabled="{Binding HasLatestFavoriteLink}"
+                            Command="{Binding OpenLatestFavoriteCommand}" />
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="5"
+                      Grid.ColumnSpan="2"
+                      RowDefinitions="Auto,Auto"
+                      RowSpacing="8"
+                      IsVisible="{Binding HasBangumiFollow}">
+                  <Separator />
+                  <Grid Grid.Row="1"
+                        ColumnDefinitions="*,*"
+                        ColumnSpacing="18">
+                    <Grid ColumnDefinitions="Auto,*,Auto"
+                          ColumnSpacing="10"
+                          IsVisible="{Binding HasLatestAnime}">
+                      <Image Width="42"
+                             Height="58"
+                             Stretch="UniformToFill"
+                             Source="{Binding LatestAnimeCover}"
+                             IsVisible="{Binding HasLatestAnimeCover}" />
+                      <StackPanel Grid.Column="1"
+                                  Spacing="3"
+                                  VerticalAlignment="Center">
+                        <TextBlock Text="{Binding AnimeHeading}"
+                                   FontSize="12"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding LatestAnimeTitle}"
+                                   FontSize="12"
+                                   TextWrapping="Wrap"
+                                   TextTrimming="CharacterEllipsis"
+                                   MaxHeight="34" />
+                        <TextBlock Classes="muted"
+                                   Text="{Binding LatestAnimeProgress}"
+                                   FontSize="11" />
+                      </StackPanel>
+                      <Button Grid.Column="2"
+                              Classes="secondary"
+                              Content="開啟"
+                              VerticalAlignment="Center"
+                              IsEnabled="{Binding HasLatestAnimeLink}"
+                              Command="{Binding OpenLatestAnimeCommand}" />
+                    </Grid>
+                    <Grid Grid.Column="1"
+                          ColumnDefinitions="Auto,*,Auto"
+                          ColumnSpacing="10"
+                          IsVisible="{Binding HasLatestDrama}">
+                      <Image Width="42"
+                             Height="58"
+                             Stretch="UniformToFill"
+                             Source="{Binding LatestDramaCover}"
+                             IsVisible="{Binding HasLatestDramaCover}" />
+                      <StackPanel Grid.Column="1"
+                                  Spacing="3"
+                                  VerticalAlignment="Center">
+                        <TextBlock Text="{Binding DramaHeading}"
+                                   FontSize="12"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding LatestDramaTitle}"
+                                   FontSize="12"
+                                   TextWrapping="Wrap"
+                                   TextTrimming="CharacterEllipsis"
+                                   MaxHeight="34" />
+                        <TextBlock Classes="muted"
+                                   Text="{Binding LatestDramaProgress}"
+                                   FontSize="11" />
+                      </StackPanel>
+                      <Button Grid.Column="2"
+                              Classes="secondary"
+                              Content="開啟"
+                              VerticalAlignment="Center"
+                              IsEnabled="{Binding HasLatestDramaLink}"
+                              Command="{Binding OpenLatestDramaCommand}" />
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="6"
+                      Grid.ColumnSpan="2"
+                      RowDefinitions="Auto,Auto"
+                      RowSpacing="8"
+                      IsVisible="{Binding HasHomepageRecommendation}">
+                  <Separator />
+                  <Grid Grid.Row="1"
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="12">
+                    <Image Width="96"
+                           Height="54"
+                           Stretch="UniformToFill"
+                           Source="{Binding HomepageRecommendationCover}"
+                           IsVisible="{Binding HasHomepageRecommendationCover}" />
+                    <StackPanel Grid.Column="1"
+                                Spacing="3"
+                                VerticalAlignment="Center">
+                      <TextBlock Text="首頁推薦"
+                                 FontSize="12"
+                                 FontWeight="SemiBold" />
+                      <TextBlock Text="{Binding HomepageRecommendationTitle}"
+                                 FontSize="12"
+                                 TextWrapping="Wrap"
+                                 TextTrimming="CharacterEllipsis"
+                                 MaxHeight="34" />
+                      <TextBlock Classes="muted"
+                                 Text="{Binding HomepageRecommendationMetaText}"
+                                 FontSize="11" />
+                    </StackPanel>
+                    <Button Grid.Column="2"
+                            Classes="secondary"
+                            Content="播放"
+                            VerticalAlignment="Center"
+                            Command="{Binding OpenHomepageRecommendationCommand}" />
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="7"
+                      Grid.ColumnSpan="2"
+                      RowDefinitions="Auto,Auto"
+                      RowSpacing="8"
+                      IsVisible="{Binding HasDynamicFeed}">
+                  <Separator />
+                  <Grid Grid.Row="1"
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="12">
+                    <Image Width="96"
+                           Height="54"
+                           Stretch="UniformToFill"
+                           Source="{Binding DynamicFeedCover}"
+                           IsVisible="{Binding HasDynamicFeedCover}" />
+                    <StackPanel Grid.Column="1"
+                                Spacing="3"
+                                VerticalAlignment="Center">
+                      <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="動態首頁"
+                                   FontSize="12"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Classes="muted"
+                                   Text="{Binding DynamicFeedHeading}"
+                                   FontSize="11" />
+                        <TextBlock Classes="muted"
+                                   Text="{Binding DynamicFeedMetaText}"
+                                   FontSize="11" />
+                      </StackPanel>
+                      <TextBlock Text="{Binding DynamicFeedText}"
+                                 FontSize="12"
+                                 TextWrapping="Wrap"
+                                 TextTrimming="CharacterEllipsis"
+                                 MaxHeight="38" />
+                    </StackPanel>
+                    <Button Grid.Column="2"
+                            Classes="secondary"
+                            Content="開啟"
+                            VerticalAlignment="Center"
+                            Command="{Binding OpenDynamicFeedCommand}" />
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="8"
+                      Grid.ColumnSpan="2"
+                      RowDefinitions="Auto,Auto"
+                      RowSpacing="8"
+                      IsVisible="{Binding HasBangumiRecommendation}">
+                  <Separator />
+                  <Grid Grid.Row="1"
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="12">
+                    <Image Width="42"
+                           Height="58"
+                           Stretch="UniformToFill"
+                           Source="{Binding BangumiRecommendationCover}"
+                           IsVisible="{Binding HasBangumiRecommendationCover}" />
+                    <StackPanel Grid.Column="1"
+                                Spacing="3"
+                                VerticalAlignment="Center">
+                      <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Text="番劇推薦"
+                                   FontSize="12"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Classes="muted"
+                                   Text="{Binding BangumiRecommendationMetaText}"
+                                   FontSize="11" />
+                      </StackPanel>
+                      <TextBlock Text="{Binding BangumiRecommendationTitle}"
+                                 FontSize="12"
+                                 TextWrapping="Wrap"
+                                 TextTrimming="CharacterEllipsis"
+                                 MaxHeight="34" />
+                      <TextBlock Classes="muted"
+                                 Text="{Binding BangumiRecommendationSubtitle}"
+                                 FontSize="11"
+                                 TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                    <Button Grid.Column="2"
+                            Classes="secondary"
+                            Content="播放"
+                            VerticalAlignment="Center"
+                            Command="{Binding OpenBangumiRecommendationCommand}" />
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="9"
+                      Grid.ColumnSpan="2"
+                      RowDefinitions="Auto,Auto"
+                      RowSpacing="8"
+                      IsVisible="{Binding HasLiveRecommendation}">
+                  <Separator />
+                  <Grid Grid.Row="1"
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="12">
+                    <Image Width="96"
+                           Height="54"
+                           Stretch="UniformToFill"
+                           Source="{Binding LiveRecommendationCover}"
+                           IsVisible="{Binding HasLiveRecommendationCover}" />
+                    <StackPanel Grid.Column="1"
+                                Spacing="3"
+                                VerticalAlignment="Center">
+                      <TextBlock Text="直播推薦"
+                                 FontSize="12"
+                                 FontWeight="SemiBold" />
+                      <TextBlock Text="{Binding LiveRecommendationTitle}"
+                                 FontSize="12"
+                                 TextWrapping="Wrap"
+                                 TextTrimming="CharacterEllipsis"
+                                 MaxHeight="34" />
+                      <TextBlock Classes="muted"
+                                 Text="{Binding LiveRecommendationMetaText}"
+                                 FontSize="11"
+                                 TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                    <Button Grid.Column="2"
+                            Classes="secondary"
+                            Content="進入"
+                            VerticalAlignment="Center"
+                            Command="{Binding OpenLiveRecommendationCommand}" />
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="10"
+                      Grid.ColumnSpan="2"
+                      RowDefinitions="Auto,Auto"
+                      RowSpacing="8"
+                      IsVisible="{Binding HasPopularVideo}">
+                  <Separator />
+                  <Grid Grid.Row="1"
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="12">
+                    <Image Width="96"
+                           Height="54"
+                           Stretch="UniformToFill"
+                           Source="{Binding PopularVideoCover}"
+                           IsVisible="{Binding HasPopularVideoCover}" />
+                    <StackPanel Grid.Column="1"
+                                Spacing="3"
+                                VerticalAlignment="Center">
+                      <TextBlock Text="綜合熱門"
+                                 FontSize="12"
+                                 FontWeight="SemiBold" />
+                      <TextBlock Text="{Binding PopularVideoTitle}"
+                                 FontSize="12"
+                                 TextWrapping="Wrap"
+                                 TextTrimming="CharacterEllipsis"
+                                 MaxHeight="34" />
+                      <TextBlock Classes="muted"
+                                 Text="{Binding PopularVideoMetaText}"
+                                 FontSize="11"
+                                 TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                    <Button Grid.Column="2"
+                            Classes="secondary"
+                            Content="播放"
+                            VerticalAlignment="Center"
+                            Command="{Binding OpenPopularVideoCommand}" />
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="11"
+                      Grid.ColumnSpan="2"
+                      RowDefinitions="Auto,Auto"
+                      RowSpacing="8"
+                      IsVisible="{Binding HasRankingVideo}">
+                  <Separator />
+                  <Grid Grid.Row="1"
+                        ColumnDefinitions="Auto,*,Auto"
+                        ColumnSpacing="12">
+                    <Image Width="96"
+                           Height="54"
+                           Stretch="UniformToFill"
+                           Source="{Binding RankingVideoCover}"
+                           IsVisible="{Binding HasRankingVideoCover}" />
+                    <StackPanel Grid.Column="1"
+                                Spacing="3"
+                                VerticalAlignment="Center">
+                      <TextBlock Text="{Binding RankingVideoHeading}"
+                                 FontSize="12"
+                                 FontWeight="SemiBold" />
+                      <TextBlock Text="{Binding RankingVideoTitle}"
+                                 FontSize="12"
+                                 TextWrapping="Wrap"
+                                 TextTrimming="CharacterEllipsis"
+                                 MaxHeight="34" />
+                      <TextBlock Classes="muted"
+                                 Text="{Binding RankingVideoMetaText}"
+                                 FontSize="11"
+                                 TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                    <Button Grid.Column="2"
+                            Classes="secondary"
+                            Content="播放"
+                            VerticalAlignment="Center"
+                            Command="{Binding OpenRankingVideoCommand}" />
+                  </Grid>
+                </Grid>
+                <Grid Grid.Row="12"
+                      Grid.ColumnSpan="2"
+                      RowDefinitions="Auto,Auto"
+                      RowSpacing="8"
+                      IsVisible="{Binding HasHotSearch}">
+                  <Separator />
+                  <Grid Grid.Row="1"
+                        ColumnDefinitions="*,Auto"
+                        ColumnSpacing="12">
+                    <StackPanel Spacing="4">
+                      <TextBlock Text="Bilibili 熱搜"
+                                 FontSize="12"
+                                 FontWeight="SemiBold" />
+                      <TextBlock Text="{Binding HotSearchSummary}"
+                                 FontSize="12"
+                                 TextWrapping="Wrap"
+                                 LineHeight="20" />
+                    </StackPanel>
+                    <Button Grid.Column="1"
+                            Classes="secondary"
+                            Content="搜尋第 1 名"
+                            VerticalAlignment="Center"
+                            Command="{Binding OpenHotSearchCommand}" />
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Border>
+            </ScrollViewer>
+
             <Grid DockPanel.Dock="Bottom" Margin="12,12,12,4">
               <StackPanel Spacing="8">
                 <WrapPanel ItemSpacing="6" LineSpacing="6">

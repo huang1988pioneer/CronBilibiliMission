@@ -21,6 +21,7 @@
 - 每日分享影片：呼叫影片分享 API。
 - 每日獎勵查詢：執行前後查詢每日獎勵狀態並寫入紀錄。
 - 帳號硬幣數：記錄目前帳號持有的硬幣數 `account_coins`。
+- 自動投幣：帳號未達 Lv.6 且硬幣餘額大於 333 時，隨機選片投幣，每日最多取得 50 投幣經驗；Lv.6 不執行。
 - 每日匯總：依各帳號的當日 plan / 事件紀錄產生 `logs/<帳號>/daily_summary.md`，並寫入 GitHub Actions 的 Job Summary。
 
 ## 自動執行時間
@@ -58,6 +59,12 @@ python3 scripts/bilibili_sign.py --summary-only
 
 GitHub Actions 會在每天台北時間 02:05 到 19:05 每小時檢查一次，命中當天擲骰算出的時間才會執行每日經驗任務，並在後續確認點補查補跑。
 
+工作流程每天也會擷取一次 Bilibili 熱搜完整榜單，依台北日期寫入 `logs/hot_search.jsonl`。同一天重跑不會產生重複紀錄；熱搜暫時無法取得時不會阻斷三個帳號的每日經驗任務，下一個排程時段會再次嘗試。
+
+綜合熱門影片也會每天完整分頁擷取一次，將標題、UP 主、播放量、彈幕、收藏、按讚、熱門理由、封面與影片連結寫入 `logs/popular.jsonl`。同一天只保留一份快照；熱門 API 暫時失敗時會在下一個排程時段再次嘗試。
+
+排行榜會每天擷取「全部」及頁面上的 20 個分類完整清單，依分類分組寫入 `logs/ranking.jsonl`。一般影片保存名次、標題、UP 主、播放量、彈幕、收藏、按讚、投幣、分享、綜合分數、封面與連結；番劇、國創、紀錄片、電影、電視劇、綜藝另保存評分、追蹤數與更新進度。紀錄依台北日期去重；個別分類暫時失敗時保留已成功的資料，下一個排程時段只補抓缺少的分類。
+
 ## 使用者手動執行
 
 使用者可以在 GitHub 網頁手動執行：
@@ -82,6 +89,10 @@ GitHub Actions 會在每天台北時間 02:05 到 19:05 每小時檢查一次，
 - [Linux x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.3.0/BilibiliCookieReader-v1.3.0-linux-x64.zip)
 
 讀到三個值後，工具會提醒 Cookie 檔與 SESSDATA 工作階段的預定過期日（台北時間）。也可依帳號直接更新這個 repo 對應的 GitHub Actions Secrets。需要有 Secrets 寫入權限的 GitHub 權杖，或本機已 `gh auth login`。
+
+Avalonia 工具啟動後會在背景立即檢查熱搜，之後每小時檢查一次，依台北日期每天寫入一筆至本機 `%LocalAppData%\BilibiliCookieReader\hot_search.jsonl`。此功能不需要 Cookie；程式必須保持執行，關閉後背景檢查即停止。
+
+排行榜背景服務同時擷取「全部＋20 分類」，依台北日期寫入本機 `%LocalAppData%\BilibiliCookieReader\ranking.jsonl`。若個別分類暫時失敗，已成功分類會先保存，下一個小時只補抓缺少分類；介面會顯示完成分類數。排行榜同樣不需要 Cookie，關閉程式後停止。
 
 本機開發：
 

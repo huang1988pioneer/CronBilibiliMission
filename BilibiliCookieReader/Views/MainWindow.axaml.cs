@@ -11,6 +11,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         Opened += OnOpened;
+        Closed += OnClosed;
         AddHandler(DragDrop.DragOverEvent, OnDragOver);
         AddHandler(DragDrop.DragLeaveEvent, OnDragLeave);
         AddHandler(DragDrop.DropEvent, OnDrop);
@@ -20,6 +21,12 @@ public partial class MainWindow : Window
     {
         if (DataContext is MainViewModel vm)
             vm.Initialize(this);
+    }
+
+    private void OnClosed(object? sender, EventArgs e)
+    {
+        if (DataContext is MainViewModel vm)
+            vm.StopBackgroundServices();
     }
 
     private void OnPathKeyDown(object? sender, KeyEventArgs e)

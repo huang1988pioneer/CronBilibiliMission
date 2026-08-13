@@ -30,6 +30,18 @@ jobs:
       - name: Install dependencies
         run: python3 -m pip install -r requirements.txt
 
+      - name: Record today's Bilibili hot search
+        continue-on-error: true
+        run: python3 scripts/record_hot_search.py
+
+      - name: Record today's Bilibili popular videos
+        continue-on-error: true
+        run: python3 scripts/record_popular.py
+
+      - name: Record today's Bilibili ranking
+        continue-on-error: true
+        run: python3 scripts/record_ranking.py
+
       - name: Run Bilibili experience tasks for all accounts
         env:
           SESSDATA: ${{ secrets.SESSDATA }}
@@ -61,14 +73,15 @@ jobs:
             python3 scripts/bilibili_sign.py $mode --account goldshoot0720 || status=1
           exit $status
 
-      - name: Commit experience records
+      - name: Commit daily records
+        if: always()
         run: |
           if [ -z "$(git status --porcelain logs)" ]; then
-            echo "No experience record changes."
+            echo "No daily record changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add logs
-          git commit -m "Record Bilibili experience run and daily summary"
+          git commit -m "Record Bilibili daily activity"
           git push

@@ -44,6 +44,10 @@ REQUEST_TIMEOUT_SECONDS = 20
 MAX_REQUEST_ATTEMPTS = 5
 RETRY_STATUS_CODES = {429, 500, 502, 503, 504}
 BASE_DAILY_EXPERIENCE = 15
+COIN_SPEND_BALANCE_THRESHOLD = 333
+MAX_DAILY_COIN_EXPERIENCE = 50
+EXPERIENCE_PER_COIN = 10
+MAX_COINS_PER_VIDEO = 2
 LEVEL_EXP_THRESHOLDS = {
     3: 1500,
     4: 4500,
@@ -282,13 +286,23 @@ class BilibiliClient:
             return response_status(response, "reward_checked", "reward_check_failed")
         return {"status": "reward_checked", "message": "OK", "data": response.get("data") or {}}
 
-    def get_video_info(self):
+    def get_daily_coin_experience(self):
+        response = self.request_json("https://www.bilibili.com/plus/account/exp.php")
+        if response.get("code") != 0:
+            return None
+        return parse_int(response.get("number"))
+
+    def get_video_info(self, exclude_bvids=None):
         popular = self.request_json("https://api.bilibili.com/x/web-interface/popular?ps=20&pn=1")
         if popular.get("code") != 0:
             raise ApiResponseError(f"Failed to get popular videos: {popular}")
 
         videos = (popular.get("data") or {}).get("list") or []
-        candidates = [video for video in videos if video.get("aid") and video.get("bvid")]
+        excluded = set(exclude_bvids or [])
+        candidates = [
+            video for video in videos
+            if video.get("aid") and video.get("bvid") and video.get("bvid") not in excluded
+        ]
         if not candidates:
             raise ApiResponseError("No playable video found from popular list")
 
@@ -340,6 +354,23 @@ class BilibiliClient:
             referer=f"https://www.bilibili.com/video/{video['bvid']}/",
         )
         return response_status(response, "share_reported", "share_failed")
+
+    def give_coins(self, video, multiply):
+        response = self.request_json(
+            "https://api.bilibili.com/x/web-interface/coin/add",
+            method="POST",
+            data={
+                "aid": video["aid"],
+                "multiply": multiply,
+                "select_like": 0,
+                "csrf": self.csrf,
+            },
+            referer=f"https://www.bilibili.com/video/{video['bvid']}/",
+        )
+        result = response_status(response, "coins_given", "coin_failed")
+        result["coins"] = multiply if response.get("code") == 0 else 0
+        result["video"] = video
+        return result
 
 
 def response_status(response, success_status, failed_status):
@@ -428,18 +459,111 @@ def missing_experience_tasks(reward):
     return missing
 
 
+def daily_coin_experience(reward):
+    value = parse_int(reward_data(reward).get("coins"))
+    return max(0, value or 0)
+
+
+def coin_task_plan(login, reward, realtime_coin_experience=None):
+    level = parse_int((login.get("level_info") or {}).get("current_level"))
+    balance = parse_float(login.get("account_coins"))
+    earned = (
+        daily_coin_experience(reward)
+        if realtime_coin_experience is None
+        else max(0, realtime_coin_experience)
+    )
+
+    if level is None:
+        return {"eligible": False, "reason": "unknown_level", "earned_experience": earned, "coins": 0}
+    if level >= 6:
+        return {"eligible": False, "reason": "level_6", "earned_experience": earned, "coins": 0}
+    if balance is None or balance <= COIN_SPEND_BALANCE_THRESHOLD:
+        return {"eligible": False, "reason": "balance_not_over_333", "earned_experience": earned, "coins": 0}
+    if earned >= MAX_DAILY_COIN_EXPERIENCE:
+        return {"eligible": False, "reason": "daily_50_exp_complete", "earned_experience": earned, "coins": 0}
+
+    missing_experience = MAX_DAILY_COIN_EXPERIENCE - earned
+    return {
+        "eligible": True,
+        "reason": "eligible",
+        "earned_experience": earned,
+        "coins": ceil_div(missing_experience, EXPERIENCE_PER_COIN),
+    }
+
+
+def run_coin_task(client, plan, dry_run=False):
+    if not plan["eligible"]:
+        return {
+            "status": "coin_skipped",
+            "reason": plan["reason"],
+            "coins_spent": 0,
+            "experience_before": plan["earned_experience"],
+            "target_experience": MAX_DAILY_COIN_EXPERIENCE,
+            "videos": [],
+        }
+
+    if dry_run:
+        return {
+            "status": "coin_skipped",
+            "reason": "dry_run",
+            "coins_spent": 0,
+            "coins_planned": plan["coins"],
+            "experience_before": plan["earned_experience"],
+            "target_experience": MAX_DAILY_COIN_EXPERIENCE,
+            "videos": [],
+        }
+
+    coins_remaining = plan["coins"]
+    coins_spent = 0
+    videos = []
+    used_bvids = set()
+    while coins_remaining > 0:
+        video = client.get_video_info(exclude_bvids=used_bvids)
+        used_bvids.add(video["bvid"])
+        multiply = min(MAX_COINS_PER_VIDEO, coins_remaining)
+        result = client.give_coins(video, multiply)
+        videos.append(
+            {
+                "aid": video["aid"],
+                "bvid": video["bvid"],
+                "title": video["title"],
+                "coins": result["coins"],
+                "status": result["status"],
+                "message": result["message"],
+            }
+        )
+        if result["status"] != "coins_given":
+            logging.warning("Coin task failed for %s: %s", video["bvid"], result["message"])
+            break
+        coins_spent += multiply
+        coins_remaining -= multiply
+        logging.info("Gave %s coin(s) to %s.", multiply, video["bvid"])
+
+    return {
+        "status": "coins_given" if coins_remaining == 0 else "coin_incomplete",
+        "reason": "completed" if coins_remaining == 0 else "api_failed",
+        "coins_spent": coins_spent,
+        "experience_before": plan["earned_experience"],
+        "target_experience": MAX_DAILY_COIN_EXPERIENCE,
+        "videos": videos,
+    }
+
+
 def run_experience_tasks(client, mode="full", dry_run=False):
     login = client.check_login()
     before_reward = client.get_daily_reward()
     before_missing = missing_experience_tasks(before_reward)
+    realtime_coin_experience = client.get_daily_coin_experience()
+    coin_plan = coin_task_plan(login, before_reward, realtime_coin_experience)
 
-    if mode == "confirm" and not before_missing:
+    if mode == "confirm" and not before_missing and not coin_plan["eligible"]:
         logging.info("Daily experience tasks already complete.")
         return {
             "login": login,
             "video": None,
             "watch": {"status": "watch_skipped", "message": "already complete"},
             "share": {"status": "share_skipped", "message": "already complete"},
+            "coin_task": run_coin_task(client, coin_plan, dry_run=dry_run),
             "reward_before": before_reward,
             "reward_after": before_reward,
             "missing_before": before_missing,
@@ -451,12 +575,13 @@ def run_experience_tasks(client, mode="full", dry_run=False):
     logging.info("Selected video: %s %s", video["bvid"], video["title"])
 
     if dry_run:
-        logging.info("Dry run enabled; skipping watch and share API calls.")
+        logging.info("Dry run enabled; skipping watch, share, and coin API calls.")
         return {
             "login": login,
             "video": video,
             "watch": {"status": "watch_skipped", "message": "dry run"},
             "share": {"status": "share_skipped", "message": "dry run"},
+            "coin_task": run_coin_task(client, coin_plan, dry_run=True),
             "reward_before": before_reward,
             "reward_after": before_reward,
             "missing_before": before_missing,
@@ -476,6 +601,8 @@ def run_experience_tasks(client, mode="full", dry_run=False):
     else:
         share = {"status": "share_skipped", "message": "already complete"}
 
+    coin_task = run_coin_task(client, coin_plan)
+
     after_reward = client.get_daily_reward()
     after_missing = missing_experience_tasks(after_reward)
     return {
@@ -483,6 +610,7 @@ def run_experience_tasks(client, mode="full", dry_run=False):
         "video": video,
         "watch": watch,
         "share": share,
+        "coin_task": coin_task,
         "reward_before": before_reward,
         "reward_after": after_reward,
         "missing_before": before_missing,
@@ -819,8 +947,8 @@ def build_coin_balance_email_body(streak, current_coins, result, date):
     lines = [
         f"Bilibili account {result['login'].get('uname')} coin balance has not increased for {len(streak)} recorded days.",
         "",
-        "Automatic coin spending is disabled in this workflow.",
-        "If you did not spend coins elsewhere, the daily coin reward may not have been credited.",
+        "Automatic coin spending runs only below Lv.6 when the balance is over 333 coins.",
+        "If the balance did not change, inspect the recorded coin task status.",
         "Please check whether the Bilibili cookie secrets need to be refreshed.",
         "",
         f"First stagnant date: {first_record['date']}",
@@ -1034,6 +1162,7 @@ def run_scheduled(dry_run=False):
     plan["coin_balance_notification"] = coin_balance_notification
     plan["watch_status"] = result["watch"]["status"]
     plan["share_status"] = result["share"]["status"]
+    plan["coin_task"] = result["coin_task"]
     if result["video"] is not None:
         plan["video"] = result["video"]
     plan["missing_after"] = result["missing_after"]
@@ -1056,6 +1185,7 @@ def run_scheduled(dry_run=False):
             "coin_balance_notification": coin_balance_notification,
             "watch_status": result["watch"]["status"],
             "share_status": result["share"]["status"],
+            "coin_task": result["coin_task"],
             "video": result["video"],
             "missing_before": result["missing_before"],
             "missing_after": result["missing_after"],
@@ -1187,20 +1317,21 @@ def build_daily_summary_markdown(date=None):
     if runs:
         lines.extend(
             [
-                "| 時間 | 類型 | 完成 | 登入 | 觀看 | 分享 | 影片 |",
-                "| --- | --- | --- | --- | --- | --- | --- |",
+                "| 時間 | 類型 | 完成 | 登入 | 觀看 | 分享 | 投幣 | 影片 |",
+                "| --- | --- | --- | --- | --- | --- | --- | --- |",
             ]
         )
         for run in runs:
             run_flags = reward_flags(run.get("reward_after"))
             lines.append(
-                "| {time} | {run_type} | {complete} | {login} | {watch} | {share} | {video} |".format(
+                "| {time} | {run_type} | {complete} | {login} | {watch} | {share} | {coin} | {video} |".format(
                     time=run.get("created_at_taipei") or "—",
                     run_type=format_run_type(run),
                     complete=bool_mark(run.get("complete")),
                     login=run.get("login_status") or ("✓" if run_flags["login"] else "—"),
                     watch=run.get("watch_status") or "—",
                     share=run.get("share_status") or "—",
+                    coin=(run.get("coin_task") or {}).get("status") or "—",
                     video=format_video(run.get("video")),
                 )
             )
@@ -1356,6 +1487,7 @@ def main():
                 "coin_balance_notification": coin_balance_notification,
                 "watch_status": result["watch"]["status"],
                 "share_status": result["share"]["status"],
+                "coin_task": result["coin_task"],
                 "video": result["video"],
                 "missing_before": result["missing_before"],
                 "missing_after": result["missing_after"],
