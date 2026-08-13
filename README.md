@@ -70,6 +70,17 @@ GitHub Actions 會在每天台北時間 02:05 到 19:05 每小時檢查一次，
 
 手動執行會直接執行每日經驗任務，並把結果寫入 `logs/bilibili_experience.jsonl` 後由 GitHub Actions 提交回 repo；不會套用自動排程的擲骰時間限制。
 
+## 從 cookies.txt 取出 Secrets
+
+桌面工具（Avalonia）可讀取 Netscape 格式的 `cookies.txt`（例如 `Documents\abuhg17_cookies.txt`），取出 `SESSDATA`、`BILI_JCT` / `bili_jct`、`DEDEUSERID` / `DedeUserID`，並複製成 GitHub Secrets 或本機環境變數。
+
+```bash
+cd BilibiliCookieReader
+dotnet run
+```
+
+只採用 `.bilibili.com` 的 Cookie。Cookie 屬於敏感資料，請只貼到 GitHub Secrets，不要提交到程式碼。
+
 ## 本機測試
 
 本機測試：

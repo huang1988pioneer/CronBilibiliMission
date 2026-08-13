@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="BilibiliCookieReader.Tests/BilibiliCookieReader.Tests.csproj" />
+  <Project Path="BilibiliCookieReader/BilibiliCookieReader.csproj" />
+</Solution>

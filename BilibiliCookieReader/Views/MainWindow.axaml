@@ -1,0 +1,177 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:BilibiliCookieReader.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignWidth="880"
+        d:DesignHeight="760"
+        x:Class="BilibiliCookieReader.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="Bilibili Cookie 讀取器"
+        Width="880"
+        Height="760"
+        MinWidth="720"
+        MinHeight="600"
+        WindowStartupLocation="CenterScreen"
+        Background="#F4F6F8"
+        DragDrop.AllowDrop="True">
+
+  <Design.DataContext>
+    <vm:MainViewModel />
+  </Design.DataContext>
+
+  <Window.KeyBindings>
+    <KeyBinding Gesture="Ctrl+O" Command="{Binding BrowseCommand}" />
+    <KeyBinding Gesture="F5" Command="{Binding LoadCommand}" />
+  </Window.KeyBindings>
+
+  <DockPanel Margin="28">
+    <Grid DockPanel.Dock="Top" ColumnDefinitions="*,Auto" Margin="0,0,0,22">
+      <StackPanel Spacing="4">
+        <TextBlock Text="Bilibili Cookie 讀取器"
+                   FontSize="28"
+                   FontWeight="SemiBold"
+                   Foreground="#1D232B" />
+        <TextBlock Classes="muted"
+                   Text="讀取 Netscape cookies.txt，取出 GitHub Secrets / 本機環境變數需要的三個值。"
+                   TextWrapping="Wrap" />
+      </StackPanel>
+      <Border Grid.Column="1"
+              Background="#FFF0F5"
+              BorderBrush="#F5C2D2"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="10,6"
+              VerticalAlignment="Top">
+        <TextBlock Text="不要提交 Cookie"
+                   Foreground="#9B1B4A"
+                   FontWeight="SemiBold" />
+      </Border>
+    </Grid>
+
+    <TextBlock DockPanel.Dock="Bottom"
+               Margin="4,16,4,0"
+               Classes="muted"
+               TextWrapping="Wrap"
+               Text="只取 .bilibili.com 的 Cookie，會略過 huasheng.cn、biligame.com 等站的同名欄位。SESSDATA 請保持檔案裡的原始值，不要 URL 解碼。" />
+
+    <ScrollViewer>
+      <StackPanel Spacing="16">
+        <Border Background="White"
+                BorderBrush="#E1E4E8"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="22">
+          <StackPanel Spacing="12">
+            <TextBlock Text="Cookie 檔案" FontSize="18" FontWeight="SemiBold" />
+            <TextBlock Classes="muted"
+                       Text="可用瀏覽器擴充套件（例如 Get cookies.txt LOCALLY）匯出。也可直接拖放 .txt 到視窗。"
+                       TextWrapping="Wrap" />
+            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+              <TextBox x:Name="PathBox"
+                       Text="{Binding CookiePath}"
+                       PlaceholderText="例如 C:\Users\你\OneDrive\Documents\abuhg17_cookies.txt"
+                       VerticalContentAlignment="Center"
+                       KeyDown="OnPathKeyDown" />
+              <Button Grid.Column="1"
+                      Classes="secondary"
+                      Content="瀏覽"
+                      Command="{Binding BrowseCommand}"
+                      ToolTip.Tip="選擇 cookies.txt（Ctrl+O）" />
+              <Button Grid.Column="2"
+                      Classes="primary"
+                      Content="讀取"
+                      Command="{Binding LoadCommand}"
+                      ToolTip.Tip="重新讀取目前路徑（F5）" />
+            </Grid>
+          </StackPanel>
+        </Border>
+
+        <ItemsControl ItemsSource="{Binding Fields}">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <StackPanel Spacing="16" />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="vm:CookieFieldViewModel">
+              <Border Background="White"
+                      BorderBrush="#E1E4E8"
+                      BorderThickness="1"
+                      CornerRadius="14"
+                      Padding="22">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="8">
+                  <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel>
+                      <TextBlock Text="{Binding EnvName}"
+                                 FontSize="18"
+                                 FontWeight="SemiBold" />
+                      <TextBlock Classes="muted"
+                                 FontSize="12"
+                                 Text="{Binding SecretHint}" />
+                    </StackPanel>
+                    <Button Grid.Column="1"
+                            Classes="secondary"
+                            Content="複製"
+                            Command="{Binding CopyCommand}"
+                            IsEnabled="{Binding HasValue}" />
+                  </Grid>
+                  <TextBox Classes="mono"
+                           Text="{Binding DisplayValue}"
+                           IsReadOnly="True"
+                           AcceptsReturn="True"
+                           TextWrapping="Wrap" />
+                  <TextBlock Classes="muted" FontSize="12" Text="{Binding MetaText}" />
+                  <TextBlock FontSize="12"
+                             Foreground="#B42318"
+                             Text="這個 Cookie 已過期，請重新登入 Bilibili 後再匯出。"
+                             IsVisible="{Binding IsExpired}" />
+                </Grid>
+              </Border>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Border Background="White"
+                BorderBrush="#E1E4E8"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="22">
+          <StackPanel Spacing="12">
+            <WrapPanel ItemSpacing="8" LineSpacing="8">
+              <Button Classes="secondary"
+                      Content="{Binding RevealButtonText}"
+                      Command="{Binding ToggleRevealCommand}" />
+              <Button Classes="secondary"
+                      Content="複製環境變數"
+                      Command="{Binding CopyAllEnvCommand}"
+                      ToolTip.Tip="SESSDATA / BILI_JCT / DEDEUSERID" />
+              <Button Classes="secondary"
+                      Content="複製 GitHub Secrets"
+                      Command="{Binding CopyAllSecretsCommand}"
+                      ToolTip.Tip="SESSDATA / bili_jct / DedeUserID" />
+              <Button Classes="secondary"
+                      Content="複製 PowerShell"
+                      Command="{Binding CopyPowerShellCommand}" />
+              <Button Classes="secondary"
+                      Content="複製 bash"
+                      Command="{Binding CopyBashCommand}" />
+              <Button Classes="secondary"
+                      Content="複製 Cookie 字串"
+                      Command="{Binding CopyCookieHeaderCommand}" />
+              <Button Classes="primary"
+                      Content="驗證登入"
+                      Command="{Binding VerifyLoginCommand}" />
+            </WrapPanel>
+
+            <TextBlock Text="{Binding StatusMessage}"
+                       TextWrapping="Wrap"
+                       Classes.error="{Binding IsError}"
+                       Classes.ok="{Binding !IsError}" />
+          </StackPanel>
+        </Border>
+      </StackPanel>
+    </ScrollViewer>
+  </DockPanel>
+</Window>
