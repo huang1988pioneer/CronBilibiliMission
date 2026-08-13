@@ -30,4 +30,23 @@ public class GitHubSecretProtectorTests
             secrets.Select(item => item.Name));
         Assert.Equal(new[] { "s1", "j1", "123" }, secrets.Select(item => item.Value));
     }
+
+    [Theory]
+    [InlineData("2", "SESSDATA2", "BILI_JCT2", "DEDEUSERID2")]
+    [InlineData("3", "SESSDATA3", "BILI_JCT3", "DEDEUSERID3")]
+    public void SecretsFromCookies_adds_account_suffix(
+        string suffix,
+        string sessDataName,
+        string biliJctName,
+        string dedeUserIdName)
+    {
+        var cookies = BilibiliCookieParser.ParseText(
+            "SESSDATA=s1; bili_jct=j1; DedeUserID=123");
+
+        var secrets = GitHubActionsSecretClient.SecretsFromCookies(cookies, suffix);
+
+        Assert.Equal(
+            new[] { sessDataName, biliJctName, dedeUserIdName },
+            secrets.Select(item => item.Name));
+    }
 }

@@ -68,6 +68,18 @@ FORM: Operate / distilled workbench. FINISH: unreviewed and undocumented is unfi
           <StackPanel Spacing="16">
             <Border x:Name="DropZone" Classes="dropzone">
               <StackPanel Spacing="10">
+                <TextBlock Classes="section" Text="Bilibili 帳號" />
+                <ComboBox ItemsSource="{Binding Accounts}"
+                          SelectedItem="{Binding SelectedAccount}"
+                          HorizontalAlignment="Stretch"
+                          MinHeight="36">
+                  <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="vm:BilibiliAccountOption">
+                      <TextBlock Text="{Binding DisplayName}" />
+                    </DataTemplate>
+                  </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Separator Margin="0,4" />
                 <TextBlock Classes="section" Text="Cookie 檔" />
                 <TextBlock Classes="muted"
                            FontSize="12"
@@ -119,7 +131,14 @@ FORM: Operate / distilled workbench. FINISH: unreviewed and undocumented is unfi
                 <TextBlock Classes="section" Text="更新 GitHub Secrets" />
                 <TextBlock Classes="muted"
                            FontSize="12"
-                           Text="寫入 SESSDATA、BILI_JCT、DEDEUSERID。需要能改 Actions Secrets 的權杖。"
+                           Text="需要能修改 Actions Secrets 的 GitHub 權杖。"
+                           TextWrapping="Wrap" />
+                <TextBlock FontSize="12"
+                           FontWeight="SemiBold"
+                           Text="{Binding SelectedAccount.DisplayName}" />
+                <TextBlock Classes="muted"
+                           FontSize="11"
+                           Text="{Binding SelectedSecretNames}"
                            TextWrapping="Wrap" />
                 <TextBlock Classes="muted" FontSize="12" Text="Repo" />
                 <TextBox Text="{Binding GitHubRepo}"

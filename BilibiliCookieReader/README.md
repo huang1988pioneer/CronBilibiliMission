@@ -8,7 +8,7 @@ Avalonia 桌面工具：讀取瀏覽器匯出的 Netscape `cookies.txt`，取出
 | `BILI_JCT` | `BILI_JCT` | `bili_jct` |
 | `DEDEUSERID` | `DEDEUSERID` | `DedeUserID` |
 
-啟動時若在「文件」資料夾找到 `abuhg17_cookies.txt`（或 `cookies.txt`）會自動讀取。只採用 `.bilibili.com` 的 Cookie，略過 `huasheng.cn`、`biligame.com` 等站的同名欄位。`SESSDATA` 保持檔案中的原始值，不要 URL 解碼。
+預設選取帳號 1 `huang1988pioneer`，也可切換至帳號 2 `abuhg17` 或帳號 3 `goldshoot0720`。每次切換帳號時 Cookie 檔案路徑保持空白；請拖放檔案或按「瀏覽」選擇。只採用 `.bilibili.com` 的 Cookie，略過 `huasheng.cn`、`biligame.com` 等站的同名欄位。`SESSDATA` 保持檔案中的原始值，不要 URL 解碼。
 
 讀取後會顯示 Cookie 檔與 SESSDATA 工作階段的預定過期日（台北時間），並依剩餘天數用顏色提醒：14 天內請預定更新，3 天內或已過期會加強警告。
 
@@ -44,11 +44,11 @@ Windows 也可雙擊 `run.bat`。
 3. 在「更新 GitHub Actions Secrets」填 repo（預設 `huang1988pioneer/CronBilibiliMission`）與 GitHub 權杖，勾選確認後按「更新 GitHub Secrets」。
 4. 或改複製後手動貼到 GitHub Repo `Settings` → `Secrets and variables` → `Actions`。
 
-權杖需要能寫入該 repo 的 Actions Secrets。也可按「使用 gh 權杖」（需已 `gh auth login`）。工具會更新：
+權杖需要能寫入該 repo 的 Actions Secrets。也可按「使用 gh 權杖」（需已 `gh auth login`）。工具會依選取帳號更新：
 
-- `SESSDATA`
-- `BILI_JCT`
-- `DEDEUSERID`
+- 帳號 1：`SESSDATA`、`BILI_JCT`、`DEDEUSERID`
+- 帳號 2：`SESSDATA2`、`BILI_JCT2`、`DEDEUSERID2`
+- 帳號 3：`SESSDATA3`、`BILI_JCT3`、`DEDEUSERID3`
 
 Cookie 是登入憑證，不要提交到 git。
 

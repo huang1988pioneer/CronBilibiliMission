@@ -8,9 +8,9 @@
 
 | Secret 名稱 | 說明 |
 | --- | --- |
-| `SESSDATA` | Bilibili Cookie 中的 `SESSDATA` |
-| `BILI_JCT` | Bilibili Cookie 中的 `bili_jct` |
-| `DEDEUSERID` | Bilibili Cookie 中的 `DedeUserID` |
+| `SESSDATA` / `BILI_JCT` / `DEDEUSERID` | 帳號 1：`huang1988pioneer` |
+| `SESSDATA2` / `BILI_JCT2` / `DEDEUSERID2` | 帳號 2：`abuhg17` |
+| `SESSDATA3` / `BILI_JCT3` / `DEDEUSERID3` | 帳號 3：`goldshoot0720` |
 
 ## 每日經驗任務
 
@@ -21,7 +21,7 @@
 - 每日分享影片：呼叫影片分享 API。
 - 每日獎勵查詢：執行前後查詢每日獎勵狀態並寫入紀錄。
 - 帳號硬幣數：記錄目前帳號持有的硬幣數 `account_coins`。
-- 每日匯總：依當日 plan / 事件紀錄產生 `logs/daily_summary.md`，並寫入 GitHub Actions 的 Job Summary。
+- 每日匯總：依各帳號的當日 plan / 事件紀錄產生 `logs/<帳號>/daily_summary.md`，並寫入 GitHub Actions 的 Job Summary。
 
 ## 自動執行時間
 
@@ -46,7 +46,7 @@
 | 輸出 | 說明 |
 | --- | --- |
 | GitHub Job Summary | 在 Actions 執行結果頁可直接閱讀 |
-| `logs/daily_summary.md` | 寫入 repo，隨其他 `logs/` 紀錄一併 commit |
+| `logs/<帳號>/daily_summary.md` | 寫入 repo，隨各帳號的 `logs/` 紀錄一併 commit |
 
 也可本機只重算匯總：
 
@@ -68,11 +68,11 @@ GitHub Actions 會在每天台北時間 02:05 到 19:05 每小時檢查一次，
 4. Branch 保持 `main`。
 5. 點綠色 `Run workflow`。
 
-手動執行會直接執行每日經驗任務，並把結果寫入 `logs/bilibili_experience.jsonl` 後由 GitHub Actions 提交回 repo；不會套用自動排程的擲骰時間限制。
+手動執行會依序執行三個帳號的每日經驗任務，並把結果寫入各自的 `logs/<帳號>/bilibili_experience.jsonl`，再由 GitHub Actions 提交回 repo；不會套用自動排程的擲骰時間限制。
 
 ## 從 cookies.txt 取出 Secrets
 
-桌面工具（Avalonia）可讀取 Netscape 格式的 `cookies.txt`（例如 `Documents\abuhg17_cookies.txt`），取出 `SESSDATA`、`BILI_JCT`、`DEDEUSERID`，並可直接上傳更新 GitHub Actions Secrets。
+桌面工具（Avalonia）可分別選擇 `huang1988pioneer`、`abuhg17`、`goldshoot0720` 三個帳號，讀取各自 Netscape 格式的 `cookies.txt`，並直接上傳帳號對應的 GitHub Actions Secrets。
 
 下載 [BilibiliCookieReader v1.3.0](https://github.com/huang1988pioneer/CronBilibiliMission/releases/tag/v1.3.0)（自包含，無需另外安裝 .NET）：
 
@@ -81,7 +81,7 @@ GitHub Actions 會在每天台北時間 02:05 到 19:05 每小時檢查一次，
 - [macOS Intel](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.3.0/BilibiliCookieReader-v1.3.0-osx-x64.zip)
 - [Linux x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.3.0/BilibiliCookieReader-v1.3.0-linux-x64.zip)
 
-讀到三個值後，工具會提醒 Cookie 檔與 SESSDATA 工作階段的預定過期日（台北時間）。也可直接更新這個 repo 的 GitHub Actions Secrets（`SESSDATA`、`BILI_JCT`、`DEDEUSERID`）。需要有 Secrets 寫入權限的 GitHub 權杖，或本機已 `gh auth login`。
+讀到三個值後，工具會提醒 Cookie 檔與 SESSDATA 工作階段的預定過期日（台北時間）。也可依帳號直接更新這個 repo 對應的 GitHub Actions Secrets。需要有 Secrets 寫入權限的 GitHub 權杖，或本機已 `gh auth login`。
 
 本機開發：
 

@@ -14,6 +14,7 @@ public static class GitHubSecretPublisher
         string repoText,
         string? token,
         BilibiliCookieSet cookies,
+        string secretSuffix = "",
         CancellationToken cancellationToken = default)
     {
         if (!GitHubRepoSlug.TryParse(repoText, out var repo))
@@ -27,7 +28,7 @@ public static class GitHubSecretPublisher
         IReadOnlyList<(string Name, string Value)> secrets;
         try
         {
-            secrets = GitHubActionsSecretClient.SecretsFromCookies(cookies);
+            secrets = GitHubActionsSecretClient.SecretsFromCookies(cookies, secretSuffix);
         }
         catch (InvalidOperationException ex)
         {

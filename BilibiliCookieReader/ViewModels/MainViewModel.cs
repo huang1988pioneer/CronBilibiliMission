@@ -12,6 +12,16 @@ public partial class MainViewModel : ViewModelBase
     private TopLevel? _topLevel;
     private BilibiliCookieSet? _cookies;
 
+    public IReadOnlyList<BilibiliAccountOption> Accounts { get; } =
+    [
+        new(1, "huang1988pioneer"),
+        new(2, "abuhg17"),
+        new(3, "goldshoot0720"),
+    ];
+
+    [ObservableProperty]
+    public partial BilibiliAccountOption SelectedAccount { get; set; }
+
     public CookieFieldViewModel SessData { get; } = new("SESSDATA", "SESSDATA");
     public CookieFieldViewModel BiliJct { get; } = new("BILI_JCT", "BILI_JCT");
     public CookieFieldViewModel DedeUserId { get; } = new("DEDEUSERID", "DEDEUSERID");
@@ -86,6 +96,10 @@ public partial class MainViewModel : ViewModelBase
 
     public string RevealButtonText => RevealValues ? "隱藏明文" : "顯示明文";
 
+    public string SelectedSecretNames => string.Join(
+        "、",
+        GitHubActionsSecretClient.ActionSecretNames.Select(name => name + SelectedAccount.SecretSuffix));
+
     public string WindowTitle => HasExpiryReminder && !string.IsNullOrWhiteSpace(ExpiryTitle)
         ? "Bilibili Cookie 讀取器 · 到期提醒"
         : "Bilibili Cookie 讀取器";
@@ -95,6 +109,7 @@ public partial class MainViewModel : ViewModelBase
         Fields = [SessData, BiliJct, DedeUserId];
         foreach (var field in Fields)
             field.CopyRequested = CopyFieldAsync;
+        SelectedAccount = Accounts[0];
     }
 
     public void Initialize(TopLevel topLevel)
@@ -103,12 +118,6 @@ public partial class MainViewModel : ViewModelBase
         LoadGitHubSettings();
         ShowSavedExpiryReminder();
         _ = TryFillGhTokenAsync();
-        var suggested = BilibiliCookieParser.FindDefaultCookieFile();
-        if (string.IsNullOrWhiteSpace(suggested))
-            return;
-
-        CookiePath = suggested;
-        LoadFromPath(suggested);
     }
 
     private void LoadGitHubSettings()
@@ -230,8 +239,9 @@ public partial class MainViewModel : ViewModelBase
     {
         if (_cookies is null)
             return;
-        if (await CopyTextAsync(_cookies.ToGitHubSecretsBlock()))
-            SetStatus("已複製 GitHub Secrets 名稱（SESSDATA / BILI_JCT / DEDEUSERID）。", isError: false);
+        var secrets = GitHubActionsSecretClient.SecretsFromCookies(_cookies, SelectedAccount.SecretSuffix);
+        if (await CopyTextAsync(string.Join(Environment.NewLine, secrets.Select(item => $"{item.Name}={item.Value}"))))
+            SetStatus($"已複製 {SelectedAccount.DisplayName} 的 GitHub Secrets。", isError: false);
     }
 
     [RelayCommand(CanExecute = nameof(HasResult))]
@@ -305,10 +315,14 @@ public partial class MainViewModel : ViewModelBase
             return;
 
         IsBusy = true;
-        SetStatus("正在更新 GitHub Actions 的 SESSDATA、BILI_JCT、DEDEUSERID…", isError: false);
+        SetStatus($"正在更新 {SelectedAccount.DisplayName} 的 GitHub Actions Secrets…", isError: false);
         try
         {
-            var result = await GitHubSecretPublisher.PublishAsync(GitHubRepo, GitHubToken, _cookies);
+            var result = await GitHubSecretPublisher.PublishAsync(
+                GitHubRepo,
+                GitHubToken,
+                _cookies,
+                SelectedAccount.SecretSuffix);
             GitHubSecretPublisher.SavePreferences(GitHubRepo, GitHubToken, RememberGitHubToken);
             ConfirmOverwriteSecrets = false;
             var message = result.Message;
@@ -416,5 +430,19 @@ public partial class MainViewModel : ViewModelBase
     {
         VerifyLoginCommand.NotifyCanExecuteChanged();
         UpdateGitHubSecretsCommand.NotifyCanExecuteChanged();
+    }
+
+    partial void OnSelectedAccountChanged(BilibiliAccountOption value)
+    {
+        OnPropertyChanged(nameof(SelectedSecretNames));
+        CookiePath = string.Empty;
+        _cookies = null;
+        HasResult = false;
+        HasAllThree = false;
+        ConfirmOverwriteSecrets = false;
+        foreach (var field in Fields)
+            field.Clear(RevealValues);
+        ClearExpiryReminder();
+        SetStatus($"已切換至 {value.DisplayName}，請選擇該帳號的 cookies.txt。", isError: false);
     }
 }

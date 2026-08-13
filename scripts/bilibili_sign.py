@@ -27,6 +27,7 @@ PLAN_FILE = LOG_DIR / "daily_experience_plan.json"
 EVENT_LOG = LOG_DIR / "bilibili_experience.jsonl"
 RUNTIME_LOG = LOG_DIR / "bilibili_experience.log"
 SUMMARY_FILE = LOG_DIR / "daily_summary.md"
+ACCOUNT_NAME = "huang1988pioneer"
 TASK_NAME = "daily_experience"
 EVENT_LOG_RETENTION_DAYS = 30
 CONFIRM_AFTER_HOURS = (1, 3, 6)
@@ -63,6 +64,23 @@ RESEND_RECIPIENTS = (
 )
 DEFAULT_RESEND_FROM = "Bilibili Monitor <onboarding@resend.dev>"
 RESEND_EMAILS_URL = "https://api.resend.com/emails"
+
+
+def configure_account(account_name):
+    global ACCOUNT_NAME, LOG_DIR, PLAN_FILE, EVENT_LOG, RUNTIME_LOG, SUMMARY_FILE
+    safe_name = "".join(
+        character for character in account_name.strip()
+        if character.isalnum() or character in {"-", "_"}
+    )
+    if not safe_name:
+        raise ValueError("Account name must contain letters or numbers.")
+
+    ACCOUNT_NAME = safe_name
+    LOG_DIR = Path("logs") / safe_name
+    PLAN_FILE = LOG_DIR / "daily_experience_plan.json"
+    EVENT_LOG = LOG_DIR / "bilibili_experience.jsonl"
+    RUNTIME_LOG = LOG_DIR / "bilibili_experience.log"
+    SUMMARY_FILE = LOG_DIR / "daily_summary.md"
 
 
 class BilibiliError(RuntimeError):
@@ -1149,7 +1167,7 @@ def build_daily_summary_markdown(date=None):
         missing_after = latest.get("missing_after") or []
 
     lines = [
-        f"# Bilibili 每日經驗匯總 — {date}（{weekday_name}）",
+        f"# Bilibili 每日經驗匯總 — {ACCOUNT_NAME} — {date}（{weekday_name}）",
         "",
         f"**總結：{overall_status_label(plan, runs)}**",
         "",
@@ -1285,6 +1303,11 @@ def parse_args():
     parser.add_argument("--dry-run", action="store_true", help="Check login/reward/video without posting watch/share actions.")
     parser.add_argument("--debug", action="store_true", help="Enable verbose runtime logging.")
     parser.add_argument(
+        "--account",
+        default="huang1988pioneer",
+        help="Account label used to isolate logs and summaries.",
+    )
+    parser.add_argument(
         "--summary-only",
         action="store_true",
         help="Only generate today's daily summary from existing logs.",
@@ -1294,6 +1317,7 @@ def parse_args():
 
 def main():
     args = parse_args()
+    configure_account(args.account)
     setup_logging(debug=args.debug)
     if args.summary_only:
         emit_daily_summary()

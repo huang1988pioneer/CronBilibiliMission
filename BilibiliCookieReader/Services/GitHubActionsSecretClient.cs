@@ -15,16 +15,18 @@ public static class GitHubActionsSecretClient
 
     private static readonly HttpClient Http = CreateClient();
 
-    public static IReadOnlyList<(string Name, string Value)> SecretsFromCookies(BilibiliCookieSet cookies)
+    public static IReadOnlyList<(string Name, string Value)> SecretsFromCookies(
+        BilibiliCookieSet cookies,
+        string secretSuffix = "")
     {
         if (!cookies.HasAll)
             throw new InvalidOperationException("三個欄位不齊，無法更新 GitHub Secrets。");
 
         return
         [
-            ("SESSDATA", cookies.SessData.Value),
-            ("BILI_JCT", cookies.BiliJct.Value),
-            ("DEDEUSERID", cookies.DedeUserId.Value),
+            ($"SESSDATA{secretSuffix}", cookies.SessData.Value),
+            ($"BILI_JCT{secretSuffix}", cookies.BiliJct.Value),
+            ($"DEDEUSERID{secretSuffix}", cookies.DedeUserId.Value),
         ];
     }
 
