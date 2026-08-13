@@ -10,9 +10,9 @@
         x:DataType="vm:MainViewModel"
         Title="Bilibili Cookie 讀取器"
         Width="880"
-        Height="760"
+        Height="860"
         MinWidth="720"
-        MinHeight="600"
+        MinHeight="640"
         WindowStartupLocation="CenterScreen"
         Background="#F4F6F8"
         DragDrop.AllowDrop="True">
@@ -54,7 +54,7 @@
                Margin="4,16,4,0"
                Classes="muted"
                TextWrapping="Wrap"
-               Text="只取 .bilibili.com 的 Cookie，會略過 huasheng.cn、biligame.com 等站的同名欄位。SESSDATA 請保持檔案裡的原始值，不要 URL 解碼。" />
+               Text="只取 .bilibili.com 的 Cookie，會略過 huasheng.cn、biligame.com 等站的同名欄位。SESSDATA 請保持檔案裡的原始值，不要 URL 解碼。更新 GitHub Secrets 會覆寫 repo 既有值，且無法讀回舊內容。" />
 
     <ScrollViewer>
       <StackPanel Spacing="16">
@@ -150,7 +150,7 @@
               <Button Classes="secondary"
                       Content="複製 GitHub Secrets"
                       Command="{Binding CopyAllSecretsCommand}"
-                      ToolTip.Tip="SESSDATA / bili_jct / DedeUserID" />
+                      ToolTip.Tip="SESSDATA / BILI_JCT / DEDEUSERID" />
               <Button Classes="secondary"
                       Content="複製 PowerShell"
                       Command="{Binding CopyPowerShellCommand}" />
@@ -169,6 +169,46 @@
                        TextWrapping="Wrap"
                        Classes.error="{Binding IsError}"
                        Classes.ok="{Binding !IsError}" />
+          </StackPanel>
+        </Border>
+
+        <Border Background="White"
+                BorderBrush="#E1E4E8"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="22">
+          <StackPanel Spacing="12">
+            <TextBlock Text="更新 GitHub Actions Secrets" FontSize="18" FontWeight="SemiBold" />
+            <TextBlock Classes="muted"
+                       TextWrapping="Wrap"
+                       Text="把 SESSDATA、BILI_JCT、DEDEUSERID 寫入指定 repo。權杖需要能寫入該 repo 的 Actions Secrets（Classic PAT 的 repo 範圍，或 fine-grained PAT 的 Secrets: Read and write）。本機已登入 GitHub CLI 時也可按「使用 gh 權杖」。" />
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10" RowDefinitions="Auto,Auto" RowSpacing="8">
+              <TextBlock Text="Repo" VerticalAlignment="Center" />
+              <TextBox Grid.Column="1"
+                       Text="{Binding GitHubRepo}"
+                       PlaceholderText="huang1988pioneer/CronBilibiliMission"
+                       VerticalContentAlignment="Center" />
+              <TextBlock Grid.Row="1" Text="權杖" VerticalAlignment="Center" />
+              <Grid Grid.Row="1" Grid.Column="1" ColumnDefinitions="*,Auto" ColumnSpacing="8">
+                <TextBox Text="{Binding GitHubToken}"
+                         PasswordChar="•"
+                         PlaceholderText="ghp_… 或 github_pat_…"
+                         VerticalContentAlignment="Center" />
+                <Button Grid.Column="1"
+                        Classes="secondary"
+                        Content="使用 gh 權杖"
+                        Command="{Binding UseGhTokenCommand}" />
+              </Grid>
+            </Grid>
+            <CheckBox Content="記住這個權杖（只存在本機，Windows 會用 DPAPI 保護）"
+                      IsChecked="{Binding RememberGitHubToken}" />
+            <CheckBox Content="我確定要覆寫這個 repo 的 SESSDATA、BILI_JCT、DEDEUSERID"
+                      IsChecked="{Binding ConfirmOverwriteSecrets}" />
+            <Button Classes="primary"
+                    HorizontalAlignment="Left"
+                    Content="更新 GitHub Secrets"
+                    Command="{Binding UpdateGitHubSecretsCommand}"
+                    ToolTip.Tip="寫入 GitHub Actions 使用的三個 Secrets" />
           </StackPanel>
         </Border>
       </StackPanel>

@@ -13,8 +13,8 @@ public partial class MainViewModel : ViewModelBase
     private BilibiliCookieSet? _cookies;
 
     public CookieFieldViewModel SessData { get; } = new("SESSDATA", "SESSDATA");
-    public CookieFieldViewModel BiliJct { get; } = new("BILI_JCT", "bili_jct");
-    public CookieFieldViewModel DedeUserId { get; } = new("DEDEUSERID", "DedeUserID");
+    public CookieFieldViewModel BiliJct { get; } = new("BILI_JCT", "BILI_JCT");
+    public CookieFieldViewModel DedeUserId { get; } = new("DEDEUSERID", "DEDEUSERID");
 
     public IReadOnlyList<CookieFieldViewModel> Fields { get; }
 
@@ -39,6 +39,7 @@ public partial class MainViewModel : ViewModelBase
 
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(VerifyLoginCommand))]
+    [NotifyCanExecuteChangedFor(nameof(UpdateGitHubSecretsCommand))]
     public partial bool HasAllThree { get; set; }
 
     [ObservableProperty]
@@ -46,6 +47,21 @@ public partial class MainViewModel : ViewModelBase
 
     [ObservableProperty]
     public partial bool IsBusy { get; set; }
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(UpdateGitHubSecretsCommand))]
+    public partial string GitHubRepo { get; set; } = GitHubRepoSlug.Default;
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(UpdateGitHubSecretsCommand))]
+    public partial string GitHubToken { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial bool RememberGitHubToken { get; set; }
+
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(UpdateGitHubSecretsCommand))]
+    public partial bool ConfirmOverwriteSecrets { get; set; }
 
     public string RevealButtonText => RevealValues ? "隱藏明文" : "顯示明文";
 
@@ -59,12 +75,33 @@ public partial class MainViewModel : ViewModelBase
     public void Initialize(TopLevel topLevel)
     {
         _topLevel = topLevel;
+        LoadGitHubSettings();
+        _ = TryFillGhTokenAsync();
         var suggested = BilibiliCookieParser.FindDefaultCookieFile();
         if (string.IsNullOrWhiteSpace(suggested))
             return;
 
         CookiePath = suggested;
         LoadFromPath(suggested);
+    }
+
+    private void LoadGitHubSettings()
+    {
+        var settings = GitHubSettingsStore.Load();
+        GitHubRepo = string.IsNullOrWhiteSpace(settings.Repo) ? GitHubRepoSlug.Default : settings.Repo;
+        RememberGitHubToken = settings.RememberToken;
+        if (settings.RememberToken && !string.IsNullOrWhiteSpace(settings.Token))
+            GitHubToken = settings.Token;
+    }
+
+    private async Task TryFillGhTokenAsync()
+    {
+        if (!string.IsNullOrWhiteSpace(GitHubToken))
+            return;
+
+        var token = await Task.Run(() => GitHubCli.TryGetToken()).ConfigureAwait(true);
+        if (string.IsNullOrWhiteSpace(GitHubToken) && !string.IsNullOrWhiteSpace(token))
+            GitHubToken = token;
     }
 
     public void LoadFromPath(string? path)
@@ -168,7 +205,7 @@ public partial class MainViewModel : ViewModelBase
         if (_cookies is null)
             return;
         if (await CopyTextAsync(_cookies.ToGitHubSecretsBlock()))
-            SetStatus("已複製 GitHub Secrets 名稱（SESSDATA / bili_jct / DedeUserID）。", isError: false);
+            SetStatus("已複製 GitHub Secrets 名稱（SESSDATA / BILI_JCT / DEDEUSERID）。", isError: false);
     }
 
     [RelayCommand(CanExecute = nameof(HasResult))]
@@ -217,7 +254,74 @@ public partial class MainViewModel : ViewModelBase
         }
     }
 
+    [RelayCommand]
+    private void UseGhToken()
+    {
+        var token = GitHubCli.TryGetToken();
+        if (string.IsNullOrWhiteSpace(token))
+        {
+            SetStatus(
+                GitHubCli.IsAvailable()
+                    ? "gh 已安裝，但尚未登入。請先執行 gh auth login。"
+                    : "找不到 GitHub CLI。請安裝 gh 並執行 gh auth login，或手動貼上 PAT。",
+                isError: true);
+            return;
+        }
+
+        GitHubToken = token;
+        SetStatus("已填入 gh 目前的登入權杖。", isError: false);
+    }
+
+    [RelayCommand(CanExecute = nameof(CanUpdateGitHubSecrets))]
+    private async Task UpdateGitHubSecretsAsync()
+    {
+        if (_cookies is null || !CanUpdateGitHubSecrets())
+            return;
+
+        if (!GitHubRepoSlug.TryParse(GitHubRepo, out var repo))
+        {
+            SetStatus("Repo 格式應為 owner/name，例如 huang1988pioneer/CronBilibiliMission。", isError: true);
+            return;
+        }
+
+        IsBusy = true;
+        SetStatus($"正在更新 {repo.FullName} 的 SESSDATA、BILI_JCT、DEDEUSERID…", isError: false);
+        try
+        {
+            var secrets = GitHubActionsSecretClient.SecretsFromCookies(_cookies);
+            var result = await GitHubActionsSecretClient.UpdateWithFallbackAsync(repo, GitHubToken, secrets);
+            PersistGitHubSettings();
+            ConfirmOverwriteSecrets = false;
+            SetStatus(result.Message, isError: !result.Ok);
+        }
+        catch (Exception ex)
+        {
+            SetStatus($"更新失敗：{ex.Message}", isError: true);
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+
     private bool CanVerify() => HasAllThree && !IsBusy;
+
+    private bool CanUpdateGitHubSecrets() =>
+        HasAllThree
+        && !IsBusy
+        && ConfirmOverwriteSecrets
+        && GitHubRepoSlug.TryParse(GitHubRepo, out _)
+        && (!string.IsNullOrWhiteSpace(GitHubToken) || GitHubCli.IsAvailable());
+
+    private void PersistGitHubSettings()
+    {
+        GitHubSettingsStore.Save(new GitHubSettings
+        {
+            Repo = GitHubRepo.Trim(),
+            Token = GitHubToken,
+            RememberToken = RememberGitHubToken,
+        });
+    }
 
     private void Apply(BilibiliCookieSet parsed)
     {
@@ -265,5 +369,9 @@ public partial class MainViewModel : ViewModelBase
         IsError = isError;
     }
 
-    partial void OnIsBusyChanged(bool value) => VerifyLoginCommand.NotifyCanExecuteChanged();
+    partial void OnIsBusyChanged(bool value)
+    {
+        VerifyLoginCommand.NotifyCanExecuteChanged();
+        UpdateGitHubSecretsCommand.NotifyCanExecuteChanged();
+    }
 }

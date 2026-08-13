@@ -33,8 +33,10 @@ jobs:
       - name: Run Bilibili experience tasks
         env:
           SESSDATA: ${{ secrets.SESSDATA }}
-          bili_jct: ${{ secrets.bili_jct }}
-          DedeUserID: ${{ secrets.DedeUserID }}
+          BILI_JCT: ${{ secrets.BILI_JCT }}
+          bili_jct: ${{ secrets.BILI_JCT }}
+          DEDEUSERID: ${{ secrets.DEDEUSERID }}
+          DedeUserID: ${{ secrets.DEDEUSERID }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           RESEND_API_KEY2: ${{ secrets.RESEND_API_KEY2 }}
           RESEND_API_KEY3: ${{ secrets.RESEND_API_KEY3 }}

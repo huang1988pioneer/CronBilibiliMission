@@ -8,9 +8,9 @@
     <RootNamespace>BilibiliCookieReader</RootNamespace>
     <AssemblyName>BilibiliCookieReader</AssemblyName>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-    <Version>1.0.0</Version>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <Version>1.1.0</Version>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
     <Product>Bilibili Cookie 讀取器</Product>
     <Description>從 Netscape cookies.txt 取出 SESSDATA、BILI_JCT、DEDEUSERID</Description>
   </PropertyGroup>
@@ -25,5 +25,7 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageReference Include="Sodium.Core" Version="1.4.0" />
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="10.0.1" />
   </ItemGroup>
 </Project>
