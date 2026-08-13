@@ -281,6 +281,10 @@ public static class BilibiliCookieParser
             };
         }
 
+        var sessionExpires = envName.Equals(SessDataName, StringComparison.OrdinalIgnoreCase)
+            ? CookieExpiry.TryParseSessDataSessionExpiry(ranked.Cookie.Value)
+            : null;
+
         return new CookieField
         {
             EnvName = envName,
@@ -288,6 +292,7 @@ public static class BilibiliCookieParser
             Value = ranked.Cookie.Value,
             Domain = ranked.Cookie.Domain,
             ExpiresAt = ranked.Cookie.ExpiresAt,
+            SessionExpiresAt = sessionExpires,
         };
     }
 
@@ -465,22 +470,22 @@ public sealed record CookieField
     public string Value { get; init; } = string.Empty;
     public string Domain { get; init; } = string.Empty;
     public DateTimeOffset? ExpiresAt { get; init; }
+    public DateTimeOffset? SessionExpiresAt { get; init; }
 
     public bool HasValue => !string.IsNullOrWhiteSpace(Value);
 
-    public bool IsExpired => ExpiresAt is { } expires && expires < DateTimeOffset.UtcNow;
+    public DateTimeOffset? EffectiveExpiresAt => CookieExpiry.Min(ExpiresAt, SessionExpiresAt);
 
-    public string ExpiresText
-    {
-        get
-        {
-            if (ExpiresAt is null)
-                return "到期時間未知";
+    public bool IsExpired => EffectiveExpiresAt is { } expires && expires < DateTimeOffset.UtcNow;
 
-            var local = TimeZoneInfo.ConvertTime(ExpiresAt.Value, TaipeiZone());
-            return local.ToString("yyyy-MM-dd HH:mm") + " 台北";
-        }
-    }
+    public bool IsExpiringSoon =>
+        !IsExpired
+        && EffectiveExpiresAt is { } expires
+        && CookieExpiry.DaysRemaining(expires, DateTimeOffset.UtcNow) <= CookieExpiry.SoonDays;
+
+    public string ExpiresText => EffectiveExpiresAt is { } expires
+        ? CookieExpiry.FormatTaipei(expires)
+        : "到期時間未知";
 
     public string MetaText
     {
@@ -489,8 +494,23 @@ public sealed record CookieField
             var bits = new List<string>();
             if (!string.IsNullOrWhiteSpace(Domain) && Domain is not ("header" or "json"))
                 bits.Add(Domain);
-            if (ExpiresAt is not null)
-                bits.Add(IsExpired ? $"已過期 · {ExpiresText}" : $"到期 {ExpiresText}");
+
+            if (ExpiresAt is not null && SessionExpiresAt is not null
+                && !CookieExpiry.SameMinute(ExpiresAt, SessionExpiresAt))
+            {
+                bits.Add($"Cookie 到期 {CookieExpiry.FormatTaipei(ExpiresAt.Value)}");
+                bits.Add($"工作階段到期 {CookieExpiry.FormatTaipei(SessionExpiresAt.Value)}");
+            }
+            else if (EffectiveExpiresAt is not null)
+            {
+                var label = SessionExpiresAt is not null && ExpiresAt is not null
+                    ? "Cookie／工作階段"
+                    : SessionExpiresAt is not null
+                        ? "工作階段"
+                        : "Cookie";
+                bits.Add(IsExpired ? $"已過期 · {label} {ExpiresText}" : $"{label}到期 {ExpiresText}");
+            }
+
             return bits.Count == 0 ? "—" : string.Join(" · ", bits);
         }
     }
@@ -504,18 +524,6 @@ public sealed record CookieField
             if (Value.Length <= 10)
                 return new string('•', Value.Length);
             return $"{Value[..6]}…{Value[^4..]}";
-        }
-    }
-
-    private static TimeZoneInfo TaipeiZone()
-    {
-        try
-        {
-            return TimeZoneInfo.FindSystemTimeZoneById("Asia/Taipei");
-        }
-        catch (TimeZoneNotFoundException)
-        {
-            return TimeZoneInfo.FindSystemTimeZoneById("Taipei Standard Time");
         }
     }
 }

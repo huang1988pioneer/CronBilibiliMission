@@ -9,6 +9,8 @@ public sealed class GitHubSettings
     public string Repo { get; set; } = GitHubRepoSlug.Default;
     public string? Token { get; set; }
     public bool RememberToken { get; set; }
+    public DateTimeOffset? LastCookieExpiresAt { get; set; }
+    public DateTimeOffset? LastSessionExpiresAt { get; set; }
 }
 
 public static class GitHubSettingsStore
@@ -41,6 +43,8 @@ public static class GitHubSettingsStore
                 Repo = string.IsNullOrWhiteSpace(stored.Repo) ? GitHubRepoSlug.Default : stored.Repo,
                 RememberToken = stored.RememberToken,
                 Token = stored.RememberToken ? Unprotect(stored.ProtectedToken) : null,
+                LastCookieExpiresAt = stored.LastCookieExpiresAt,
+                LastSessionExpiresAt = stored.LastSessionExpiresAt,
             };
         }
         catch
@@ -57,8 +61,18 @@ public static class GitHubSettingsStore
             Repo = string.IsNullOrWhiteSpace(settings.Repo) ? GitHubRepoSlug.Default : settings.Repo.Trim(),
             RememberToken = settings.RememberToken,
             ProtectedToken = settings.RememberToken ? Protect(settings.Token) : null,
+            LastCookieExpiresAt = settings.LastCookieExpiresAt,
+            LastSessionExpiresAt = settings.LastSessionExpiresAt,
         };
         File.WriteAllText(SettingsPath, JsonSerializer.Serialize(stored, JsonOptions));
+    }
+
+    public static void SaveExpiry(DateTimeOffset? cookieExpiresAt, DateTimeOffset? sessionExpiresAt)
+    {
+        var settings = Load();
+        settings.LastCookieExpiresAt = cookieExpiresAt;
+        settings.LastSessionExpiresAt = sessionExpiresAt;
+        Save(settings);
     }
 
     private static string? Protect(string? token)
@@ -99,5 +113,7 @@ public static class GitHubSettingsStore
         public string Repo { get; set; } = GitHubRepoSlug.Default;
         public string? ProtectedToken { get; set; }
         public bool RememberToken { get; set; }
+        public DateTimeOffset? LastCookieExpiresAt { get; set; }
+        public DateTimeOffset? LastSessionExpiresAt { get; set; }
     }
 }

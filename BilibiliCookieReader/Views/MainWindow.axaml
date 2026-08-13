@@ -8,7 +8,7 @@
         d:DesignHeight="760"
         x:Class="BilibiliCookieReader.Views.MainWindow"
         x:DataType="vm:MainViewModel"
-        Title="Bilibili Cookie 讀取器"
+        Title="{Binding WindowTitle}"
         Width="880"
         Height="860"
         MinWidth="720"
@@ -88,6 +88,25 @@
           </StackPanel>
         </Border>
 
+        <Border Classes="expiry"
+                Classes.ok="{Binding IsExpiryOk}"
+                Classes.soon="{Binding IsExpirySoon}"
+                Classes.urgent="{Binding IsExpiryUrgent}"
+                Classes.expired="{Binding IsExpiryExpired}"
+                IsVisible="{Binding HasExpiryReminder}">
+          <StackPanel Spacing="8">
+            <TextBlock Text="Cookie / Session 到期提醒"
+                       FontSize="18"
+                       FontWeight="SemiBold" />
+            <TextBlock Text="{Binding ExpiryTitle}"
+                       FontSize="15"
+                       FontWeight="SemiBold"
+                       TextWrapping="Wrap" />
+            <TextBlock Text="{Binding ExpiryDetail}"
+                       TextWrapping="Wrap" />
+          </StackPanel>
+        </Border>
+
         <ItemsControl ItemsSource="{Binding Fields}">
           <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
@@ -101,7 +120,7 @@
                       BorderThickness="1"
                       CornerRadius="14"
                       Padding="22">
-                <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="8">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="8">
                   <Grid ColumnDefinitions="*,Auto">
                     <StackPanel>
                       <TextBlock Text="{Binding EnvName}"
@@ -123,6 +142,10 @@
                            AcceptsReturn="True"
                            TextWrapping="Wrap" />
                   <TextBlock Classes="muted" FontSize="12" Text="{Binding MetaText}" />
+                  <TextBlock FontSize="12"
+                             Foreground="#9A6700"
+                             Text="這個 Cookie 即將到期，請預定重新登入 Bilibili、匯出 cookies.txt 並更新 GitHub Secrets。"
+                             IsVisible="{Binding IsExpiringSoon}" />
                   <TextBlock FontSize="12"
                              Foreground="#B42318"
                              Text="這個 Cookie 已過期，請重新登入 Bilibili 後再匯出。"

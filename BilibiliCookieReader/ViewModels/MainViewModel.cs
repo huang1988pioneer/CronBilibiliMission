@@ -63,7 +63,32 @@ public partial class MainViewModel : ViewModelBase
     [NotifyCanExecuteChangedFor(nameof(UpdateGitHubSecretsCommand))]
     public partial bool ConfirmOverwriteSecrets { get; set; }
 
+    [ObservableProperty]
+    public partial bool HasExpiryReminder { get; set; }
+
+    [ObservableProperty]
+    public partial string ExpiryTitle { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial string ExpiryDetail { get; set; } = string.Empty;
+
+    [ObservableProperty]
+    public partial bool IsExpiryOk { get; set; }
+
+    [ObservableProperty]
+    public partial bool IsExpirySoon { get; set; }
+
+    [ObservableProperty]
+    public partial bool IsExpiryUrgent { get; set; }
+
+    [ObservableProperty]
+    public partial bool IsExpiryExpired { get; set; }
+
     public string RevealButtonText => RevealValues ? "隱藏明文" : "顯示明文";
+
+    public string WindowTitle => HasExpiryReminder && !string.IsNullOrWhiteSpace(ExpiryTitle)
+        ? "Bilibili Cookie 讀取器 · 到期提醒"
+        : "Bilibili Cookie 讀取器";
 
     public MainViewModel()
     {
@@ -76,6 +101,7 @@ public partial class MainViewModel : ViewModelBase
     {
         _topLevel = topLevel;
         LoadGitHubSettings();
+        ShowSavedExpiryReminder();
         _ = TryFillGhTokenAsync();
         var suggested = BilibiliCookieParser.FindDefaultCookieFile();
         if (string.IsNullOrWhiteSpace(suggested))
@@ -125,8 +151,9 @@ public partial class MainViewModel : ViewModelBase
             _cookies = null;
             HasResult = false;
             HasAllThree = false;
-            foreach (var field in Fields)
-                field.Clear(RevealValues);
+            foreach (var item in Fields)
+                item.Clear(RevealValues);
+            ShowSavedExpiryReminder();
             SetStatus(ex.Message, isError: true);
         }
     }
@@ -292,7 +319,10 @@ public partial class MainViewModel : ViewModelBase
             var result = await GitHubActionsSecretClient.UpdateWithFallbackAsync(repo, GitHubToken, secrets);
             PersistGitHubSettings();
             ConfirmOverwriteSecrets = false;
-            SetStatus(result.Message, isError: !result.Ok);
+            var message = result.Message;
+            if (result.Ok && HasExpiryReminder)
+                message += " " + ExpiryTitle;
+            SetStatus(message, isError: !result.Ok);
         }
         catch (Exception ex)
         {
@@ -315,11 +345,14 @@ public partial class MainViewModel : ViewModelBase
 
     private void PersistGitHubSettings()
     {
+        var previous = GitHubSettingsStore.Load();
         GitHubSettingsStore.Save(new GitHubSettings
         {
             Repo = GitHubRepo.Trim(),
             Token = GitHubToken,
             RememberToken = RememberGitHubToken,
+            LastCookieExpiresAt = previous.LastCookieExpiresAt,
+            LastSessionExpiresAt = previous.LastSessionExpiresAt,
         });
     }
 
@@ -332,14 +365,62 @@ public partial class MainViewModel : ViewModelBase
         BiliJct.Apply(parsed.BiliJct, RevealValues);
         DedeUserId.Apply(parsed.DedeUserId, RevealValues);
 
+        var reminder = CookieExpiry.From(parsed);
+        ApplyExpiryReminder(reminder);
+        GitHubSettingsStore.SaveExpiry(reminder.CookieExpiresAt, reminder.SessionExpiresAt);
+
         var found = parsed.Fields.Count(item => item.HasValue);
         var source = string.IsNullOrWhiteSpace(parsed.SourcePath)
             ? "檔案"
             : Path.GetFileName(parsed.SourcePath);
         var message = $"已從 {source} 讀到 {found}/3 個欄位。";
+        if (reminder.HasDate)
+            message += " " + reminder.Title;
         if (parsed.Warnings.Count > 0)
             message += " " + string.Join(" ", parsed.Warnings);
-        SetStatus(message, isError: !parsed.HasAll || parsed.Fields.Any(item => item.IsExpired));
+        var alarming = reminder.Urgency is ExpiryUrgency.Expired or ExpiryUrgency.Urgent;
+        SetStatus(message, isError: !parsed.HasAll || parsed.Fields.Any(item => item.IsExpired) || alarming);
+    }
+
+    private void ShowSavedExpiryReminder()
+    {
+        var settings = GitHubSettingsStore.Load();
+        var reminder = CookieExpiry.From(settings.LastCookieExpiresAt, settings.LastSessionExpiresAt);
+        if (!reminder.HasDate)
+        {
+            ClearExpiryReminder();
+            return;
+        }
+
+        ApplyExpiryReminder(reminder with
+        {
+            Detail = "這是上次讀取時記下的預定過期日。請再讀一次 cookies.txt 確認是否仍有效。"
+                     + " " + reminder.Detail,
+        });
+    }
+
+    private void ApplyExpiryReminder(CookieExpiryReminder reminder)
+    {
+        HasExpiryReminder = reminder.HasDate;
+        ExpiryTitle = reminder.Title;
+        ExpiryDetail = reminder.Detail;
+        IsExpiryOk = reminder.Urgency == ExpiryUrgency.Ok;
+        IsExpirySoon = reminder.Urgency == ExpiryUrgency.Soon;
+        IsExpiryUrgent = reminder.Urgency == ExpiryUrgency.Urgent;
+        IsExpiryExpired = reminder.Urgency == ExpiryUrgency.Expired;
+        OnPropertyChanged(nameof(WindowTitle));
+    }
+
+    private void ClearExpiryReminder()
+    {
+        HasExpiryReminder = false;
+        ExpiryTitle = string.Empty;
+        ExpiryDetail = string.Empty;
+        IsExpiryOk = false;
+        IsExpirySoon = false;
+        IsExpiryUrgent = false;
+        IsExpiryExpired = false;
+        OnPropertyChanged(nameof(WindowTitle));
     }
 
     private async Task<bool> CopyTextAsync(string text)

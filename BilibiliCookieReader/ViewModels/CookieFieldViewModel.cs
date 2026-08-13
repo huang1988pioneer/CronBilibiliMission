@@ -29,6 +29,9 @@ public partial class CookieFieldViewModel : ViewModelBase
     public partial bool IsExpired { get; set; }
 
     [ObservableProperty]
+    public partial bool IsExpiringSoon { get; set; }
+
+    [ObservableProperty]
     public partial bool IsRevealed { get; set; }
 
     [ObservableProperty]
@@ -58,6 +61,7 @@ public partial class CookieFieldViewModel : ViewModelBase
         Value = field.Value;
         HasValue = field.HasValue;
         IsExpired = field.IsExpired;
+        IsExpiringSoon = field.IsExpiringSoon;
         MetaText = field.HasValue ? field.MetaText : "檔案中沒有這個欄位";
         IsRevealed = reveal;
         IsLoaded = true;
@@ -69,6 +73,7 @@ public partial class CookieFieldViewModel : ViewModelBase
         Value = string.Empty;
         HasValue = false;
         IsExpired = false;
+        IsExpiringSoon = false;
         MetaText = "尚未讀取";
         IsRevealed = reveal;
         IsLoaded = false;
