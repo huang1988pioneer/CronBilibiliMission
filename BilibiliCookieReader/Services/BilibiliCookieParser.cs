@@ -265,8 +265,8 @@ public static class BilibiliCookieParser
         return new BilibiliCookieSet
         {
             SessData = ToField(SessDataName, "SESSDATA", sess),
-            BiliJct = ToField(BiliJctName, "bili_jct", jct),
-            DedeUserId = ToField(DedeUserIdName, "DedeUserID", mid),
+            BiliJct = ToField(BiliJctName, "BILI_JCT", jct),
+            DedeUserId = ToField(DedeUserIdName, "DEDEUSERID", mid),
         };
     }
 
@@ -422,8 +422,8 @@ public static class BilibiliCookieParser
 public sealed record BilibiliCookieSet
 {
     public CookieField SessData { get; init; } = new() { EnvName = "SESSDATA", SecretName = "SESSDATA" };
-    public CookieField BiliJct { get; init; } = new() { EnvName = "BILI_JCT", SecretName = "bili_jct" };
-    public CookieField DedeUserId { get; init; } = new() { EnvName = "DEDEUSERID", SecretName = "DedeUserID" };
+    public CookieField BiliJct { get; init; } = new() { EnvName = "BILI_JCT", SecretName = "BILI_JCT" };
+    public CookieField DedeUserId { get; init; } = new() { EnvName = "DEDEUSERID", SecretName = "DEDEUSERID" };
     public string? SourcePath { get; init; }
     public IReadOnlyList<string> Warnings { get; init; } = [];
 

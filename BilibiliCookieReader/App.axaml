@@ -2,55 +2,141 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="BilibiliCookieReader.App"
              RequestedThemeVariant="Light">
+  <Application.Resources>
+    <Color x:Key="Ink">#1A1D23</Color>
+    <Color x:Key="InkMuted">#4E5560</Color>
+    <Color x:Key="Paper">#E7E9ED</Color>
+    <Color x:Key="Surface">#F7F8FA</Color>
+    <Color x:Key="Line">#C9CED6</Color>
+    <Color x:Key="Accent">#D94877</Color>
+    <Color x:Key="AccentHover">#C13A68</Color>
+    <Color x:Key="Danger">#B42318</Color>
+    <Color x:Key="Warn">#8A5800</Color>
+    <Color x:Key="Ok">#176B42</Color>
+  </Application.Resources>
   <Application.Styles>
     <FluentTheme />
+    <Style Selector="Window">
+      <Setter Property="FontFamily" Value="Segoe UI Variable, Segoe UI, Inter, sans-serif" />
+      <Setter Property="Foreground" Value="{DynamicResource Ink}" />
+    </Style>
+    <Style Selector="TextBlock">
+      <Setter Property="Foreground" Value="{DynamicResource Ink}" />
+    </Style>
+    <Style Selector="TextBlock.muted">
+      <Setter Property="Foreground" Value="{DynamicResource InkMuted}" />
+    </Style>
+    <Style Selector="TextBlock.error">
+      <Setter Property="Foreground" Value="{DynamicResource Danger}" />
+    </Style>
+    <Style Selector="TextBlock.ok">
+      <Setter Property="Foreground" Value="{DynamicResource Ok}" />
+    </Style>
+    <Style Selector="TextBlock.warn">
+      <Setter Property="Foreground" Value="{DynamicResource Warn}" />
+    </Style>
+    <Style Selector="TextBlock.title">
+      <Setter Property="FontSize" Value="22" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style Selector="TextBlock.section">
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style Selector="Button">
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="Padding" Value="12,8" />
+      <Setter Property="FontSize" Value="13" />
+    </Style>
     <Style Selector="Button.primary">
-      <Setter Property="Background" Value="#FB7299" />
+      <Setter Property="Background" Value="{DynamicResource Accent}" />
       <Setter Property="Foreground" Value="White" />
       <Setter Property="FontWeight" Value="SemiBold" />
       <Setter Property="Padding" Value="16,9" />
-      <Setter Property="CornerRadius" Value="8" />
     </Style>
     <Style Selector="Button.primary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-      <Setter Property="Background" Value="#E85A86" />
+      <Setter Property="Background" Value="{DynamicResource AccentHover}" />
+    </Style>
+    <Style Selector="Button.primary:disabled /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#E2A4B8" />
+      <Setter Property="Foreground" Value="White" />
     </Style>
     <Style Selector="Button.secondary">
-      <Setter Property="Padding" Value="14,9" />
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Line}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="Foreground" Value="{DynamicResource Ink}" />
+    </Style>
+    <Style Selector="Button.secondary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#EEF0F3" />
+    </Style>
+    <Style Selector="Button.ghost">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Foreground" Value="{DynamicResource InkMuted}" />
+      <Setter Property="Padding" Value="8,6" />
+      <Setter Property="FontSize" Value="12" />
+    </Style>
+    <Style Selector="Button.ghost:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Foreground" Value="{DynamicResource Ink}" />
+      <Setter Property="Background" Value="#EEF0F3" />
+    </Style>
+    <Style Selector="TextBox">
+      <Setter Property="MinHeight" Value="36" />
       <Setter Property="CornerRadius" Value="8" />
-    </Style>
-    <Style Selector="TextBlock.muted">
-      <Setter Property="Foreground" Value="#5F6368" />
-    </Style>
-    <Style Selector="TextBlock.error">
-      <Setter Property="Foreground" Value="#B42318" />
-    </Style>
-    <Style Selector="TextBlock.ok">
-      <Setter Property="Foreground" Value="#1B7A4A" />
     </Style>
     <Style Selector="TextBox.mono">
       <Setter Property="FontFamily" Value="Cascadia Mono, Consolas, Courier New" />
-      <Setter Property="FontSize" Value="13" />
+      <Setter Property="FontSize" Value="12" />
+    </Style>
+    <Style Selector="Border.panel">
+      <Setter Property="Background" Value="{DynamicResource Surface}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Line}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="12" />
+      <Setter Property="Padding" Value="20" />
+    </Style>
+    <Style Selector="Border.dropzone">
+      <Setter Property="Background" Value="{DynamicResource Surface}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Line}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="12" />
+      <Setter Property="Padding" Value="18" />
+    </Style>
+    <Style Selector="Border.dropzone.active">
+      <Setter Property="BorderBrush" Value="{DynamicResource Accent}" />
+      <Setter Property="Background" Value="#FDF2F6" />
     </Style>
     <Style Selector="Border.expiry">
-      <Setter Property="CornerRadius" Value="14" />
-      <Setter Property="Padding" Value="22" />
+      <Setter Property="CornerRadius" Value="10" />
+      <Setter Property="Padding" Value="12,10" />
       <Setter Property="BorderThickness" Value="1" />
     </Style>
     <Style Selector="Border.expiry.ok">
-      <Setter Property="Background" Value="#E8F5EE" />
-      <Setter Property="BorderBrush" Value="#B7D7C4" />
+      <Setter Property="Background" Value="#E7F4EC" />
+      <Setter Property="BorderBrush" Value="#B7D4C2" />
     </Style>
     <Style Selector="Border.expiry.soon">
       <Setter Property="Background" Value="#FFF6E5" />
-      <Setter Property="BorderBrush" Value="#E8C37A" />
+      <Setter Property="BorderBrush" Value="#E4C48A" />
     </Style>
     <Style Selector="Border.expiry.urgent">
       <Setter Property="Background" Value="#FFF1E8" />
-      <Setter Property="BorderBrush" Value="#F0A36C" />
+      <Setter Property="BorderBrush" Value="#E8B08A" />
     </Style>
     <Style Selector="Border.expiry.expired">
       <Setter Property="Background" Value="#FDECEA" />
-      <Setter Property="BorderBrush" Value="#F5C2C0" />
+      <Setter Property="BorderBrush" Value="#E8B4B0" />
     </Style>
+    <Style Selector="Border.chip">
+      <Setter Property="Background" Value="#F3D0DB" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="Padding" Value="8,4" />
+    </Style>
+    <Style Selector="Border.row">
+      <Setter Property="Padding" Value="0,14" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Line}" />
+      <Setter Property="BorderThickness" Value="0,0,0,1" />
+    </Style>
+
   </Application.Styles>
 </Application>

@@ -12,6 +12,7 @@ public partial class MainWindow : Window
         InitializeComponent();
         Opened += OnOpened;
         AddHandler(DragDrop.DragOverEvent, OnDragOver);
+        AddHandler(DragDrop.DragLeaveEvent, OnDragLeave);
         AddHandler(DragDrop.DropEvent, OnDrop);
     }
 
@@ -32,11 +33,17 @@ public partial class MainWindow : Window
     private void OnDragOver(object? sender, DragEventArgs e)
     {
         var files = e.DataTransfer?.TryGetFiles();
-        e.DragEffects = files?.Any() == true ? DragDropEffects.Copy : DragDropEffects.None;
+        var canDrop = files?.Any() == true;
+        e.DragEffects = canDrop ? DragDropEffects.Copy : DragDropEffects.None;
+        DropZone.Classes.Set("active", canDrop);
     }
+
+    private void OnDragLeave(object? sender, DragEventArgs e) =>
+        DropZone.Classes.Set("active", false);
 
     private void OnDrop(object? sender, DragEventArgs e)
     {
+        DropZone.Classes.Set("active", false);
         if (DataContext is not MainViewModel vm)
             return;
 

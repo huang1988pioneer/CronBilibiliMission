@@ -113,7 +113,7 @@ public partial class MainViewModel : ViewModelBase
 
     private void LoadGitHubSettings()
     {
-        var settings = GitHubSettingsStore.Load();
+        var settings = GitHubSecretPublisher.LoadPreferences();
         GitHubRepo = string.IsNullOrWhiteSpace(settings.Repo) ? GitHubRepoSlug.Default : settings.Repo;
         RememberGitHubToken = settings.RememberToken;
         if (settings.RememberToken && !string.IsNullOrWhiteSpace(settings.Token))
@@ -143,8 +143,7 @@ public partial class MainViewModel : ViewModelBase
 
         try
         {
-            var parsed = BilibiliCookieParser.ParseFile(path);
-            Apply(parsed);
+            Apply(CookieSession.OpenFile(path));
         }
         catch (Exception ex)
         {
@@ -284,7 +283,7 @@ public partial class MainViewModel : ViewModelBase
     [RelayCommand]
     private void UseGhToken()
     {
-        var token = GitHubCli.TryGetToken();
+        var token = GitHubSecretPublisher.TryResolveToken(null);
         if (string.IsNullOrWhiteSpace(token))
         {
             SetStatus(
@@ -305,19 +304,12 @@ public partial class MainViewModel : ViewModelBase
         if (_cookies is null || !CanUpdateGitHubSecrets())
             return;
 
-        if (!GitHubRepoSlug.TryParse(GitHubRepo, out var repo))
-        {
-            SetStatus("Repo 格式應為 owner/name，例如 huang1988pioneer/CronBilibiliMission。", isError: true);
-            return;
-        }
-
         IsBusy = true;
-        SetStatus($"正在更新 {repo.FullName} 的 SESSDATA、BILI_JCT、DEDEUSERID…", isError: false);
+        SetStatus("正在更新 GitHub Actions 的 SESSDATA、BILI_JCT、DEDEUSERID…", isError: false);
         try
         {
-            var secrets = GitHubActionsSecretClient.SecretsFromCookies(_cookies);
-            var result = await GitHubActionsSecretClient.UpdateWithFallbackAsync(repo, GitHubToken, secrets);
-            PersistGitHubSettings();
+            var result = await GitHubSecretPublisher.PublishAsync(GitHubRepo, GitHubToken, _cookies);
+            GitHubSecretPublisher.SavePreferences(GitHubRepo, GitHubToken, RememberGitHubToken);
             ConfirmOverwriteSecrets = false;
             var message = result.Message;
             if (result.Ok && HasExpiryReminder)
@@ -340,63 +332,33 @@ public partial class MainViewModel : ViewModelBase
         HasAllThree
         && !IsBusy
         && ConfirmOverwriteSecrets
-        && GitHubRepoSlug.TryParse(GitHubRepo, out _)
-        && (!string.IsNullOrWhiteSpace(GitHubToken) || GitHubCli.IsAvailable());
+        && GitHubSecretPublisher.CanPublish(GitHubRepo, GitHubToken);
 
-    private void PersistGitHubSettings()
+    private void Apply(CookieSession session)
     {
-        var previous = GitHubSettingsStore.Load();
-        GitHubSettingsStore.Save(new GitHubSettings
-        {
-            Repo = GitHubRepo.Trim(),
-            Token = GitHubToken,
-            RememberToken = RememberGitHubToken,
-            LastCookieExpiresAt = previous.LastCookieExpiresAt,
-            LastSessionExpiresAt = previous.LastSessionExpiresAt,
-        });
-    }
-
-    private void Apply(BilibiliCookieSet parsed)
-    {
-        _cookies = parsed;
-        HasResult = parsed.HasAny;
-        HasAllThree = parsed.HasAll;
-        SessData.Apply(parsed.SessData, RevealValues);
-        BiliJct.Apply(parsed.BiliJct, RevealValues);
-        DedeUserId.Apply(parsed.DedeUserId, RevealValues);
-
-        var reminder = CookieExpiry.From(parsed);
-        ApplyExpiryReminder(reminder);
-        GitHubSettingsStore.SaveExpiry(reminder.CookieExpiresAt, reminder.SessionExpiresAt);
-
-        var found = parsed.Fields.Count(item => item.HasValue);
-        var source = string.IsNullOrWhiteSpace(parsed.SourcePath)
-            ? "檔案"
-            : Path.GetFileName(parsed.SourcePath);
-        var message = $"已從 {source} 讀到 {found}/3 個欄位。";
-        if (reminder.HasDate)
-            message += " " + reminder.Title;
-        if (parsed.Warnings.Count > 0)
-            message += " " + string.Join(" ", parsed.Warnings);
-        var alarming = reminder.Urgency is ExpiryUrgency.Expired or ExpiryUrgency.Urgent;
-        SetStatus(message, isError: !parsed.HasAll || parsed.Fields.Any(item => item.IsExpired) || alarming);
+        _cookies = session.Cookies;
+        HasResult = session.HasAny;
+        HasAllThree = session.HasAll;
+        SessData.Apply(session.Cookies.SessData, RevealValues);
+        BiliJct.Apply(session.Cookies.BiliJct, RevealValues);
+        DedeUserId.Apply(session.Cookies.DedeUserId, RevealValues);
+        ApplyExpiryReminder(session.Reminder);
+        if (session.HasAny)
+            GitHubSecretPublisher.RememberExpiry(session.Reminder);
+        SetStatus(session.Status, isError: session.IsAlarming);
     }
 
     private void ShowSavedExpiryReminder()
     {
-        var settings = GitHubSettingsStore.Load();
-        var reminder = CookieExpiry.From(settings.LastCookieExpiresAt, settings.LastSessionExpiresAt);
-        if (!reminder.HasDate)
+        var settings = GitHubSecretPublisher.LoadPreferences();
+        var saved = CookieSession.FromSavedExpiry(settings.LastCookieExpiresAt, settings.LastSessionExpiresAt);
+        if (saved is null)
         {
             ClearExpiryReminder();
             return;
         }
 
-        ApplyExpiryReminder(reminder with
-        {
-            Detail = "這是上次讀取時記下的預定過期日。請再讀一次 cookies.txt 確認是否仍有效。"
-                     + " " + reminder.Detail,
-        });
+        ApplyExpiryReminder(saved.Reminder);
     }
 
     private void ApplyExpiryReminder(CookieExpiryReminder reminder)

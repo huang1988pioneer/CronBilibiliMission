@@ -37,7 +37,7 @@ public partial class CookieFieldViewModel : ViewModelBase
     [ObservableProperty]
     public partial bool IsLoaded { get; set; }
 
-    public string SecretHint => $"GitHub Secret：{SecretName}";
+    public string SecretHint => EnvName == SecretName ? string.Empty : SecretName;
 
     public string DisplayValue => !IsLoaded
         ? string.Empty

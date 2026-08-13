@@ -30,9 +30,9 @@ public class BilibiliCookieParserTests
         Assert.True(set.HasAll);
         Assert.Contains("SESSDATA=BILI_SESS%2Ckeep", set.ToCookieHeader());
         Assert.Contains("BILI_JCT=bili_jct_value", set.ToEnvBlock());
-        Assert.Contains("bili_jct=bili_jct_value", set.ToGitHubSecretsBlock());
+        Assert.Contains("BILI_JCT=bili_jct_value", set.ToGitHubSecretsBlock());
         Assert.Contains("DEDEUSERID=2117627494", set.ToEnvBlock());
-        Assert.Contains("DedeUserID=2117627494", set.ToGitHubSecretsBlock());
+        Assert.Contains("DEDEUSERID=2117627494", set.ToGitHubSecretsBlock());
     }
 
     [Fact]
