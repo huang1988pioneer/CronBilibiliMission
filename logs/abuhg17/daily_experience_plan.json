@@ -1,0 +1,10 @@
+{
+  "confirmations_done": [],
+  "date": "2026-08-14",
+  "dice": 6,
+  "initial_done": false,
+  "target_hour_24h": 11,
+  "task": "daily_experience",
+  "timezone": "Asia/Taipei",
+  "weekday": 5
+}
