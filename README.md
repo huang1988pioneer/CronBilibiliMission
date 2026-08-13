@@ -74,6 +74,15 @@ GitHub Actions 會在每天台北時間 02:05 到 19:05 每小時檢查一次，
 
 桌面工具（Avalonia）可讀取 Netscape 格式的 `cookies.txt`（例如 `Documents\abuhg17_cookies.txt`），取出 `SESSDATA`、`BILI_JCT` / `bili_jct`、`DEDEUSERID` / `DedeUserID`，並複製成 GitHub Secrets 或本機環境變數。
 
+下載 [BilibiliCookieReader v1.0.0](https://github.com/huang1988pioneer/CronBilibiliMission/releases/tag/v1.0.0)（自包含，無需另外安裝 .NET）：
+
+- [Windows x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.0.0/BilibiliCookieReader-v1.0.0-win-x64.zip)
+- [macOS Apple Silicon](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.0.0/BilibiliCookieReader-v1.0.0-osx-arm64.zip)
+- [macOS Intel](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.0.0/BilibiliCookieReader-v1.0.0-osx-x64.zip)
+- [Linux x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.0.0/BilibiliCookieReader-v1.0.0-linux-x64.zip)
+
+本機開發：
+
 ```bash
 cd BilibiliCookieReader
 dotnet run
