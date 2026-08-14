@@ -13,3 +13,6 @@
 2026-08-13T22:53:48+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
 2026-08-13T23:51:22+0000 INFO root: Waiting. Now 7:00 Taipei, target is 8:00.
 2026-08-13T23:51:22+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-08-14T02:34:44+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 471.4, level: Lv6, exp: 33649, exp to next: None, days at 15 exp/day: None
+2026-08-14T02:34:45+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-08-14T02:34:45+0000 ERROR root: HTTP 404: xxxx
