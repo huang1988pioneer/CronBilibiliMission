@@ -18,3 +18,9 @@
 2026-08-14T04:56:27+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 364.7, level: Lv5, exp: 13560, exp to next: 15240, days at 15 exp/day: 1016
 2026-08-14T04:56:28+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
 2026-08-14T04:56:28+0000 ERROR root: HTTP 404: xxxx
+2026-08-14T05:28:49+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 365.7, level: Lv5, exp: 13570, exp to next: 15230, days at 15 exp/day: 1016
+2026-08-14T05:28:50+0000 INFO root: Selected video: BV17fgn6SEYh DeepSeek Harness 重磅发布！一切皆插件！万物皆可DIY ！！
+2026-08-14T05:28:50+0000 INFO root: Watch task: watch_reported 0
+2026-08-14T05:28:50+0000 INFO root: Share task: share_failed 账号异常,操作失败
+2026-08-14T05:28:51+0000 WARNING root: Coin task failed for BV12og76WESD: 非法访问
+2026-08-14T05:28:51+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
