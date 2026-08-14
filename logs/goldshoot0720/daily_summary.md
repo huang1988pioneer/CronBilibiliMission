@@ -9,7 +9,7 @@
 | 擲骰 | **3** |
 | 目標時段 | **8:00** 後 |
 | 首次執行 | 2026-08-14T14:21:03+08:00 |
-| 補查 1h / 3h / 6h | ✓ / — / — |
+| 補查 1h / 3h / 6h | ✓ / ✓ / — |
 
 ## 任務進度
 
@@ -21,6 +21,7 @@
 | 2026-08-14T13:58:12+08:00 | 手動 | ✓ | logged_in | watch_reported | share_reported | coin_skipped | `BV1b6gp66E6w` 欧盟拳打中美，懂王制裁瓜子水饺，老中咋又让欧美急眼了？ |
 | 2026-08-14T14:21:05+08:00 | 首次 | ✓ | logged_in | watch_reported | share_reported | coin_skipped | `BV1f5uZ6nErH` “现 状 青 年” |
 | 2026-08-14T16:23:20+08:00 | +1h 補查 | ✓ | logged_in | watch_skipped | share_skipped | coin_skipped | — |
+| 2026-08-14T18:12:36+08:00 | +3h 補查 | ✓ | logged_in | watch_skipped | share_skipped | coin_skipped | — |
 
 **獎勵狀態（最新）**
 
@@ -44,4 +45,4 @@
 1. 分享曾失敗，後續補查有機會補上。
 
 ---
-_產生時間（台北）：2026-08-14T16:23:20+08:00_
+_產生時間（台北）：2026-08-14T18:12:36+08:00_

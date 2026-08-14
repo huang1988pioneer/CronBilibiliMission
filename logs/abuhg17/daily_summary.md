@@ -9,7 +9,7 @@
 | 擲骰 | **6** |
 | 目標時段 | **11:00** 後 |
 | 首次執行 | 2026-08-14T14:20:59+08:00 |
-| 補查 1h / 3h / 6h | ✓ / — / — |
+| 補查 1h / 3h / 6h | ✓ / ✓ / — |
 
 ## 任務進度
 
@@ -21,6 +21,7 @@
 | 2026-08-14T13:58:10+08:00 | 手動 | ✓ | logged_in | watch_reported | share_reported | coin_incomplete | `BV17WgV6hEdX` 这视频等了五年！ |
 | 2026-08-14T14:21:03+08:00 | 首次 | ✓ | logged_in | watch_reported | share_reported | coins_given | `BV1DDui6jEdF` 妻子冷淡让老公出去花钱找小美，老公不愿意要求离婚 |
 | 2026-08-14T16:23:19+08:00 | +1h 補查 | ✓ | logged_in | watch_skipped | share_skipped | coin_skipped | — |
+| 2026-08-14T18:12:36+08:00 | +3h 補查 | ✓ | logged_in | watch_skipped | share_skipped | coin_skipped | — |
 
 **獎勵狀態（最新）**
 
@@ -50,4 +51,4 @@
 1. 分享曾失敗，後續補查有機會補上。
 
 ---
-_產生時間（台北）：2026-08-14T16:23:19+08:00_
+_產生時間（台北）：2026-08-14T18:12:36+08:00_
