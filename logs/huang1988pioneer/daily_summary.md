@@ -9,7 +9,7 @@
 | 擲骰 | **1** |
 | 目標時段 | **6:00** 後 |
 | 首次執行 | 2026-08-14T14:20:57+08:00 |
-| 補查 1h / 3h / 6h | — / — / — |
+| 補查 1h / 3h / 6h | ✓ / — / — |
 
 ## 任務進度
 
@@ -20,6 +20,7 @@
 | 2026-08-14T13:40:36+08:00 | 手動 | ✗ | logged_in | watch_reported | share_failed | coin_skipped | `BV1tBuq65Egr` 历时150天！一条命看完《厉鬼将行》第一季！都市灵异动画！ |
 | 2026-08-14T13:58:07+08:00 | 手動 | ✓ | logged_in | watch_reported | share_reported | coin_skipped | `BV1v2uB6ZEZH` 【vm手书/超度我】考，我在做什么。 |
 | 2026-08-14T14:20:59+08:00 | 首次 | ✓ | logged_in | watch_reported | share_reported | coin_skipped | `BV1fvgJ6jE59` “同志们，准备好被写进历史了吗？” |
+| 2026-08-14T16:23:18+08:00 | +1h 補查 | ✓ | logged_in | watch_skipped | share_skipped | coin_skipped | — |
 
 **獎勵狀態（最新）**
 
@@ -64,4 +65,4 @@
 1. 分享曾失敗，後續補查有機會補上。
 
 ---
-_產生時間（台北）：2026-08-14T14:20:59+08:00_
+_產生時間（台北）：2026-08-14T16:23:18+08:00_
