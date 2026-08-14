@@ -157,7 +157,7 @@ public static class BilibiliNavClient
     {
         if (!cookies.HasAll)
         {
-            return new NavCheckResult(false, "三個欄位不齊，無法驗證登入。");
+            return new NavCheckResult(false, "四個 Cookie 欄位不齊，無法驗證登入。");
         }
 
         using var request = new HttpRequestMessage(HttpMethod.Get, NavUrl);

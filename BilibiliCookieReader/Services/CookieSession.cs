@@ -62,7 +62,7 @@ public sealed class CookieSession
         var source = string.IsNullOrWhiteSpace(cookies.SourcePath)
             ? "檔案"
             : Path.GetFileName(cookies.SourcePath);
-        var status = $"已從 {source} 讀到 {found}/3 個欄位。";
+        var status = $"已從 {source} 讀到 {found}/{cookies.Fields.Count} 個欄位。";
         if (reminder.HasDate)
             status += " " + reminder.Title;
         if (cookies.Warnings.Count > 0)

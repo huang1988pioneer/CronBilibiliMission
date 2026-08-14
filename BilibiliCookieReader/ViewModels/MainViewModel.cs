@@ -30,6 +30,7 @@ public partial class MainViewModel : ViewModelBase
     public CookieFieldViewModel SessData { get; } = new("SESSDATA", "SESSDATA");
     public CookieFieldViewModel BiliJct { get; } = new("BILI_JCT", "BILI_JCT");
     public CookieFieldViewModel DedeUserId { get; } = new("DEDEUSERID", "DEDEUSERID");
+    public CookieFieldViewModel Buvid3 { get; } = new("BUVID3", "BUVID3");
 
     public IReadOnlyList<CookieFieldViewModel> Fields { get; }
 
@@ -38,7 +39,7 @@ public partial class MainViewModel : ViewModelBase
 
     [ObservableProperty]
     public partial string StatusMessage { get; set; } =
-        "選擇或拖放 Netscape cookies.txt，讀取 SESSDATA、BILI_JCT、DEDEUSERID。";
+        "選擇或拖放 Netscape cookies.txt，讀取 SESSDATA、BILI_JCT、DEDEUSERID、BUVID3。";
 
     [ObservableProperty]
     public partial bool IsError { get; set; }
@@ -55,7 +56,7 @@ public partial class MainViewModel : ViewModelBase
     [ObservableProperty]
     [NotifyCanExecuteChangedFor(nameof(VerifyLoginCommand))]
     [NotifyCanExecuteChangedFor(nameof(UpdateGitHubSecretsCommand))]
-    public partial bool HasAllThree { get; set; }
+    public partial bool HasCompleteCookies { get; set; }
 
     [ObservableProperty]
     public partial bool RevealValues { get; set; }
@@ -414,7 +415,7 @@ public partial class MainViewModel : ViewModelBase
 
     public MainViewModel()
     {
-        Fields = [SessData, BiliJct, DedeUserId];
+        Fields = [SessData, BiliJct, DedeUserId, Buvid3];
         foreach (var field in Fields)
             field.CopyRequested = CopyFieldAsync;
         SelectedAccount = Accounts[0];
@@ -560,7 +561,7 @@ public partial class MainViewModel : ViewModelBase
         {
             _cookies = null;
             HasResult = false;
-            HasAllThree = false;
+            HasCompleteCookies = false;
             foreach (var item in Fields)
                 item.Clear(RevealValues);
             ShowSavedExpiryReminder();
@@ -633,7 +634,7 @@ public partial class MainViewModel : ViewModelBase
         if (_cookies is null)
             return;
         if (await CopyTextAsync(_cookies.ToEnvBlock()))
-            SetStatus("已複製 SESSDATA / BILI_JCT / DEDEUSERID。", isError: false);
+            SetStatus("已複製 SESSDATA / BILI_JCT / DEDEUSERID / BUVID3。", isError: false);
     }
 
     [RelayCommand(CanExecute = nameof(HasResult))]
@@ -889,10 +890,10 @@ public partial class MainViewModel : ViewModelBase
         }
     }
 
-    private bool CanVerify() => HasAllThree && !IsBusy;
+    private bool CanVerify() => HasCompleteCookies && !IsBusy;
 
     private bool CanUpdateGitHubSecrets() =>
-        HasAllThree
+        HasCompleteCookies
         && !IsBusy
         && ConfirmOverwriteSecrets
         && GitHubSecretPublisher.CanPublish(GitHubRepo, GitHubToken);
@@ -902,10 +903,11 @@ public partial class MainViewModel : ViewModelBase
         ClearAccountStatus();
         _cookies = session.Cookies;
         HasResult = session.HasAny;
-        HasAllThree = session.HasAll;
+        HasCompleteCookies = session.HasAll;
         SessData.Apply(session.Cookies.SessData, RevealValues);
         BiliJct.Apply(session.Cookies.BiliJct, RevealValues);
         DedeUserId.Apply(session.Cookies.DedeUserId, RevealValues);
+        Buvid3.Apply(session.Cookies.Buvid3, RevealValues);
         ApplyExpiryReminder(session.Reminder);
         if (session.HasAny)
             GitHubSecretPublisher.RememberExpiry(session.Reminder);
@@ -1529,7 +1531,7 @@ public partial class MainViewModel : ViewModelBase
         CookiePath = string.Empty;
         _cookies = null;
         HasResult = false;
-        HasAllThree = false;
+        HasCompleteCookies = false;
         ConfirmOverwriteSecrets = false;
         foreach (var field in Fields)
             field.Clear(RevealValues);

@@ -47,12 +47,15 @@ jobs:
           SESSDATA: ${{ secrets.SESSDATA }}
           BILI_JCT: ${{ secrets.BILI_JCT }}
           DEDEUSERID: ${{ secrets.DEDEUSERID }}
+          BUVID3: ${{ secrets.BUVID3 }}
           SESSDATA2: ${{ secrets.SESSDATA2 }}
           BILI_JCT2: ${{ secrets.BILI_JCT2 }}
           DEDEUSERID2: ${{ secrets.DEDEUSERID2 }}
+          BUVID32: ${{ secrets.BUVID32 }}
           SESSDATA3: ${{ secrets.SESSDATA3 }}
           BILI_JCT3: ${{ secrets.BILI_JCT3 }}
           DEDEUSERID3: ${{ secrets.DEDEUSERID3 }}
+          BUVID33: ${{ secrets.BUVID33 }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           RESEND_API_KEY2: ${{ secrets.RESEND_API_KEY2 }}
           RESEND_API_KEY3: ${{ secrets.RESEND_API_KEY3 }}
@@ -65,11 +68,11 @@ jobs:
             mode="--scheduled"
           fi
 
-          SESSDATA="$SESSDATA" BILI_JCT="$BILI_JCT" DEDEUSERID="$DEDEUSERID" \
+          SESSDATA="$SESSDATA" BILI_JCT="$BILI_JCT" DEDEUSERID="$DEDEUSERID" BUVID3="$BUVID3" \
             python3 scripts/bilibili_sign.py $mode --account huang1988pioneer || status=1
-          SESSDATA="$SESSDATA2" BILI_JCT="$BILI_JCT2" DEDEUSERID="$DEDEUSERID2" \
+          SESSDATA="$SESSDATA2" BILI_JCT="$BILI_JCT2" DEDEUSERID="$DEDEUSERID2" BUVID3="$BUVID32" \
             python3 scripts/bilibili_sign.py $mode --account abuhg17 || status=1
-          SESSDATA="$SESSDATA3" BILI_JCT="$BILI_JCT3" DEDEUSERID="$DEDEUSERID3" \
+          SESSDATA="$SESSDATA3" BILI_JCT="$BILI_JCT3" DEDEUSERID="$DEDEUSERID3" BUVID3="$BUVID33" \
             python3 scripts/bilibili_sign.py $mode --account goldshoot0720 || status=1
           exit $status
 

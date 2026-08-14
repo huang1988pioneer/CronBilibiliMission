@@ -1,4 +1,5 @@
 import unittest
+import os
 from datetime import datetime
 from unittest import mock
 
@@ -41,6 +42,21 @@ class FakeClient:
 
 
 class CoinTaskTests(unittest.TestCase):
+    def test_cookie_includes_buvid3_for_interaction_apis(self):
+        with mock.patch.dict(
+            os.environ,
+            {
+                "SESSDATA": "session",
+                "BILI_JCT": "csrf",
+                "DEDEUSERID": "123",
+                "BUVID3": "device-id",
+            },
+            clear=True,
+        ):
+            auth = bilibili_sign.build_cookie()
+
+        self.assertIn("buvid3=device-id", auth["cookie"])
+
     def test_daily_coin_experience_uses_current_api(self):
         client = bilibili_sign.BilibiliClient("SESSDATA=test", "test-csrf")
         client.request_json = mock.Mock(return_value={"code": 0, "data": 30})

@@ -12,13 +12,14 @@ public class CookieSessionTests
             .bilibili.com	TRUE	/	TRUE	1802178920	SESSDATA	1fe57d6c%2C1802178920%2C4fb69
             .bilibili.com	TRUE	/	TRUE	1802178920	bili_jct	aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
             .bilibili.com	TRUE	/	TRUE	1802178920	DedeUserID	1
+            .bilibili.com	TRUE	/	TRUE	1802178920	buvid3	device-id
             """;
 
         var session = CookieSession.FromText(text, @"C:\tmp\cookies.txt");
 
         Assert.True(session.HasAll);
         Assert.Equal("1fe57d6c%2C1802178920%2C4fb69", session.Cookies.SessData.Value);
-        Assert.Contains("讀到 3/3", session.Status);
+        Assert.Contains("讀到 4/4", session.Status);
         Assert.True(session.Reminder.HasDate);
         Assert.Equal(1802178920, session.Reminder.EffectiveExpiresAt!.Value.ToUnixTimeSeconds());
     }
@@ -38,7 +39,7 @@ public class CookieSessionTests
     [Fact]
     public async Task Publisher_rejects_bad_repo_without_calling_github()
     {
-        var cookies = BilibiliCookieParser.ParseText("SESSDATA=s; bili_jct=j; DedeUserID=1");
+        var cookies = BilibiliCookieParser.ParseText("SESSDATA=s; bili_jct=j; DedeUserID=1; buvid3=b");
         var result = await GitHubSecretPublisher.PublishAsync("not-a-repo", "token", cookies);
 
         Assert.False(result.Ok);

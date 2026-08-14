@@ -1,8 +1,8 @@
 <!--
 THESIS: A two-pane secrets console, not a stack of equal cards.
 OWN-WORLD: Cool paper #E7E9ED, ink #1A1D23, one Bilibili rose accent on primary actions only.
-STORY: Drop a cookies.txt, read three secrets, copy or push them to GitHub Actions.
-FIRST VIEWPORT: Left = file drop + expiry + GitHub form. Right = the three values. Status bar pinned.
+STORY: Drop a cookies.txt, read four secrets, copy or push them to GitHub Actions.
+FIRST VIEWPORT: Left = file drop + expiry + GitHub form. Right = the four values. Status bar pinned.
 FORM: Operate / distilled workbench. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
 -->
 <Window xmlns="https://github.com/avaloniaui"
@@ -52,7 +52,7 @@ FORM: Operate / distilled workbench. FINISH: unreviewed and undocumented is unfi
           <TextBlock Classes="title" Text="Bilibili Cookie 讀取器" />
           <TextBlock Classes="muted"
                      FontSize="13"
-                     Text="讀取 cookies.txt，取出 SESSDATA、BILI_JCT、DEDEUSERID。"
+                     Text="讀取 cookies.txt，取出 SESSDATA、BILI_JCT、DEDEUSERID、BUVID3。"
                      TextWrapping="Wrap" />
         </StackPanel>
         <Border Grid.Column="1" Classes="chip" VerticalAlignment="Top">
@@ -176,7 +176,7 @@ FORM: Operate / distilled workbench. FINISH: unreviewed and undocumented is unfi
                 <CheckBox Content="記住權杖（只存在本機）"
                           FontSize="12"
                           IsChecked="{Binding RememberGitHubToken}" />
-                <CheckBox Content="確定覆寫這三個 Secrets"
+                <CheckBox Content="確定覆寫這四個 Secrets"
                           FontSize="12"
                           IsChecked="{Binding ConfirmOverwriteSecrets}" />
                 <Button Classes="primary"

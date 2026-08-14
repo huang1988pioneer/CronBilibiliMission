@@ -6,7 +6,7 @@ Glossary for CronBilibiliMission. No implementation details.
 A Netscape `cookies.txt` (or equivalent JSON / Cookie header) exported from a logged-in browser.
 
 ## Login Cookie
-The three Bilibili values the daily Action needs: `SESSDATA`, `BILI_JCT` (`bili_jct`), `DEDEUSERID` (`DedeUserID`).
+The four Bilibili values used by the daily Action: `SESSDATA`, `BILI_JCT` (`bili_jct`), `DEDEUSERID` (`DedeUserID`), `BUVID3` (`buvid3`).
 
 ## Wire Value
 The Login Cookie string exactly as the export wrote it. `SESSDATA` often contains `%2C`; decoding it breaks login.
@@ -24,7 +24,7 @@ The unix timestamp embedded in `SESSDATA` (the second comma-separated field).
 The earlier of Cookie Expiry and Session Expiry. This is the date we remind the user about.
 
 ## Action Secret
-A GitHub Actions repository secret. This repo's names are `SESSDATA`, `BILI_JCT`, `DEDEUSERID`.
+A GitHub Actions repository secret. This repo's account-1 names are `SESSDATA`, `BILI_JCT`, `DEDEUSERID`, `BUVID3`.
 
 ## Secret Publish
-Writing the three Action Secrets to a GitHub repo. Overwrites the previous values; GitHub never returns the old ones.
+Writing the four Action Secrets to a GitHub repo. Overwrites the previous values; GitHub never returns the old ones.

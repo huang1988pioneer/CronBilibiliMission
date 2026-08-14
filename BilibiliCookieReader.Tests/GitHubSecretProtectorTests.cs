@@ -22,31 +22,32 @@ public class GitHubSecretProtectorTests
     public void SecretsFromCookies_uses_action_secret_names()
     {
         var cookies = BilibiliCookieParser.ParseText(
-            "SESSDATA=s1; bili_jct=j1; DedeUserID=123");
+            "SESSDATA=s1; bili_jct=j1; DedeUserID=123; buvid3=b1");
         var secrets = GitHubActionsSecretClient.SecretsFromCookies(cookies);
 
         Assert.Equal(
-            new[] { "SESSDATA", "BILI_JCT", "DEDEUSERID" },
+            new[] { "SESSDATA", "BILI_JCT", "DEDEUSERID", "BUVID3" },
             secrets.Select(item => item.Name));
-        Assert.Equal(new[] { "s1", "j1", "123" }, secrets.Select(item => item.Value));
+        Assert.Equal(new[] { "s1", "j1", "123", "b1" }, secrets.Select(item => item.Value));
     }
 
     [Theory]
-    [InlineData("2", "SESSDATA2", "BILI_JCT2", "DEDEUSERID2")]
-    [InlineData("3", "SESSDATA3", "BILI_JCT3", "DEDEUSERID3")]
+    [InlineData("2", "SESSDATA2", "BILI_JCT2", "DEDEUSERID2", "BUVID32")]
+    [InlineData("3", "SESSDATA3", "BILI_JCT3", "DEDEUSERID3", "BUVID33")]
     public void SecretsFromCookies_adds_account_suffix(
         string suffix,
         string sessDataName,
         string biliJctName,
-        string dedeUserIdName)
+        string dedeUserIdName,
+        string buvid3Name)
     {
         var cookies = BilibiliCookieParser.ParseText(
-            "SESSDATA=s1; bili_jct=j1; DedeUserID=123");
+            "SESSDATA=s1; bili_jct=j1; DedeUserID=123; buvid3=b1");
 
         var secrets = GitHubActionsSecretClient.SecretsFromCookies(cookies, suffix);
 
         Assert.Equal(
-            new[] { sessDataName, biliJctName, dedeUserIdName },
+            new[] { sessDataName, biliJctName, dedeUserIdName, buvid3Name },
             secrets.Select(item => item.Name));
     }
 }

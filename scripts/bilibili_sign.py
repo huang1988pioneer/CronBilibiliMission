@@ -194,6 +194,7 @@ def build_cookie():
     sessdata = env_value("SESSDATA")
     bili_jct = env_value("bili_jct", "BILI_JCT")
     dede_user_id = env_value("DedeUserID", "DEDEUSERID")
+    buvid3 = env_value("buvid3", "BUVID3")
 
     missing = []
     if not sessdata:
@@ -202,16 +203,21 @@ def build_cookie():
         missing.append("bili_jct")
     if not dede_user_id:
         missing.append("DedeUserID")
-
     if missing:
         raise LoginExpiredError(f"Missing required environment variables: {', '.join(missing)}")
 
+    cookie_parts = [
+        f"SESSDATA={sessdata}",
+        f"bili_jct={bili_jct}",
+        f"DedeUserID={dede_user_id}",
+    ]
+    if buvid3:
+        cookie_parts.append(f"buvid3={buvid3}")
+    else:
+        logging.warning("BUVID3 is missing; interaction APIs may be rejected by Bilibili risk control.")
+
     return {
-        "cookie": (
-            f"SESSDATA={sessdata}; "
-            f"bili_jct={bili_jct}; "
-            f"DedeUserID={dede_user_id}"
-        ),
+        "cookie": "; ".join(cookie_parts),
         "csrf": bili_jct,
     }
 
@@ -1020,6 +1026,7 @@ def build_coin_balance_email_body(streak, current_coins, result, date):
         "SESSDATA",
         "bili_jct / BILI_JCT",
         "DedeUserID / DEDEUSERID",
+        "buvid3 / BUVID3（建議；投幣與分享風控識別）",
         "",
         f"Checked at: {datetime.now(TAIPEI).isoformat(timespec='seconds')}",
     ]

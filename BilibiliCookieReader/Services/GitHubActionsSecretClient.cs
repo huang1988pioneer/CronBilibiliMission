@@ -8,7 +8,7 @@ public sealed record GitHubSecretUpdateResult(bool Ok, string Message, IReadOnly
 
 public static class GitHubActionsSecretClient
 {
-    public static readonly IReadOnlyList<string> ActionSecretNames = ["SESSDATA", "BILI_JCT", "DEDEUSERID"];
+    public static readonly IReadOnlyList<string> ActionSecretNames = ["SESSDATA", "BILI_JCT", "DEDEUSERID", "BUVID3"];
 
     private const string ApiVersion = "2022-11-28";
     private const string UserAgent = "BilibiliCookieReader";
@@ -20,13 +20,14 @@ public static class GitHubActionsSecretClient
         string secretSuffix = "")
     {
         if (!cookies.HasAll)
-            throw new InvalidOperationException("三個欄位不齊，無法更新 GitHub Secrets。");
+            throw new InvalidOperationException("四個欄位不齊，無法更新 GitHub Secrets。");
 
         return
         [
             ($"SESSDATA{secretSuffix}", cookies.SessData.Value),
             ($"BILI_JCT{secretSuffix}", cookies.BiliJct.Value),
             ($"DEDEUSERID{secretSuffix}", cookies.DedeUserId.Value),
+            ($"BUVID3{secretSuffix}", cookies.Buvid3.Value),
         ];
     }
 

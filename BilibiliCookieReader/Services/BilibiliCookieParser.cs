@@ -12,6 +12,7 @@ public static class BilibiliCookieParser
     public const string SessDataName = "SESSDATA";
     public const string BiliJctName = "BILI_JCT";
     public const string DedeUserIdName = "DEDEUSERID";
+    public const string Buvid3Name = "BUVID3";
 
     public static readonly IReadOnlyList<string> DefaultFileNames =
     [
@@ -81,7 +82,7 @@ public static class BilibiliCookieParser
             return Finalize(header, sourcePath);
 
         throw new InvalidOperationException(
-            "找不到有效的 Bilibili Cookie（SESSDATA / bili_jct / DedeUserID）。" +
+            "找不到有效的 Bilibili Cookie（SESSDATA / bili_jct / DedeUserID / buvid3）。" +
             "請確認檔案是已登入 bilibili.com 後匯出的 Netscape cookies.txt。");
     }
 
@@ -261,12 +262,16 @@ public static class BilibiliCookieParser
         map.TryGetValue("DedeUserID", out var mid);
         if (mid is null)
             map.TryGetValue("DEDEUSERID", out mid);
+        map.TryGetValue("buvid3", out var buvid3);
+        if (buvid3 is null)
+            map.TryGetValue("BUVID3", out buvid3);
 
         return new BilibiliCookieSet
         {
             SessData = ToField(SessDataName, "SESSDATA", sess),
             BiliJct = ToField(BiliJctName, "BILI_JCT", jct),
             DedeUserId = ToField(DedeUserIdName, "DEDEUSERID", mid),
+            Buvid3 = ToField(Buvid3Name, "BUVID3", buvid3),
         };
     }
 
@@ -305,6 +310,8 @@ public static class BilibiliCookieParser
             warnings.Add("缺少 BILI_JCT（bili_jct）。");
         if (!set.DedeUserId.HasValue)
             warnings.Add("缺少 DEDEUSERID（DedeUserID）。");
+        if (!set.Buvid3.HasValue)
+            warnings.Add("缺少 BUVID3（buvid3）；投幣與分享可能被 Bilibili 風控拒絕。");
 
         foreach (var field in set.Fields)
         {
@@ -315,7 +322,7 @@ public static class BilibiliCookieParser
         if (!set.HasAny)
         {
             throw new InvalidOperationException(
-                "找不到有效的 Bilibili Cookie（SESSDATA / bili_jct / DedeUserID）。" +
+                "找不到有效的 Bilibili Cookie（SESSDATA / bili_jct / DedeUserID / buvid3）。" +
                 "請確認檔案是已登入 bilibili.com 後匯出的 Netscape cookies.txt。");
         }
 
@@ -368,7 +375,9 @@ public static class BilibiliCookieParser
         || name.Equals("bili_jct", StringComparison.OrdinalIgnoreCase)
         || name.Equals("BILI_JCT", StringComparison.OrdinalIgnoreCase)
         || name.Equals("DedeUserID", StringComparison.OrdinalIgnoreCase)
-        || name.Equals("DEDEUSERID", StringComparison.OrdinalIgnoreCase);
+        || name.Equals("DEDEUSERID", StringComparison.OrdinalIgnoreCase)
+        || name.Equals("buvid3", StringComparison.OrdinalIgnoreCase)
+        || name.Equals("BUVID3", StringComparison.OrdinalIgnoreCase);
 
     private static string NormalizeDomain(string? domain)
     {
@@ -424,10 +433,11 @@ public sealed record BilibiliCookieSet
     public CookieField SessData { get; init; } = new() { EnvName = "SESSDATA", SecretName = "SESSDATA" };
     public CookieField BiliJct { get; init; } = new() { EnvName = "BILI_JCT", SecretName = "BILI_JCT" };
     public CookieField DedeUserId { get; init; } = new() { EnvName = "DEDEUSERID", SecretName = "DEDEUSERID" };
+    public CookieField Buvid3 { get; init; } = new() { EnvName = "BUVID3", SecretName = "BUVID3" };
     public string? SourcePath { get; init; }
     public IReadOnlyList<string> Warnings { get; init; } = [];
 
-    public IReadOnlyList<CookieField> Fields => [SessData, BiliJct, DedeUserId];
+    public IReadOnlyList<CookieField> Fields => [SessData, BiliJct, DedeUserId, Buvid3];
 
     public bool HasAny => Fields.Any(item => item.HasValue);
     public bool HasAll => Fields.All(item => item.HasValue);
@@ -441,6 +451,8 @@ public sealed record BilibiliCookieSet
             parts.Add($"bili_jct={BiliJct.Value}");
         if (DedeUserId.HasValue)
             parts.Add($"DedeUserID={DedeUserId.Value}");
+        if (Buvid3.HasValue)
+            parts.Add($"buvid3={Buvid3.Value}");
         return string.Join("; ", parts);
     }
 
