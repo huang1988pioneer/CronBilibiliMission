@@ -15,12 +15,12 @@ Avalonia 桌面工具：讀取瀏覽器匯出的 Netscape `cookies.txt`，取出
 
 ## 下載
 
-[BilibiliCookieReader v1.5.0](https://github.com/huang1988pioneer/CronBilibiliMission/releases/tag/v1.5.0)（自包含，無需另外安裝 .NET）：
+[BilibiliCookieReader v1.5.1](https://github.com/huang1988pioneer/CronBilibiliMission/releases/tag/v1.5.1)（自包含，無需另外安裝 .NET）：
 
-- [Windows x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.0/BilibiliCookieReader-v1.5.0-win-x64.zip)
-- [macOS Apple Silicon](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.0/BilibiliCookieReader-v1.5.0-osx-arm64.zip)
-- [macOS Intel](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.0/BilibiliCookieReader-v1.5.0-osx-x64.zip)
-- [Linux x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.0/BilibiliCookieReader-v1.5.0-linux-x64.zip)
+- [Windows x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.1/BilibiliCookieReader-v1.5.1-win-x64.zip)
+- [macOS Apple Silicon](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.1/BilibiliCookieReader-v1.5.1-osx-arm64.zip)
+- [macOS Intel](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.1/BilibiliCookieReader-v1.5.1-osx-x64.zip)
+- [Linux x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.1/BilibiliCookieReader-v1.5.1-linux-x64.zip)
 
 解壓後執行 `BilibiliCookieReader.exe`（Windows）或 `BilibiliCookieReader`（macOS / Linux）。
 

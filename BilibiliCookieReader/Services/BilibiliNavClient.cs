@@ -302,7 +302,7 @@ public static class BilibiliNavClient
                 rankingVideo,
                 hotSearch);
         }
-        catch (JsonException)
+        catch (Exception ex) when (ex is JsonException or InvalidOperationException)
         {
             return new NavCheckResult(false, $"驗證回應不是 JSON：{Trim(body)}");
         }
@@ -389,11 +389,7 @@ public static class BilibiliNavClient
                 && modules.TryGetProperty("module_author", out var authorEl)
                     ? authorEl
                     : default;
-            DateTimeOffset? publishedAt = author.ValueKind == JsonValueKind.Object
-                && author.TryGetProperty("pub_ts", out var timestampEl)
-                && timestampEl.TryGetInt64(out var timestamp)
-                    ? DateTimeOffset.FromUnixTimeSeconds(timestamp)
-                    : null;
+            var publishedAt = ParseUnixTimestamp(author, "pub_ts");
             var dynamic = modules.ValueKind == JsonValueKind.Object
                 && modules.TryGetProperty("module_dynamic", out var dynamicEl)
                     ? dynamicEl
@@ -780,11 +776,7 @@ public static class BilibiliNavClient
             var dynamic = modules.TryGetProperty("module_dynamic", out var dynamicModule)
                 ? dynamicModule
                 : default;
-            DateTimeOffset? publishedAt = author.ValueKind == JsonValueKind.Object
-                && author.TryGetProperty("pub_ts", out var timestampEl)
-                && timestampEl.TryGetInt64(out var timestamp)
-                    ? DateTimeOffset.FromUnixTimeSeconds(timestamp)
-                    : null;
+            var publishedAt = ParseUnixTimestamp(author, "pub_ts");
             var text = GetDynamicText(dynamic).Trim();
             var cover = await DownloadTrustedImageAsync(
                     GetDynamicCoverUrl(dynamic),
@@ -1220,11 +1212,7 @@ public static class BilibiliNavClient
                 var author = modules.TryGetProperty("module_author", out var authorEl)
                     ? authorEl
                     : default;
-                DateTimeOffset? publishedAt = author.ValueKind == JsonValueKind.Object
-                    && author.TryGetProperty("pub_ts", out var timestampEl)
-                    && timestampEl.TryGetInt64(out var timestamp)
-                        ? DateTimeOffset.FromUnixTimeSeconds(timestamp)
-                        : null;
+                var publishedAt = ParseUnixTimestamp(author, "pub_ts");
                 var playCount = archive.TryGetProperty("stat", out var stat)
                     ? GetString(stat, "play")
                     : string.Empty;
@@ -1328,6 +1316,36 @@ public static class BilibiliNavClient
         && property.ValueKind == JsonValueKind.String
             ? property.GetString() ?? string.Empty
             : string.Empty;
+
+    internal static DateTimeOffset? ParseUnixTimestamp(JsonElement element, string propertyName)
+    {
+        if (element.ValueKind != JsonValueKind.Object
+            || !element.TryGetProperty(propertyName, out var timestampElement))
+        {
+            return null;
+        }
+
+        long timestamp;
+        if (timestampElement.ValueKind == JsonValueKind.Number)
+        {
+            if (!timestampElement.TryGetInt64(out timestamp))
+                return null;
+        }
+        else if (timestampElement.ValueKind == JsonValueKind.String)
+        {
+            if (!long.TryParse(timestampElement.GetString(), out timestamp))
+                return null;
+        }
+        else
+        {
+            return null;
+        }
+
+        return timestamp >= DateTimeOffset.MinValue.ToUnixTimeSeconds()
+            && timestamp <= DateTimeOffset.MaxValue.ToUnixTimeSeconds()
+                ? DateTimeOffset.FromUnixTimeSeconds(timestamp)
+                : null;
+    }
 
     private static async Task<byte[]?> DownloadTrustedImageAsync(
         string? imageUrl,
