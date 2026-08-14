@@ -1,4 +1,5 @@
 import unittest
+from datetime import datetime
 from unittest import mock
 
 import bilibili_sign
@@ -113,6 +114,29 @@ class LevelBreakthroughSummaryTests(unittest.TestCase):
         }
 
         self.assertEqual([], bilibili_sign.pending_level_breakthroughs(breakthroughs))
+
+
+class AccountBanStatusTests(unittest.TestCase):
+    def test_estimates_release_time_and_remaining_days(self):
+        status = bilibili_sign.estimate_account_ban_status(
+            "2026-05-15T23:05:00+08:00",
+            365,
+            now=datetime(2026, 8, 14, 13, 30, tzinfo=bilibili_sign.TAIPEI),
+        )
+
+        self.assertTrue(status["active"])
+        self.assertEqual("2027-05-15T23:05:00+08:00", status["estimated_release_at"])
+        self.assertEqual(275, status["remaining_days"])
+
+    def test_status_is_no_longer_active_after_release(self):
+        status = bilibili_sign.estimate_account_ban_status(
+            "2026-05-15T23:05:00+08:00",
+            365,
+            now=datetime(2027, 5, 15, 23, 5, tzinfo=bilibili_sign.TAIPEI),
+        )
+
+        self.assertFalse(status["active"])
+        self.assertEqual(0, status["remaining_days"])
 
 
 if __name__ == "__main__":

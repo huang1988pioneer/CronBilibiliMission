@@ -2,6 +2,7 @@
 import argparse
 import json
 import logging
+import math
 import os
 import random
 import sys
@@ -54,6 +55,13 @@ LEVEL_EXP_THRESHOLDS = {
     5: 10800,
     6: 28800,
 }
+ACCOUNT_BAN_WINDOWS = {
+    "huang1988pioneer": {
+        "started_at": "2026-05-15T23:05:00+08:00",
+        "duration_days": 365,
+        "source": "Bilibili 帳號違規處理通知",
+    },
+}
 DEFAULT_SMTP_HOST = "smtp.gmail.com"
 DEFAULT_SMTP_PORT = 587
 DEFAULT_EMAIL_NOTIFY_TO = (
@@ -85,6 +93,42 @@ def configure_account(account_name):
     EVENT_LOG = LOG_DIR / "bilibili_experience.jsonl"
     RUNTIME_LOG = LOG_DIR / "bilibili_experience.log"
     SUMMARY_FILE = LOG_DIR / "daily_summary.md"
+
+
+def estimate_account_ban_status(started_at, duration_days, now=None):
+    started = datetime.fromisoformat(started_at)
+    if started.tzinfo is None:
+        started = started.replace(tzinfo=TAIPEI)
+    else:
+        started = started.astimezone(TAIPEI)
+
+    duration_days = int(duration_days)
+    if duration_days <= 0:
+        raise ValueError("Ban duration must be greater than zero.")
+
+    now = (now or datetime.now(TAIPEI)).astimezone(TAIPEI)
+    estimated_release = started + timedelta(days=duration_days)
+    remaining_seconds = max(0, (estimated_release - now).total_seconds())
+    return {
+        "active": now < estimated_release,
+        "started_at": started.isoformat(timespec="seconds"),
+        "duration_days": duration_days,
+        "estimated_release_at": estimated_release.isoformat(timespec="seconds"),
+        "remaining_days": math.ceil(remaining_seconds / 86400),
+    }
+
+
+def configured_account_ban_status(now=None):
+    config = ACCOUNT_BAN_WINDOWS.get(ACCOUNT_NAME)
+    if not config:
+        return None
+    status = estimate_account_ban_status(
+        config["started_at"],
+        config["duration_days"],
+        now=now,
+    )
+    status["source"] = config.get("source") or "人工設定"
+    return status
 
 
 class BilibiliError(RuntimeError):
@@ -1372,6 +1416,30 @@ def build_daily_summary_markdown(date=None):
             "",
         ]
     )
+
+    ban_status = configured_account_ban_status(now=now)
+    if ban_status and ban_status["active"]:
+        ban_started = datetime.fromisoformat(ban_status["started_at"]).strftime("%Y-%m-%d %H:%M")
+        estimated_release = datetime.fromisoformat(
+            ban_status["estimated_release_at"]
+        ).strftime("%Y-%m-%d %H:%M")
+        lines.extend(
+            [
+                "## 帳號封禁狀態",
+                "",
+                "> ⚠️ 帳號目前處於封禁中；分享、投幣、投稿等社區功能可能無法使用。",
+                "",
+                "| 項目 | 資訊 |",
+                "| --- | --- |",
+                "| 狀態 | **帳號已封禁** |",
+                f"| 封禁開始 | {ban_started}（台北時間） |",
+                f"| 封禁期限 | {ban_status['duration_days']} 天 |",
+                f"| 預估解禁時間 | **{estimated_release}（台北時間）** |",
+                f"| 剩餘時間 | 約 **{ban_status['remaining_days']} 天** |",
+                f"| 推估依據 | {ban_status['source']} |",
+                "",
+            ]
+        )
 
     breakthroughs = level_info.get("level_breakthrough_dates_at_15_exp_per_day") or {}
     pending_breakthroughs = pending_level_breakthroughs(breakthroughs)
