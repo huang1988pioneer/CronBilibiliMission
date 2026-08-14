@@ -731,6 +731,11 @@ FORM: Operate / distilled workbench. FINISH: unreviewed and undocumented is unfi
               <ItemsControl ItemsSource="{Binding Fields}"
                             Margin="12,4"
                             IsVisible="{Binding HasResult}">
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <StackPanel />
+                  </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                   <DataTemplate x:DataType="vm:CookieFieldViewModel">
                     <Border Classes="row">

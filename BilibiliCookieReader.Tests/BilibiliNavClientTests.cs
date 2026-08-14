@@ -29,4 +29,16 @@ public sealed class BilibiliNavClientTests
 
         Assert.Null(actual);
     }
+
+    [Fact]
+    public async Task Optional_api_schema_changes_do_not_fail_login_validation()
+    {
+        var fallback = new object();
+
+        var actual = await BilibiliNavClient.RunOptionalApiAsync<object>(
+            () => throw new InvalidOperationException("API field changed type"),
+            fallback);
+
+        Assert.Same(fallback, actual);
+    }
 }

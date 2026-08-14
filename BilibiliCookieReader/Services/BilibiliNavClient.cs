@@ -232,26 +232,50 @@ public static class BilibiliNavClient
             if (coins is not null)
                 bits.Add($"硬幣 {coins}");
 
-            var profileTask = GetProfileAsync(cookies, cancellationToken);
+            var profileTask = RunOptionalApiAsync(
+                () => GetProfileAsync(cookies, cancellationToken),
+                new ProfileDetails(null, null));
             var dynamicTask = mid is null
                 ? Task.FromResult<LatestDynamicInfo?>(null)
-                : GetLatestDynamicAsync(cookies, mid.Value, cancellationToken);
+                : RunOptionalApiAsync<LatestDynamicInfo?>(
+                    () => GetLatestDynamicAsync(cookies, mid.Value, cancellationToken),
+                    null);
             var submissionTask = mid is null
                 ? Task.FromResult<LatestSubmissionInfo?>(null)
-                : GetLatestSubmissionAsync(cookies, mid.Value, cancellationToken);
+                : RunOptionalApiAsync<LatestSubmissionInfo?>(
+                    () => GetLatestSubmissionAsync(cookies, mid.Value, cancellationToken),
+                    null);
             var favoriteTask = mid is null
                 ? Task.FromResult<FavoriteInfo?>(null)
-                : GetFavoriteInfoAsync(cookies, mid.Value, cancellationToken);
+                : RunOptionalApiAsync<FavoriteInfo?>(
+                    () => GetFavoriteInfoAsync(cookies, mid.Value, cancellationToken),
+                    null);
             var bangumiTask = mid is null
                 ? Task.FromResult<BangumiFollowInfo?>(null)
-                : GetBangumiFollowAsync(cookies, mid.Value, cancellationToken);
-            var homepageTask = GetHomepageRecommendationAsync(cookies, cancellationToken);
-            var dynamicFeedTask = GetDynamicFeedAsync(cookies, cancellationToken);
-            var bangumiRecommendationTask = GetBangumiRecommendationAsync(cookies, cancellationToken);
-            var liveRecommendationTask = GetLiveRecommendationAsync(cookies, cancellationToken);
-            var popularVideoTask = GetPopularVideoAsync(cookies, cancellationToken);
-            var rankingVideoTask = GetRankingVideoAsync(cookies, cancellationToken);
-            var hotSearchTask = GetHotSearchAsync(cookies, cancellationToken);
+                : RunOptionalApiAsync<BangumiFollowInfo?>(
+                    () => GetBangumiFollowAsync(cookies, mid.Value, cancellationToken),
+                    null);
+            var homepageTask = RunOptionalApiAsync<HomepageRecommendationInfo?>(
+                () => GetHomepageRecommendationAsync(cookies, cancellationToken),
+                null);
+            var dynamicFeedTask = RunOptionalApiAsync<DynamicFeedInfo?>(
+                () => GetDynamicFeedAsync(cookies, cancellationToken),
+                null);
+            var bangumiRecommendationTask = RunOptionalApiAsync<BangumiRecommendationInfo?>(
+                () => GetBangumiRecommendationAsync(cookies, cancellationToken),
+                null);
+            var liveRecommendationTask = RunOptionalApiAsync<LiveRecommendationInfo?>(
+                () => GetLiveRecommendationAsync(cookies, cancellationToken),
+                null);
+            var popularVideoTask = RunOptionalApiAsync<PopularVideoInfo?>(
+                () => GetPopularVideoAsync(cookies, cancellationToken),
+                null);
+            var rankingVideoTask = RunOptionalApiAsync<RankingVideoInfo?>(
+                () => GetRankingVideoAsync(cookies, cancellationToken),
+                null);
+            var hotSearchTask = RunOptionalApiAsync<HotSearchInfo?>(
+                () => GetHotSearchAsync(cookies, cancellationToken),
+                null);
             await Task.WhenAll(
                     profileTask,
                     dynamicTask,
@@ -302,9 +326,13 @@ public static class BilibiliNavClient
                 rankingVideo,
                 hotSearch);
         }
-        catch (Exception ex) when (ex is JsonException or InvalidOperationException)
+        catch (JsonException)
         {
             return new NavCheckResult(false, $"驗證回應不是 JSON：{Trim(body)}");
+        }
+        catch (InvalidOperationException)
+        {
+            return new NavCheckResult(false, "Bilibili 登入 API 的欄位格式已變更，請更新工具後再試。");
         }
     }
 
@@ -1345,6 +1373,18 @@ public static class BilibiliNavClient
             && timestamp <= DateTimeOffset.MaxValue.ToUnixTimeSeconds()
                 ? DateTimeOffset.FromUnixTimeSeconds(timestamp)
                 : null;
+    }
+
+    internal static async Task<T> RunOptionalApiAsync<T>(Func<Task<T>> operation, T fallback)
+    {
+        try
+        {
+            return await operation().ConfigureAwait(false);
+        }
+        catch (Exception ex) when (ex is JsonException or InvalidOperationException)
+        {
+            return fallback;
+        }
     }
 
     private static async Task<byte[]?> DownloadTrustedImageAsync(

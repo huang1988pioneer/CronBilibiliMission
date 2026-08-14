@@ -28,4 +28,24 @@ public sealed class MainWindowLayoutTests
             contentScrollViewer.Descendants(),
             element => element.Name.LocalName == "ItemsControl");
     }
+
+    [Fact]
+    public void Cookie_fields_use_a_non_virtualizing_vertical_stack_inside_the_outer_scroll_viewer()
+    {
+        var path = Path.GetFullPath(Path.Combine(
+            AppContext.BaseDirectory,
+            "..", "..", "..", "..",
+            "BilibiliCookieReader", "Views", "MainWindow.axaml"));
+        var document = XDocument.Load(path);
+        var fields = document
+            .Descendants()
+            .Single(element =>
+                element.Name.LocalName == "ItemsControl"
+                && (string?)element.Attribute("ItemsSource") == "{Binding Fields}");
+
+        Assert.Contains(
+            fields.Descendants(),
+            element => element.Name.LocalName == "ItemsPanelTemplate"
+                && element.Descendants().Any(child => child.Name.LocalName == "StackPanel"));
+    }
 }
