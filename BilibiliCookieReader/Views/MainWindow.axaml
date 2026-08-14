@@ -190,13 +190,13 @@ FORM: Operate / distilled workbench. FINISH: unreviewed and undocumented is unfi
         </ScrollViewer>
 
         <Border Grid.Column="1" Classes="panel" Padding="8,8,8,16">
-          <DockPanel>
-            <ScrollViewer DockPanel.Dock="Top"
-                          MaxHeight="340"
-                          VerticalScrollBarVisibility="Auto"
-                          IsVisible="{Binding HasAccountStatus}">
+          <Grid RowDefinitions="*,Auto">
+            <ScrollViewer Grid.Row="0"
+                          VerticalScrollBarVisibility="Auto">
+              <StackPanel>
             <Border Classes="accountstatus"
-                    Margin="12,4,12,8">
+                    Margin="12,4,12,8"
+                    IsVisible="{Binding HasAccountStatus}">
               <Grid ColumnDefinitions="*,Auto"
                     RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
                     ColumnSpacing="20"
@@ -709,41 +709,6 @@ FORM: Operate / distilled workbench. FINISH: unreviewed and undocumented is unfi
                 </Grid>
               </Grid>
             </Border>
-            </ScrollViewer>
-
-            <Grid DockPanel.Dock="Bottom" Margin="12,12,12,4">
-              <StackPanel Spacing="8">
-                <WrapPanel ItemSpacing="6" LineSpacing="6">
-                  <Button Classes="secondary"
-                          Content="{Binding RevealButtonText}"
-                          Command="{Binding ToggleRevealCommand}" />
-                  <Button Classes="primary"
-                          Content="驗證登入"
-                          Command="{Binding VerifyLoginCommand}" />
-                </WrapPanel>
-                <WrapPanel ItemSpacing="2" LineSpacing="4">
-                  <Button Classes="ghost"
-                          Content="複製環境變數"
-                          Command="{Binding CopyAllEnvCommand}" />
-                  <Button Classes="ghost"
-                          Content="複製 Secrets"
-                          Command="{Binding CopyAllSecretsCommand}" />
-                  <Button Classes="ghost"
-                          Content="複製 Cookie 字串"
-                          Command="{Binding CopyCookieHeaderCommand}" />
-                  <Button Classes="ghost"
-                          Content="PowerShell"
-                          Command="{Binding CopyPowerShellCommand}" />
-                  <Button Classes="ghost"
-                          Content="bash"
-                          Command="{Binding CopyBashCommand}" />
-                </WrapPanel>
-                <TextBlock Classes="muted"
-                           FontSize="11"
-                           Text="SESSDATA 保持檔案原始值，不要 URL 解碼。更新 Secrets 無法讀回舊值。"
-                           TextWrapping="Wrap" />
-              </StackPanel>
-            </Grid>
 
             <Grid>
               <StackPanel Margin="16"
@@ -808,7 +773,43 @@ FORM: Operate / distilled workbench. FINISH: unreviewed and undocumented is unfi
                 </ItemsControl.ItemTemplate>
               </ItemsControl>
             </Grid>
-          </DockPanel>
+              </StackPanel>
+            </ScrollViewer>
+
+            <Grid Grid.Row="1" Margin="12,12,12,4">
+              <StackPanel Spacing="8">
+                <WrapPanel ItemSpacing="6" LineSpacing="6">
+                  <Button Classes="secondary"
+                          Content="{Binding RevealButtonText}"
+                          Command="{Binding ToggleRevealCommand}" />
+                  <Button Classes="primary"
+                          Content="驗證登入"
+                          Command="{Binding VerifyLoginCommand}" />
+                </WrapPanel>
+                <WrapPanel ItemSpacing="2" LineSpacing="4">
+                  <Button Classes="ghost"
+                          Content="複製環境變數"
+                          Command="{Binding CopyAllEnvCommand}" />
+                  <Button Classes="ghost"
+                          Content="複製 Secrets"
+                          Command="{Binding CopyAllSecretsCommand}" />
+                  <Button Classes="ghost"
+                          Content="複製 Cookie 字串"
+                          Command="{Binding CopyCookieHeaderCommand}" />
+                  <Button Classes="ghost"
+                          Content="PowerShell"
+                          Command="{Binding CopyPowerShellCommand}" />
+                  <Button Classes="ghost"
+                          Content="bash"
+                          Command="{Binding CopyBashCommand}" />
+                </WrapPanel>
+                <TextBlock Classes="muted"
+                           FontSize="11"
+                           Text="SESSDATA 保持檔案原始值，不要 URL 解碼。更新 Secrets 無法讀回舊值。"
+                           TextWrapping="Wrap" />
+              </StackPanel>
+            </Grid>
+          </Grid>
         </Border>
       </Grid>
     </Grid>
