@@ -8,9 +8,9 @@
     <RootNamespace>BilibiliCookieReader</RootNamespace>
     <AssemblyName>BilibiliCookieReader</AssemblyName>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-    <Version>1.5.1</Version>
-    <AssemblyVersion>1.5.1.0</AssemblyVersion>
-    <FileVersion>1.5.1.0</FileVersion>
+    <Version>1.5.2</Version>
+    <AssemblyVersion>1.5.2.0</AssemblyVersion>
+    <FileVersion>1.5.2.0</FileVersion>
     <Product>Bilibili Cookie 讀取器</Product>
     <Description>從 Netscape cookies.txt 取出 SESSDATA、BILI_JCT、DEDEUSERID、BUVID3</Description>
   </PropertyGroup>
