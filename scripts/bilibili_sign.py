@@ -287,10 +287,12 @@ class BilibiliClient:
         return {"status": "reward_checked", "message": "OK", "data": response.get("data") or {}}
 
     def get_daily_coin_experience(self):
-        response = self.request_json("https://www.bilibili.com/plus/account/exp.php")
+        response = self.request_json(
+            "https://api.bilibili.com/x/web-interface/coin/today/exp"
+        )
         if response.get("code") != 0:
             return None
-        return parse_int(response.get("number"))
+        return parse_int(response.get("data"))
 
     def get_video_info(self, exclude_bvids=None):
         popular = self.request_json("https://api.bilibili.com/x/web-interface/popular?ps=20&pn=1")

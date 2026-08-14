@@ -1,4 +1,5 @@
 import unittest
+from unittest import mock
 
 import bilibili_sign
 
@@ -39,6 +40,17 @@ class FakeClient:
 
 
 class CoinTaskTests(unittest.TestCase):
+    def test_daily_coin_experience_uses_current_api(self):
+        client = bilibili_sign.BilibiliClient("SESSDATA=test", "test-csrf")
+        client.request_json = mock.Mock(return_value={"code": 0, "data": 30})
+
+        result = client.get_daily_coin_experience()
+
+        self.assertEqual(30, result)
+        client.request_json.assert_called_once_with(
+            "https://api.bilibili.com/x/web-interface/coin/today/exp"
+        )
+
     def test_level_6_is_never_eligible(self):
         plan = bilibili_sign.coin_task_plan(login(6, 999), reward(0))
 
