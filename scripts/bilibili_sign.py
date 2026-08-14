@@ -425,6 +425,16 @@ def estimate_level_breakthrough_dates(current_exp, today=None):
     return dates
 
 
+def pending_level_breakthroughs(breakthroughs):
+    pending = []
+    for level in (3, 4, 5, 6):
+        item = breakthroughs.get(f"lv{level}") or {}
+        days_remaining = parse_int(item.get("days_at_15_exp_per_day"))
+        if days_remaining is not None and days_remaining > 0:
+            pending.append((level, item))
+    return pending
+
+
 def ceil_div(value, divisor):
     return -(-value // divisor)
 
@@ -1364,7 +1374,8 @@ def build_daily_summary_markdown(date=None):
     )
 
     breakthroughs = level_info.get("level_breakthrough_dates_at_15_exp_per_day") or {}
-    if breakthroughs:
+    pending_breakthroughs = pending_level_breakthroughs(breakthroughs)
+    if pending_breakthroughs:
         lines.extend(
             [
                 "升等預估（每日 15 exp）：",
@@ -1373,8 +1384,7 @@ def build_daily_summary_markdown(date=None):
                 "| --- | --- | ---: |",
             ]
         )
-        for level in (3, 4, 5, 6):
-            item = breakthroughs.get(f"lv{level}") or {}
+        for level, item in pending_breakthroughs:
             lines.append(
                 f"| Lv.{level} | {item.get('estimated_date', '—')} | {item.get('days_at_15_exp_per_day', '—')} |"
             )

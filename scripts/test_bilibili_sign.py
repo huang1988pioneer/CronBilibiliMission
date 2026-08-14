@@ -93,5 +93,27 @@ class CoinTaskTests(unittest.TestCase):
         self.assertEqual(3, len({bvid for bvid, _ in client.given}))
 
 
+class LevelBreakthroughSummaryTests(unittest.TestCase):
+    def test_completed_levels_are_omitted(self):
+        breakthroughs = {
+            "lv3": {"days_at_15_exp_per_day": 0},
+            "lv4": {"days_at_15_exp_per_day": 0},
+            "lv5": {"days_at_15_exp_per_day": 12},
+            "lv6": {"days_at_15_exp_per_day": 100},
+        }
+
+        pending = bilibili_sign.pending_level_breakthroughs(breakthroughs)
+
+        self.assertEqual([5, 6], [level for level, _ in pending])
+
+    def test_no_rows_remain_when_all_levels_are_completed(self):
+        breakthroughs = {
+            f"lv{level}": {"days_at_15_exp_per_day": 0}
+            for level in (3, 4, 5, 6)
+        }
+
+        self.assertEqual([], bilibili_sign.pending_level_breakthroughs(breakthroughs))
+
+
 if __name__ == "__main__":
     unittest.main()
