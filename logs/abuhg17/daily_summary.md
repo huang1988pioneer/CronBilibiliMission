@@ -17,6 +17,7 @@
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 2026-08-14T13:28:51+08:00 | 手動 | ✗ | logged_in | watch_reported | share_failed | coin_incomplete | `BV17fgn6SEYh` DeepSeek Harness 重磅发布！一切皆插件！万物皆可DIY ！！ |
 | 2026-08-14T13:35:33+08:00 | 手動 | ✗ | logged_in | watch_reported | share_failed | coin_incomplete | `BV1f5uZ6nErH` “现 状 青 年” |
+| 2026-08-14T13:40:39+08:00 | 手動 | ✗ | logged_in | watch_reported | share_failed | coin_incomplete | `BV12og76WESD` 预算无上限！在上海吃一天会花多少钱？是我吃过最离谱的一日三餐！ |
 
 **獎勵狀態（最新）**
 
@@ -47,4 +48,4 @@
 2. 尚未到首次執行時段，或首次任務尚未跑完。
 
 ---
-_產生時間（台北）：2026-08-14T13:35:33+08:00_
+_產生時間（台北）：2026-08-14T13:40:39+08:00_

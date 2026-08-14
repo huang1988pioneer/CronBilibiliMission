@@ -29,3 +29,8 @@
 2026-08-14T05:35:35+0000 INFO root: Watch task: watch_reported 0
 2026-08-14T05:35:35+0000 INFO root: Share task: share_failed 账号异常,操作失败
 2026-08-14T05:35:35+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-08-14T05:40:39+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 471.4, level: Lv6, exp: 33649, exp to next: None, days at 15 exp/day: None
+2026-08-14T05:40:40+0000 INFO root: Selected video: BV1PzgE6RE4D 🐧功夫女足🐧
+2026-08-14T05:40:40+0000 INFO root: Watch task: watch_reported 0
+2026-08-14T05:40:41+0000 INFO root: Share task: share_failed 账号异常,操作失败
+2026-08-14T05:40:41+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.

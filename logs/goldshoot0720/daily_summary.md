@@ -17,6 +17,7 @@
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 2026-08-14T13:28:53+08:00 | 手動 | ✗ | logged_in | watch_reported | share_failed | coin_skipped | `BV153gW6JEtJ` 史上最惨 iPhone。 |
 | 2026-08-14T13:35:35+08:00 | 手動 | ✗ | logged_in | watch_reported | share_failed | coin_skipped | `BV1tBuq65Egr` 历时150天！一条命看完《厉鬼将行》第一季！都市灵异动画！ |
+| 2026-08-14T13:40:41+08:00 | 手動 | ✗ | logged_in | watch_reported | share_failed | coin_skipped | `BV1PzgE6RE4D` 🐧功夫女足🐧 |
 
 **獎勵狀態（最新）**
 
@@ -41,4 +42,4 @@
 2. 尚未到首次執行時段，或首次任務尚未跑完。
 
 ---
-_產生時間（台北）：2026-08-14T13:35:35+08:00_
+_產生時間（台北）：2026-08-14T13:40:41+08:00_
