@@ -1,6 +1,6 @@
 # Bilibili 每日經驗匯總 — goldshoot0720 — 2026-08-14（週五）
 
-**總結：進行中 / 尚未全部完成**
+**總結：已完成每日經驗（補查未全部跑完）**
 
 ## 排程
 
@@ -18,13 +18,14 @@
 | 2026-08-14T13:28:53+08:00 | 手動 | ✗ | logged_in | watch_reported | share_failed | coin_skipped | `BV153gW6JEtJ` 史上最惨 iPhone。 |
 | 2026-08-14T13:35:35+08:00 | 手動 | ✗ | logged_in | watch_reported | share_failed | coin_skipped | `BV1tBuq65Egr` 历时150天！一条命看完《厉鬼将行》第一季！都市灵异动画！ |
 | 2026-08-14T13:40:41+08:00 | 手動 | ✗ | logged_in | watch_reported | share_failed | coin_skipped | `BV1PzgE6RE4D` 🐧功夫女足🐧 |
+| 2026-08-14T13:58:12+08:00 | 手動 | ✓ | logged_in | watch_reported | share_reported | coin_skipped | `BV1b6gp66E6w` 欧盟拳打中美，懂王制裁瓜子水饺，老中咋又让欧美急眼了？ |
 
 **獎勵狀態（最新）**
 
 - 登入：✓
 - 觀看：✓
-- 分享：✗
-- 缺少任務：share
+- 分享：✓
+- 缺少任務：無
 
 ## 帳號狀態
 
@@ -42,4 +43,4 @@
 2. 尚未到首次執行時段，或首次任務尚未跑完。
 
 ---
-_產生時間（台北）：2026-08-14T13:40:41+08:00_
+_產生時間（台北）：2026-08-14T13:58:12+08:00_

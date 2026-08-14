@@ -34,3 +34,9 @@
 2026-08-14T05:40:40+0000 INFO root: Watch task: watch_reported 0
 2026-08-14T05:40:41+0000 INFO root: Share task: share_failed 账号异常,操作失败
 2026-08-14T05:40:41+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-08-14T05:58:10+0000 WARNING root: BUVID3 is missing; interaction APIs may be rejected by Bilibili risk control.
+2026-08-14T05:58:10+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 471.4, level: Lv6, exp: 33649, exp to next: None, days at 15 exp/day: None
+2026-08-14T05:58:11+0000 INFO root: Selected video: BV1b6gp66E6w 欧盟拳打中美，懂王制裁瓜子水饺，老中咋又让欧美急眼了？
+2026-08-14T05:58:11+0000 INFO root: Watch task: watch_reported 0
+2026-08-14T05:58:11+0000 INFO root: Share task: share_reported OK
+2026-08-14T05:58:12+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.

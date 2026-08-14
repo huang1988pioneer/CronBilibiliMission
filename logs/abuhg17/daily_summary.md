@@ -1,6 +1,6 @@
 # Bilibili 每日經驗匯總 — abuhg17 — 2026-08-14（週五）
 
-**總結：進行中 / 尚未全部完成**
+**總結：已完成每日經驗（補查未全部跑完）**
 
 ## 排程
 
@@ -18,13 +18,14 @@
 | 2026-08-14T13:28:51+08:00 | 手動 | ✗ | logged_in | watch_reported | share_failed | coin_incomplete | `BV17fgn6SEYh` DeepSeek Harness 重磅发布！一切皆插件！万物皆可DIY ！！ |
 | 2026-08-14T13:35:33+08:00 | 手動 | ✗ | logged_in | watch_reported | share_failed | coin_incomplete | `BV1f5uZ6nErH` “现 状 青 年” |
 | 2026-08-14T13:40:39+08:00 | 手動 | ✗ | logged_in | watch_reported | share_failed | coin_incomplete | `BV12og76WESD` 预算无上限！在上海吃一天会花多少钱？是我吃过最离谱的一日三餐！ |
+| 2026-08-14T13:58:10+08:00 | 手動 | ✓ | logged_in | watch_reported | share_reported | coin_incomplete | `BV17WgV6hEdX` 这视频等了五年！ |
 
 **獎勵狀態（最新）**
 
 - 登入：✓
 - 觀看：✓
-- 分享：✗
-- 缺少任務：share
+- 分享：✓
+- 缺少任務：無
 
 ## 帳號狀態
 
@@ -48,4 +49,4 @@
 2. 尚未到首次執行時段，或首次任務尚未跑完。
 
 ---
-_產生時間（台北）：2026-08-14T13:40:39+08:00_
+_產生時間（台北）：2026-08-14T13:58:10+08:00_

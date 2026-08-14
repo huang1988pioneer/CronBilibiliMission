@@ -1,6 +1,6 @@
 # Bilibili 每日經驗匯總 — huang1988pioneer — 2026-08-14（週五）
 
-**總結：進行中 / 尚未全部完成**
+**總結：已完成每日經驗（補查未全部跑完）**
 
 ## 排程
 
@@ -18,13 +18,14 @@
 | 2026-08-14T13:28:49+08:00 | 手動 | ✗ | logged_in | watch_reported | share_failed | coin_skipped | `BV1tBuq65Egr` 历时150天！一条命看完《厉鬼将行》第一季！都市灵异动画！ |
 | 2026-08-14T13:35:31+08:00 | 手動 | ✗ | logged_in | watch_reported | share_failed | coin_skipped | `BV1e9ub6wEHT` 循环歌单\|《走马灯の小曲》《回忆の小曲》侧脸 |
 | 2026-08-14T13:40:36+08:00 | 手動 | ✗ | logged_in | watch_reported | share_failed | coin_skipped | `BV1tBuq65Egr` 历时150天！一条命看完《厉鬼将行》第一季！都市灵异动画！ |
+| 2026-08-14T13:58:07+08:00 | 手動 | ✓ | logged_in | watch_reported | share_reported | coin_skipped | `BV1v2uB6ZEZH` 【vm手书/超度我】考，我在做什么。 |
 
 **獎勵狀態（最新）**
 
 - 登入：✓
 - 觀看：✓
-- 分享：✗
-- 缺少任務：share
+- 分享：✓
+- 缺少任務：無
 
 ## 帳號狀態
 
@@ -63,4 +64,4 @@
 2. 尚未到首次執行時段，或首次任務尚未跑完。
 
 ---
-_產生時間（台北）：2026-08-14T13:40:36+08:00_
+_產生時間（台北）：2026-08-14T13:58:07+08:00_

@@ -36,3 +36,10 @@
 2026-08-14T05:40:38+0000 INFO root: Share task: share_failed 账号异常,操作失败
 2026-08-14T05:40:39+0000 WARNING root: Coin task failed for BV1A1gE6DEPu: 非法访问
 2026-08-14T05:40:39+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
+2026-08-14T05:58:07+0000 WARNING root: BUVID3 is missing; interaction APIs may be rejected by Bilibili risk control.
+2026-08-14T05:58:07+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 365.7, level: Lv5, exp: 13570, exp to next: 15230, days at 15 exp/day: 1016
+2026-08-14T05:58:08+0000 INFO root: Selected video: BV17WgV6hEdX 这视频等了五年！
+2026-08-14T05:58:09+0000 INFO root: Watch task: watch_reported 0
+2026-08-14T05:58:09+0000 INFO root: Share task: share_reported OK
+2026-08-14T05:58:09+0000 WARNING root: Coin task failed for BV1A1gE6DEPu: 非法访问
+2026-08-14T05:58:10+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
