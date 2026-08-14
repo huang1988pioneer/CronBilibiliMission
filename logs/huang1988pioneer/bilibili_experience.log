@@ -26,3 +26,8 @@
 2026-08-14T05:28:48+0000 INFO root: Watch task: watch_reported 0
 2026-08-14T05:28:48+0000 INFO root: Share task: share_failed 账号异常,操作失败
 2026-08-14T05:28:49+0000 INFO root: Daily summary written to logs/huang1988pioneer/daily_summary.md and GitHub Step Summary.
+2026-08-14T05:35:30+0000 INFO root: Logged in as 鋒三 (3706990272449316), account coins: 91, level: Lv3, exp: 1530, exp to next: 2970, days at 15 exp/day: 198
+2026-08-14T05:35:30+0000 INFO root: Selected video: BV1e9ub6wEHT 循环歌单|《走马灯の小曲》《回忆の小曲》侧脸
+2026-08-14T05:35:31+0000 INFO root: Watch task: watch_reported 0
+2026-08-14T05:35:31+0000 INFO root: Share task: share_failed 账号异常,操作失败
+2026-08-14T05:35:31+0000 INFO root: Daily summary written to logs/huang1988pioneer/daily_summary.md and GitHub Step Summary.

@@ -24,3 +24,8 @@
 2026-08-14T05:28:52+0000 INFO root: Watch task: watch_reported 0
 2026-08-14T05:28:53+0000 INFO root: Share task: share_failed 账号异常,操作失败
 2026-08-14T05:28:53+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-08-14T05:35:34+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 471.4, level: Lv6, exp: 33649, exp to next: None, days at 15 exp/day: None
+2026-08-14T05:35:35+0000 INFO root: Selected video: BV1tBuq65Egr 历时150天！一条命看完《厉鬼将行》第一季！都市灵异动画！
+2026-08-14T05:35:35+0000 INFO root: Watch task: watch_reported 0
+2026-08-14T05:35:35+0000 INFO root: Share task: share_failed 账号异常,操作失败
+2026-08-14T05:35:35+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
