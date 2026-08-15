@@ -1,10 +1,87 @@
 {
+  "account_coins": 91,
+  "coin_balance_notification": {
+    "reason": "stagnant_coin_streak_below_threshold",
+    "status": "email_skipped",
+    "streak_days": 2
+  },
+  "coin_task": {
+    "coins_spent": 0,
+    "experience_before": 0,
+    "reason": "balance_not_over_333",
+    "status": "coin_skipped",
+    "target_experience": 50,
+    "videos": []
+  },
+  "completed": true,
   "confirmations_done": [],
   "date": "2026-08-15",
   "dice": 2,
-  "initial_done": false,
+  "initial_done": true,
+  "initial_done_at_taipei": "2026-08-15T09:43:59+08:00",
+  "level_info": {
+    "current_exp": 1535,
+    "current_level": 3,
+    "days_to_next_level_at_15_exp_per_day": 198,
+    "exp_to_next_level": 2965,
+    "level_breakthrough_dates_at_15_exp_per_day": {
+      "lv3": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-08-15",
+        "exp_remaining": 0,
+        "required_exp": 1500
+      },
+      "lv4": {
+        "days_at_15_exp_per_day": 198,
+        "estimated_date": "2027-03-01",
+        "exp_remaining": 2965,
+        "required_exp": 4500
+      },
+      "lv5": {
+        "days_at_15_exp_per_day": 618,
+        "estimated_date": "2028-04-24",
+        "exp_remaining": 9265,
+        "required_exp": 10800
+      },
+      "lv6": {
+        "days_at_15_exp_per_day": 1818,
+        "estimated_date": "2031-08-07",
+        "exp_remaining": 27265,
+        "required_exp": 28800
+      }
+    },
+    "next_level_exp": 4500
+  },
+  "level_upgrade_notification": {
+    "reason": "no_level_upgrade",
+    "status": "email_skipped"
+  },
+  "login_status": "logged_in",
+  "missing_after": [],
+  "reward_after": {
+    "data": {
+      "coins": 0,
+      "email": true,
+      "identify_card": false,
+      "login": true,
+      "safe_question": false,
+      "share": true,
+      "tel": true,
+      "watch": true
+    },
+    "message": "OK",
+    "status": "reward_checked"
+  },
+  "share_status": "share_reported",
   "target_hour_24h": 8,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
+  "video": {
+    "aid": 117084180713575,
+    "bvid": "BV15HgE6TER4",
+    "cid": 40855277078,
+    "title": "俄罗斯历史课本里的中国，和你想的一样吗？"
+  },
+  "watch_status": "watch_reported",
   "weekday": 6
 }
