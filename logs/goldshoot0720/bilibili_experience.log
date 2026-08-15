@@ -80,3 +80,5 @@
 2026-08-15T05:32:46+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 472.4, level: Lv6, exp: 33669, exp to next: None, days at 15 exp/day: None
 2026-08-15T05:32:46+0000 INFO root: Daily experience tasks already complete.
 2026-08-15T05:32:46+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-08-15T06:51:25+0000 INFO root: No due experience check. Now 14:00 Taipei, target was 12:00.
+2026-08-15T06:51:25+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
