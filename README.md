@@ -81,12 +81,12 @@ GitHub Actions 會在每天台北時間 02:05 到 19:05 每小時檢查一次，
 
 桌面工具（Avalonia）可分別選擇 `huang1988pioneer`、`abuhg17`、`goldshoot0720` 三個帳號，讀取各自 Netscape 格式的 `cookies.txt`，並直接上傳帳號對應的 GitHub Actions Secrets。
 
-下載 [BilibiliCookieReader v1.5.2](https://github.com/huang1988pioneer/CronBilibiliMission/releases/tag/v1.5.2)（自包含，無需另外安裝 .NET）：
+下載 [BilibiliCookieReader v1.5.3](https://github.com/huang1988pioneer/CronBilibiliMission/releases/tag/v1.5.3)（自包含，無需另外安裝 .NET）：
 
-- [Windows x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.2/BilibiliCookieReader-v1.5.2-win-x64.zip)
-- [macOS Apple Silicon](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.2/BilibiliCookieReader-v1.5.2-osx-arm64.zip)
-- [macOS Intel](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.2/BilibiliCookieReader-v1.5.2-osx-x64.zip)
-- [Linux x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.2/BilibiliCookieReader-v1.5.2-linux-x64.zip)
+- [Windows x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.3/BilibiliCookieReader-v1.5.3-win-x64.zip)
+- [macOS Apple Silicon](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.3/BilibiliCookieReader-v1.5.3-osx-arm64.zip)
+- [macOS Intel](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.3/BilibiliCookieReader-v1.5.3-osx-x64.zip)
+- [Linux x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.3/BilibiliCookieReader-v1.5.3-linux-x64.zip)
 
 讀到四個值後，工具會提醒 Cookie 檔與 SESSDATA 工作階段的預定過期日（台北時間）。也可依帳號直接更新這個 repo 對應的 GitHub Actions Secrets。`BUVID3` 用於降低投幣與分享 API 被 Bilibili 風控拒絕的機率。需要有 Secrets 寫入權限的 GitHub 權杖，或本機已 `gh auth login`。
 

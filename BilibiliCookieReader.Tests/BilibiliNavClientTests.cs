@@ -41,4 +41,17 @@ public sealed class BilibiliNavClientTests
 
         Assert.Same(fallback, actual);
     }
+
+    [Fact]
+    public void Level_six_unbounded_next_experience_does_not_break_login_validation()
+    {
+        using var document = JsonDocument.Parse(
+            """{"level_info":{"current_level":6,"current_exp":28800,"next_exp":"--"}}""");
+
+        var actual = BilibiliNavClient.ParseLevelInfo(document.RootElement);
+
+        Assert.Equal(6, actual.Level);
+        Assert.Equal(28800, actual.CurrentExperience);
+        Assert.Null(actual.NextExperience);
+    }
 }

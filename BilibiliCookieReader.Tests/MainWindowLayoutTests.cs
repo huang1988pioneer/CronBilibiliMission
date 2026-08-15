@@ -48,4 +48,29 @@ public sealed class MainWindowLayoutTests
             element => element.Name.LocalName == "ItemsPanelTemplate"
                 && element.Descendants().Any(child => child.Name.LocalName == "StackPanel"));
     }
+
+    [Fact]
+    public void Cookie_field_content_occupies_three_distinct_grid_rows()
+    {
+        var path = Path.GetFullPath(Path.Combine(
+            AppContext.BaseDirectory,
+            "..", "..", "..", "..",
+            "BilibiliCookieReader", "Views", "MainWindow.axaml"));
+        var document = XDocument.Load(path);
+        var template = document
+            .Descendants()
+            .Single(element =>
+                element.Name.LocalName == "DataTemplate"
+                && (string?)element.Attribute(XName.Get("DataType", "http://schemas.microsoft.com/winfx/2006/xaml"))
+                    == "vm:CookieFieldViewModel");
+        var fieldGrid = template
+            .Descendants()
+            .Single(element =>
+                element.Name.LocalName == "Grid"
+                && (string?)element.Attribute("RowDefinitions") == "Auto,Auto,Auto");
+        var children = fieldGrid.Elements().ToList();
+
+        Assert.Equal("1", (string?)children[1].Attribute("Grid.Row"));
+        Assert.Equal("2", (string?)children[2].Attribute("Grid.Row"));
+    }
 }

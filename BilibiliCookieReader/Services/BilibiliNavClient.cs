@@ -206,23 +206,7 @@ public static class BilibiliNavClient
             double? coins = data.TryGetProperty("money", out var moneyEl) && moneyEl.TryGetDouble(out var money)
                 ? money
                 : null;
-            int? level = null;
-            long? currentExperience = null;
-            long? nextExperience = null;
-            if (data.TryGetProperty("level_info", out var levelInfo)
-                && levelInfo.TryGetProperty("current_level", out var levelEl)
-                && levelEl.TryGetInt32(out var levelValue))
-            {
-                level = levelValue;
-                currentExperience = levelInfo.TryGetProperty("current_exp", out var currentExpEl)
-                    && currentExpEl.TryGetInt64(out var currentExpValue)
-                        ? currentExpValue
-                        : null;
-                nextExperience = levelInfo.TryGetProperty("next_exp", out var nextExpEl)
-                    && nextExpEl.TryGetInt64(out var nextExpValue)
-                        ? nextExpValue
-                        : null;
-            }
+            var (level, currentExperience, nextExperience) = ParseLevelInfo(data);
 
             var bits = new List<string> { $"已登入 {uname ?? "Bilibili 使用者"}" };
             if (mid is not null)
@@ -1373,6 +1357,53 @@ public static class BilibiliNavClient
             && timestamp <= DateTimeOffset.MaxValue.ToUnixTimeSeconds()
                 ? DateTimeOffset.FromUnixTimeSeconds(timestamp)
                 : null;
+    }
+
+    internal static (int? Level, long? CurrentExperience, long? NextExperience) ParseLevelInfo(
+        JsonElement data)
+    {
+        int? level = null;
+        long? currentExperience = null;
+        long? nextExperience = null;
+        if (data.TryGetProperty("level_info", out var levelInfo)
+            && levelInfo.ValueKind == JsonValueKind.Object
+            && levelInfo.TryGetProperty("current_level", out var levelEl)
+            && TryGetInt32(levelEl, out var levelValue))
+        {
+            level = levelValue;
+            currentExperience = levelInfo.TryGetProperty("current_exp", out var currentExpEl)
+                && TryGetInt64(currentExpEl, out var currentExpValue)
+                    ? currentExpValue
+                    : null;
+            nextExperience = levelInfo.TryGetProperty("next_exp", out var nextExpEl)
+                && TryGetInt64(nextExpEl, out var nextExpValue)
+                    ? nextExpValue
+                    : null;
+        }
+
+        return (level, currentExperience, nextExperience);
+    }
+
+    private static bool TryGetInt32(JsonElement element, out int value)
+    {
+        if (element.ValueKind == JsonValueKind.Number)
+            return element.TryGetInt32(out value);
+        if (element.ValueKind == JsonValueKind.String)
+            return int.TryParse(element.GetString(), out value);
+
+        value = default;
+        return false;
+    }
+
+    private static bool TryGetInt64(JsonElement element, out long value)
+    {
+        if (element.ValueKind == JsonValueKind.Number)
+            return element.TryGetInt64(out value);
+        if (element.ValueKind == JsonValueKind.String)
+            return long.TryParse(element.GetString(), out value);
+
+        value = default;
+        return false;
     }
 
     internal static async Task<T> RunOptionalApiAsync<T>(Func<Task<T>> operation, T fallback)

@@ -757,11 +757,14 @@ FORM: Operate / distilled workbench. FINISH: unreviewed and undocumented is unfi
                                   Command="{Binding CopyCommand}"
                                   IsEnabled="{Binding HasValue}" />
                         </Grid>
-                        <TextBox Classes="mono"
+                        <TextBox Grid.Row="1"
+                                 Classes="mono"
                                  Text="{Binding DisplayValue}"
                                  IsReadOnly="True"
                                  AcceptsReturn="False" />
-                        <StackPanel Orientation="Horizontal" Spacing="12">
+                        <StackPanel Grid.Row="2"
+                                    Orientation="Horizontal"
+                                    Spacing="12">
                           <TextBlock Classes="muted" FontSize="12" Text="{Binding MetaText}" />
                           <TextBlock Classes="warn"
                                      FontSize="12"
