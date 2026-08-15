@@ -110,6 +110,72 @@ class CoinTaskTests(unittest.TestCase):
         self.assertEqual(3, len({bvid for bvid, _ in client.given}))
 
 
+class CoinBalanceNotificationTests(unittest.TestCase):
+    def test_decreasing_balance_is_not_a_stagnant_streak(self):
+        previous_records = [
+            {"date": "2026-08-13", "account_coins": 364.7},
+            {"date": "2026-08-14", "account_coins": 360.7},
+        ]
+
+        with mock.patch.object(
+            bilibili_sign,
+            "coin_records_before",
+            return_value=previous_records,
+        ):
+            streak = bilibili_sign.stagnant_coin_balance_streak(
+                "2026-08-15",
+                356.7,
+            )
+
+        self.assertEqual(
+            [{"date": "2026-08-15", "account_coins": 356.7}],
+            [
+                {
+                    "date": record["date"],
+                    "account_coins": record["account_coins"],
+                }
+                for record in streak
+            ],
+        )
+
+    def test_alert_sent_earlier_on_same_date_is_not_sent_again(self):
+        events = [
+            {
+                "date": "2026-08-15",
+                "coin_balance_notification": {"status": "email_sent"},
+            }
+        ]
+
+        with mock.patch.object(bilibili_sign, "read_event_log", return_value=events):
+            already_sent = bilibili_sign.coin_balance_alert_already_sent(
+                "2026-08-13",
+                "2026-08-15",
+            )
+
+        self.assertTrue(already_sent)
+
+    def test_second_account_email_lists_second_secret_names(self):
+        streak = [
+            {"date": "2026-08-13", "account_coins": 360.7},
+            {"date": "2026-08-14", "account_coins": 360.7},
+            {"date": "2026-08-15", "account_coins": 360.7},
+        ]
+        result = {"login": {"uname": "FENGTUINFO"}}
+
+        with mock.patch.object(bilibili_sign, "ACCOUNT_NAME", "abuhg17"):
+            body = bilibili_sign.build_coin_balance_email_body(
+                streak,
+                360.7,
+                result,
+                "2026-08-15",
+            )
+
+        self.assertIn("SESSDATA2", body)
+        self.assertIn("BILI_JCT2", body)
+        self.assertIn("DEDEUSERID2", body)
+        self.assertIn("BUVID32", body)
+
+
 class LevelBreakthroughSummaryTests(unittest.TestCase):
     def test_completed_levels_are_omitted(self):
         breakthroughs = {

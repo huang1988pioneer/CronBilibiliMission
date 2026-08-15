@@ -62,6 +62,11 @@ ACCOUNT_BAN_WINDOWS = {
         "source": "Bilibili 帳號違規處理通知",
     },
 }
+ACCOUNT_SECRET_SUFFIXES = {
+    "huang1988pioneer": "",
+    "abuhg17": "2",
+    "goldshoot0720": "3",
+}
 DEFAULT_SMTP_HOST = "smtp.gmail.com"
 DEFAULT_SMTP_PORT = 587
 DEFAULT_EMAIL_NOTIFY_TO = (
@@ -824,7 +829,7 @@ def stagnant_coin_balance_streak(date, current_coins):
     streak = [records[-1]]
     for record in reversed(records[:-1]):
         next_record = streak[0]
-        if next_record["account_coins"] > record["account_coins"]:
+        if next_record["account_coins"] != record["account_coins"]:
             break
         streak.insert(0, record)
 
@@ -834,7 +839,7 @@ def stagnant_coin_balance_streak(date, current_coins):
 def coin_balance_alert_already_sent(start_date, current_date):
     for event in read_event_log():
         event_date = event.get("date")
-        if event_date is None or event_date < start_date or event_date >= current_date:
+        if event_date is None or event_date < start_date or event_date > current_date:
             continue
 
         notification = event.get("coin_balance_notification") or {}
@@ -999,9 +1004,20 @@ def build_level_upgrade_email_body(previous_level, current_level, result):
     return "\n".join(lines)
 
 
+def account_secret_names(account_name=None):
+    suffix = ACCOUNT_SECRET_SUFFIXES.get(account_name or ACCOUNT_NAME, "")
+    return {
+        "sessdata": f"SESSDATA{suffix}",
+        "bili_jct": f"BILI_JCT{suffix}",
+        "dedeuserid": f"DEDEUSERID{suffix}",
+        "buvid3": f"BUVID3{suffix}",
+    }
+
+
 def build_coin_balance_email_body(streak, current_coins, result, date):
     first_record = streak[0]
     previous_record = streak[-2]
+    secrets = account_secret_names()
     streak_lines = [
         f"- {record['date']}: {record['account_coins']}"
         for record in streak
@@ -1023,10 +1039,10 @@ def build_coin_balance_email_body(streak, current_coins, result, date):
         *streak_lines,
         "",
         "Secrets to check:",
-        "SESSDATA",
-        "bili_jct / BILI_JCT",
-        "DedeUserID / DEDEUSERID",
-        "buvid3 / BUVID3（建議；投幣與分享風控識別）",
+        secrets["sessdata"],
+        f"bili_jct / {secrets['bili_jct']}",
+        f"DedeUserID / {secrets['dedeuserid']}",
+        f"buvid3 / {secrets['buvid3']}（建議；投幣與分享風控識別）",
         "",
         f"Checked at: {datetime.now(TAIPEI).isoformat(timespec='seconds')}",
     ]
