@@ -1,49 +1,34 @@
 {
-  "account_coins": 355.7,
+  "account_coins": 352.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
     "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 3,
-    "experience_before": 20,
-    "reason": "completed",
-    "status": "coins_given",
+    "coins_spent": 0,
+    "experience_before": 50,
+    "reason": "daily_50_exp_complete",
+    "status": "coin_skipped",
     "target_experience": 50,
-    "videos": [
-      {
-        "aid": 117087653596727,
-        "bvid": "BV1cXgp6aESY",
-        "coins": 2,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "“央妈这段运镜太有手法了，完全拍出了什么叫意气风发！”"
-      },
-      {
-        "aid": 117076345823123,
-        "bvid": "BV17Bui6xE1n",
-        "coins": 1,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "高中牲自制蛛丝发射器（一）"
-      }
-    ]
+    "videos": []
   },
   "completed": true,
   "confirmations_done": [
-    1
+    1,
+    3
   ],
   "confirmed_after_1h_at_taipei": "2026-08-16T11:08:35+08:00",
+  "confirmed_after_3h_at_taipei": "2026-08-16T12:43:41+08:00",
   "date": "2026-08-16",
   "dice": 2,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-16T09:51:19+08:00",
   "level_info": {
-    "current_exp": 13725,
+    "current_exp": 13755,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 1005,
-    "exp_to_next_level": 15075,
+    "days_to_next_level_at_15_exp_per_day": 1003,
+    "exp_to_next_level": 15045,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -64,9 +49,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1005,
-        "estimated_date": "2029-05-17",
-        "exp_remaining": 15075,
+        "days_at_15_exp_per_day": 1003,
+        "estimated_date": "2029-05-15",
+        "exp_remaining": 15045,
         "required_exp": 28800
       }
     },
