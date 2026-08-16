@@ -159,3 +159,9 @@
 2026-08-16T21:27:48+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
 2026-08-16T22:29:54+0000 INFO root: Waiting. Now 6:00 Taipei, target is 7:00.
 2026-08-16T22:29:54+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
+2026-08-16T23:28:11+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 352.7, level: Lv5, exp: 13755, exp to next: 15045, days at 15 exp/day: 1003
+2026-08-16T23:28:12+0000 INFO root: Selected video: BV1yTg36YE4Z 韩国贫富差距！到底有多大？住房食物有多大区别？
+2026-08-16T23:28:12+0000 INFO root: Watch task: watch_reported 0
+2026-08-16T23:28:13+0000 INFO root: Share task: share_reported OK
+2026-08-16T23:28:13+0000 WARNING root: Coin task failed for BV17Hgp6XEaR: 超过投币上限啦~
+2026-08-16T23:28:14+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
