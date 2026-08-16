@@ -1,10 +1,104 @@
 {
+  "account_coins": 356.7,
+  "coin_balance_notification": {
+    "reason": "stagnant_coin_streak_below_threshold",
+    "status": "email_skipped",
+    "streak_days": 2
+  },
+  "coin_task": {
+    "coins_spent": 2,
+    "experience_before": 0,
+    "reason": "api_failed",
+    "status": "coin_incomplete",
+    "target_experience": 50,
+    "videos": [
+      {
+        "aid": 117093055927627,
+        "bvid": "BV1NdgP6mEGn",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "“不要告诉别人！我什么都会做的！”"
+      },
+      {
+        "aid": 117071614581298,
+        "bvid": "BV1f5uZ6nErH",
+        "coins": 0,
+        "message": "超过投币上限啦~",
+        "status": "coin_failed",
+        "title": "“现 状 青 年”"
+      }
+    ]
+  },
+  "completed": true,
   "confirmations_done": [],
   "date": "2026-08-16",
   "dice": 2,
-  "initial_done": false,
+  "initial_done": true,
+  "initial_done_at_taipei": "2026-08-16T09:51:19+08:00",
+  "level_info": {
+    "current_exp": 13690,
+    "current_level": 5,
+    "days_to_next_level_at_15_exp_per_day": 1008,
+    "exp_to_next_level": 15110,
+    "level_breakthrough_dates_at_15_exp_per_day": {
+      "lv3": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-08-16",
+        "exp_remaining": 0,
+        "required_exp": 1500
+      },
+      "lv4": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-08-16",
+        "exp_remaining": 0,
+        "required_exp": 4500
+      },
+      "lv5": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-08-16",
+        "exp_remaining": 0,
+        "required_exp": 10800
+      },
+      "lv6": {
+        "days_at_15_exp_per_day": 1008,
+        "estimated_date": "2029-05-20",
+        "exp_remaining": 15110,
+        "required_exp": 28800
+      }
+    },
+    "next_level_exp": 28800
+  },
+  "level_upgrade_notification": {
+    "reason": "no_level_upgrade",
+    "status": "email_skipped"
+  },
+  "login_status": "logged_in",
+  "missing_after": [],
+  "reward_after": {
+    "data": {
+      "coins": 20,
+      "email": true,
+      "identify_card": false,
+      "login": true,
+      "safe_question": true,
+      "share": true,
+      "tel": true,
+      "watch": true
+    },
+    "message": "OK",
+    "status": "reward_checked"
+  },
+  "share_status": "share_reported",
   "target_hour_24h": 9,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
+  "video": {
+    "aid": 117094532388997,
+    "bvid": "BV1TYgN6pEAq",
+    "cid": 40911376308,
+    "title": "可以是0.04也可以是400但绝对不能是40"
+  },
+  "watch_status": "watch_reported",
   "weekday": 7
 }
