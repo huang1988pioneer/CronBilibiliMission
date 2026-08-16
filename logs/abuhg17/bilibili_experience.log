@@ -126,3 +126,8 @@
 2026-08-16T01:51:21+0000 INFO root: Gave 2 coin(s) to BV1NdgP6mEGn.
 2026-08-16T01:51:22+0000 WARNING root: Coin task failed for BV1f5uZ6nErH: 超过投币上限啦~
 2026-08-16T01:51:22+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
+2026-08-16T03:08:36+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 355.7, level: Lv5, exp: 13725, exp to next: 15075, days at 15 exp/day: 1005
+2026-08-16T03:08:37+0000 INFO root: Selected video: BV1f5uZ6nErH “现 状 青 年”
+2026-08-16T03:08:37+0000 INFO root: Gave 2 coin(s) to BV1cXgp6aESY.
+2026-08-16T03:08:38+0000 INFO root: Gave 1 coin(s) to BV17Bui6xE1n.
+2026-08-16T03:08:38+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
