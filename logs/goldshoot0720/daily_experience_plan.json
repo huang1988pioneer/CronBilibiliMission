@@ -1,10 +1,87 @@
 {
+  "account_coins": 474.4,
+  "coin_balance_notification": {
+    "reason": "stagnant_coin_streak_below_threshold",
+    "status": "email_skipped",
+    "streak_days": 1
+  },
+  "coin_task": {
+    "coins_spent": 0,
+    "experience_before": 0,
+    "reason": "level_6",
+    "status": "coin_skipped",
+    "target_experience": 50,
+    "videos": []
+  },
+  "completed": true,
   "confirmations_done": [],
   "date": "2026-08-17",
   "dice": 5,
-  "initial_done": false,
+  "initial_done": true,
+  "initial_done_at_taipei": "2026-08-17T06:29:54+08:00",
+  "level_info": {
+    "current_exp": 33694,
+    "current_level": 6,
+    "days_to_next_level_at_15_exp_per_day": null,
+    "exp_to_next_level": null,
+    "level_breakthrough_dates_at_15_exp_per_day": {
+      "lv3": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-08-17",
+        "exp_remaining": 0,
+        "required_exp": 1500
+      },
+      "lv4": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-08-17",
+        "exp_remaining": 0,
+        "required_exp": 4500
+      },
+      "lv5": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-08-17",
+        "exp_remaining": 0,
+        "required_exp": 10800
+      },
+      "lv6": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-08-17",
+        "exp_remaining": 0,
+        "required_exp": 28800
+      }
+    },
+    "next_level_exp": null
+  },
+  "level_upgrade_notification": {
+    "reason": "no_level_upgrade",
+    "status": "email_skipped"
+  },
+  "login_status": "logged_in",
+  "missing_after": [],
+  "reward_after": {
+    "data": {
+      "coins": 0,
+      "email": true,
+      "identify_card": false,
+      "login": true,
+      "safe_question": true,
+      "share": true,
+      "tel": true,
+      "watch": true
+    },
+    "message": "OK",
+    "status": "reward_checked"
+  },
+  "share_status": "share_reported",
   "target_hour_24h": 6,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
+  "video": {
+    "aid": 117100035183101,
+    "bvid": "BV1hNby6UEvQ",
+    "cid": 40942633311,
+    "title": "(小剧场第二集)真正的战斗二创！无敌go团！暴打仁菜！"
+  },
+  "watch_status": "watch_reported",
   "weekday": 1
 }
