@@ -1,51 +1,36 @@
 {
-  "account_coins": 351.7,
+  "account_coins": 348.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
     "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 3,
-    "experience_before": 20,
-    "reason": "completed",
-    "status": "coins_given",
+    "coins_spent": 0,
+    "experience_before": 50,
+    "reason": "daily_50_exp_complete",
+    "status": "coin_skipped",
     "target_experience": 50,
-    "videos": [
-      {
-        "aid": 117105705878727,
-        "bvid": "BV1VfbR6pEw9",
-        "coins": 2,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "周处除三害现实版，我们干掉他了！"
-      },
-      {
-        "aid": 117071614581298,
-        "bvid": "BV1f5uZ6nErH",
-        "coins": 1,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "“现 状 青 年”"
-      }
-    ]
+    "videos": []
   },
   "completed": true,
   "confirmations_done": [
     1,
-    3
+    3,
+    6
   ],
   "confirmed_after_1h_at_taipei": "2026-08-17T09:49:05+08:00",
   "confirmed_after_3h_at_taipei": "2026-08-17T11:07:47+08:00",
+  "confirmed_after_6h_at_taipei": "2026-08-17T13:41:22+08:00",
   "date": "2026-08-17",
   "dice": 6,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-17T07:28:11+08:00",
   "level_info": {
-    "current_exp": 13790,
+    "current_exp": 13820,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 1001,
-    "exp_to_next_level": 15010,
+    "days_to_next_level_at_15_exp_per_day": 999,
+    "exp_to_next_level": 14980,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -66,9 +51,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1001,
-        "estimated_date": "2029-05-14",
-        "exp_remaining": 15010,
+        "days_at_15_exp_per_day": 999,
+        "estimated_date": "2029-05-12",
+        "exp_remaining": 14980,
         "required_exp": 28800
       }
     },
