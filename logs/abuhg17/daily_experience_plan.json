@@ -1,10 +1,112 @@
 {
+  "account_coins": 348.7,
+  "coin_balance_notification": {
+    "reason": "stagnant_coin_streak_below_threshold",
+    "status": "email_skipped",
+    "streak_days": 2
+  },
+  "coin_task": {
+    "coins_spent": 5,
+    "experience_before": 0,
+    "reason": "completed",
+    "status": "coins_given",
+    "target_experience": 50,
+    "videos": [
+      {
+        "aid": 117104598588296,
+        "bvid": "BV1o8b96pEQA",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "龙 餐 馆 连 线 勇 哥"
+      },
+      {
+        "aid": 117098424573778,
+        "bvid": "BV19jbC6HEDW",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "当你打游戏忘回青梅女友消息……"
+      },
+      {
+        "aid": 117105236121529,
+        "bvid": "BV16cbX6WEUZ",
+        "coins": 1,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "两分钟后，她就绝迹于朝堂之上了"
+      }
+    ]
+  },
+  "completed": true,
   "confirmations_done": [],
   "date": "2026-08-18",
   "dice": 6,
-  "initial_done": false,
+  "initial_done": true,
+  "initial_done_at_taipei": "2026-08-18T09:44:05+08:00",
+  "level_info": {
+    "current_exp": 13820,
+    "current_level": 5,
+    "days_to_next_level_at_15_exp_per_day": 999,
+    "exp_to_next_level": 14980,
+    "level_breakthrough_dates_at_15_exp_per_day": {
+      "lv3": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-08-18",
+        "exp_remaining": 0,
+        "required_exp": 1500
+      },
+      "lv4": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-08-18",
+        "exp_remaining": 0,
+        "required_exp": 4500
+      },
+      "lv5": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-08-18",
+        "exp_remaining": 0,
+        "required_exp": 10800
+      },
+      "lv6": {
+        "days_at_15_exp_per_day": 999,
+        "estimated_date": "2029-05-13",
+        "exp_remaining": 14980,
+        "required_exp": 28800
+      }
+    },
+    "next_level_exp": 28800
+  },
+  "level_upgrade_notification": {
+    "reason": "no_level_upgrade",
+    "status": "email_skipped"
+  },
+  "login_status": "logged_in",
+  "missing_after": [],
+  "reward_after": {
+    "data": {
+      "coins": 50,
+      "email": true,
+      "identify_card": false,
+      "login": true,
+      "safe_question": true,
+      "share": true,
+      "tel": true,
+      "watch": true
+    },
+    "message": "OK",
+    "status": "reward_checked"
+  },
+  "share_status": "share_reported",
   "target_hour_24h": 8,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
+  "video": {
+    "aid": 117106796467304,
+    "bvid": "BV1tsb86zEZ6",
+    "cid": 40976647304,
+    "title": "【自我介绍】1619本人正式入驻B站！大家好呀～"
+  },
+  "watch_status": "watch_reported",
   "weekday": 2
 }
