@@ -1,9 +1,9 @@
 {
-  "account_coins": 95,
+  "account_coins": 96,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-19T07:29:28+08:00",
   "date": "2026-08-19",
   "dice": 3,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-19T06:32:24+08:00",
   "level_info": {
-    "current_exp": 1595,
+    "current_exp": 1610,
     "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 194,
-    "exp_to_next_level": 2905,
+    "days_to_next_level_at_15_exp_per_day": 193,
+    "exp_to_next_level": 2890,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -32,21 +35,21 @@
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 194,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 2905,
+        "days_at_15_exp_per_day": 193,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 2890,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 614,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 9205,
+        "days_at_15_exp_per_day": 613,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 9190,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1814,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 27205,
+        "days_at_15_exp_per_day": 1813,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 27190,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 6,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 40975926745,
     "title": "【魔圆手书】圆中心的随之任之【B萌应援】"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 3
 }
