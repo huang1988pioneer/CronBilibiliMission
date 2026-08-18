@@ -1,54 +1,32 @@
 {
-  "account_coins": 348.7,
+  "account_coins": 344.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 5,
-    "experience_before": 0,
-    "reason": "completed",
-    "status": "coins_given",
+    "coins_spent": 0,
+    "experience_before": 50,
+    "reason": "daily_50_exp_complete",
+    "status": "coin_skipped",
     "target_experience": 50,
-    "videos": [
-      {
-        "aid": 117104598588296,
-        "bvid": "BV1o8b96pEQA",
-        "coins": 2,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "龙 餐 馆 连 线 勇 哥"
-      },
-      {
-        "aid": 117098424573778,
-        "bvid": "BV19jbC6HEDW",
-        "coins": 2,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "当你打游戏忘回青梅女友消息……"
-      },
-      {
-        "aid": 117105236121529,
-        "bvid": "BV16cbX6WEUZ",
-        "coins": 1,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "两分钟后，她就绝迹于朝堂之上了"
-      }
-    ]
+    "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-18T11:03:20+08:00",
   "date": "2026-08-18",
   "dice": 6,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-18T09:44:05+08:00",
   "level_info": {
-    "current_exp": 13820,
+    "current_exp": 13885,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 999,
-    "exp_to_next_level": 14980,
+    "days_to_next_level_at_15_exp_per_day": 995,
+    "exp_to_next_level": 14915,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -69,9 +47,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 999,
-        "estimated_date": "2029-05-13",
-        "exp_remaining": 14980,
+        "days_at_15_exp_per_day": 995,
+        "estimated_date": "2029-05-09",
+        "exp_remaining": 14915,
         "required_exp": 28800
       }
     },
@@ -97,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 8,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -107,6 +85,6 @@
     "cid": 40976647304,
     "title": "【自我介绍】1619本人正式入驻B站！大家好呀～"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 2
 }
