@@ -283,3 +283,9 @@
 2026-08-19T20:37:18+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
 2026-08-19T21:33:22+0000 INFO root: Waiting. Now 5:00 Taipei, target is 6:00.
 2026-08-19T21:33:22+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
+2026-08-19T22:33:07+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 340.7, level: Lv5, exp: 13950, exp to next: 14850, days at 15 exp/day: 990
+2026-08-19T22:33:08+0000 INFO root: Selected video: BV17Hgp6XEaR 【我在现代当幽差】EP01 大哥，你阳寿未尽啊【UP动画】
+2026-08-19T22:33:08+0000 INFO root: Watch task: watch_reported 0
+2026-08-19T22:33:08+0000 INFO root: Share task: share_reported OK
+2026-08-19T22:33:09+0000 WARNING root: Coin task failed for BV17Hgp6XEaR: 超过投币上限啦~
+2026-08-19T22:33:09+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
