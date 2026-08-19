@@ -253,3 +253,7 @@
 2026-08-19T01:45:48+0000 INFO root: Gave 2 coin(s) to BV1A2bi6UEev.
 2026-08-19T01:45:49+0000 WARNING root: Coin task failed for BV1cXgp6aESY: 账号异常,操作失败
 2026-08-19T01:45:49+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
+2026-08-19T03:05:33+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 341.7, level: Lv5, exp: 13940, exp to next: 14860, days at 15 exp/day: 991
+2026-08-19T03:05:34+0000 INFO root: Selected video: BV1A2bi6UEev 音画不同步！为什么视频口型总是怪怪的？
+2026-08-19T03:05:34+0000 INFO root: Gave 1 coin(s) to BV1rHbY6MEB9.
+2026-08-19T03:05:34+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.

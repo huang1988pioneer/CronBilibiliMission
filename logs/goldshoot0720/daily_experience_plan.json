@@ -14,13 +14,16 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-19T11:05:35+08:00",
   "date": "2026-08-19",
   "dice": 6,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-19T09:45:49+08:00",
   "level_info": {
-    "current_exp": 33724,
+    "current_exp": 33729,
     "current_level": 6,
     "days_to_next_level_at_15_exp_per_day": null,
     "exp_to_next_level": null,
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 9,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 40990605342,
     "title": "地球毁灭后，人类只剩四条路｜你会把文明带向哪里？"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 3
 }

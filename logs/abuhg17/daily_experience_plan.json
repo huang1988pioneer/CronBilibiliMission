@@ -1,54 +1,41 @@
 {
-  "account_coins": 344.7,
+  "account_coins": 341.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 4,
-    "experience_before": 0,
-    "reason": "api_failed",
-    "status": "coin_incomplete",
+    "coins_spent": 1,
+    "experience_before": 40,
+    "reason": "completed",
+    "status": "coins_given",
     "target_experience": 50,
     "videos": [
       {
-        "aid": 117115638125632,
-        "bvid": "BV1f78g6iEP6",
-        "coins": 2,
+        "aid": 117109229094045,
+        "bvid": "BV1rHbY6MEB9",
+        "coins": 1,
         "message": "OK",
         "status": "coins_given",
-        "title": "《绝命回溯》第二季01"
-      },
-      {
-        "aid": 117110940375883,
-        "bvid": "BV1A2bi6UEev",
-        "coins": 2,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "音画不同步！为什么视频口型总是怪怪的？"
-      },
-      {
-        "aid": 117087653596727,
-        "bvid": "BV1cXgp6aESY",
-        "coins": 0,
-        "message": "账号异常,操作失败",
-        "status": "coin_failed",
-        "title": "“央妈这段运镜太有手法了，完全拍出了什么叫意气风发！”"
+        "title": "我这一生最大的罪，是把人写成了妖……"
       }
     ]
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-19T11:05:33+08:00",
   "date": "2026-08-19",
   "dice": 6,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-19T09:45:45+08:00",
   "level_info": {
-    "current_exp": 13885,
+    "current_exp": 13940,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 995,
-    "exp_to_next_level": 14915,
+    "days_to_next_level_at_15_exp_per_day": 991,
+    "exp_to_next_level": 14860,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -69,9 +56,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 995,
-        "estimated_date": "2029-05-10",
-        "exp_remaining": 14915,
+        "days_at_15_exp_per_day": 991,
+        "estimated_date": "2029-05-06",
+        "exp_remaining": 14860,
         "required_exp": 28800
       }
     },
@@ -85,7 +72,7 @@
   "missing_after": [],
   "reward_after": {
     "data": {
-      "coins": 40,
+      "coins": 50,
       "email": true,
       "identify_card": false,
       "login": true,
@@ -97,16 +84,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 9,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117087150344146,
-    "bvid": "BV1abgn6gExX",
-    "cid": 40869758625,
-    "title": "“盘点那些无缝衔接的顶级串烧”"
+    "aid": 117110940375883,
+    "bvid": "BV1A2bi6UEev",
+    "cid": 40999060509,
+    "title": "音画不同步！为什么视频口型总是怪怪的？"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 3
 }
