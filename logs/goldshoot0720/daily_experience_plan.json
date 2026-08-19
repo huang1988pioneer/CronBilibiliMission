@@ -1,94 +1,10 @@
 {
-  "account_coins": 476.4,
-  "coin_balance_notification": {
-    "reason": "stagnant_coin_streak_below_threshold",
-    "status": "email_skipped",
-    "streak_days": 1
-  },
-  "coin_task": {
-    "coins_spent": 0,
-    "experience_before": 0,
-    "reason": "level_6",
-    "status": "coin_skipped",
-    "target_experience": 50,
-    "videos": []
-  },
-  "completed": true,
-  "confirmations_done": [
-    1,
-    3,
-    6
-  ],
-  "confirmed_after_1h_at_taipei": "2026-08-19T11:05:35+08:00",
-  "confirmed_after_3h_at_taipei": "2026-08-19T12:44:56+08:00",
-  "confirmed_after_6h_at_taipei": "2026-08-19T15:47:22+08:00",
-  "date": "2026-08-19",
-  "dice": 6,
-  "initial_done": true,
-  "initial_done_at_taipei": "2026-08-19T09:45:49+08:00",
-  "level_info": {
-    "current_exp": 33729,
-    "current_level": 6,
-    "days_to_next_level_at_15_exp_per_day": null,
-    "exp_to_next_level": null,
-    "level_breakthrough_dates_at_15_exp_per_day": {
-      "lv3": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-19",
-        "exp_remaining": 0,
-        "required_exp": 1500
-      },
-      "lv4": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-19",
-        "exp_remaining": 0,
-        "required_exp": 4500
-      },
-      "lv5": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-19",
-        "exp_remaining": 0,
-        "required_exp": 10800
-      },
-      "lv6": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-19",
-        "exp_remaining": 0,
-        "required_exp": 28800
-      }
-    },
-    "next_level_exp": null
-  },
-  "level_upgrade_notification": {
-    "reason": "no_level_upgrade",
-    "status": "email_skipped"
-  },
-  "login_status": "logged_in",
-  "missing_after": [],
-  "reward_after": {
-    "data": {
-      "coins": 0,
-      "email": true,
-      "identify_card": false,
-      "login": true,
-      "safe_question": true,
-      "share": true,
-      "tel": true,
-      "watch": true
-    },
-    "message": "OK",
-    "status": "reward_checked"
-  },
-  "share_status": "share_skipped",
+  "confirmations_done": [],
+  "date": "2026-08-20",
+  "dice": 5,
+  "initial_done": false,
   "target_hour_24h": 9,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
-  "video": {
-    "aid": 117109883406111,
-    "bvid": "BV1DTbv6xEHK",
-    "cid": 40990605342,
-    "title": "地球毁灭后，人类只剩四条路｜你会把文明带向哪里？"
-  },
-  "watch_status": "watch_skipped",
-  "weekday": 3
+  "weekday": 4
 }
