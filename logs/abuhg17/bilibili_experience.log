@@ -289,3 +289,9 @@
 2026-08-19T22:33:08+0000 INFO root: Share task: share_reported OK
 2026-08-19T22:33:09+0000 WARNING root: Coin task failed for BV17Hgp6XEaR: 超过投币上限啦~
 2026-08-19T22:33:09+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
+2026-08-19T23:30:22+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 341.7, level: Lv5, exp: 13965, exp to next: 14835, days at 15 exp/day: 989
+2026-08-19T23:30:23+0000 INFO root: Selected video: BV1aEba6HEez 魅力四射
+2026-08-19T23:30:24+0000 INFO root: Gave 2 coin(s) to BV17tb96RENv.
+2026-08-19T23:30:24+0000 INFO root: Gave 2 coin(s) to BV1wEbY63Efo.
+2026-08-19T23:30:25+0000 WARNING root: Coin task failed for BV17Hgp6XEaR: 超过投币上限啦~
+2026-08-19T23:30:25+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
