@@ -1,41 +1,34 @@
 {
-  "account_coins": 341.7,
+  "account_coins": 340.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
     "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 1,
-    "experience_before": 40,
-    "reason": "completed",
-    "status": "coins_given",
+    "coins_spent": 0,
+    "experience_before": 50,
+    "reason": "daily_50_exp_complete",
+    "status": "coin_skipped",
     "target_experience": 50,
-    "videos": [
-      {
-        "aid": 117109229094045,
-        "bvid": "BV1rHbY6MEB9",
-        "coins": 1,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "我这一生最大的罪，是把人写成了妖……"
-      }
-    ]
+    "videos": []
   },
   "completed": true,
   "confirmations_done": [
-    1
+    1,
+    3
   ],
   "confirmed_after_1h_at_taipei": "2026-08-19T11:05:33+08:00",
+  "confirmed_after_3h_at_taipei": "2026-08-19T12:44:55+08:00",
   "date": "2026-08-19",
   "dice": 6,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-19T09:45:45+08:00",
   "level_info": {
-    "current_exp": 13940,
+    "current_exp": 13950,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 991,
-    "exp_to_next_level": 14860,
+    "days_to_next_level_at_15_exp_per_day": 990,
+    "exp_to_next_level": 14850,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -56,9 +49,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 991,
-        "estimated_date": "2029-05-06",
-        "exp_remaining": 14860,
+        "days_at_15_exp_per_day": 990,
+        "estimated_date": "2029-05-05",
+        "exp_remaining": 14850,
         "required_exp": 28800
       }
     },
