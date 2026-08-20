@@ -1,94 +1,10 @@
 {
-  "account_coins": 336.7,
-  "coin_balance_notification": {
-    "reason": "stagnant_coin_streak_below_threshold",
-    "status": "email_skipped",
-    "streak_days": 1
-  },
-  "coin_task": {
-    "coins_spent": 0,
-    "experience_before": 50,
-    "reason": "daily_50_exp_complete",
-    "status": "coin_skipped",
-    "target_experience": 50,
-    "videos": []
-  },
-  "completed": true,
-  "confirmations_done": [
-    1,
-    3,
-    6
-  ],
-  "confirmed_after_1h_at_taipei": "2026-08-20T07:30:22+08:00",
-  "confirmed_after_3h_at_taipei": "2026-08-20T09:44:56+08:00",
-  "confirmed_after_6h_at_taipei": "2026-08-20T12:45:19+08:00",
-  "date": "2026-08-20",
-  "dice": 2,
-  "initial_done": true,
-  "initial_done_at_taipei": "2026-08-20T06:33:06+08:00",
-  "level_info": {
-    "current_exp": 14015,
-    "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 986,
-    "exp_to_next_level": 14785,
-    "level_breakthrough_dates_at_15_exp_per_day": {
-      "lv3": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-20",
-        "exp_remaining": 0,
-        "required_exp": 1500
-      },
-      "lv4": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-20",
-        "exp_remaining": 0,
-        "required_exp": 4500
-      },
-      "lv5": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-20",
-        "exp_remaining": 0,
-        "required_exp": 10800
-      },
-      "lv6": {
-        "days_at_15_exp_per_day": 986,
-        "estimated_date": "2029-05-02",
-        "exp_remaining": 14785,
-        "required_exp": 28800
-      }
-    },
-    "next_level_exp": 28800
-  },
-  "level_upgrade_notification": {
-    "reason": "no_level_upgrade",
-    "status": "email_skipped"
-  },
-  "login_status": "logged_in",
-  "missing_after": [],
-  "reward_after": {
-    "data": {
-      "coins": 50,
-      "email": true,
-      "identify_card": false,
-      "login": true,
-      "safe_question": true,
-      "share": true,
-      "tel": true,
-      "watch": true
-    },
-    "message": "OK",
-    "status": "reward_checked"
-  },
-  "share_status": "share_skipped",
-  "target_hour_24h": 6,
+  "confirmations_done": [],
+  "date": "2026-08-21",
+  "dice": 6,
+  "initial_done": false,
+  "target_hour_24h": 11,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
-  "video": {
-    "aid": 117095186564701,
-    "bvid": "BV1gMgM6KEUM",
-    "cid": 40917731165,
-    "title": "80后老登，1人，4个月，113分钟AI长片电影《出马仙镇东北》【AI全民制作人】"
-  },
-  "watch_status": "watch_skipped",
-  "weekday": 4
+  "weekday": 5
 }
