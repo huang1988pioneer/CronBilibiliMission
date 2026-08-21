@@ -1,38 +1,57 @@
 {
-  "account_coins": 336.7,
+  "account_coins": 337.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 0,
+    "coins_spent": 5,
     "experience_before": 0,
-    "reason": "api_failed",
-    "status": "coin_incomplete",
+    "reason": "completed",
+    "status": "coins_given",
     "target_experience": 50,
     "videos": [
       {
-        "aid": 117109229094045,
-        "bvid": "BV1rHbY6MEB9",
-        "coins": 0,
-        "message": "超过投币上限啦~",
-        "status": "coin_failed",
-        "title": "我这一生最大的罪，是把人写成了妖……"
+        "aid": 117121694633650,
+        "bvid": "BV1278n6jENi",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "【躲在交易所后门买差股票的三人】16【AI全民制作人】"
+      },
+      {
+        "aid": 117121526993944,
+        "bvid": "BV1rm876FEMJ",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "为什么coser不爱去漫展了？吐槽cos圈子的那些乱象【锐评第1期】"
+      },
+      {
+        "aid": 117123020036316,
+        "bvid": "BV13a8H6dE5L",
+        "coins": 1,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "《情歌王》，但如果全是原唱来唱会是什么感觉？"
       }
     ]
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-21T12:48:25+08:00",
   "date": "2026-08-21",
   "dice": 6,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-21T11:11:19+08:00",
   "level_info": {
-    "current_exp": 14015,
+    "current_exp": 14030,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 986,
-    "exp_to_next_level": 14785,
+    "days_to_next_level_at_15_exp_per_day": 985,
+    "exp_to_next_level": 14770,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -53,9 +72,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 986,
-        "estimated_date": "2029-05-03",
-        "exp_remaining": 14785,
+        "days_at_15_exp_per_day": 985,
+        "estimated_date": "2029-05-02",
+        "exp_remaining": 14770,
         "required_exp": 28800
       }
     },
@@ -69,7 +88,7 @@
   "missing_after": [],
   "reward_after": {
     "data": {
-      "coins": 0,
+      "coins": 40,
       "email": true,
       "identify_card": false,
       "login": true,
@@ -81,16 +100,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 11,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117104598588296,
-    "bvid": "BV1o8b96pEQA",
-    "cid": 40959019924,
-    "title": "龙 餐 馆 连 线 勇 哥"
+    "aid": 117126157309869,
+    "bvid": "BV1DR8F68E9Q",
+    "cid": 41087599071,
+    "title": "13岁女孩听信百万粉丝博主绝经11个月"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 5
 }
