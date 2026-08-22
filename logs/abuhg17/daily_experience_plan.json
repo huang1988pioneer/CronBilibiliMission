@@ -1,29 +1,57 @@
 {
-  "account_coins": 332.7,
+  "account_coins": 333.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 0,
+    "coins_spent": 5,
     "experience_before": 0,
-    "reason": "balance_not_over_333",
-    "status": "coin_skipped",
+    "reason": "completed",
+    "status": "coins_given",
     "target_experience": 50,
-    "videos": []
+    "videos": [
+      {
+        "aid": 117130552936279,
+        "bvid": "BV1fm8K6bE8d",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "不用下载，点击立即哈气，哈基米斗2.0！【Bilibili Toy】"
+      },
+      {
+        "aid": 117111913450424,
+        "bvid": "BV18Ubv6tEBN",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "这场2026全球爆火的男性颜值内卷竞赛，给我看麻了…"
+      },
+      {
+        "aid": 117132683644621,
+        "bvid": "BV1rL8q6QEk1",
+        "coins": 1,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "【二维动画】画二渲三，但是渲出来一堆BUG"
+      }
+    ]
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-22T11:02:11+08:00",
   "date": "2026-08-22",
   "dice": 3,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-22T09:43:09+08:00",
   "level_info": {
-    "current_exp": 14080,
+    "current_exp": 14095,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 982,
-    "exp_to_next_level": 14720,
+    "days_to_next_level_at_15_exp_per_day": 981,
+    "exp_to_next_level": 14705,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +72,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 982,
-        "estimated_date": "2029-04-30",
-        "exp_remaining": 14720,
+        "days_at_15_exp_per_day": 981,
+        "estimated_date": "2029-04-29",
+        "exp_remaining": 14705,
         "required_exp": 28800
       }
     },
@@ -60,7 +88,7 @@
   "missing_after": [],
   "reward_after": {
     "data": {
-      "coins": 0,
+      "coins": 40,
       "email": true,
       "identify_card": false,
       "login": true,
@@ -72,16 +100,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 9,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117120184688411,
-    "bvid": "BV1iY8j6SELm",
-    "cid": 41052210337,
-    "title": "《被他人开户了怎么办》"
+    "aid": 117132733978854,
+    "bvid": "BV1k78q6nEpV",
+    "cid": 41126593121,
+    "title": "【洛天依原创】“愿望中的这些那些，让我挣扎在每个夏夜”《残月》"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 6
 }
