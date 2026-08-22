@@ -1,9 +1,9 @@
 {
-  "account_coins": 98,
+  "account_coins": 99,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-22T11:49:40+08:00",
   "date": "2026-08-22",
   "dice": 4,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-22T11:02:09+08:00",
   "level_info": {
-    "current_exp": 1640,
+    "current_exp": 1655,
     "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 191,
-    "exp_to_next_level": 2860,
+    "days_to_next_level_at_15_exp_per_day": 190,
+    "exp_to_next_level": 2845,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -32,21 +35,21 @@
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 191,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 2860,
+        "days_at_15_exp_per_day": 190,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 2845,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 611,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 9160,
+        "days_at_15_exp_per_day": 610,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 9145,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1811,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 27160,
+        "days_at_15_exp_per_day": 1810,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 27145,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 10,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 41112112107,
     "title": "不用下载，点击立即哈气，哈基米斗2.0！【Bilibili Toy】"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 6
 }
