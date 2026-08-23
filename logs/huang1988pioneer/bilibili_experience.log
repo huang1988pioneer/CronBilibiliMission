@@ -413,3 +413,5 @@
 2026-08-23T20:33:14+0000 INFO root: Logged in as 鋒三 (3706990272449316), account coins: 100, level: Lv3, exp: 1685, exp to next: 2815, days at 15 exp/day: 188
 2026-08-23T20:33:15+0000 INFO root: Daily experience tasks already complete.
 2026-08-23T20:33:15+0000 INFO root: Daily summary written to logs/huang1988pioneer/daily_summary.md and GitHub Step Summary.
+2026-08-23T21:29:33+0000 INFO root: No due experience check. Now 5:00 Taipei, target was 3:00.
+2026-08-23T21:29:33+0000 INFO root: Daily summary written to logs/huang1988pioneer/daily_summary.md and GitHub Step Summary.
