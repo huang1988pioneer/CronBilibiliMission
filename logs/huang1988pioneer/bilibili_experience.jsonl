@@ -187,3 +187,4 @@
 {"created_at_taipei": "2026-08-25T02:52:40+08:00", "current_hour_24h": 2, "date": "2026-08-25", "event": "skip", "reason": "before_target_hour", "target_hour_24h": 8}
 {"created_at_taipei": "2026-08-25T03:36:32+08:00", "current_hour_24h": 3, "date": "2026-08-25", "event": "skip", "reason": "before_target_hour", "target_hour_24h": 8}
 {"created_at_taipei": "2026-08-25T04:40:03+08:00", "current_hour_24h": 4, "date": "2026-08-25", "event": "skip", "reason": "before_target_hour", "target_hour_24h": 8}
+{"created_at_taipei": "2026-08-25T05:37:26+08:00", "current_hour_24h": 5, "date": "2026-08-25", "event": "skip", "reason": "before_target_hour", "target_hour_24h": 8}
