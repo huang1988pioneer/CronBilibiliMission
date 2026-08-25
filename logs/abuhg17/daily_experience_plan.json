@@ -1,9 +1,9 @@
 {
-  "account_coins": 331.7,
+  "account_coins": 332.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -13,17 +13,20 @@
     "target_experience": 50,
     "videos": []
   },
-  "completed": false,
-  "confirmations_done": [],
+  "completed": true,
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-26T06:35:47+08:00",
   "date": "2026-08-26",
   "dice": 2,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-26T05:36:41+08:00",
   "level_info": {
-    "current_exp": 14190,
+    "current_exp": 14205,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 974,
-    "exp_to_next_level": 14610,
+    "days_to_next_level_at_15_exp_per_day": 973,
+    "exp_to_next_level": 14595,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +47,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 974,
-        "estimated_date": "2029-04-26",
-        "exp_remaining": 14610,
+        "days_at_15_exp_per_day": 973,
+        "estimated_date": "2029-04-25",
+        "exp_remaining": 14595,
         "required_exp": 28800
       }
     },
@@ -57,9 +60,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -67,14 +68,14 @@
       "identify_card": false,
       "login": true,
       "safe_question": true,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 5,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -84,6 +85,6 @@
     "cid": 41221752321,
     "title": "王中王夺冠自战解说"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 3
 }
