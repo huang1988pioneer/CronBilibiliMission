@@ -1,9 +1,9 @@
 {
-  "account_coins": 102,
+  "account_coins": 103,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-26T09:50:30+08:00",
   "date": "2026-08-26",
   "dice": 4,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-26T07:31:46+08:00",
   "level_info": {
-    "current_exp": 1700,
+    "current_exp": 1715,
     "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 187,
-    "exp_to_next_level": 2800,
+    "days_to_next_level_at_15_exp_per_day": 186,
+    "exp_to_next_level": 2785,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -32,21 +35,21 @@
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 187,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 2800,
+        "days_at_15_exp_per_day": 186,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 2785,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 607,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 9100,
+        "days_at_15_exp_per_day": 606,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 9085,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1807,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 27100,
+        "days_at_15_exp_per_day": 1806,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 27085,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 41218082864,
     "title": "那个被当成毛泽东的人，日本人认错了他，但我们应该认识他！"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 3
 }
