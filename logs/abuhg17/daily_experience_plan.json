@@ -1,29 +1,57 @@
 {
-  "account_coins": 332.7,
+  "account_coins": 333.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 0,
+    "coins_spent": 5,
     "experience_before": 0,
-    "reason": "balance_not_over_333",
-    "status": "coin_skipped",
+    "reason": "completed",
+    "status": "coins_given",
     "target_experience": 50,
-    "videos": []
+    "videos": [
+      {
+        "aid": 117155433551659,
+        "bvid": "BV15EhG6qEAg",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "《无限大》定档预告丨27年1月15日全球上线"
+      },
+      {
+        "aid": 117133421840307,
+        "bvid": "BV16s8z6WENQ",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "当1000倍剂量的毒品进入身体，会发生什么？"
+      },
+      {
+        "aid": 117136190216177,
+        "bvid": "BV1Vy8r6JE9z",
+        "coins": 1,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "严肃观看儿子的历史记录"
+      }
+    ]
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-27T17:23:54+08:00",
   "date": "2026-08-27",
   "dice": 1,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-27T07:19:17+08:00",
   "level_info": {
-    "current_exp": 14205,
+    "current_exp": 14220,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 973,
-    "exp_to_next_level": 14595,
+    "days_to_next_level_at_15_exp_per_day": 972,
+    "exp_to_next_level": 14580,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +72,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 973,
-        "estimated_date": "2029-04-26",
-        "exp_remaining": 14595,
+        "days_at_15_exp_per_day": 972,
+        "estimated_date": "2029-04-25",
+        "exp_remaining": 14580,
         "required_exp": 28800
       }
     },
@@ -60,7 +88,7 @@
   "missing_after": [],
   "reward_after": {
     "data": {
-      "coins": 0,
+      "coins": 50,
       "email": true,
       "identify_card": false,
       "login": true,
@@ -72,16 +100,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 5,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117149628634619,
-    "bvid": "BV1S9hP66EK1",
-    "cid": 41218082864,
-    "title": "那个被当成毛泽东的人，日本人认错了他，但我们应该认识他！"
+    "aid": 117156373137628,
+    "bvid": "BV14eh56NE8R",
+    "cid": 41258320600,
+    "title": "2026年了还有人喜欢这个吗"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 4
 }
