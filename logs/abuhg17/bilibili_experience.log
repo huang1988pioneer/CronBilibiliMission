@@ -575,3 +575,5 @@
 2026-08-28T05:15:22+0000 INFO root: Watch task: watch_reported 0
 2026-08-28T05:15:22+0000 INFO root: Share task: share_reported OK
 2026-08-28T05:15:23+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
+2026-08-28T18:33:08+0000 INFO root: Waiting. Now 2:00 Taipei, target is 7:00.
+2026-08-28T18:33:08+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.

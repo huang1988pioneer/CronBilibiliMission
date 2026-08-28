@@ -1,87 +1,10 @@
 {
-  "account_coins": 328.7,
-  "coin_balance_notification": {
-    "reason": "stagnant_coin_streak_below_threshold",
-    "status": "email_skipped",
-    "streak_days": 1
-  },
-  "coin_task": {
-    "coins_spent": 0,
-    "experience_before": 0,
-    "reason": "balance_not_over_333",
-    "status": "coin_skipped",
-    "target_experience": 50,
-    "videos": []
-  },
-  "completed": true,
   "confirmations_done": [],
-  "date": "2026-08-28",
-  "dice": 4,
-  "initial_done": true,
-  "initial_done_at_taipei": "2026-08-28T13:15:21+08:00",
-  "level_info": {
-    "current_exp": 14270,
-    "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 969,
-    "exp_to_next_level": 14530,
-    "level_breakthrough_dates_at_15_exp_per_day": {
-      "lv3": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-28",
-        "exp_remaining": 0,
-        "required_exp": 1500
-      },
-      "lv4": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-28",
-        "exp_remaining": 0,
-        "required_exp": 4500
-      },
-      "lv5": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-28",
-        "exp_remaining": 0,
-        "required_exp": 10800
-      },
-      "lv6": {
-        "days_at_15_exp_per_day": 969,
-        "estimated_date": "2029-04-23",
-        "exp_remaining": 14530,
-        "required_exp": 28800
-      }
-    },
-    "next_level_exp": 28800
-  },
-  "level_upgrade_notification": {
-    "reason": "no_level_upgrade",
-    "status": "email_skipped"
-  },
-  "login_status": "logged_in",
-  "missing_after": [],
-  "reward_after": {
-    "data": {
-      "coins": 0,
-      "email": true,
-      "identify_card": false,
-      "login": true,
-      "safe_question": true,
-      "share": true,
-      "tel": true,
-      "watch": true
-    },
-    "message": "OK",
-    "status": "reward_checked"
-  },
-  "share_status": "share_reported",
-  "target_hour_24h": 9,
+  "date": "2026-08-29",
+  "dice": 1,
+  "initial_done": false,
+  "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
-  "video": {
-    "aid": 117150215835256,
-    "bvid": "BV1PEhP6vERe",
-    "cid": 41221752321,
-    "title": "王中王夺冠自战解说"
-  },
-  "watch_status": "watch_reported",
-  "weekday": 5
+  "weekday": 6
 }
