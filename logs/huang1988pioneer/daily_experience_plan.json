@@ -13,17 +13,20 @@
     "target_experience": 50,
     "videos": []
   },
-  "completed": false,
-  "confirmations_done": [],
+  "completed": true,
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-29T16:58:00+08:00",
   "date": "2026-08-29",
   "dice": 1,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-29T10:03:55+08:00",
   "level_info": {
-    "current_exp": 1755,
+    "current_exp": 1760,
     "current_level": 3,
     "days_to_next_level_at_15_exp_per_day": 183,
-    "exp_to_next_level": 2745,
+    "exp_to_next_level": 2740,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -34,19 +37,19 @@
       "lv4": {
         "days_at_15_exp_per_day": 183,
         "estimated_date": "2027-02-28",
-        "exp_remaining": 2745,
+        "exp_remaining": 2740,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 603,
         "estimated_date": "2028-04-23",
-        "exp_remaining": 9045,
+        "exp_remaining": 9040,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 1803,
         "estimated_date": "2031-08-06",
-        "exp_remaining": 27045,
+        "exp_remaining": 27040,
         "required_exp": 28800
       }
     },
@@ -57,9 +60,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -67,14 +68,14 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -84,6 +85,6 @@
     "cid": 41178170239,
     "title": "吾不识青天高，黄地厚，唯见月寒日暖，来煎人寿"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 6
 }
