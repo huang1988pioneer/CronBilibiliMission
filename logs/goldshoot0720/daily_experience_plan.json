@@ -13,14 +13,17 @@
     "target_experience": 50,
     "videos": []
   },
-  "completed": false,
-  "confirmations_done": [],
+  "completed": true,
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-29T22:23:28+08:00",
   "date": "2026-08-29",
   "dice": 5,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-29T16:58:02+08:00",
   "level_info": {
-    "current_exp": 33874,
+    "current_exp": 33879,
     "current_level": 6,
     "days_to_next_level_at_15_exp_per_day": null,
     "exp_to_next_level": null,
@@ -57,9 +60,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -67,14 +68,14 @@
       "identify_card": false,
       "login": true,
       "safe_question": true,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 11,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -84,6 +85,6 @@
     "cid": 41340896918,
     "title": "美术展里的假人模型，为何变成了真人尸体...？"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 6
 }
