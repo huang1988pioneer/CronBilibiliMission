@@ -1,10 +1,89 @@
 {
+  "account_coins": 487.4,
+  "coin_balance_notification": {
+    "reason": "stagnant_coin_streak_below_threshold",
+    "status": "email_skipped",
+    "streak_days": 1
+  },
+  "coin_task": {
+    "coins_spent": 0,
+    "experience_before": 0,
+    "reason": "level_6",
+    "status": "coin_skipped",
+    "target_experience": 50,
+    "videos": []
+  },
+  "completed": false,
   "confirmations_done": [],
   "date": "2026-08-30",
   "dice": 3,
-  "initial_done": false,
+  "initial_done": true,
+  "initial_done_at_taipei": "2026-08-30T13:11:46+08:00",
+  "level_info": {
+    "current_exp": 33889,
+    "current_level": 6,
+    "days_to_next_level_at_15_exp_per_day": null,
+    "exp_to_next_level": null,
+    "level_breakthrough_dates_at_15_exp_per_day": {
+      "lv3": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-08-30",
+        "exp_remaining": 0,
+        "required_exp": 1500
+      },
+      "lv4": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-08-30",
+        "exp_remaining": 0,
+        "required_exp": 4500
+      },
+      "lv5": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-08-30",
+        "exp_remaining": 0,
+        "required_exp": 10800
+      },
+      "lv6": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-08-30",
+        "exp_remaining": 0,
+        "required_exp": 28800
+      }
+    },
+    "next_level_exp": null
+  },
+  "level_upgrade_notification": {
+    "reason": "no_level_upgrade",
+    "status": "email_skipped"
+  },
+  "login_status": "logged_in",
+  "missing_after": [
+    "share"
+  ],
+  "reward_after": {
+    "data": {
+      "coins": 0,
+      "email": true,
+      "identify_card": false,
+      "login": true,
+      "safe_question": true,
+      "share": false,
+      "tel": true,
+      "watch": true
+    },
+    "message": "OK",
+    "status": "reward_checked"
+  },
+  "share_status": "share_reported",
   "target_hour_24h": 10,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
+  "video": {
+    "aid": 117176841341552,
+    "bvid": "BV1eZ4k6mETe",
+    "cid": 41384480717,
+    "title": "【雷军】祝贺长鑫 LPDDR6 内存实现量产"
+  },
+  "watch_status": "watch_reported",
   "weekday": 7
 }
