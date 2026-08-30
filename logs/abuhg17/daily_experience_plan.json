@@ -1,90 +1,10 @@
 {
-  "account_coins": 331.7,
-  "coin_balance_notification": {
-    "reason": "stagnant_coin_streak_below_threshold",
-    "status": "email_skipped",
-    "streak_days": 1
-  },
-  "coin_task": {
-    "coins_spent": 0,
-    "experience_before": 0,
-    "reason": "balance_not_over_333",
-    "status": "coin_skipped",
-    "target_experience": 50,
-    "videos": []
-  },
-  "completed": true,
-  "confirmations_done": [
-    1
-  ],
-  "confirmed_after_1h_at_taipei": "2026-08-30T19:47:27+08:00",
-  "date": "2026-08-30",
-  "dice": 1,
-  "initial_done": true,
-  "initial_done_at_taipei": "2026-08-30T13:11:44+08:00",
-  "level_info": {
-    "current_exp": 14315,
-    "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 966,
-    "exp_to_next_level": 14485,
-    "level_breakthrough_dates_at_15_exp_per_day": {
-      "lv3": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-30",
-        "exp_remaining": 0,
-        "required_exp": 1500
-      },
-      "lv4": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-30",
-        "exp_remaining": 0,
-        "required_exp": 4500
-      },
-      "lv5": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-30",
-        "exp_remaining": 0,
-        "required_exp": 10800
-      },
-      "lv6": {
-        "days_at_15_exp_per_day": 966,
-        "estimated_date": "2029-04-22",
-        "exp_remaining": 14485,
-        "required_exp": 28800
-      }
-    },
-    "next_level_exp": 28800
-  },
-  "level_upgrade_notification": {
-    "reason": "no_level_upgrade",
-    "status": "email_skipped"
-  },
-  "login_status": "logged_in",
-  "missing_after": [],
-  "reward_after": {
-    "data": {
-      "coins": 0,
-      "email": true,
-      "identify_card": false,
-      "login": true,
-      "safe_question": true,
-      "share": true,
-      "tel": true,
-      "watch": true
-    },
-    "message": "OK",
-    "status": "reward_checked"
-  },
-  "share_status": "share_skipped",
-  "target_hour_24h": 8,
+  "confirmations_done": [],
+  "date": "2026-08-31",
+  "dice": 5,
+  "initial_done": false,
+  "target_hour_24h": 6,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
-  "video": {
-    "aid": 117174156920310,
-    "bvid": "BV1JstP6SEje",
-    "cid": 41388343409,
-    "title": "纯 爱 大 侠（中）"
-  },
-  "watch_status": "watch_skipped",
-  "weekday": 7
+  "weekday": 1
 }
