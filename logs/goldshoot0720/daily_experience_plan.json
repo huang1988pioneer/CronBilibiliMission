@@ -3,7 +3,7 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,18 +14,11 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [
-    1,
-    3,
-    6
-  ],
-  "confirmed_after_1h_at_taipei": "2026-08-31T07:23:38+08:00",
-  "confirmed_after_3h_at_taipei": "2026-08-31T13:19:27+08:00",
-  "confirmed_after_6h_at_taipei": "2026-08-31T21:30:23+08:00",
-  "date": "2026-08-31",
-  "dice": 3,
+  "confirmations_done": [],
+  "date": "2026-09-01",
+  "dice": 1,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-08-31T04:57:10+08:00",
+  "initial_done_at_taipei": "2026-09-01T06:45:23+08:00",
   "level_info": {
     "current_exp": 33909,
     "current_level": 6,
@@ -34,25 +27,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-31",
+        "estimated_date": "2026-09-01",
         "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-31",
+        "estimated_date": "2026-09-01",
         "exp_remaining": 0,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-31",
+        "estimated_date": "2026-09-01",
         "exp_remaining": 0,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-31",
+        "estimated_date": "2026-09-01",
         "exp_remaining": 0,
         "required_exp": 28800
       }
@@ -79,16 +72,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 4,
+  "share_status": "share_reported",
+  "target_hour_24h": 3,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117181320857576,
-    "bvid": "BV1rd4U6VETR",
-    "cid": 41412005360,
-    "title": "大肥鱼等到了她的用户~"
+    "aid": 117184139369851,
+    "bvid": "BV1Uwtp67EN4",
+    "cid": 41426159121,
+    "title": "夜途无归（雾锁收费站）合集  一口气看完"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 1
+  "watch_status": "watch_reported",
+  "weekday": 2
 }

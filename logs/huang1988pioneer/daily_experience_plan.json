@@ -1,92 +1,10 @@
 {
-  "account_coins": 108,
-  "coin_balance_notification": {
-    "reason": "stagnant_coin_streak_below_threshold",
-    "status": "email_skipped",
-    "streak_days": 1
-  },
-  "coin_task": {
-    "coins_spent": 0,
-    "experience_before": 0,
-    "reason": "balance_not_over_333",
-    "status": "coin_skipped",
-    "target_experience": 50,
-    "videos": []
-  },
-  "completed": true,
-  "confirmations_done": [
-    1,
-    3
-  ],
-  "confirmed_after_1h_at_taipei": "2026-08-31T13:19:25+08:00",
-  "confirmed_after_3h_at_taipei": "2026-08-31T21:30:21+08:00",
-  "date": "2026-08-31",
+  "confirmations_done": [],
+  "date": "2026-09-01",
   "dice": 5,
-  "initial_done": true,
-  "initial_done_at_taipei": "2026-08-31T07:23:34+08:00",
-  "level_info": {
-    "current_exp": 1790,
-    "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 181,
-    "exp_to_next_level": 2710,
-    "level_breakthrough_dates_at_15_exp_per_day": {
-      "lv3": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-08-31",
-        "exp_remaining": 0,
-        "required_exp": 1500
-      },
-      "lv4": {
-        "days_at_15_exp_per_day": 181,
-        "estimated_date": "2027-02-28",
-        "exp_remaining": 2710,
-        "required_exp": 4500
-      },
-      "lv5": {
-        "days_at_15_exp_per_day": 601,
-        "estimated_date": "2028-04-23",
-        "exp_remaining": 9010,
-        "required_exp": 10800
-      },
-      "lv6": {
-        "days_at_15_exp_per_day": 1801,
-        "estimated_date": "2031-08-06",
-        "exp_remaining": 27010,
-        "required_exp": 28800
-      }
-    },
-    "next_level_exp": 4500
-  },
-  "level_upgrade_notification": {
-    "reason": "no_level_upgrade",
-    "status": "email_skipped"
-  },
-  "login_status": "logged_in",
-  "missing_after": [],
-  "reward_after": {
-    "data": {
-      "coins": 0,
-      "email": true,
-      "identify_card": false,
-      "login": true,
-      "safe_question": false,
-      "share": true,
-      "tel": true,
-      "watch": true
-    },
-    "message": "OK",
-    "status": "reward_checked"
-  },
-  "share_status": "share_skipped",
-  "target_hour_24h": 6,
+  "initial_done": false,
+  "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
-  "video": {
-    "aid": 117132968859276,
-    "bvid": "BV1dS8i6zE1o",
-    "cid": 41125086925,
-    "title": "【一口气看完】《诡界—阳光孤儿院》合集"
-  },
-  "watch_status": "watch_skipped",
-  "weekday": 1
+  "weekday": 2
 }
