@@ -1,9 +1,9 @@
 {
-  "account_coins": 107,
+  "account_coins": 108,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-08-31T13:19:25+08:00",
   "date": "2026-08-31",
   "dice": 5,
   "initial_done": true,
   "initial_done_at_taipei": "2026-08-31T07:23:34+08:00",
   "level_info": {
-    "current_exp": 1775,
+    "current_exp": 1790,
     "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 182,
-    "exp_to_next_level": 2725,
+    "days_to_next_level_at_15_exp_per_day": 181,
+    "exp_to_next_level": 2710,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -32,21 +35,21 @@
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 182,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 2725,
+        "days_at_15_exp_per_day": 181,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 2710,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 602,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 9025,
+        "days_at_15_exp_per_day": 601,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 9010,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1802,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 27025,
+        "days_at_15_exp_per_day": 1801,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 27010,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 6,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 41125086925,
     "title": "【一口气看完】《诡界—阳光孤儿院》合集"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 1
 }
