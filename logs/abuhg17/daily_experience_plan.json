@@ -1,29 +1,57 @@
 {
-  "account_coins": 332.7,
+  "account_coins": 333.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 0,
+    "coins_spent": 5,
     "experience_before": 0,
-    "reason": "balance_not_over_333",
-    "status": "coin_skipped",
+    "reason": "completed",
+    "status": "coins_given",
     "target_experience": 50,
-    "videos": []
+    "videos": [
+      {
+        "aid": 117178116414013,
+        "bvid": "BV1o74y6XEcM",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "一个人，耗时18个月，2万元成本，手搓94分钟以刘慈欣小说《山》为故事原型的AI仿真人科幻电影【ai全民制作人】#SpecialForAAIFF"
+      },
+      {
+        "aid": 117172848303576,
+        "bvid": "BV195tA6qER7",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "【巫师】每次股灾都是财富转移，怎么用百度搭子监测并拿到带血筹码？"
+      },
+      {
+        "aid": 117183736777665,
+        "bvid": "BV17m4Q6jEp4",
+        "coins": 1,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "我第一次觉得，命运好像真的存在！！"
+      }
+    ]
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-09-01T09:46:34+08:00",
   "date": "2026-09-01",
   "dice": 2,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-01T06:45:21+08:00",
   "level_info": {
-    "current_exp": 14330,
+    "current_exp": 14345,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 965,
-    "exp_to_next_level": 14470,
+    "days_to_next_level_at_15_exp_per_day": 964,
+    "exp_to_next_level": 14455,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +72,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 965,
-        "estimated_date": "2029-04-23",
-        "exp_remaining": 14470,
+        "days_at_15_exp_per_day": 964,
+        "estimated_date": "2029-04-22",
+        "exp_remaining": 14455,
         "required_exp": 28800
       }
     },
@@ -60,7 +88,7 @@
   "missing_after": [],
   "reward_after": {
     "data": {
-      "coins": 0,
+      "coins": 50,
       "email": true,
       "identify_card": false,
       "login": true,
@@ -72,16 +100,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 4,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117182612769755,
-    "bvid": "BV1xT4D6REah",
-    "cid": 41418754130,
-    "title": "我有不能输的理由"
+    "aid": 117183736777665,
+    "bvid": "BV17m4Q6jEp4",
+    "cid": 41424719736,
+    "title": "我第一次觉得，命运好像真的存在！！"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 2
 }

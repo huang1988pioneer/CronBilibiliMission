@@ -1,9 +1,9 @@
 {
-  "account_coins": 488.4,
+  "account_coins": 489.4,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,13 +14,16 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-09-01T09:46:38+08:00",
   "date": "2026-09-01",
   "dice": 1,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-01T06:45:23+08:00",
   "level_info": {
-    "current_exp": 33909,
+    "current_exp": 33924,
     "current_level": 6,
     "days_to_next_level_at_15_exp_per_day": null,
     "exp_to_next_level": null,
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 3,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 41426159121,
     "title": "夜途无归（雾锁收费站）合集  一口气看完"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 2
 }
