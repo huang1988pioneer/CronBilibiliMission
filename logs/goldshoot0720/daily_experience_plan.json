@@ -14,13 +14,16 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-09-04T17:29:40+08:00",
   "date": "2026-09-04",
   "dice": 6,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-04T12:18:04+08:00",
   "level_info": {
-    "current_exp": 33964,
+    "current_exp": 33969,
     "current_level": 6,
     "days_to_next_level_at_15_exp_per_day": null,
     "exp_to_next_level": null,
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 11,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 41537506715,
     "title": "一个老人，一辆摩托，十几年，12个省份，近600名战争亲历者证言"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 5
 }

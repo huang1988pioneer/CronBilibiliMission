@@ -1,9 +1,9 @@
 {
-  "account_coins": 111,
+  "account_coins": 112,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-09-04T17:29:38+08:00",
   "date": "2026-09-04",
   "dice": 3,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-04T12:18:00+08:00",
   "level_info": {
-    "current_exp": 1835,
+    "current_exp": 1850,
     "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 178,
-    "exp_to_next_level": 2665,
+    "days_to_next_level_at_15_exp_per_day": 177,
+    "exp_to_next_level": 2650,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -32,21 +35,21 @@
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 178,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 2665,
+        "days_at_15_exp_per_day": 177,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 2650,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 598,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 8965,
+        "days_at_15_exp_per_day": 597,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 8950,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1798,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 26965,
+        "days_at_15_exp_per_day": 1797,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 26950,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 8,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 41444443245,
     "title": "【BilibiliToy】斗罗模拟器，快来试试下一个成神的幸运儿是不是你~"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 5
 }
