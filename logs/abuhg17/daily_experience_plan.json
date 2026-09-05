@@ -1,92 +1,10 @@
 {
-  "account_coins": 332.7,
-  "coin_balance_notification": {
-    "reason": "stagnant_coin_streak_below_threshold",
-    "status": "email_skipped",
-    "streak_days": 1
-  },
-  "coin_task": {
-    "coins_spent": 0,
-    "experience_before": 0,
-    "reason": "balance_not_over_333",
-    "status": "coin_skipped",
-    "target_experience": 50,
-    "videos": []
-  },
-  "completed": true,
-  "confirmations_done": [
-    1,
-    3
-  ],
-  "confirmed_after_1h_at_taipei": "2026-09-05T18:27:42+08:00",
-  "confirmed_after_3h_at_taipei": "2026-09-05T21:49:33+08:00",
-  "date": "2026-09-05",
-  "dice": 3,
-  "initial_done": true,
-  "initial_done_at_taipei": "2026-09-05T13:33:49+08:00",
-  "level_info": {
-    "current_exp": 14455,
-    "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 957,
-    "exp_to_next_level": 14345,
-    "level_breakthrough_dates_at_15_exp_per_day": {
-      "lv3": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-09-05",
-        "exp_remaining": 0,
-        "required_exp": 1500
-      },
-      "lv4": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-09-05",
-        "exp_remaining": 0,
-        "required_exp": 4500
-      },
-      "lv5": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-09-05",
-        "exp_remaining": 0,
-        "required_exp": 10800
-      },
-      "lv6": {
-        "days_at_15_exp_per_day": 957,
-        "estimated_date": "2029-04-19",
-        "exp_remaining": 14345,
-        "required_exp": 28800
-      }
-    },
-    "next_level_exp": 28800
-  },
-  "level_upgrade_notification": {
-    "reason": "no_level_upgrade",
-    "status": "email_skipped"
-  },
-  "login_status": "logged_in",
-  "missing_after": [],
-  "reward_after": {
-    "data": {
-      "coins": 0,
-      "email": true,
-      "identify_card": false,
-      "login": true,
-      "safe_question": true,
-      "share": true,
-      "tel": true,
-      "watch": true
-    },
-    "message": "OK",
-    "status": "reward_checked"
-  },
-  "share_status": "share_skipped",
+  "confirmations_done": [],
+  "date": "2026-09-06",
+  "dice": 2,
+  "initial_done": false,
   "target_hour_24h": 9,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
-  "video": {
-    "aid": 117194759477984,
-    "bvid": "BV1G7tG6tEwL",
-    "cid": 41488810129,
-    "title": "【何同学】库克时代"
-  },
-  "watch_status": "watch_skipped",
-  "weekday": 6
+  "weekday": 7
 }
