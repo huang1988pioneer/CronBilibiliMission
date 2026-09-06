@@ -1,29 +1,57 @@
 {
-  "account_coins": 332.7,
+  "account_coins": 333.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 0,
+    "coins_spent": 5,
     "experience_before": 0,
-    "reason": "balance_not_over_333",
-    "status": "coin_skipped",
+    "reason": "completed",
+    "status": "coins_given",
     "target_experience": 50,
-    "videos": []
+    "videos": [
+      {
+        "aid": 117218918537780,
+        "bvid": "BV1UBbL6YEtN",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "华强买瓜，但死神来了"
+      },
+      {
+        "aid": 117212442528284,
+        "bvid": "BV1nWtB6EEqU",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "宁可批量关店，也绝不降价！绝味鸭脖到底在嘴硬什么？"
+      },
+      {
+        "aid": 117209321970226,
+        "bvid": "BV1FUbF6rEFf",
+        "coins": 1,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "世界末日，却打不通最后一通电话💔《Payphone》"
+      }
+    ]
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-09-06T18:46:51+08:00",
   "date": "2026-09-06",
   "dice": 2,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-06T13:46:29+08:00",
   "level_info": {
-    "current_exp": 14455,
+    "current_exp": 14470,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 957,
-    "exp_to_next_level": 14345,
+    "days_to_next_level_at_15_exp_per_day": 956,
+    "exp_to_next_level": 14330,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +72,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 957,
-        "estimated_date": "2029-04-20",
-        "exp_remaining": 14345,
+        "days_at_15_exp_per_day": 956,
+        "estimated_date": "2029-04-19",
+        "exp_remaining": 14330,
         "required_exp": 28800
       }
     },
@@ -60,7 +88,7 @@
   "missing_after": [],
   "reward_after": {
     "data": {
-      "coins": 0,
+      "coins": 50,
       "email": true,
       "identify_card": false,
       "login": true,
@@ -72,16 +100,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 9,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117213163949217,
-    "bvid": "BV1Jtt66WEZd",
-    "cid": 41585608543,
-    "title": "9月5日劲爆消息！996福报来了，胖东来打响第一枪，胖东来供应商天塌了！"
+    "aid": 117218700434120,
+    "bvid": "BV1iPbj61E3u",
+    "cid": 41613264137,
+    "title": "全宇宙最可爱的天然呆非要给我露一手——「ふわふわ時間」平泽唯直拍"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 7
 }
