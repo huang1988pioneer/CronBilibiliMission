@@ -1,57 +1,34 @@
 {
-  "account_coins": 333.7,
+  "account_coins": 328.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
     "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 5,
-    "experience_before": 0,
-    "reason": "completed",
-    "status": "coins_given",
+    "coins_spent": 0,
+    "experience_before": 50,
+    "reason": "balance_not_over_333",
+    "status": "coin_skipped",
     "target_experience": 50,
-    "videos": [
-      {
-        "aid": 117218918537780,
-        "bvid": "BV1UBbL6YEtN",
-        "coins": 2,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "华强买瓜，但死神来了"
-      },
-      {
-        "aid": 117212442528284,
-        "bvid": "BV1nWtB6EEqU",
-        "coins": 2,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "宁可批量关店，也绝不降价！绝味鸭脖到底在嘴硬什么？"
-      },
-      {
-        "aid": 117209321970226,
-        "bvid": "BV1FUbF6rEFf",
-        "coins": 1,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "世界末日，却打不通最后一通电话💔《Payphone》"
-      }
-    ]
+    "videos": []
   },
   "completed": true,
   "confirmations_done": [
-    1
+    1,
+    3
   ],
   "confirmed_after_1h_at_taipei": "2026-09-06T18:46:51+08:00",
+  "confirmed_after_3h_at_taipei": "2026-09-06T22:05:49+08:00",
   "date": "2026-09-06",
   "dice": 2,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-06T13:46:29+08:00",
   "level_info": {
-    "current_exp": 14470,
+    "current_exp": 14520,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 956,
-    "exp_to_next_level": 14330,
+    "days_to_next_level_at_15_exp_per_day": 952,
+    "exp_to_next_level": 14280,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -72,9 +49,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 956,
-        "estimated_date": "2029-04-19",
-        "exp_remaining": 14330,
+        "days_at_15_exp_per_day": 952,
+        "estimated_date": "2029-04-15",
+        "exp_remaining": 14280,
         "required_exp": 28800
       }
     },
