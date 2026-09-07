@@ -3,7 +3,7 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,18 +14,11 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [
-    1,
-    3,
-    6
-  ],
-  "confirmed_after_1h_at_taipei": "2026-09-07T08:51:09+08:00",
-  "confirmed_after_3h_at_taipei": "2026-09-07T13:56:40+08:00",
-  "confirmed_after_6h_at_taipei": "2026-09-07T20:18:04+08:00",
-  "date": "2026-09-07",
-  "dice": 4,
+  "confirmations_done": [],
+  "date": "2026-09-08",
+  "dice": 1,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-09-07T06:51:54+08:00",
+  "initial_done_at_taipei": "2026-09-08T05:26:50+08:00",
   "level_info": {
     "current_exp": 1895,
     "current_level": 3,
@@ -34,25 +27,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-09-07",
+        "estimated_date": "2026-09-08",
         "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 174,
-        "estimated_date": "2027-02-28",
+        "estimated_date": "2027-03-01",
         "exp_remaining": 2605,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 594,
-        "estimated_date": "2028-04-23",
+        "estimated_date": "2028-04-24",
         "exp_remaining": 8905,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 1794,
-        "estimated_date": "2031-08-06",
+        "estimated_date": "2031-08-07",
         "exp_remaining": 26905,
         "required_exp": 28800
       }
@@ -79,16 +72,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 5,
+  "share_status": "share_reported",
+  "target_hour_24h": 3,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117191437455648,
-    "bvid": "BV1Este6wExx",
-    "cid": 41473934959,
-    "title": "08年美国讽刺金曲《朋友的酒》（英语填词cover）“空城计の小曲”"
+    "aid": 117204943244779,
+    "bvid": "BV19Nt962EGj",
+    "cid": 41539013970,
+    "title": "🐧串好了封侯，串不好的杀头🐧"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 1
+  "watch_status": "watch_reported",
+  "weekday": 2
 }
