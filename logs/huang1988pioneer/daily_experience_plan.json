@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-09-07T08:51:09+08:00",
   "date": "2026-09-07",
   "dice": 4,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-07T06:51:54+08:00",
   "level_info": {
-    "current_exp": 1880,
+    "current_exp": 1895,
     "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 175,
-    "exp_to_next_level": 2620,
+    "days_to_next_level_at_15_exp_per_day": 174,
+    "exp_to_next_level": 2605,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -32,21 +35,21 @@
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 175,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 2620,
+        "days_at_15_exp_per_day": 174,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 2605,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 595,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 8920,
+        "days_at_15_exp_per_day": 594,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 8905,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1795,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 26920,
+        "days_at_15_exp_per_day": 1794,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 26905,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 5,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 41473934959,
     "title": "08年美国讽刺金曲《朋友的酒》（英语填词cover）“空城计の小曲”"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 1
 }
