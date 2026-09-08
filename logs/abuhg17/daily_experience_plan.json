@@ -1,9 +1,9 @@
 {
-  "account_coins": 329.7,
+  "account_coins": 330.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-09-08T13:49:52+08:00",
   "date": "2026-09-08",
   "dice": 6,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-08T08:10:13+08:00",
   "level_info": {
-    "current_exp": 14535,
+    "current_exp": 14550,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 951,
-    "exp_to_next_level": 14265,
+    "days_to_next_level_at_15_exp_per_day": 950,
+    "exp_to_next_level": 14250,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +47,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 951,
-        "estimated_date": "2029-04-16",
-        "exp_remaining": 14265,
+        "days_at_15_exp_per_day": 950,
+        "estimated_date": "2029-04-15",
+        "exp_remaining": 14250,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 8,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 41567915125,
     "title": "机器人把自己干失业了？2026年最魔幻现实，九成新机械臂，正按吨卖废铁"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 2
 }
