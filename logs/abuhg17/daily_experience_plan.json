@@ -1,57 +1,34 @@
 {
-  "account_coins": 333.7,
+  "account_coins": 328.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
     "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 5,
-    "experience_before": 0,
-    "reason": "completed",
-    "status": "coins_given",
+    "coins_spent": 0,
+    "experience_before": 50,
+    "reason": "balance_not_over_333",
+    "status": "coin_skipped",
     "target_experience": 50,
-    "videos": [
-      {
-        "aid": 117241483892364,
-        "bvid": "BV1yHYt6qE1A",
-        "coins": 2,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "【大鸣王潮1566】这是我等待一生的巨浪"
-      },
-      {
-        "aid": 117242792517097,
-        "bvid": "BV1LJYb6ZE1m",
-        "coins": 2,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "「小白」iPhone Duo真机体验：苹果折叠终于来了！"
-      },
-      {
-        "aid": 117242121422814,
-        "bvid": "BV1e1Y86fEPD",
-        "coins": 1,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "众望所归，今天带孙艺洲自律！"
-      }
-    ]
+    "videos": []
   },
   "completed": true,
   "confirmations_done": [
-    1
+    1,
+    3
   ],
   "confirmed_after_1h_at_taipei": "2026-09-11T08:59:38+08:00",
+  "confirmed_after_3h_at_taipei": "2026-09-11T13:48:38+08:00",
   "date": "2026-09-11",
   "dice": 1,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-11T07:04:14+08:00",
   "level_info": {
-    "current_exp": 14595,
+    "current_exp": 14645,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 947,
-    "exp_to_next_level": 14205,
+    "days_to_next_level_at_15_exp_per_day": 944,
+    "exp_to_next_level": 14155,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -72,9 +49,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 947,
-        "estimated_date": "2029-04-15",
-        "exp_remaining": 14205,
+        "days_at_15_exp_per_day": 944,
+        "estimated_date": "2029-04-12",
+        "exp_remaining": 14155,
         "required_exp": 28800
       }
     },
