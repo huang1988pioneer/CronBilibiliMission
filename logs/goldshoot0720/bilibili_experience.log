@@ -755,3 +755,5 @@
 2026-09-12T20:29:09+0000 INFO root: Pruned 14 event log records older than 2026-08-15.
 2026-09-12T20:29:09+0000 INFO root: Waiting. Now 4:00 Taipei, target is 8:00.
 2026-09-12T20:29:09+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-09-12T22:57:40+0000 INFO root: Waiting. Now 6:00 Taipei, target is 8:00.
+2026-09-12T22:57:40+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
