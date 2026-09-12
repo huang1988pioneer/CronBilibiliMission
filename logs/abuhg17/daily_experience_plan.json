@@ -1,9 +1,9 @@
 {
-  "account_coins": 328.7,
+  "account_coins": 329.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-09-12T17:11:55+08:00",
   "date": "2026-09-12",
   "dice": 4,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-12T12:22:36+08:00",
   "level_info": {
-    "current_exp": 14645,
+    "current_exp": 14660,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 944,
-    "exp_to_next_level": 14155,
+    "days_to_next_level_at_15_exp_per_day": 943,
+    "exp_to_next_level": 14140,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +47,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 944,
-        "estimated_date": "2029-04-13",
-        "exp_remaining": 14155,
+        "days_at_15_exp_per_day": 943,
+        "estimated_date": "2029-04-12",
+        "exp_remaining": 14140,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 10,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 41767800792,
     "title": "🐧神人的彼端【The Other Side of Paradise】🐧"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 6
 }
