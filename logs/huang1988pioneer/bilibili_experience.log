@@ -777,3 +777,8 @@
 2026-09-13T20:40:54+0000 INFO root: Pruned 18 event log records older than 2026-08-16.
 2026-09-13T20:40:54+0000 INFO root: Waiting. Now 4:00 Taipei, target is 6:00.
 2026-09-13T20:40:54+0000 INFO root: Daily summary written to logs/huang1988pioneer/daily_summary.md and GitHub Step Summary.
+2026-09-13T23:04:48+0000 INFO root: Logged in as 鋒三 (3706990272449316), account coins: 121, level: Lv3, exp: 1985, exp to next: 2515, days at 15 exp/day: 168
+2026-09-13T23:04:49+0000 INFO root: Selected video: BV1pubK6aE6t “卦者灵风在线教你写刀子”
+2026-09-13T23:04:49+0000 INFO root: Watch task: watch_reported 0
+2026-09-13T23:04:49+0000 INFO root: Share task: share_reported OK
+2026-09-13T23:04:49+0000 INFO root: Daily summary written to logs/huang1988pioneer/daily_summary.md and GitHub Step Summary.

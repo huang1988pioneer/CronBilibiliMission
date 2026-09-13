@@ -828,3 +828,8 @@
 2026-09-13T20:40:54+0000 INFO root: Pruned 18 event log records older than 2026-08-16.
 2026-09-13T20:40:54+0000 INFO root: Waiting. Now 4:00 Taipei, target is 7:00.
 2026-09-13T20:40:54+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
+2026-09-13T23:04:50+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 330.7, level: Lv5, exp: 14675, exp to next: 14125, days at 15 exp/day: 942
+2026-09-13T23:04:51+0000 INFO root: Selected video: BV1xVY26dEbz 去了一趟山西。
+2026-09-13T23:04:51+0000 INFO root: Watch task: watch_reported 0
+2026-09-13T23:04:52+0000 INFO root: Share task: share_reported OK
+2026-09-13T23:04:52+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
