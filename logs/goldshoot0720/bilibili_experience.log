@@ -768,3 +768,9 @@
 2026-09-13T11:39:16+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 501.4, level: Lv6, exp: 34104, exp to next: None, days at 15 exp/day: None
 2026-09-13T11:39:16+0000 INFO root: Daily experience tasks already complete.
 2026-09-13T11:39:16+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-09-13T20:40:55+0000 INFO root: Pruned 18 event log records older than 2026-08-16.
+2026-09-13T20:40:55+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 502.4, level: Lv6, exp: 34114, exp to next: None, days at 15 exp/day: None
+2026-09-13T20:40:56+0000 INFO root: Selected video: BV1enYL6SEtU 高糖VS戒糖14天！真的差别很大吗？
+2026-09-13T20:40:56+0000 INFO root: Watch task: watch_reported 0
+2026-09-13T20:40:56+0000 INFO root: Share task: share_reported OK
+2026-09-13T20:40:57+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
