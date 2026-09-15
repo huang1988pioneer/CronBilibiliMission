@@ -3,7 +3,7 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,11 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [
-    1,
-    3
-  ],
-  "confirmed_after_1h_at_taipei": "2026-09-15T14:02:19+08:00",
-  "confirmed_after_3h_at_taipei": "2026-09-15T19:36:31+08:00",
-  "date": "2026-09-15",
-  "dice": 6,
+  "confirmations_done": [],
+  "date": "2026-09-16",
+  "dice": 1,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-09-15T08:28:02+08:00",
+  "initial_done_at_taipei": "2026-09-16T05:13:13+08:00",
   "level_info": {
     "current_exp": 14705,
     "current_level": 5,
@@ -32,25 +27,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-09-15",
+        "estimated_date": "2026-09-16",
         "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-09-15",
+        "estimated_date": "2026-09-16",
         "exp_remaining": 0,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-09-15",
+        "estimated_date": "2026-09-16",
         "exp_remaining": 0,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 940,
-        "estimated_date": "2029-04-12",
+        "estimated_date": "2029-04-13",
         "exp_remaining": 14095,
         "required_exp": 28800
       }
@@ -77,16 +72,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 8,
+  "share_status": "share_reported",
+  "target_hour_24h": 4,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117263411712121,
-    "bvid": "BV1aNYq6gEc1",
-    "cid": 41857059869,
-    "title": "迟到的生日快乐"
+    "aid": 117267136251282,
+    "bvid": "BV14JYr6jEJi",
+    "cid": 41873638818,
+    "title": "《全员同调 | 全員同調》MV：日式霸凌——只要受害者消失了 霸凌就结束了"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 2
+  "watch_status": "watch_reported",
+  "weekday": 3
 }
