@@ -802,3 +802,8 @@
 2026-09-15T21:13:15+0000 INFO root: Pruned 16 event log records older than 2026-08-18.
 2026-09-15T21:13:15+0000 INFO root: Waiting. Now 5:00 Taipei, target is 8:00.
 2026-09-15T21:13:15+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-09-16T00:07:39+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 504.4, level: Lv6, exp: 34144, exp to next: None, days at 15 exp/day: None
+2026-09-16T00:07:39+0000 INFO root: Selected video: BV1Umen68ELj 同事一起旅游，但是互相都在算计
+2026-09-16T00:07:39+0000 INFO root: Watch task: watch_reported 0
+2026-09-16T00:07:40+0000 INFO root: Share task: share_reported OK
+2026-09-16T00:07:40+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
