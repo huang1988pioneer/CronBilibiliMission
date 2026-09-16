@@ -1,57 +1,34 @@
 {
-  "account_coins": 333.7,
+  "account_coins": 328.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
     "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 5,
-    "experience_before": 0,
-    "reason": "completed",
-    "status": "coins_given",
+    "coins_spent": 0,
+    "experience_before": 50,
+    "reason": "balance_not_over_333",
+    "status": "coin_skipped",
     "target_experience": 50,
-    "videos": [
-      {
-        "aid": 117273964648463,
-        "bvid": "BV18weE6WEpG",
-        "coins": 2,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "《女生VS男生》"
-      },
-      {
-        "aid": 117267136251282,
-        "bvid": "BV14JYr6jEJi",
-        "coins": 2,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "《全员同调 | 全員同調》MV：日式霸凌——只要受害者消失了 霸凌就结束了"
-      },
-      {
-        "aid": 117252036824600,
-        "bvid": "BV1qdY76eE46",
-        "coins": 1,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "我来接受中国朋友们的挑战啦！"
-      }
-    ]
+    "videos": []
   },
   "completed": true,
   "confirmations_done": [
-    1
+    1,
+    3
   ],
   "confirmed_after_1h_at_taipei": "2026-09-16T08:07:35+08:00",
+  "confirmed_after_3h_at_taipei": "2026-09-16T13:53:36+08:00",
   "date": "2026-09-16",
   "dice": 1,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-16T05:13:13+08:00",
   "level_info": {
-    "current_exp": 14720,
+    "current_exp": 14770,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 939,
-    "exp_to_next_level": 14080,
+    "days_to_next_level_at_15_exp_per_day": 936,
+    "exp_to_next_level": 14030,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -72,9 +49,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 939,
-        "estimated_date": "2029-04-12",
-        "exp_remaining": 14080,
+        "days_at_15_exp_per_day": 936,
+        "estimated_date": "2029-04-09",
+        "exp_remaining": 14030,
         "required_exp": 28800
       }
     },

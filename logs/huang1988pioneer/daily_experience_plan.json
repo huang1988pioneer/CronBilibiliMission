@@ -1,9 +1,9 @@
 {
-  "account_coins": 123,
+  "account_coins": 124,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-09-16T13:53:35+08:00",
   "date": "2026-09-16",
   "dice": 5,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-16T08:07:32+08:00",
   "level_info": {
-    "current_exp": 2015,
+    "current_exp": 2030,
     "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 166,
-    "exp_to_next_level": 2485,
+    "days_to_next_level_at_15_exp_per_day": 165,
+    "exp_to_next_level": 2470,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -32,21 +35,21 @@
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 166,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 2485,
+        "days_at_15_exp_per_day": 165,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 2470,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 586,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 8785,
+        "days_at_15_exp_per_day": 585,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 8770,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1786,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 26785,
+        "days_at_15_exp_per_day": 1785,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 26770,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 8,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 41814788639,
     "title": "👈🤓上课时的各位belike⚡⚡⚡"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 3
 }
