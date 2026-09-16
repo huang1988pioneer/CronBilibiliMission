@@ -874,3 +874,6 @@
 2026-09-16T11:22:41+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 328.7, level: Lv5, exp: 14770, exp to next: 14030, days at 15 exp/day: 936
 2026-09-16T11:22:41+0000 INFO root: Daily experience tasks already complete.
 2026-09-16T11:22:41+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
+2026-09-16T21:13:21+0000 INFO root: Pruned 18 event log records older than 2026-08-19.
+2026-09-16T21:13:21+0000 INFO root: Waiting. Now 5:00 Taipei, target is 10:00.
+2026-09-16T21:13:21+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
