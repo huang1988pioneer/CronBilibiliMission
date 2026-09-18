@@ -829,3 +829,8 @@
 2026-09-17T21:15:28+0000 INFO root: Pruned 17 event log records older than 2026-08-20.
 2026-09-17T21:15:28+0000 INFO root: Waiting. Now 5:00 Taipei, target is 8:00.
 2026-09-17T21:15:28+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-09-18T00:03:52+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 506.4, level: Lv6, exp: 34174, exp to next: None, days at 15 exp/day: None
+2026-09-18T00:03:52+0000 INFO root: Selected video: BV1uaeA6mEDv 这个小学生用烂梗骂人，惹怒7.8万人，满嘴烂梗的小学生，本质上就是油腻老登!
+2026-09-18T00:03:53+0000 INFO root: Watch task: watch_reported 0
+2026-09-18T00:03:53+0000 INFO root: Share task: share_reported OK
+2026-09-18T00:03:53+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
