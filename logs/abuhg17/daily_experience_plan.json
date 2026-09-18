@@ -1,9 +1,9 @@
 {
-  "account_coins": 329.7,
+  "account_coins": 330.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-09-18T17:35:24+08:00",
   "date": "2026-09-18",
   "dice": 5,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-18T12:33:34+08:00",
   "level_info": {
-    "current_exp": 14785,
+    "current_exp": 14800,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 935,
-    "exp_to_next_level": 14015,
+    "days_to_next_level_at_15_exp_per_day": 934,
+    "exp_to_next_level": 14000,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +47,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 935,
-        "estimated_date": "2029-04-10",
-        "exp_remaining": 14015,
+        "days_at_15_exp_per_day": 934,
+        "estimated_date": "2029-04-09",
+        "exp_remaining": 14000,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 10,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 41974697451,
     "title": "《鸣潮》先约电台EP3.7——心《心月辞》"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 5
 }
