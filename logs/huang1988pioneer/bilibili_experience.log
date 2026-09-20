@@ -886,3 +886,8 @@
 2026-09-20T20:42:57+0000 INFO root: Pruned 18 event log records older than 2026-08-23.
 2026-09-20T20:42:57+0000 INFO root: Waiting. Now 4:00 Taipei, target is 5:00.
 2026-09-20T20:42:57+0000 INFO root: Daily summary written to logs/huang1988pioneer/daily_summary.md and GitHub Step Summary.
+2026-09-20T23:10:09+0000 INFO root: Logged in as 鋒三 (3706990272449316), account coins: 128, level: Lv3, exp: 2090, exp to next: 2410, days at 15 exp/day: 161
+2026-09-20T23:10:10+0000 INFO root: Selected video: BV1Bvem6WERT 【互联网入门指南】Github入门
+2026-09-20T23:10:10+0000 INFO root: Watch task: watch_reported 0
+2026-09-20T23:10:10+0000 INFO root: Share task: share_reported OK
+2026-09-20T23:10:10+0000 INFO root: Daily summary written to logs/huang1988pioneer/daily_summary.md and GitHub Step Summary.
