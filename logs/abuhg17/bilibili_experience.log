@@ -969,3 +969,9 @@
 2026-09-22T11:25:52+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 329.7, level: Lv5, exp: 14910, exp to next: 13890, days at 15 exp/day: 926
 2026-09-22T11:25:53+0000 INFO root: Daily experience tasks already complete.
 2026-09-22T11:25:53+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
+2026-09-22T21:12:21+0000 INFO root: Pruned 16 event log records older than 2026-08-25.
+2026-09-22T21:12:22+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 329.7, level: Lv5, exp: 14910, exp to next: 13890, days at 15 exp/day: 926
+2026-09-22T21:12:22+0000 INFO root: Selected video: BV1YDhJ6ZEL6 《柯洁围棋入门课》
+2026-09-22T21:12:23+0000 INFO root: Watch task: watch_reported 0
+2026-09-22T21:12:23+0000 INFO root: Share task: share_reported OK
+2026-09-22T21:12:23+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.

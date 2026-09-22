@@ -3,7 +3,7 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,11 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [
-    1,
-    3
-  ],
-  "confirmed_after_1h_at_taipei": "2026-09-22T14:01:02+08:00",
-  "confirmed_after_3h_at_taipei": "2026-09-22T19:25:52+08:00",
-  "date": "2026-09-22",
-  "dice": 6,
+  "confirmations_done": [],
+  "date": "2026-09-23",
+  "dice": 2,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-09-22T08:42:29+08:00",
+  "initial_done_at_taipei": "2026-09-23T05:12:21+08:00",
   "level_info": {
     "current_exp": 14910,
     "current_level": 5,
@@ -32,25 +27,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-09-22",
+        "estimated_date": "2026-09-23",
         "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-09-22",
+        "estimated_date": "2026-09-23",
         "exp_remaining": 0,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-09-22",
+        "estimated_date": "2026-09-23",
         "exp_remaining": 0,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 926,
-        "estimated_date": "2029-04-05",
+        "estimated_date": "2029-04-06",
         "exp_remaining": 13890,
         "required_exp": 28800
       }
@@ -77,16 +72,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 8,
+  "share_status": "share_reported",
+  "target_hour_24h": 5,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117303291222055,
-    "bvid": "BV14mez6VEG9",
-    "cid": 42056614226,
-    "title": "后续就是还有高手"
+    "aid": 117313961463398,
+    "bvid": "BV1YDhJ6ZEL6",
+    "cid": 42108063716,
+    "title": "《柯洁围棋入门课》"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 2
+  "watch_status": "watch_reported",
+  "weekday": 3
 }
