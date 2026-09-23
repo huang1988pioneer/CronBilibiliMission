@@ -14,13 +14,16 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-09-23T13:49:05+08:00",
   "date": "2026-09-23",
   "dice": 5,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-23T08:16:43+08:00",
   "level_info": {
-    "current_exp": 34249,
+    "current_exp": 34254,
     "current_level": 6,
     "days_to_next_level_at_15_exp_per_day": null,
     "exp_to_next_level": null,
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 8,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 42078310211,
     "title": "完啦完啦！用户彻底怒了！"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 3
 }
