@@ -1,10 +1,89 @@
 {
+  "account_coins": 130,
+  "coin_balance_notification": {
+    "reason": "stagnant_coin_streak_below_threshold",
+    "status": "email_skipped",
+    "streak_days": 2
+  },
+  "coin_task": {
+    "coins_spent": 0,
+    "experience_before": 0,
+    "reason": "balance_not_over_333",
+    "status": "coin_skipped",
+    "target_experience": 50,
+    "videos": []
+  },
+  "completed": false,
   "confirmations_done": [],
   "date": "2026-09-23",
   "dice": 4,
-  "initial_done": false,
+  "initial_done": true,
+  "initial_done_at_taipei": "2026-09-23T08:16:39+08:00",
+  "level_info": {
+    "current_exp": 2120,
+    "current_level": 3,
+    "days_to_next_level_at_15_exp_per_day": 159,
+    "exp_to_next_level": 2380,
+    "level_breakthrough_dates_at_15_exp_per_day": {
+      "lv3": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-09-23",
+        "exp_remaining": 0,
+        "required_exp": 1500
+      },
+      "lv4": {
+        "days_at_15_exp_per_day": 159,
+        "estimated_date": "2027-03-01",
+        "exp_remaining": 2380,
+        "required_exp": 4500
+      },
+      "lv5": {
+        "days_at_15_exp_per_day": 579,
+        "estimated_date": "2028-04-24",
+        "exp_remaining": 8680,
+        "required_exp": 10800
+      },
+      "lv6": {
+        "days_at_15_exp_per_day": 1779,
+        "estimated_date": "2031-08-07",
+        "exp_remaining": 26680,
+        "required_exp": 28800
+      }
+    },
+    "next_level_exp": 4500
+  },
+  "level_upgrade_notification": {
+    "reason": "no_level_upgrade",
+    "status": "email_skipped"
+  },
+  "login_status": "logged_in",
+  "missing_after": [
+    "share"
+  ],
+  "reward_after": {
+    "data": {
+      "coins": 0,
+      "email": true,
+      "identify_card": false,
+      "login": true,
+      "safe_question": false,
+      "share": false,
+      "tel": true,
+      "watch": true
+    },
+    "message": "OK",
+    "status": "reward_checked"
+  },
+  "share_status": "share_reported",
   "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
+  "video": {
+    "aid": 117312501978331,
+    "bvid": "BV1UWhk61EsP",
+    "cid": 42099606086,
+    "title": "好好端平一碗水"
+  },
+  "watch_status": "watch_reported",
   "weekday": 3
 }
