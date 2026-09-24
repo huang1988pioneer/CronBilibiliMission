@@ -923,3 +923,8 @@
 2026-09-23T21:26:00+0000 INFO root: Pruned 17 event log records older than 2026-08-26.
 2026-09-23T21:26:00+0000 INFO root: Waiting. Now 5:00 Taipei, target is 8:00.
 2026-09-23T21:26:00+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-09-24T00:23:54+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 512.4, level: Lv6, exp: 34264, exp to next: None, days at 15 exp/day: None
+2026-09-24T00:23:55+0000 INFO root: Selected video: BV1N4h76qEA5 为什么说狂犬病的一旦发病，体内细胞几乎没有翻盘机会
+2026-09-24T00:23:55+0000 INFO root: Watch task: watch_reported 0
+2026-09-24T00:23:55+0000 INFO root: Share task: share_reported OK
+2026-09-24T00:23:55+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
