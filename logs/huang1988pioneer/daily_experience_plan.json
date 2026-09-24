@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-09-24T14:02:49+08:00",
   "date": "2026-09-24",
   "dice": 4,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-24T08:23:51+08:00",
   "level_info": {
-    "current_exp": 2140,
+    "current_exp": 2150,
     "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 158,
-    "exp_to_next_level": 2360,
+    "days_to_next_level_at_15_exp_per_day": 157,
+    "exp_to_next_level": 2350,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -32,21 +35,21 @@
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 158,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 2360,
+        "days_at_15_exp_per_day": 157,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 2350,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 578,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 8660,
+        "days_at_15_exp_per_day": 577,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 8650,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1778,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 26660,
+        "days_at_15_exp_per_day": 1777,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 26650,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 8,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 42133555885,
     "title": "【中秋快乐】爆肝4872帧！老板，这瓜保熟吗？"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 4
 }
