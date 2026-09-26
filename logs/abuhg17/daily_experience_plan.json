@@ -1,29 +1,57 @@
 {
-  "account_coins": 332.7,
+  "account_coins": 333.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 0,
+    "coins_spent": 5,
     "experience_before": 0,
-    "reason": "balance_not_over_333",
-    "status": "coin_skipped",
+    "reason": "completed",
+    "status": "coins_given",
     "target_experience": 50,
-    "videos": []
+    "videos": [
+      {
+        "aid": 117332986827128,
+        "bvid": "BV1Sghm6fEee",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "历史性一刻：AMD市值突破1万亿美元"
+      },
+      {
+        "aid": 117329211951937,
+        "bvid": "BV1N7ag6WEzv",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "网红长蛋挞会好吃吗？"
+      },
+      {
+        "aid": 117325772621944,
+        "bvid": "BV1ucaK6UEHR",
+        "coins": 1,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "【官方中字】尼古喵喵 第12集"
+      }
+    ]
   },
-  "completed": false,
-  "confirmations_done": [],
+  "completed": true,
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-09-26T19:15:56+08:00",
   "date": "2026-09-26",
   "dice": 5,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-26T14:02:24+08:00",
   "level_info": {
-    "current_exp": 14955,
+    "current_exp": 14970,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 923,
-    "exp_to_next_level": 13845,
+    "days_to_next_level_at_15_exp_per_day": 922,
+    "exp_to_next_level": 13830,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +72,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 923,
-        "estimated_date": "2029-04-06",
-        "exp_remaining": 13845,
+        "days_at_15_exp_per_day": 922,
+        "estimated_date": "2029-04-05",
+        "exp_remaining": 13830,
         "required_exp": 28800
       }
     },
@@ -57,33 +85,31 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
-      "coins": 0,
+      "coins": 50,
       "email": true,
       "identify_card": false,
       "login": true,
       "safe_question": true,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 11,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117327618115651,
-    "bvid": "BV1NgaK6kEAm",
-    "cid": 42175497247,
-    "title": "G胖再次文明 预判厂商植入广告 提早声明禁止所有植入广告"
+    "aid": 117331074222692,
+    "bvid": "BV1cCh26EE1J",
+    "cid": 42190769553,
+    "title": "《无题》"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 6
 }
