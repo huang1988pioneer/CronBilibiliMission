@@ -3,7 +3,7 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
   "coin_task": {
     "coins_spent": 0,
@@ -13,15 +13,12 @@
     "target_experience": 50,
     "videos": []
   },
-  "completed": true,
-  "confirmations_done": [
-    1
-  ],
-  "confirmed_after_1h_at_taipei": "2026-09-27T19:53:59+08:00",
-  "date": "2026-09-27",
-  "dice": 3,
+  "completed": false,
+  "confirmations_done": [],
+  "date": "2026-09-28",
+  "dice": 2,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-09-27T13:08:19+08:00",
+  "initial_done_at_taipei": "2026-09-28T05:15:49+08:00",
   "level_info": {
     "current_exp": 2195,
     "current_level": 3,
@@ -30,25 +27,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-09-27",
+        "estimated_date": "2026-09-28",
         "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 154,
-        "estimated_date": "2027-02-28",
+        "estimated_date": "2027-03-01",
         "exp_remaining": 2305,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 574,
-        "estimated_date": "2028-04-23",
+        "estimated_date": "2028-04-24",
         "exp_remaining": 8605,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 1774,
-        "estimated_date": "2031-08-06",
+        "estimated_date": "2031-08-07",
         "exp_remaining": 26605,
         "required_exp": 28800
       }
@@ -60,7 +57,9 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [],
+  "missing_after": [
+    "share"
+  ],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -68,23 +67,23 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": true,
+      "share": false,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 10,
+  "share_status": "share_reported",
+  "target_hour_24h": 3,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117332751946145,
-    "bvid": "BV18Dhm6aEXS",
-    "cid": 42201189971,
-    "title": "⚡️ 我 来 同 你 跳 ⚡️"
+    "aid": 117331040668263,
+    "bvid": "BV1oXh263E4n",
+    "cid": 42190766782,
+    "title": "デビットビット／まふまふ【歌ってみた】"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 7
+  "watch_status": "watch_reported",
+  "weekday": 1
 }
