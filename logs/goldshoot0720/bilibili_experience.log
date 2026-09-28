@@ -988,3 +988,9 @@
 2026-09-28T15:17:03+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 516.4, level: Lv6, exp: 34329, exp to next: None, days at 15 exp/day: None
 2026-09-28T15:17:03+0000 INFO root: Daily experience tasks already complete.
 2026-09-28T15:17:03+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-09-28T23:11:33+0000 INFO root: Pruned 5 event log records older than 2026-08-31.
+2026-09-28T23:11:33+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 517.4, level: Lv6, exp: 34339, exp to next: None, days at 15 exp/day: None
+2026-09-28T23:11:34+0000 INFO root: Selected video: BV1zJhE6cE3v 这家米线店未经允许用我的画进行商业宣传，我要找他麻烦！！
+2026-09-28T23:11:34+0000 INFO root: Watch task: watch_reported 0
+2026-09-28T23:11:35+0000 INFO root: Share task: share_reported OK
+2026-09-28T23:11:35+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
