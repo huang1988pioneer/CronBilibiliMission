@@ -1,9 +1,9 @@
 {
-  "account_coins": 135,
+  "account_coins": 136,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -13,17 +13,20 @@
     "target_experience": 50,
     "videos": []
   },
-  "completed": false,
-  "confirmations_done": [],
+  "completed": true,
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-09-28T08:30:58+08:00",
   "date": "2026-09-28",
   "dice": 2,
   "initial_done": true,
   "initial_done_at_taipei": "2026-09-28T05:15:49+08:00",
   "level_info": {
-    "current_exp": 2195,
+    "current_exp": 2210,
     "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 154,
-    "exp_to_next_level": 2305,
+    "days_to_next_level_at_15_exp_per_day": 153,
+    "exp_to_next_level": 2290,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -32,21 +35,21 @@
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 154,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 2305,
+        "days_at_15_exp_per_day": 153,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 2290,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 574,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 8605,
+        "days_at_15_exp_per_day": 573,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 8590,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1774,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 26605,
+        "days_at_15_exp_per_day": 1773,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 26590,
         "required_exp": 28800
       }
     },
@@ -57,9 +60,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -67,14 +68,14 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 3,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -84,6 +85,6 @@
     "cid": 42190766782,
     "title": "デビットビット／まふまふ【歌ってみた】"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 1
 }
