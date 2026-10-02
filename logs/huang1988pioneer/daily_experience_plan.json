@@ -1,9 +1,9 @@
 {
-  "account_coins": 139,
+  "account_coins": 140,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-02T17:37:34+08:00",
   "date": "2026-10-02",
   "dice": 3,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-02T10:07:21+08:00",
   "level_info": {
-    "current_exp": 2255,
+    "current_exp": 2270,
     "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 150,
-    "exp_to_next_level": 2245,
+    "days_to_next_level_at_15_exp_per_day": 149,
+    "exp_to_next_level": 2230,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -32,21 +35,21 @@
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 150,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 2245,
+        "days_at_15_exp_per_day": 149,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 2230,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 570,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 8545,
+        "days_at_15_exp_per_day": 569,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 8530,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1770,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 26545,
+        "days_at_15_exp_per_day": 1769,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 26530,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 8,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 42339533660,
     "title": "璃月大合奏《歌唱祖国》沃雅妮莎领唱（原琴合奏）"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 5
 }
