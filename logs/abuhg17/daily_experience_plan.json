@@ -3,7 +3,7 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,14 +14,11 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [
-    1
-  ],
-  "confirmed_after_1h_at_taipei": "2026-10-04T21:07:45+08:00",
-  "date": "2026-10-04",
-  "dice": 5,
+  "confirmations_done": [],
+  "date": "2026-10-05",
+  "dice": 2,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-10-04T14:44:13+08:00",
+  "initial_done_at_taipei": "2026-10-05T05:14:25+08:00",
   "level_info": {
     "current_exp": 15190,
     "current_level": 5,
@@ -30,25 +27,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-10-04",
+        "estimated_date": "2026-10-05",
         "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-10-04",
+        "estimated_date": "2026-10-05",
         "exp_remaining": 0,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-10-04",
+        "estimated_date": "2026-10-05",
         "exp_remaining": 0,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 908,
-        "estimated_date": "2029-03-30",
+        "estimated_date": "2029-03-31",
         "exp_remaining": 13610,
         "required_exp": 28800
       }
@@ -75,16 +72,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 12,
+  "share_status": "share_reported",
+  "target_hour_24h": 3,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117365870172911,
-    "bvid": "BV11Ra66zEpr",
-    "cid": 42390588643,
-    "title": "砸3700亿，给韩国放朝鲜国歌，印度都嫌弃的日本亚运有多烂？"
+    "aid": 117375752012068,
+    "bvid": "BV1m3HY68EB2",
+    "cid": 42421259495,
+    "title": "最高压的一集"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 7
+  "watch_status": "watch_reported",
+  "weekday": 1
 }
