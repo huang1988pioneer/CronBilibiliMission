@@ -1091,3 +1091,9 @@
 2026-10-05T15:51:41+0000 INFO root: Logged in as 鋒三 (3706990272449316), account coins: 143, level: Lv3, exp: 2315, exp to next: 2185, days at 15 exp/day: 146
 2026-10-05T15:51:41+0000 INFO root: Daily experience tasks already complete.
 2026-10-05T15:51:41+0000 INFO root: Daily summary written to logs/huang1988pioneer/daily_summary.md and GitHub Step Summary.
+2026-10-05T23:59:11+0000 INFO root: Pruned 7 event log records older than 2026-09-07.
+2026-10-05T23:59:11+0000 INFO root: Logged in as 鋒三 (3706990272449316), account coins: 143, level: Lv3, exp: 2315, exp to next: 2185, days at 15 exp/day: 146
+2026-10-05T23:59:12+0000 INFO root: Selected video: BV1PHay6UEaS ⚡赵本山  世界巡演⚡
+2026-10-05T23:59:12+0000 INFO root: Watch task: watch_reported 0
+2026-10-05T23:59:13+0000 INFO root: Share task: share_reported OK
+2026-10-05T23:59:13+0000 INFO root: Daily summary written to logs/huang1988pioneer/daily_summary.md and GitHub Step Summary.

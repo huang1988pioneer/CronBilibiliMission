@@ -3,7 +3,7 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,18 +14,11 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [
-    1,
-    3,
-    6
-  ],
-  "confirmed_after_1h_at_taipei": "2026-10-05T08:43:45+08:00",
-  "confirmed_after_3h_at_taipei": "2026-10-05T14:50:40+08:00",
-  "confirmed_after_6h_at_taipei": "2026-10-05T23:51:40+08:00",
-  "date": "2026-10-05",
-  "dice": 1,
+  "confirmations_done": [],
+  "date": "2026-10-06",
+  "dice": 4,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-10-05T05:14:23+08:00",
+  "initial_done_at_taipei": "2026-10-06T07:59:11+08:00",
   "level_info": {
     "current_exp": 2315,
     "current_level": 3,
@@ -34,25 +27,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-10-05",
+        "estimated_date": "2026-10-06",
         "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 146,
-        "estimated_date": "2027-02-28",
+        "estimated_date": "2027-03-01",
         "exp_remaining": 2185,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 566,
-        "estimated_date": "2028-04-23",
+        "estimated_date": "2028-04-24",
         "exp_remaining": 8485,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 1766,
-        "estimated_date": "2031-08-06",
+        "estimated_date": "2031-08-07",
         "exp_remaining": 26485,
         "required_exp": 28800
       }
@@ -79,16 +72,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 2,
+  "share_status": "share_reported",
+  "target_hour_24h": 6,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117357800330860,
-    "bvid": "BV1UGa961Ejt",
-    "cid": 42325508668,
-    "title": "ピノキオピー - えねみぃ feat. 初音ミク・重音テト"
+    "aid": 117367564666453,
+    "bvid": "BV1PHay6UEaS",
+    "cid": 42389408632,
+    "title": "⚡赵本山  世界巡演⚡"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 1
+  "watch_status": "watch_reported",
+  "weekday": 2
 }
