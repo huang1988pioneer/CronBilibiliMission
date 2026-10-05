@@ -1,9 +1,9 @@
 {
-  "account_coins": 331.7,
+  "account_coins": 332.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-05T08:43:46+08:00",
   "date": "2026-10-05",
   "dice": 2,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-05T05:14:25+08:00",
   "level_info": {
-    "current_exp": 15190,
+    "current_exp": 15205,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 908,
-    "exp_to_next_level": 13610,
+    "days_to_next_level_at_15_exp_per_day": 907,
+    "exp_to_next_level": 13595,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +47,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 908,
-        "estimated_date": "2029-03-31",
-        "exp_remaining": 13610,
+        "days_at_15_exp_per_day": 907,
+        "estimated_date": "2029-03-30",
+        "exp_remaining": 13595,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 3,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 42421259495,
     "title": "最高压的一集"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 1
 }

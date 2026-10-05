@@ -1140,3 +1140,6 @@
 2026-10-04T21:14:27+0000 INFO root: Watch task: watch_reported 0
 2026-10-04T21:14:27+0000 INFO root: Share task: share_reported OK
 2026-10-04T21:14:27+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
+2026-10-05T00:43:46+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 332.7, level: Lv5, exp: 15205, exp to next: 13595, days at 15 exp/day: 907
+2026-10-05T00:43:47+0000 INFO root: Daily experience tasks already complete.
+2026-10-05T00:43:47+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
