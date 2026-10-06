@@ -1,80 +1,52 @@
 {
-  "account_coins": 333.7,
+  "account_coins": 328.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
     "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 5,
+    "coins_spent": 0,
     "experience_before": 0,
-    "reason": "completed",
-    "status": "coins_given",
+    "reason": "balance_not_over_333",
+    "status": "coin_skipped",
     "target_experience": 50,
-    "videos": [
-      {
-        "aid": 117391606487730,
-        "bvid": "BV1yKHf6fEAT",
-        "coins": 2,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "【罗翔】鸽子们，注意了，色字头上一把刀！"
-      },
-      {
-        "aid": 117388150315532,
-        "bvid": "BV1VbH469Eff",
-        "coins": 2,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "谁家开水壶响了"
-      },
-      {
-        "aid": 117393082810649,
-        "bvid": "BV1NCHf6eE6j",
-        "coins": 1,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "《明日方舟：终末地》核心章节「丹青渡」版本PV"
-      }
-    ]
+    "videos": []
   },
   "completed": true,
-  "confirmations_done": [
-    1
-  ],
-  "confirmed_after_1h_at_taipei": "2026-10-06T22:07:18+08:00",
-  "date": "2026-10-06",
-  "dice": 6,
+  "confirmations_done": [],
+  "date": "2026-10-07",
+  "dice": 3,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-10-06T14:07:09+08:00",
+  "initial_done_at_taipei": "2026-10-07T06:36:30+08:00",
   "level_info": {
-    "current_exp": 15220,
+    "current_exp": 15270,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 906,
-    "exp_to_next_level": 13580,
+    "days_to_next_level_at_15_exp_per_day": 902,
+    "exp_to_next_level": 13530,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-10-06",
+        "estimated_date": "2026-10-07",
         "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-10-06",
+        "estimated_date": "2026-10-07",
         "exp_remaining": 0,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-10-06",
+        "estimated_date": "2026-10-07",
         "exp_remaining": 0,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 906,
-        "estimated_date": "2029-03-30",
-        "exp_remaining": 13580,
+        "days_at_15_exp_per_day": 902,
+        "estimated_date": "2029-03-27",
+        "exp_remaining": 13530,
         "required_exp": 28800
       }
     },
@@ -88,7 +60,7 @@
   "missing_after": [],
   "reward_after": {
     "data": {
-      "coins": 50,
+      "coins": 0,
       "email": true,
       "identify_card": false,
       "login": true,
@@ -100,16 +72,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 8,
+  "share_status": "share_reported",
+  "target_hour_24h": 6,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117382848778453,
-    "bvid": "BV1mmH76SEAr",
-    "cid": 42460776103,
-    "title": "谁能坚持到最后3.0（完整版）"
+    "aid": 117383704416471,
+    "bvid": "BV1S1HJ6fE1G",
+    "cid": 42465427704,
+    "title": "“幸好你玩游戏，明白这个视频的意义。”"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 2
+  "watch_status": "watch_reported",
+  "weekday": 3
 }

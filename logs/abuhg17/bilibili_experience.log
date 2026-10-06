@@ -1163,3 +1163,9 @@
 2026-10-06T14:07:20+0000 INFO root: Gave 2 coin(s) to BV1VbH469Eff.
 2026-10-06T14:07:21+0000 INFO root: Gave 1 coin(s) to BV1NCHf6eE6j.
 2026-10-06T14:07:21+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
+2026-10-06T22:36:30+0000 INFO root: Pruned 6 event log records older than 2026-09-08.
+2026-10-06T22:36:30+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 328.7, level: Lv5, exp: 15270, exp to next: 13530, days at 15 exp/day: 902
+2026-10-06T22:36:31+0000 INFO root: Selected video: BV1S1HJ6fE1G “幸好你玩游戏，明白这个视频的意义。”
+2026-10-06T22:36:31+0000 INFO root: Watch task: watch_reported 0
+2026-10-06T22:36:31+0000 INFO root: Share task: share_reported OK
+2026-10-06T22:36:32+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
