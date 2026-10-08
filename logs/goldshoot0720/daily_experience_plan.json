@@ -14,13 +14,16 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-08T18:23:06+08:00",
   "date": "2026-10-08",
   "dice": 6,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-08T10:38:31+08:00",
   "level_info": {
-    "current_exp": 34474,
+    "current_exp": 34479,
     "current_level": 6,
     "days_to_next_level_at_15_exp_per_day": null,
     "exp_to_next_level": null,
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 10,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 42512222960,
     "title": "主体民族取消吃饭，大量三哥移居日本，高市还在给印度送钱？"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 4
 }
