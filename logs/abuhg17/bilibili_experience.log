@@ -1205,3 +1205,8 @@
 2026-10-09T22:33:24+0000 INFO root: Pruned 6 event log records older than 2026-09-11.
 2026-10-09T22:33:24+0000 INFO root: Waiting. Now 6:00 Taipei, target is 8:00.
 2026-10-09T22:33:24+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
+2026-10-10T02:14:50+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 331.7, level: Lv5, exp: 15315, exp to next: 13485, days at 15 exp/day: 899
+2026-10-10T02:14:51+0000 INFO root: Selected video: BV1hxHR68E24 从什么时候开始，报喜不报忧成了本能？｜暗叫 - きくお
+2026-10-10T02:14:51+0000 INFO root: Watch task: watch_reported 0
+2026-10-10T02:14:52+0000 INFO root: Share task: share_reported OK
+2026-10-10T02:14:52+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
