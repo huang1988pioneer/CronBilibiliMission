@@ -1,9 +1,9 @@
 {
-  "account_coins": 331.7,
+  "account_coins": 332.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -13,17 +13,20 @@
     "target_experience": 50,
     "videos": []
   },
-  "completed": false,
-  "confirmations_done": [],
+  "completed": true,
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-10T17:42:29+08:00",
   "date": "2026-10-10",
   "dice": 2,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-10T10:14:50+08:00",
   "level_info": {
-    "current_exp": 15315,
+    "current_exp": 15330,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 899,
-    "exp_to_next_level": 13485,
+    "days_to_next_level_at_15_exp_per_day": 898,
+    "exp_to_next_level": 13470,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +47,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 899,
-        "estimated_date": "2029-03-27",
-        "exp_remaining": 13485,
+        "days_at_15_exp_per_day": 898,
+        "estimated_date": "2029-03-26",
+        "exp_remaining": 13470,
         "required_exp": 28800
       }
     },
@@ -57,9 +60,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -67,14 +68,14 @@
       "identify_card": false,
       "login": true,
       "safe_question": true,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 8,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -84,6 +85,6 @@
     "cid": 42577298481,
     "title": "从什么时候开始，报喜不报忧成了本能？｜暗叫 - きくお"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 6
 }
