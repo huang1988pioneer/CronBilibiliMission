@@ -3,7 +3,7 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,14 +14,11 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [
-    1
-  ],
-  "confirmed_after_1h_at_taipei": "2026-10-11T21:55:04+08:00",
-  "date": "2026-10-11",
+  "confirmations_done": [],
+  "date": "2026-10-12",
   "dice": 3,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-10-11T15:01:22+08:00",
+  "initial_done_at_taipei": "2026-10-12T05:47:06+08:00",
   "level_info": {
     "current_exp": 2405,
     "current_level": 3,
@@ -30,25 +27,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-10-11",
+        "estimated_date": "2026-10-12",
         "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 140,
-        "estimated_date": "2027-02-28",
+        "estimated_date": "2027-03-01",
         "exp_remaining": 2095,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 560,
-        "estimated_date": "2028-04-23",
+        "estimated_date": "2028-04-24",
         "exp_remaining": 8395,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 1760,
-        "estimated_date": "2031-08-06",
+        "estimated_date": "2031-08-07",
         "exp_remaining": 26395,
         "required_exp": 28800
       }
@@ -75,16 +72,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 10,
+  "share_status": "share_reported",
+  "target_hour_24h": 4,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117415329403258,
-    "bvid": "BV13Bpv6CESH",
-    "cid": 42618717949,
-    "title": "我是伟大的父母！"
+    "aid": 117398837465501,
+    "bvid": "BV16SHC65Ewz",
+    "cid": 42537716934,
+    "title": "“变身，我们才是主角”"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 7
+  "watch_status": "watch_reported",
+  "weekday": 1
 }
