@@ -1,90 +1,10 @@
 {
-  "account_coins": 330.7,
-  "coin_balance_notification": {
-    "reason": "stagnant_coin_streak_below_threshold",
-    "status": "email_skipped",
-    "streak_days": 1
-  },
-  "coin_task": {
-    "coins_spent": 0,
-    "experience_before": 0,
-    "reason": "balance_not_over_333",
-    "status": "coin_skipped",
-    "target_experience": 50,
-    "videos": []
-  },
-  "completed": true,
-  "confirmations_done": [
-    1
-  ],
-  "confirmed_after_1h_at_taipei": "2026-10-13T17:16:48+08:00",
-  "date": "2026-10-13",
-  "dice": 3,
-  "initial_done": true,
-  "initial_done_at_taipei": "2026-10-13T09:14:29+08:00",
-  "level_info": {
-    "current_exp": 15425,
-    "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 892,
-    "exp_to_next_level": 13375,
-    "level_breakthrough_dates_at_15_exp_per_day": {
-      "lv3": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-10-13",
-        "exp_remaining": 0,
-        "required_exp": 1500
-      },
-      "lv4": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-10-13",
-        "exp_remaining": 0,
-        "required_exp": 4500
-      },
-      "lv5": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-10-13",
-        "exp_remaining": 0,
-        "required_exp": 10800
-      },
-      "lv6": {
-        "days_at_15_exp_per_day": 892,
-        "estimated_date": "2029-03-23",
-        "exp_remaining": 13375,
-        "required_exp": 28800
-      }
-    },
-    "next_level_exp": 28800
-  },
-  "level_upgrade_notification": {
-    "reason": "no_level_upgrade",
-    "status": "email_skipped"
-  },
-  "login_status": "logged_in",
-  "missing_after": [],
-  "reward_after": {
-    "data": {
-      "coins": 0,
-      "email": true,
-      "identify_card": false,
-      "login": true,
-      "safe_question": true,
-      "share": true,
-      "tel": true,
-      "watch": true
-    },
-    "message": "OK",
-    "status": "reward_checked"
-  },
-  "share_status": "share_skipped",
-  "target_hour_24h": 5,
+  "confirmations_done": [],
+  "date": "2026-10-14",
+  "dice": 6,
+  "initial_done": false,
+  "target_hour_24h": 9,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
-  "video": {
-    "aid": 117421973246314,
-    "bvid": "BV1sppE6SENL",
-    "cid": 42653453073,
-    "title": "🥳每天来上一段感觉人生好通透啊⚡️‌朋 友 的 酒🍺DJ⚡️‌"
-  },
-  "watch_status": "watch_skipped",
-  "weekday": 2
+  "weekday": 3
 }
