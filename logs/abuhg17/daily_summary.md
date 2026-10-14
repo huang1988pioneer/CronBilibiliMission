@@ -9,7 +9,7 @@
 | 擲骰 | **6** |
 | 目標時段 | **9:00** 後 |
 | 首次執行 | 2026-10-14T09:47:06+08:00 |
-| 補查 1h / 3h / 6h | ✓ / — / — |
+| 補查 1h / 3h / 6h | ✓ / ✓ / — |
 
 ## 任務進度
 
@@ -17,6 +17,7 @@
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 2026-10-14T09:47:08+08:00 | 首次 | ✓ | logged_in | watch_reported | share_reported | coin_skipped | `BV1VVpo6gEYg` 【A2O】A2O LITE 'NEON' Official Video |
 | 2026-10-14T15:26:57+08:00 | +1h 補查 | ✓ | logged_in | watch_skipped | share_skipped | coin_skipped | — |
+| 2026-10-14T21:35:29+08:00 | +3h 補查 | ✓ | logged_in | watch_skipped | share_skipped | coin_skipped | — |
 
 **獎勵狀態（最新）**
 
@@ -42,4 +43,4 @@
 | Lv.6 | 2029-03-23 | 891 |
 
 ---
-_產生時間（台北）：2026-10-14T15:26:57+08:00_
+_產生時間（台北）：2026-10-14T21:35:29+08:00_
