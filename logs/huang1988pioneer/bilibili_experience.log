@@ -1209,3 +1209,6 @@
 2026-10-14T13:35:28+0000 INFO root: Logged in as 鋒三 (3706990272449316), account coins: 152, level: Lv3, exp: 2450, exp to next: 2050, days at 15 exp/day: 137
 2026-10-14T13:35:28+0000 INFO root: Daily experience tasks already complete.
 2026-10-14T13:35:28+0000 INFO root: Daily summary written to logs/huang1988pioneer/daily_summary.md and GitHub Step Summary.
+2026-10-14T21:33:39+0000 INFO root: Pruned 5 event log records older than 2026-09-16.
+2026-10-14T21:33:39+0000 INFO root: Waiting. Now 5:00 Taipei, target is 7:00.
+2026-10-14T21:33:39+0000 INFO root: Daily summary written to logs/huang1988pioneer/daily_summary.md and GitHub Step Summary.
