@@ -1,9 +1,9 @@
 {
-  "account_coins": 151,
+  "account_coins": 152,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -13,17 +13,20 @@
     "target_experience": 50,
     "videos": []
   },
-  "completed": false,
-  "confirmations_done": [],
+  "completed": true,
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-14T15:26:55+08:00",
   "date": "2026-10-14",
   "dice": 4,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-14T09:47:04+08:00",
   "level_info": {
-    "current_exp": 2435,
+    "current_exp": 2450,
     "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 138,
-    "exp_to_next_level": 2065,
+    "days_to_next_level_at_15_exp_per_day": 137,
+    "exp_to_next_level": 2050,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -32,21 +35,21 @@
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 138,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 2065,
+        "days_at_15_exp_per_day": 137,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 2050,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 558,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 8365,
+        "days_at_15_exp_per_day": 557,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 8350,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1758,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 26365,
+        "days_at_15_exp_per_day": 1757,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 26350,
         "required_exp": 28800
       }
     },
@@ -57,9 +60,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -67,14 +68,14 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -84,6 +85,6 @@
     "cid": 42706405419,
     "title": "这下可好了！收养一只咪，迎来一大群！"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 3
 }
