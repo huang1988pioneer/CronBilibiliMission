@@ -1,29 +1,57 @@
 {
-  "account_coins": 332.7,
+  "account_coins": 333.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 0,
+    "coins_spent": 5,
     "experience_before": 0,
-    "reason": "balance_not_over_333",
-    "status": "coin_skipped",
+    "reason": "completed",
+    "status": "coins_given",
     "target_experience": 50,
-    "videos": []
+    "videos": [
+      {
+        "aid": 117444337213048,
+        "bvid": "BV1j7Jy6MEfu",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "那些没能上高中的“初中校霸”现在怎么样了？【农村青年录】"
+      },
+      {
+        "aid": 117427861985029,
+        "bvid": "BV1VVpo6gEYg",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "【A2O】A2O LITE 'NEON' Official Video"
+      },
+      {
+        "aid": 117411437087711,
+        "bvid": "BV1x9pt6JEkh",
+        "coins": 1,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "我让两个AI互相问了1000个问题，它们进化出了自己的语言"
+      }
+    ]
   },
-  "completed": false,
-  "confirmations_done": [],
+  "completed": true,
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-16T13:44:04+08:00",
   "date": "2026-10-16",
   "dice": 2,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-16T08:15:03+08:00",
   "level_info": {
-    "current_exp": 15455,
+    "current_exp": 15470,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 890,
-    "exp_to_next_level": 13345,
+    "days_to_next_level_at_15_exp_per_day": 889,
+    "exp_to_next_level": 13330,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +72,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 890,
-        "estimated_date": "2029-03-24",
-        "exp_remaining": 13345,
+        "days_at_15_exp_per_day": 889,
+        "estimated_date": "2029-03-23",
+        "exp_remaining": 13330,
         "required_exp": 28800
       }
     },
@@ -57,33 +85,31 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
-      "coins": 0,
+      "coins": 50,
       "email": true,
       "identify_card": false,
       "login": true,
       "safe_question": true,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117427861985029,
-    "bvid": "BV1VVpo6gEYg",
-    "cid": 42682355579,
-    "title": "【A2O】A2O LITE 'NEON' Official Video"
+    "aid": 117443682964766,
+    "bvid": "BV1asJk6RExW",
+    "cid": 42758508360,
+    "title": "我尝试了新工作……"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 5
 }
