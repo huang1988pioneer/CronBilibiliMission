@@ -1,9 +1,9 @@
 {
-  "account_coins": 328.7,
+  "account_coins": 329.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-17T17:10:24+08:00",
   "date": "2026-10-17",
   "dice": 6,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-17T12:09:46+08:00",
   "level_info": {
-    "current_exp": 15520,
+    "current_exp": 15535,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 886,
-    "exp_to_next_level": 13280,
+    "days_to_next_level_at_15_exp_per_day": 885,
+    "exp_to_next_level": 13265,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +47,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 886,
-        "estimated_date": "2029-03-21",
-        "exp_remaining": 13280,
+        "days_at_15_exp_per_day": 885,
+        "estimated_date": "2029-03-20",
+        "exp_remaining": 13265,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 12,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 42755883738,
     "title": "《剃刀 》每一个也许都要付钱：0.8⁵ = 33%"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 6
 }
