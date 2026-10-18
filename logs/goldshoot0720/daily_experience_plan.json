@@ -14,13 +14,16 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-19T06:58:50+08:00",
   "date": "2026-10-19",
   "dice": 2,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-19T04:29:56+08:00",
   "level_info": {
-    "current_exp": 34659,
+    "current_exp": 34664,
     "current_level": 6,
     "days_to_next_level_at_15_exp_per_day": null,
     "exp_to_next_level": null,
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 3,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 42762961431,
     "title": "【咩啊】要看一家广东糖水铺正不正宗，主要是看..."
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 1
 }
