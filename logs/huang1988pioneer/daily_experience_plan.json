@@ -1,9 +1,9 @@
 {
-  "account_coins": 155,
+  "account_coins": 156,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -13,17 +13,20 @@
     "target_experience": 50,
     "videos": []
   },
-  "completed": false,
-  "confirmations_done": [],
+  "completed": true,
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-18T18:52:32+08:00",
   "date": "2026-10-18",
   "dice": 5,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-18T13:42:50+08:00",
   "level_info": {
-    "current_exp": 2495,
+    "current_exp": 2510,
     "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 134,
-    "exp_to_next_level": 2005,
+    "days_to_next_level_at_15_exp_per_day": 133,
+    "exp_to_next_level": 1990,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -32,21 +35,21 @@
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 134,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 2005,
+        "days_at_15_exp_per_day": 133,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 1990,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 554,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 8305,
+        "days_at_15_exp_per_day": 553,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 8290,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1754,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 26305,
+        "days_at_15_exp_per_day": 1753,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 26290,
         "required_exp": 28800
       }
     },
@@ -57,9 +60,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -67,14 +68,14 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 12,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -84,6 +85,6 @@
     "cid": 42787015342,
     "title": "【EVA-明日香】耗时一年，自制CG动画"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 7
 }
