@@ -3,7 +3,7 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,11 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [
-    1,
-    3
-  ],
-  "confirmed_after_1h_at_taipei": "2026-10-18T18:52:32+08:00",
-  "confirmed_after_3h_at_taipei": "2026-10-18T22:28:18+08:00",
-  "date": "2026-10-18",
-  "dice": 5,
+  "confirmations_done": [],
+  "date": "2026-10-19",
+  "dice": 2,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-10-18T13:42:50+08:00",
+  "initial_done_at_taipei": "2026-10-19T04:29:54+08:00",
   "level_info": {
     "current_exp": 2510,
     "current_level": 3,
@@ -32,25 +27,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-10-18",
+        "estimated_date": "2026-10-19",
         "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 133,
-        "estimated_date": "2027-02-28",
+        "estimated_date": "2027-03-01",
         "exp_remaining": 1990,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 553,
-        "estimated_date": "2028-04-23",
+        "estimated_date": "2028-04-24",
         "exp_remaining": 8290,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 1753,
-        "estimated_date": "2031-08-06",
+        "estimated_date": "2031-08-07",
         "exp_remaining": 26290,
         "required_exp": 28800
       }
@@ -77,16 +72,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 12,
+  "share_status": "share_reported",
+  "target_hour_24h": 3,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117450343515323,
-    "bvid": "BV1ZKJb68EjZ",
-    "cid": 42787015342,
-    "title": "【EVA-明日香】耗时一年，自制CG动画"
+    "aid": 117449655589483,
+    "bvid": "BV17YJX6FEEs",
+    "cid": 42788258289,
+    "title": "这才是《雨爱》的正确打开方式！"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 7
+  "watch_status": "watch_reported",
+  "weekday": 1
 }
