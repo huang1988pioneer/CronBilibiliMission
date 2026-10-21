@@ -1297,3 +1297,6 @@
 2026-10-20T21:31:06+0000 INFO root: Watch task: watch_reported 0
 2026-10-20T21:31:06+0000 INFO root: Share task: share_reported OK
 2026-10-20T21:31:06+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-10-21T00:31:22+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 537.4, level: Lv6, exp: 34694, exp to next: None, days at 15 exp/day: None
+2026-10-21T00:31:22+0000 INFO root: Daily experience tasks already complete.
+2026-10-21T00:31:22+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.

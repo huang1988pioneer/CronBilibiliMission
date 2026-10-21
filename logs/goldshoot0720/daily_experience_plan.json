@@ -14,13 +14,16 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-21T08:31:22+08:00",
   "date": "2026-10-21",
   "dice": 2,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-21T05:31:05+08:00",
   "level_info": {
-    "current_exp": 34689,
+    "current_exp": 34694,
     "current_level": 6,
     "days_to_next_level_at_15_exp_per_day": null,
     "exp_to_next_level": null,
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 5,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 42871096636,
     "title": "《听见你的心声》08“初恋要来我家住，所以爸，你还是去住院吧……”（本故事纯属虚构，请相信科学）"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 3
 }
