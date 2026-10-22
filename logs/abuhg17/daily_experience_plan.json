@@ -1,5 +1,5 @@
 {
-  "account_coins": 328.7,
+  "account_coins": 329.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
@@ -13,17 +13,20 @@
     "target_experience": 50,
     "videos": []
   },
-  "completed": false,
-  "confirmations_done": [],
+  "completed": true,
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-22T19:38:06+08:00",
   "date": "2026-10-22",
   "dice": 6,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-22T13:57:50+08:00",
   "level_info": {
-    "current_exp": 15645,
+    "current_exp": 15660,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 877,
-    "exp_to_next_level": 13155,
+    "days_to_next_level_at_15_exp_per_day": 876,
+    "exp_to_next_level": 13140,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +47,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 877,
-        "estimated_date": "2029-03-17",
-        "exp_remaining": 13155,
+        "days_at_15_exp_per_day": 876,
+        "estimated_date": "2029-03-16",
+        "exp_remaining": 13140,
         "required_exp": 28800
       }
     },
@@ -57,9 +60,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -67,14 +68,14 @@
       "identify_card": false,
       "login": true,
       "safe_question": true,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 10,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -84,6 +85,6 @@
     "cid": 42904782512,
     "title": "调成气候了，从零手把手教你用DSH部署一个雷霆大肥鱼（附人格提示词）"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 4
 }
