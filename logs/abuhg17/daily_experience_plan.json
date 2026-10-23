@@ -1,9 +1,9 @@
 {
-  "account_coins": 329.7,
+  "account_coins": 330.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -13,17 +13,20 @@
     "target_experience": 50,
     "videos": []
   },
-  "completed": false,
-  "confirmations_done": [],
+  "completed": true,
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-23T13:55:04+08:00",
   "date": "2026-10-23",
   "dice": 1,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-23T08:32:18+08:00",
   "level_info": {
-    "current_exp": 15660,
+    "current_exp": 15675,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 876,
-    "exp_to_next_level": 13140,
+    "days_to_next_level_at_15_exp_per_day": 875,
+    "exp_to_next_level": 13125,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +47,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 876,
-        "estimated_date": "2029-03-17",
-        "exp_remaining": 13140,
+        "days_at_15_exp_per_day": 875,
+        "estimated_date": "2029-03-16",
+        "exp_remaining": 13125,
         "required_exp": 28800
       }
     },
@@ -57,9 +60,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -67,14 +68,14 @@
       "identify_card": false,
       "login": true,
       "safe_question": true,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 6,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -84,6 +85,6 @@
     "cid": 42806805102,
     "title": "恋はきっと急上升☆"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 5
 }
