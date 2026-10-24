@@ -1,9 +1,9 @@
 {
-  "account_coins": 161,
+  "account_coins": 162,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-24T13:39:29+08:00",
   "date": "2026-10-24",
   "dice": 1,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-24T08:27:51+08:00",
   "level_info": {
-    "current_exp": 2585,
+    "current_exp": 2600,
     "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 128,
-    "exp_to_next_level": 1915,
+    "days_to_next_level_at_15_exp_per_day": 127,
+    "exp_to_next_level": 1900,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -32,21 +35,21 @@
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 128,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 1915,
+        "days_at_15_exp_per_day": 127,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 1900,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 548,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 8215,
+        "days_at_15_exp_per_day": 547,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 8200,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1748,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 26215,
+        "days_at_15_exp_per_day": 1747,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 26200,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 42943188975,
     "title": "我的手办还会动，这世道不会还有人没有会动的手办吧，不会吧不会吧"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 6
 }
