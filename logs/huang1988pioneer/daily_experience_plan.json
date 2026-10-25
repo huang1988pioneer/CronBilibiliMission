@@ -1,9 +1,9 @@
 {
-  "account_coins": 162,
+  "account_coins": 163,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -13,17 +13,20 @@
     "target_experience": 50,
     "videos": []
   },
-  "completed": false,
-  "confirmations_done": [],
+  "completed": true,
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-25T19:12:21+08:00",
   "date": "2026-10-25",
   "dice": 3,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-25T13:58:42+08:00",
   "level_info": {
-    "current_exp": 2600,
+    "current_exp": 2615,
     "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 127,
-    "exp_to_next_level": 1900,
+    "days_to_next_level_at_15_exp_per_day": 126,
+    "exp_to_next_level": 1885,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -32,21 +35,21 @@
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 127,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 1900,
+        "days_at_15_exp_per_day": 126,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 1885,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 547,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 8200,
+        "days_at_15_exp_per_day": 546,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 8185,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1747,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 26200,
+        "days_at_15_exp_per_day": 1746,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 26185,
         "required_exp": 28800
       }
     },
@@ -57,9 +60,7 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [
-    "share"
-  ],
+  "missing_after": [],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -67,14 +68,14 @@
       "identify_card": false,
       "login": true,
       "safe_question": false,
-      "share": false,
+      "share": true,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 10,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -84,6 +85,6 @@
     "cid": 42989062102,
     "title": "人性、欲望与奇观，自驾拉斯维加斯，现实夜之城什么样？"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 7
 }
