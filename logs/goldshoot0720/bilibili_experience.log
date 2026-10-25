@@ -1367,3 +1367,8 @@
 2026-10-25T20:44:22+0000 INFO root: Pruned 5 event log records older than 2026-09-27.
 2026-10-25T20:44:22+0000 INFO root: Waiting. Now 4:00 Taipei, target is 7:00.
 2026-10-25T20:44:22+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-10-25T23:09:27+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 541.4, level: Lv6, exp: 34754, exp to next: None, days at 15 exp/day: None
+2026-10-25T23:09:28+0000 INFO root: Selected video: BV16xnm6pE3d ⚡️ 极 限 四 选 一⚡️【bilibili次元干杯】
+2026-10-25T23:09:28+0000 INFO root: Watch task: watch_reported 0
+2026-10-25T23:09:28+0000 INFO root: Share task: share_reported OK
+2026-10-25T23:09:29+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
