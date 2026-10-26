@@ -1381,3 +1381,8 @@
 2026-10-26T17:16:18+0000 INFO root: Pruned 5 event log records older than 2026-09-28.
 2026-10-26T17:16:18+0000 INFO root: Waiting. Now 1:00 Taipei, target is 3:00.
 2026-10-26T17:16:18+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-10-26T22:35:00+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 543.4, level: Lv6, exp: 34779, exp to next: None, days at 15 exp/day: None
+2026-10-26T22:35:00+0000 INFO root: Selected video: BV1LBnP6xEi5 【抢先看】植物大战僵尸・超长番：从新手村到万物共生，一集封神！
+2026-10-26T22:35:01+0000 INFO root: Watch task: watch_reported 0
+2026-10-26T22:35:01+0000 INFO root: Share task: share_reported OK
+2026-10-26T22:35:01+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
