@@ -3,7 +3,7 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,18 +14,11 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [
-    1,
-    3,
-    6
-  ],
-  "confirmed_after_1h_at_taipei": "2026-10-27T09:58:38+08:00",
-  "confirmed_after_3h_at_taipei": "2026-10-27T15:40:10+08:00",
-  "confirmed_after_6h_at_taipei": "2026-10-27T22:20:28+08:00",
-  "date": "2026-10-27",
+  "confirmations_done": [],
+  "date": "2026-10-28",
   "dice": 3,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-10-27T06:34:57+08:00",
+  "initial_done_at_taipei": "2026-10-28T06:05:52+08:00",
   "level_info": {
     "current_exp": 15785,
     "current_level": 5,
@@ -34,25 +27,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-10-27",
+        "estimated_date": "2026-10-28",
         "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-10-27",
+        "estimated_date": "2026-10-28",
         "exp_remaining": 0,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-10-27",
+        "estimated_date": "2026-10-28",
         "exp_remaining": 0,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 868,
-        "estimated_date": "2029-03-13",
+        "estimated_date": "2029-03-14",
         "exp_remaining": 13015,
         "required_exp": 28800
       }
@@ -79,16 +72,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 5,
+  "share_status": "share_reported",
+  "target_hour_24h": 6,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117498510837292,
-    "bvid": "BV1xqH36AEPX",
-    "cid": 43029038185,
-    "title": "中国90%的人都听过的童年阴影BGM！20年后我终于扒出了它的真身……SCARSONG终极溯源！【互联网大冒险】"
+    "aid": 117511731285323,
+    "bvid": "BV1kMxM6FECM",
+    "cid": 43107221723,
+    "title": "旗舰手机芯片大横评：苹果高通发哥玄戒谁最强？"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 2
+  "watch_status": "watch_reported",
+  "weekday": 3
 }
