@@ -1407,3 +1407,8 @@
 2026-10-27T22:05:51+0000 INFO root: Pruned 5 event log records older than 2026-09-29.
 2026-10-27T22:05:51+0000 INFO root: Waiting. Now 6:00 Taipei, target is 8:00.
 2026-10-27T22:05:52+0000 INFO root: Daily summary written to logs/huang1988pioneer/daily_summary.md and GitHub Step Summary.
+2026-10-28T02:06:50+0000 INFO root: Logged in as 鋒三 (3706990272449316), account coins: 165, level: Lv3, exp: 2645, exp to next: 1855, days at 15 exp/day: 124
+2026-10-28T02:06:51+0000 INFO root: Selected video: BV1oyny6kE4b 破圈，功成，操纵人心的秘密，就藏在两千年前的法家经典里。一篇视频带你领悟什么是法家！
+2026-10-28T02:06:51+0000 INFO root: Watch task: watch_reported 0
+2026-10-28T02:06:52+0000 INFO root: Share task: share_reported OK
+2026-10-28T02:06:52+0000 INFO root: Daily summary written to logs/huang1988pioneer/daily_summary.md and GitHub Step Summary.

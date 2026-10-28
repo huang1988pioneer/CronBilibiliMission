@@ -1,9 +1,9 @@
 {
-  "account_coins": 329.7,
+  "account_coins": 330.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-28T10:06:52+08:00",
   "date": "2026-10-28",
   "dice": 3,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-28T06:05:52+08:00",
   "level_info": {
-    "current_exp": 15785,
+    "current_exp": 15800,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 868,
-    "exp_to_next_level": 13015,
+    "days_to_next_level_at_15_exp_per_day": 867,
+    "exp_to_next_level": 13000,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +47,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 868,
-        "estimated_date": "2029-03-14",
-        "exp_remaining": 13015,
+        "days_at_15_exp_per_day": 867,
+        "estimated_date": "2029-03-13",
+        "exp_remaining": 13000,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 6,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 43107221723,
     "title": "旗舰手机芯片大横评：苹果高通发哥玄戒谁最强？"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 3
 }
