@@ -1,9 +1,9 @@
 {
-  "account_coins": 331.7,
+  "account_coins": 332.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-30T17:52:14+08:00",
   "date": "2026-10-30",
   "dice": 3,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-30T10:30:53+08:00",
   "level_info": {
-    "current_exp": 15815,
+    "current_exp": 15830,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 866,
-    "exp_to_next_level": 12985,
+    "days_to_next_level_at_15_exp_per_day": 865,
+    "exp_to_next_level": 12970,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +47,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 866,
-        "estimated_date": "2029-03-14",
-        "exp_remaining": 12985,
+        "days_at_15_exp_per_day": 865,
+        "estimated_date": "2029-03-13",
+        "exp_remaining": 12970,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 8,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 43061414575,
     "title": "根本没有这种视频😭😭😭"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 5
 }
