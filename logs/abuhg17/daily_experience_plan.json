@@ -1,29 +1,57 @@
 {
-  "account_coins": 332.7,
+  "account_coins": 333.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
-    "coins_spent": 0,
+    "coins_spent": 5,
     "experience_before": 0,
-    "reason": "balance_not_over_333",
-    "status": "coin_skipped",
+    "reason": "completed",
+    "status": "coins_given",
     "target_experience": 50,
-    "videos": []
+    "videos": [
+      {
+        "aid": 117531545179596,
+        "bvid": "BV1mdxq6SEKi",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "iPhone Duo次日：全网最真实评测"
+      },
+      {
+        "aid": 117531243318622,
+        "bvid": "BV1L7xB6iEVL",
+        "coins": 2,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "谁杀了自媒体人徽剑？疑凶电诈头目刘忍大起底【热点详解02】"
+      },
+      {
+        "aid": 117525186615346,
+        "bvid": "BV1jSxF6FEvR",
+        "coins": 1,
+        "message": "OK",
+        "status": "coins_given",
+        "title": "🐟️商务捕鲸了解一下🐟️DeepSeek&ChatGPT&Claude"
+      }
+    ]
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-10-31T17:30:05+08:00",
   "date": "2026-10-31",
   "dice": 1,
   "initial_done": true,
   "initial_done_at_taipei": "2026-10-31T10:13:54+08:00",
   "level_info": {
-    "current_exp": 15830,
+    "current_exp": 15845,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 865,
-    "exp_to_next_level": 12970,
+    "days_to_next_level_at_15_exp_per_day": 864,
+    "exp_to_next_level": 12955,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +72,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 865,
-        "estimated_date": "2029-03-14",
-        "exp_remaining": 12970,
+        "days_at_15_exp_per_day": 864,
+        "estimated_date": "2029-03-13",
+        "exp_remaining": 12955,
         "required_exp": 28800
       }
     },
@@ -60,7 +88,7 @@
   "missing_after": [],
   "reward_after": {
     "data": {
-      "coins": 0,
+      "coins": 50,
       "email": true,
       "identify_card": false,
       "login": true,
@@ -72,16 +100,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117512603703404,
-    "bvid": "BV1ibxg6WEKW",
-    "cid": 43099490373,
-    "title": "《三鞭抽散厌学魂》"
+    "aid": 117528626009992,
+    "bvid": "BV13yxv6nEhy",
+    "cid": 43153096995,
+    "title": "这么可爱真是抱歉! !"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 6
 }
