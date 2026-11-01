@@ -1,825 +1,399 @@
-<!--
-THESIS: A two-pane secrets console, not a stack of equal cards.
-OWN-WORLD: Cool paper #E7E9ED, ink #1A1D23, one Bilibili rose accent on primary actions only.
-STORY: Drop a cookies.txt, read four secrets, copy or push them to GitHub Actions.
-FIRST VIEWPORT: Left = file drop + expiry + GitHub form. Right = the four values. Status bar pinned.
-FORM: Operate / distilled workbench. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
--->
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:BilibiliCookieReader.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        d:DesignWidth="1080"
-        d:DesignHeight="720"
         x:Class="BilibiliCookieReader.Views.MainWindow"
         x:DataType="vm:MainViewModel"
         Title="{Binding WindowTitle}"
-        Width="1080"
-        Height="740"
-        MinWidth="900"
-        MinHeight="620"
+        Width="1180" Height="860"
+        MinWidth="960" MinHeight="640"
         WindowStartupLocation="CenterScreen"
-        Background="#E7E9ED"
+        Background="#EEF1F5"
         DragDrop.AllowDrop="True">
-
   <Design.DataContext>
     <vm:MainViewModel />
   </Design.DataContext>
-
   <Window.KeyBindings>
     <KeyBinding Gesture="Ctrl+O" Command="{Binding BrowseCommand}" />
     <KeyBinding Gesture="F5" Command="{Binding LoadCommand}" />
   </Window.KeyBindings>
 
-  <DockPanel>
-    <Border DockPanel.Dock="Bottom"
-            Background="#F7F8FA"
-            BorderBrush="#C9CED6"
-            BorderThickness="0,1,0,0"
-            Padding="24,10">
-      <TextBlock Text="{Binding StatusMessage}"
-                 TextWrapping="Wrap"
-                 FontSize="12"
-                 Classes.error="{Binding IsError}"
-                 Classes.ok="{Binding !IsError}" />
-    </Border>
-
-    <Grid Margin="24" RowDefinitions="Auto,*" RowSpacing="20">
-      <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" RowSpacing="8">
-        <StackPanel Spacing="6">
+  <Grid RowDefinitions="Auto,*,Auto">
+    <Border Background="White" BorderBrush="#DCE2EA" BorderThickness="0,0,0,1" Padding="24,18">
+      <Grid ColumnDefinitions="*,Auto" ColumnSpacing="20">
+        <StackPanel Spacing="5">
           <TextBlock Classes="title" Text="Bilibili Cookie 讀取器" />
-          <TextBlock Classes="muted"
-                     FontSize="13"
-                     Text="讀取 cookies.txt，取出 SESSDATA、BILI_JCT、DEDEUSERID、BUVID3。"
-                     TextWrapping="Wrap" />
+          <TextBlock Classes="muted" Text="匯入 Cookie → 檢查登入資訊 → 更新 GitHub Secrets" TextWrapping="Wrap" />
         </StackPanel>
-        <Border Grid.Column="1" Classes="chip" VerticalAlignment="Top">
-          <TextBlock Text="不要提交 Cookie"
-                     FontSize="12"
-                     FontWeight="SemiBold"
-                     Foreground="#9B1B4A" />
-        </Border>
-        <Border Grid.Row="1"
-                Grid.ColumnSpan="2"
-                Background="#F7F8FA"
-                CornerRadius="8"
-                Padding="10,7">
-          <StackPanel Spacing="3">
-            <TextBlock Text="{Binding BackgroundHotSearchStatus}"
-                       FontSize="11"
-                       TextWrapping="Wrap"
-                       Classes.error="{Binding IsBackgroundHotSearchError}"
-                       Classes.ok="{Binding !IsBackgroundHotSearchError}" />
-            <TextBlock Text="{Binding BackgroundRankingStatus}"
-                       FontSize="11"
-                       TextWrapping="Wrap"
-                       Classes.error="{Binding IsBackgroundRankingError}"
-                       Classes.ok="{Binding !IsBackgroundRankingError}" />
-          </StackPanel>
+        <Border Grid.Column="1" Classes="chip" VerticalAlignment="Center">
+          <TextBlock Text="Cookie 僅供本人使用" FontSize="12" Foreground="#943657" />
         </Border>
       </Grid>
+    </Border>
 
-      <Grid Grid.Row="1" ColumnDefinitions="340,*" ColumnSpacing="20">
-        <ScrollViewer>
-          <StackPanel Spacing="16">
-            <Border x:Name="DropZone" Classes="dropzone">
-              <StackPanel Spacing="10">
-                <TextBlock Classes="section" Text="Bilibili 帳號" />
-                <ComboBox ItemsSource="{Binding Accounts}"
-                          SelectedItem="{Binding SelectedAccount}"
-                          HorizontalAlignment="Stretch"
-                          MinHeight="36">
+    <Grid Grid.Row="1" Margin="24,20" ColumnDefinitions="328,*" ColumnSpacing="20">
+      <ScrollViewer x:Name="SettingsScroll" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="16" Margin="0,0,12,0">
+          <Border x:Name="DropZone" Classes="dropzone">
+            <StackPanel Spacing="16">
+              <StackPanel Spacing="5">
+                <TextBlock Classes="section" Text="01  匯入 Cookie" />
+                <TextBlock Classes="muted" Text="先選擇帳號，再讀取瀏覽器匯出的檔案。" TextWrapping="Wrap" />
+              </StackPanel>
+              <StackPanel Spacing="7">
+                <TextBlock Classes="label" Text="Bilibili 帳號" />
+                <ComboBox ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}"
+                          HorizontalAlignment="Stretch" AutomationProperties.Name="Bilibili 帳號">
                   <ComboBox.ItemTemplate>
                     <DataTemplate x:DataType="vm:BilibiliAccountOption">
-                      <TextBlock Text="{Binding DisplayName}" />
+                      <TextBlock Text="{Binding DisplayName}" TextWrapping="Wrap" />
                     </DataTemplate>
                   </ComboBox.ItemTemplate>
                 </ComboBox>
-                <Separator Margin="0,4" />
-                <TextBlock Classes="section" Text="Cookie 檔" />
-                <TextBlock Classes="muted"
-                           FontSize="12"
-                           Text="拖放 Netscape .txt，或瀏覽後按讀取。只取 .bilibili.com。"
-                           TextWrapping="Wrap" />
-                <TextBox x:Name="PathBox"
-                         Text="{Binding CookiePath}"
-                         PlaceholderText="cookies.txt 路徑"
-                         VerticalContentAlignment="Center"
-                         KeyDown="OnPathKeyDown" />
-                <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
-                  <Button Classes="secondary"
-                          Content="瀏覽"
-                          HorizontalAlignment="Stretch"
-                          HorizontalContentAlignment="Center"
-                          Command="{Binding BrowseCommand}"
-                          ToolTip.Tip="Ctrl+O" />
-                  <Button Grid.Column="1"
-                          Classes="primary"
-                          Content="讀取"
-                          HorizontalAlignment="Stretch"
-                          HorizontalContentAlignment="Center"
-                          Command="{Binding LoadCommand}"
-                          ToolTip.Tip="F5" />
-                </Grid>
               </StackPanel>
-            </Border>
-
-            <Border Classes="expiry"
-                    Classes.ok="{Binding IsExpiryOk}"
-                    Classes.soon="{Binding IsExpirySoon}"
-                    Classes.urgent="{Binding IsExpiryUrgent}"
-                    Classes.expired="{Binding IsExpiryExpired}"
-                    IsVisible="{Binding HasExpiryReminder}">
-              <StackPanel Spacing="4">
-                <TextBlock Text="{Binding ExpiryTitle}"
-                           FontSize="13"
-                           FontWeight="SemiBold"
-                           TextWrapping="Wrap" />
-                <TextBlock Text="{Binding ExpiryDetail}"
-                           FontSize="12"
-                           TextWrapping="Wrap"
-                           Opacity="0.9" />
+              <StackPanel Spacing="7">
+                <TextBlock Classes="label" Text="Cookie 檔案" />
+                <TextBox x:Name="PathBox" Text="{Binding CookiePath}" PlaceholderText="選擇或拖放 cookies.txt"
+                         AutomationProperties.Name="Cookie 檔案路徑" KeyDown="OnPathKeyDown" />
+                <TextBlock Classes="muted" Text="支援拖放 Netscape .txt，只讀取 .bilibili.com。" TextWrapping="Wrap" FontSize="12" />
               </StackPanel>
-            </Border>
-
-            <Border Classes="panel">
-              <StackPanel Spacing="10">
-                <TextBlock Classes="section" Text="更新 GitHub Secrets" />
-                <TextBlock Classes="muted"
-                           FontSize="12"
-                           Text="需要能修改 Actions Secrets 的 GitHub 權杖。"
-                           TextWrapping="Wrap" />
-                <TextBlock FontSize="12"
-                           FontWeight="SemiBold"
-                           Text="{Binding SelectedAccount.DisplayName}" />
-                <TextBlock Classes="muted"
-                           FontSize="11"
-                           Text="{Binding SelectedSecretNames}"
-                           TextWrapping="Wrap" />
-                <TextBlock Classes="muted" FontSize="12" Text="Repo" />
-                <TextBox Text="{Binding GitHubRepo}"
-                         PlaceholderText="owner/name"
-                         VerticalContentAlignment="Center" />
-                <TextBlock Classes="muted" FontSize="12" Text="權杖" />
-                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
-                  <TextBox Text="{Binding GitHubToken}"
-                           PasswordChar="•"
-                           PlaceholderText="ghp_… 或 github_pat_…"
-                           VerticalContentAlignment="Center" />
-                  <Button Grid.Column="1"
-                          Classes="secondary"
-                          Content="gh 權杖"
-                          Command="{Binding UseGhTokenCommand}" />
-                </Grid>
-                <CheckBox Content="記住權杖（只存在本機）"
-                          FontSize="12"
-                          IsChecked="{Binding RememberGitHubToken}" />
-                <CheckBox Content="確定覆寫這四個 Secrets"
-                          FontSize="12"
-                          IsChecked="{Binding ConfirmOverwriteSecrets}" />
-                <Button Classes="primary"
-                        HorizontalAlignment="Stretch"
-                        HorizontalContentAlignment="Center"
-                        Content="更新 GitHub Secrets"
-                        Command="{Binding UpdateGitHubSecretsCommand}" />
-              </StackPanel>
-            </Border>
-          </StackPanel>
-        </ScrollViewer>
-
-        <Border Grid.Column="1" Classes="panel" Padding="8,8,8,16">
-          <Grid RowDefinitions="*,Auto">
-            <ScrollViewer Grid.Row="0"
-                          VerticalScrollBarVisibility="Auto">
-              <StackPanel>
-            <Border Classes="accountstatus"
-                    Margin="12,4,12,8"
-                    IsVisible="{Binding HasAccountStatus}">
-              <Grid ColumnDefinitions="*,Auto"
-                    RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
-                    ColumnSpacing="20"
-                    RowSpacing="8">
-                <Grid ColumnDefinitions="Auto,*"
-                      ColumnSpacing="10"
-                      VerticalAlignment="Center">
-                  <Ellipse Width="44"
-                           Height="44"
-                           IsVisible="{Binding HasAccountAvatar}">
-                    <Ellipse.Fill>
-                      <ImageBrush Source="{Binding AccountAvatar}"
-                                  Stretch="UniformToFill" />
-                    </Ellipse.Fill>
-                  </Ellipse>
-                  <StackPanel Grid.Column="1"
-                              Spacing="2"
-                              VerticalAlignment="Center">
-                    <TextBlock Text="{Binding AccountUserName}"
-                               FontSize="14"
-                               FontWeight="SemiBold" />
-                    <TextBlock Classes="muted"
-                               Text="Bilibili 帳號狀態"
-                               FontSize="11" />
-                  </StackPanel>
-                </Grid>
-                <WrapPanel Grid.Column="1"
-                           ItemSpacing="20"
-                           LineSpacing="6"
-                           VerticalAlignment="Center">
-                  <StackPanel Orientation="Horizontal" Spacing="6">
-                    <TextBlock Classes="muted" Text="等級" FontSize="12" />
-                    <TextBlock Text="{Binding AccountLevelText}"
-                               FontSize="13"
-                               FontWeight="SemiBold" />
-                  </StackPanel>
-                  <StackPanel Orientation="Horizontal" Spacing="6">
-                    <TextBlock Classes="muted" Text="經驗" FontSize="12" />
-                    <TextBlock Text="{Binding AccountExperienceText}"
-                               FontSize="13"
-                               FontWeight="SemiBold" />
-                  </StackPanel>
-                  <StackPanel Orientation="Horizontal" Spacing="6">
-                    <TextBlock Classes="muted" Text="硬幣" FontSize="12" />
-                    <TextBlock Text="{Binding AccountCoinsText}"
-                               FontSize="13"
-                               FontWeight="SemiBold" />
-                  </StackPanel>
-                </WrapPanel>
-                <Grid Grid.Row="1"
-                      Grid.ColumnSpan="2"
-                      ColumnDefinitions="Auto,*"
-                      ColumnSpacing="8"
-                      IsVisible="{Binding HasAccountSignature}">
-                  <TextBlock Classes="muted"
-                             Text="個人簡介"
-                             FontSize="12" />
-                  <TextBlock Grid.Column="1"
-                             Text="{Binding AccountSignature}"
-                             FontSize="12"
-                             TextWrapping="Wrap" />
-                </Grid>
-                <Grid Grid.Row="2"
-                      Grid.ColumnSpan="2"
-                      RowDefinitions="Auto,Auto"
-                      RowSpacing="8"
-                      IsVisible="{Binding HasLatestDynamic}">
-                  <Separator />
-                  <Grid Grid.Row="1"
-                        ColumnDefinitions="Auto,*,Auto"
-                        ColumnSpacing="12">
-                    <Image Width="112"
-                           Height="63"
-                           Stretch="UniformToFill"
-                           Source="{Binding LatestDynamicCover}"
-                           IsVisible="{Binding HasLatestDynamicCover}" />
-                    <StackPanel Grid.Column="1"
-                                Spacing="4"
-                                VerticalAlignment="Center">
-                      <StackPanel Orientation="Horizontal" Spacing="8">
-                        <TextBlock Text="最新動態"
-                                   FontSize="12"
-                                   FontWeight="SemiBold" />
-                        <TextBlock Classes="muted"
-                                   Text="{Binding LatestDynamicType}"
-                                   FontSize="11" />
-                        <TextBlock Classes="muted"
-                                   Text="{Binding LatestDynamicPublishedText}"
-                                   FontSize="11" />
-                      </StackPanel>
-                      <TextBlock Text="{Binding LatestDynamicText}"
-                                 FontSize="12"
-                                 TextWrapping="Wrap"
-                                 TextTrimming="CharacterEllipsis"
-                                 MaxHeight="38" />
-                    </StackPanel>
-                    <Button Grid.Column="2"
-                            Classes="secondary"
-                            Content="開啟"
-                            VerticalAlignment="Center"
-                            Command="{Binding OpenLatestDynamicCommand}" />
-                  </Grid>
-                </Grid>
-                <Grid Grid.Row="3"
-                      Grid.ColumnSpan="2"
-                      RowDefinitions="Auto,Auto"
-                      RowSpacing="8"
-                      IsVisible="{Binding HasLatestSubmission}">
-                  <Separator />
-                  <Grid Grid.Row="1"
-                        ColumnDefinitions="Auto,*,Auto"
-                        ColumnSpacing="12">
-                    <Image Width="112"
-                           Height="63"
-                           Stretch="UniformToFill"
-                           Source="{Binding LatestSubmissionCover}"
-                           IsVisible="{Binding HasLatestSubmissionCover}" />
-                    <StackPanel Grid.Column="1"
-                                Spacing="4"
-                                VerticalAlignment="Center">
-                      <StackPanel Orientation="Horizontal" Spacing="8">
-                        <TextBlock Text="{Binding LatestSubmissionHeading}"
-                                   FontSize="12"
-                                   FontWeight="SemiBold" />
-                        <TextBlock Classes="muted"
-                                   Text="{Binding LatestSubmissionMetaText}"
-                                   FontSize="11" />
-                      </StackPanel>
-                      <TextBlock Text="{Binding LatestSubmissionTitle}"
-                                 FontSize="12"
-                                 TextWrapping="Wrap"
-                                 TextTrimming="CharacterEllipsis"
-                                 MaxHeight="38" />
-                    </StackPanel>
-                    <Button Grid.Column="2"
-                            Classes="secondary"
-                            Content="播放"
-                            VerticalAlignment="Center"
-                            Command="{Binding OpenLatestSubmissionCommand}" />
-                  </Grid>
-                </Grid>
-                <Grid Grid.Row="4"
-                      Grid.ColumnSpan="2"
-                      RowDefinitions="Auto,Auto"
-                      RowSpacing="8"
-                      IsVisible="{Binding HasFavoriteInfo}">
-                  <Separator />
-                  <Grid Grid.Row="1"
-                        ColumnDefinitions="Auto,*,Auto"
-                        ColumnSpacing="12">
-                    <Image Width="96"
-                           Height="54"
-                           Stretch="UniformToFill"
-                           Source="{Binding LatestFavoriteCover}"
-                           IsVisible="{Binding HasLatestFavoriteCover}" />
-                    <StackPanel Grid.Column="1"
-                                Spacing="3"
-                                VerticalAlignment="Center">
-                      <StackPanel Orientation="Horizontal" Spacing="8">
-                        <TextBlock Text="{Binding FavoriteHeading}"
-                                   FontSize="12"
-                                   FontWeight="SemiBold" />
-                        <TextBlock Classes="muted"
-                                   Text="{Binding FavoriteFolderText}"
-                                   FontSize="11" />
-                      </StackPanel>
-                      <TextBlock Text="{Binding LatestFavoriteTitle}"
-                                 FontSize="12"
-                                 TextWrapping="Wrap"
-                                 TextTrimming="CharacterEllipsis"
-                                 MaxHeight="34" />
-                      <TextBlock Classes="muted"
-                                 Text="{Binding LatestFavoriteMetaText}"
-                                 FontSize="11" />
-                    </StackPanel>
-                    <Button Grid.Column="2"
-                            Classes="secondary"
-                            Content="播放"
-                            VerticalAlignment="Center"
-                            IsEnabled="{Binding HasLatestFavoriteLink}"
-                            Command="{Binding OpenLatestFavoriteCommand}" />
-                  </Grid>
-                </Grid>
-                <Grid Grid.Row="5"
-                      Grid.ColumnSpan="2"
-                      RowDefinitions="Auto,Auto"
-                      RowSpacing="8"
-                      IsVisible="{Binding HasBangumiFollow}">
-                  <Separator />
-                  <Grid Grid.Row="1"
-                        ColumnDefinitions="*,*"
-                        ColumnSpacing="18">
-                    <Grid ColumnDefinitions="Auto,*,Auto"
-                          ColumnSpacing="10"
-                          IsVisible="{Binding HasLatestAnime}">
-                      <Image Width="42"
-                             Height="58"
-                             Stretch="UniformToFill"
-                             Source="{Binding LatestAnimeCover}"
-                             IsVisible="{Binding HasLatestAnimeCover}" />
-                      <StackPanel Grid.Column="1"
-                                  Spacing="3"
-                                  VerticalAlignment="Center">
-                        <TextBlock Text="{Binding AnimeHeading}"
-                                   FontSize="12"
-                                   FontWeight="SemiBold" />
-                        <TextBlock Text="{Binding LatestAnimeTitle}"
-                                   FontSize="12"
-                                   TextWrapping="Wrap"
-                                   TextTrimming="CharacterEllipsis"
-                                   MaxHeight="34" />
-                        <TextBlock Classes="muted"
-                                   Text="{Binding LatestAnimeProgress}"
-                                   FontSize="11" />
-                      </StackPanel>
-                      <Button Grid.Column="2"
-                              Classes="secondary"
-                              Content="開啟"
-                              VerticalAlignment="Center"
-                              IsEnabled="{Binding HasLatestAnimeLink}"
-                              Command="{Binding OpenLatestAnimeCommand}" />
-                    </Grid>
-                    <Grid Grid.Column="1"
-                          ColumnDefinitions="Auto,*,Auto"
-                          ColumnSpacing="10"
-                          IsVisible="{Binding HasLatestDrama}">
-                      <Image Width="42"
-                             Height="58"
-                             Stretch="UniformToFill"
-                             Source="{Binding LatestDramaCover}"
-                             IsVisible="{Binding HasLatestDramaCover}" />
-                      <StackPanel Grid.Column="1"
-                                  Spacing="3"
-                                  VerticalAlignment="Center">
-                        <TextBlock Text="{Binding DramaHeading}"
-                                   FontSize="12"
-                                   FontWeight="SemiBold" />
-                        <TextBlock Text="{Binding LatestDramaTitle}"
-                                   FontSize="12"
-                                   TextWrapping="Wrap"
-                                   TextTrimming="CharacterEllipsis"
-                                   MaxHeight="34" />
-                        <TextBlock Classes="muted"
-                                   Text="{Binding LatestDramaProgress}"
-                                   FontSize="11" />
-                      </StackPanel>
-                      <Button Grid.Column="2"
-                              Classes="secondary"
-                              Content="開啟"
-                              VerticalAlignment="Center"
-                              IsEnabled="{Binding HasLatestDramaLink}"
-                              Command="{Binding OpenLatestDramaCommand}" />
-                    </Grid>
-                  </Grid>
-                </Grid>
-                <Grid Grid.Row="6"
-                      Grid.ColumnSpan="2"
-                      RowDefinitions="Auto,Auto"
-                      RowSpacing="8"
-                      IsVisible="{Binding HasHomepageRecommendation}">
-                  <Separator />
-                  <Grid Grid.Row="1"
-                        ColumnDefinitions="Auto,*,Auto"
-                        ColumnSpacing="12">
-                    <Image Width="96"
-                           Height="54"
-                           Stretch="UniformToFill"
-                           Source="{Binding HomepageRecommendationCover}"
-                           IsVisible="{Binding HasHomepageRecommendationCover}" />
-                    <StackPanel Grid.Column="1"
-                                Spacing="3"
-                                VerticalAlignment="Center">
-                      <TextBlock Text="首頁推薦"
-                                 FontSize="12"
-                                 FontWeight="SemiBold" />
-                      <TextBlock Text="{Binding HomepageRecommendationTitle}"
-                                 FontSize="12"
-                                 TextWrapping="Wrap"
-                                 TextTrimming="CharacterEllipsis"
-                                 MaxHeight="34" />
-                      <TextBlock Classes="muted"
-                                 Text="{Binding HomepageRecommendationMetaText}"
-                                 FontSize="11" />
-                    </StackPanel>
-                    <Button Grid.Column="2"
-                            Classes="secondary"
-                            Content="播放"
-                            VerticalAlignment="Center"
-                            Command="{Binding OpenHomepageRecommendationCommand}" />
-                  </Grid>
-                </Grid>
-                <Grid Grid.Row="7"
-                      Grid.ColumnSpan="2"
-                      RowDefinitions="Auto,Auto"
-                      RowSpacing="8"
-                      IsVisible="{Binding HasDynamicFeed}">
-                  <Separator />
-                  <Grid Grid.Row="1"
-                        ColumnDefinitions="Auto,*,Auto"
-                        ColumnSpacing="12">
-                    <Image Width="96"
-                           Height="54"
-                           Stretch="UniformToFill"
-                           Source="{Binding DynamicFeedCover}"
-                           IsVisible="{Binding HasDynamicFeedCover}" />
-                    <StackPanel Grid.Column="1"
-                                Spacing="3"
-                                VerticalAlignment="Center">
-                      <StackPanel Orientation="Horizontal" Spacing="8">
-                        <TextBlock Text="動態首頁"
-                                   FontSize="12"
-                                   FontWeight="SemiBold" />
-                        <TextBlock Classes="muted"
-                                   Text="{Binding DynamicFeedHeading}"
-                                   FontSize="11" />
-                        <TextBlock Classes="muted"
-                                   Text="{Binding DynamicFeedMetaText}"
-                                   FontSize="11" />
-                      </StackPanel>
-                      <TextBlock Text="{Binding DynamicFeedText}"
-                                 FontSize="12"
-                                 TextWrapping="Wrap"
-                                 TextTrimming="CharacterEllipsis"
-                                 MaxHeight="38" />
-                    </StackPanel>
-                    <Button Grid.Column="2"
-                            Classes="secondary"
-                            Content="開啟"
-                            VerticalAlignment="Center"
-                            Command="{Binding OpenDynamicFeedCommand}" />
-                  </Grid>
-                </Grid>
-                <Grid Grid.Row="8"
-                      Grid.ColumnSpan="2"
-                      RowDefinitions="Auto,Auto"
-                      RowSpacing="8"
-                      IsVisible="{Binding HasBangumiRecommendation}">
-                  <Separator />
-                  <Grid Grid.Row="1"
-                        ColumnDefinitions="Auto,*,Auto"
-                        ColumnSpacing="12">
-                    <Image Width="42"
-                           Height="58"
-                           Stretch="UniformToFill"
-                           Source="{Binding BangumiRecommendationCover}"
-                           IsVisible="{Binding HasBangumiRecommendationCover}" />
-                    <StackPanel Grid.Column="1"
-                                Spacing="3"
-                                VerticalAlignment="Center">
-                      <StackPanel Orientation="Horizontal" Spacing="8">
-                        <TextBlock Text="番劇推薦"
-                                   FontSize="12"
-                                   FontWeight="SemiBold" />
-                        <TextBlock Classes="muted"
-                                   Text="{Binding BangumiRecommendationMetaText}"
-                                   FontSize="11" />
-                      </StackPanel>
-                      <TextBlock Text="{Binding BangumiRecommendationTitle}"
-                                 FontSize="12"
-                                 TextWrapping="Wrap"
-                                 TextTrimming="CharacterEllipsis"
-                                 MaxHeight="34" />
-                      <TextBlock Classes="muted"
-                                 Text="{Binding BangumiRecommendationSubtitle}"
-                                 FontSize="11"
-                                 TextTrimming="CharacterEllipsis" />
-                    </StackPanel>
-                    <Button Grid.Column="2"
-                            Classes="secondary"
-                            Content="播放"
-                            VerticalAlignment="Center"
-                            Command="{Binding OpenBangumiRecommendationCommand}" />
-                  </Grid>
-                </Grid>
-                <Grid Grid.Row="9"
-                      Grid.ColumnSpan="2"
-                      RowDefinitions="Auto,Auto"
-                      RowSpacing="8"
-                      IsVisible="{Binding HasLiveRecommendation}">
-                  <Separator />
-                  <Grid Grid.Row="1"
-                        ColumnDefinitions="Auto,*,Auto"
-                        ColumnSpacing="12">
-                    <Image Width="96"
-                           Height="54"
-                           Stretch="UniformToFill"
-                           Source="{Binding LiveRecommendationCover}"
-                           IsVisible="{Binding HasLiveRecommendationCover}" />
-                    <StackPanel Grid.Column="1"
-                                Spacing="3"
-                                VerticalAlignment="Center">
-                      <TextBlock Text="直播推薦"
-                                 FontSize="12"
-                                 FontWeight="SemiBold" />
-                      <TextBlock Text="{Binding LiveRecommendationTitle}"
-                                 FontSize="12"
-                                 TextWrapping="Wrap"
-                                 TextTrimming="CharacterEllipsis"
-                                 MaxHeight="34" />
-                      <TextBlock Classes="muted"
-                                 Text="{Binding LiveRecommendationMetaText}"
-                                 FontSize="11"
-                                 TextTrimming="CharacterEllipsis" />
-                    </StackPanel>
-                    <Button Grid.Column="2"
-                            Classes="secondary"
-                            Content="進入"
-                            VerticalAlignment="Center"
-                            Command="{Binding OpenLiveRecommendationCommand}" />
-                  </Grid>
-                </Grid>
-                <Grid Grid.Row="10"
-                      Grid.ColumnSpan="2"
-                      RowDefinitions="Auto,Auto"
-                      RowSpacing="8"
-                      IsVisible="{Binding HasPopularVideo}">
-                  <Separator />
-                  <Grid Grid.Row="1"
-                        ColumnDefinitions="Auto,*,Auto"
-                        ColumnSpacing="12">
-                    <Image Width="96"
-                           Height="54"
-                           Stretch="UniformToFill"
-                           Source="{Binding PopularVideoCover}"
-                           IsVisible="{Binding HasPopularVideoCover}" />
-                    <StackPanel Grid.Column="1"
-                                Spacing="3"
-                                VerticalAlignment="Center">
-                      <TextBlock Text="綜合熱門"
-                                 FontSize="12"
-                                 FontWeight="SemiBold" />
-                      <TextBlock Text="{Binding PopularVideoTitle}"
-                                 FontSize="12"
-                                 TextWrapping="Wrap"
-                                 TextTrimming="CharacterEllipsis"
-                                 MaxHeight="34" />
-                      <TextBlock Classes="muted"
-                                 Text="{Binding PopularVideoMetaText}"
-                                 FontSize="11"
-                                 TextTrimming="CharacterEllipsis" />
-                    </StackPanel>
-                    <Button Grid.Column="2"
-                            Classes="secondary"
-                            Content="播放"
-                            VerticalAlignment="Center"
-                            Command="{Binding OpenPopularVideoCommand}" />
-                  </Grid>
-                </Grid>
-                <Grid Grid.Row="11"
-                      Grid.ColumnSpan="2"
-                      RowDefinitions="Auto,Auto"
-                      RowSpacing="8"
-                      IsVisible="{Binding HasRankingVideo}">
-                  <Separator />
-                  <Grid Grid.Row="1"
-                        ColumnDefinitions="Auto,*,Auto"
-                        ColumnSpacing="12">
-                    <Image Width="96"
-                           Height="54"
-                           Stretch="UniformToFill"
-                           Source="{Binding RankingVideoCover}"
-                           IsVisible="{Binding HasRankingVideoCover}" />
-                    <StackPanel Grid.Column="1"
-                                Spacing="3"
-                                VerticalAlignment="Center">
-                      <TextBlock Text="{Binding RankingVideoHeading}"
-                                 FontSize="12"
-                                 FontWeight="SemiBold" />
-                      <TextBlock Text="{Binding RankingVideoTitle}"
-                                 FontSize="12"
-                                 TextWrapping="Wrap"
-                                 TextTrimming="CharacterEllipsis"
-                                 MaxHeight="34" />
-                      <TextBlock Classes="muted"
-                                 Text="{Binding RankingVideoMetaText}"
-                                 FontSize="11"
-                                 TextTrimming="CharacterEllipsis" />
-                    </StackPanel>
-                    <Button Grid.Column="2"
-                            Classes="secondary"
-                            Content="播放"
-                            VerticalAlignment="Center"
-                            Command="{Binding OpenRankingVideoCommand}" />
-                  </Grid>
-                </Grid>
-                <Grid Grid.Row="12"
-                      Grid.ColumnSpan="2"
-                      RowDefinitions="Auto,Auto"
-                      RowSpacing="8"
-                      IsVisible="{Binding HasHotSearch}">
-                  <Separator />
-                  <Grid Grid.Row="1"
-                        ColumnDefinitions="*,Auto"
-                        ColumnSpacing="12">
-                    <StackPanel Spacing="4">
-                      <TextBlock Text="Bilibili 熱搜"
-                                 FontSize="12"
-                                 FontWeight="SemiBold" />
-                      <TextBlock Text="{Binding HotSearchSummary}"
-                                 FontSize="12"
-                                 TextWrapping="Wrap"
-                                 LineHeight="20" />
-                    </StackPanel>
-                    <Button Grid.Column="1"
-                            Classes="secondary"
-                            Content="搜尋第 1 名"
-                            VerticalAlignment="Center"
-                            Command="{Binding OpenHotSearchCommand}" />
-                  </Grid>
-                </Grid>
+              <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <Button Classes="secondary" Content="瀏覽檔案" Command="{Binding BrowseCommand}" ToolTip.Tip="Ctrl+O" />
+                <Button Grid.Column="1" Classes="primary" Content="讀取 Cookie" Command="{Binding LoadCommand}" ToolTip.Tip="F5" />
               </Grid>
-            </Border>
+            </StackPanel>
+          </Border>
 
-            <Grid>
-              <StackPanel Margin="16"
-                          Spacing="8"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Center"
-                          IsVisible="{Binding !HasResult}">
-                <TextBlock Text="還沒有 Cookie"
-                           FontSize="16"
-                           FontWeight="SemiBold"
-                           HorizontalAlignment="Center" />
-                <TextBlock Classes="muted"
-                           FontSize="13"
-                           TextAlignment="Center"
-                           TextWrapping="Wrap"
-                           MaxWidth="320"
-                           Text="把瀏覽器匯出的 cookies.txt 拖到左邊，或按瀏覽。" />
+          <Border Classes="expiry" Classes.ok="{Binding IsExpiryOk}" Classes.soon="{Binding IsExpirySoon}"
+                  Classes.urgent="{Binding IsExpiryUrgent}" Classes.expired="{Binding IsExpiryExpired}"
+                  IsVisible="{Binding HasExpiryReminder}">
+            <StackPanel Spacing="8">
+              <TextBlock Classes="label" Text="到期提醒" />
+              <TextBlock Text="{Binding ExpiryTitle}" FontWeight="SemiBold" TextWrapping="Wrap" />
+              <TextBlock Text="{Binding ExpiryDetail}" FontSize="12" TextWrapping="Wrap" />
+            </StackPanel>
+          </Border>
+
+          <Border Classes="panel" Padding="16">
+            <Expander x:Name="GitHubSection" Header="02  更新 GitHub Secrets" HorizontalContentAlignment="Stretch">
+              <StackPanel Spacing="14" Margin="0,16,0,0">
+                <TextBlock Classes="muted" Text="填入儲存庫與權杖，將四個 Cookie 更新為 Actions Secrets。" TextWrapping="Wrap" />
+                <StackPanel Spacing="6">
+                  <TextBlock Classes="label" Text="{Binding SelectedAccount.DisplayName}" TextWrapping="Wrap" />
+                  <TextBlock Classes="muted" Text="{Binding SelectedSecretNames}" FontSize="12" TextWrapping="Wrap" />
+                </StackPanel>
+                <StackPanel Spacing="7">
+                  <TextBlock Classes="label" Text="GitHub 儲存庫" />
+                  <TextBox Text="{Binding GitHubRepo}" PlaceholderText="owner/repository" AutomationProperties.Name="GitHub 儲存庫" />
+                </StackPanel>
+                <StackPanel Spacing="7">
+                  <TextBlock Classes="label" Text="存取權杖" />
+                  <TextBox Text="{Binding GitHubToken}" PasswordChar="•" PlaceholderText="ghp_… 或 github_pat_…" AutomationProperties.Name="GitHub 存取權杖" />
+                  <Button Classes="secondary" Content="使用 gh 權杖" Command="{Binding UseGhTokenCommand}" />
+                  <TextBlock Classes="muted" Text="權杖需具有此儲存庫的 Actions Secrets 寫入權限。" FontSize="12" TextWrapping="Wrap" />
+                </StackPanel>
+                <CheckBox IsChecked="{Binding RememberGitHubToken}">
+                  <TextBlock Text="記住權杖（只存在本機）" TextWrapping="Wrap" />
+                </CheckBox>
+                <CheckBox IsChecked="{Binding ConfirmOverwriteSecrets}">
+                  <TextBlock Text="確定覆寫此帳號的四個 Secrets" TextWrapping="Wrap" />
+                </CheckBox>
+                <Button Classes="primary" Content="更新 GitHub Secrets" Command="{Binding UpdateGitHubSecretsCommand}" />
+                <TextBlock Classes="muted" Text="更新後無法讀回舊值。" FontSize="12" TextWrapping="Wrap" />
               </StackPanel>
+            </Expander>
+          </Border>
 
-              <ItemsControl ItemsSource="{Binding Fields}"
-                            Margin="12,4"
-                            IsVisible="{Binding HasResult}">
+          <Border Classes="panel" Padding="16">
+            <Expander Header="背景記錄狀態" HorizontalContentAlignment="Stretch">
+              <StackPanel Spacing="12" Margin="0,14,0,0">
+                <TextBlock Text="{Binding BackgroundHotSearchStatus}" FontSize="12" TextWrapping="Wrap"
+                           Classes.error="{Binding IsBackgroundHotSearchError}" Classes.ok="{Binding !IsBackgroundHotSearchError}" />
+                <Separator />
+                <TextBlock Text="{Binding BackgroundRankingStatus}" FontSize="12" TextWrapping="Wrap"
+                           Classes.error="{Binding IsBackgroundRankingError}" Classes.ok="{Binding !IsBackgroundRankingError}" />
+              </StackPanel>
+            </Expander>
+          </Border>
+        </StackPanel>
+      </ScrollViewer>
+
+      <Border Grid.Column="1" Classes="panel" Padding="0">
+        <Grid RowDefinitions="Auto,*,Auto">
+          <Border BorderBrush="#E2E7EE" BorderThickness="0,0,0,1" Padding="20,16">
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+              <StackPanel Spacing="4">
+                <TextBlock Classes="section" Text="Cookie 欄位" />
+                <TextBlock Classes="muted" Text="四個欄位分別顯示，可單獨複製。" TextWrapping="Wrap" FontSize="12" />
+              </StackPanel>
+              <Button Grid.Column="1" Classes="secondary compact" Content="{Binding RevealButtonText}"
+                      Command="{Binding ToggleRevealCommand}" VerticalAlignment="Center" IsEnabled="{Binding HasResult}" />
+            </Grid>
+          </Border>
+
+          <ScrollViewer x:Name="ResultsScroll" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="20,16" Spacing="12">
+              <Border Classes="empty" IsVisible="{Binding !HasResult}">
+                <StackPanel Spacing="10">
+                  <TextBlock Text="準備讀取 Cookie" FontSize="19" FontWeight="SemiBold" />
+                  <TextBlock Classes="muted" Text="從左側選擇 cookies.txt 並按「讀取 Cookie」。讀取後會在這裡顯示欄位與到期時間。" TextWrapping="Wrap" />
+                  <TextBlock Classes="muted" Text="支援拖放檔案 · Ctrl+O 瀏覽 · F5 讀取" FontSize="12" TextWrapping="Wrap" />
+                </StackPanel>
+              </Border>
+
+              <ItemsControl x:Name="CookieFields" ItemsSource="{Binding Fields}" IsVisible="{Binding HasResult}">
                 <ItemsControl.ItemsPanel>
-                  <ItemsPanelTemplate>
-                    <StackPanel />
-                  </ItemsPanelTemplate>
+                  <ItemsPanelTemplate><StackPanel Spacing="12" /></ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                   <DataTemplate x:DataType="vm:CookieFieldViewModel">
                     <Border Classes="row">
-                      <Grid RowDefinitions="Auto,Auto,Auto" RowSpacing="6">
-                        <Grid ColumnDefinitions="*,Auto">
-                          <StackPanel Orientation="Horizontal" Spacing="10">
-                            <TextBlock Text="{Binding EnvName}"
-                                       FontSize="15"
-                                       FontWeight="SemiBold"
-                                       VerticalAlignment="Center" />
-                            <TextBlock Classes="muted"
-                                       FontSize="12"
-                                       VerticalAlignment="Center"
-                                       Text="{Binding SecretHint}" />
-                          </StackPanel>
-                          <Button Grid.Column="1"
-                                  Classes="secondary"
-                                  Content="複製"
-                                  Command="{Binding CopyCommand}"
-                                  IsEnabled="{Binding HasValue}" />
+                      <StackPanel Spacing="8">
+                        <WrapPanel ItemSpacing="10" LineSpacing="4">
+                          <TextBlock Classes="fieldname" Text="{Binding EnvName}" />
+                          <TextBlock Classes="muted" Text="{Binding SecretHint}" FontSize="12" VerticalAlignment="Center" TextWrapping="Wrap" />
+                        </WrapPanel>
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                          <TextBox Classes="mono" Text="{Binding DisplayValue}" IsReadOnly="True"
+                                   TextWrapping="Wrap" AcceptsReturn="False" AutomationProperties.Name="{Binding EnvName}" />
+                          <Button Grid.Column="1" Classes="secondary compact" Content="複製" Command="{Binding CopyCommand}"
+                                  IsEnabled="{Binding HasValue}" VerticalAlignment="Top" />
                         </Grid>
-                        <TextBox Grid.Row="1"
-                                 Classes="mono"
-                                 Text="{Binding DisplayValue}"
-                                 IsReadOnly="True"
-                                 AcceptsReturn="False" />
-                        <StackPanel Grid.Row="2"
-                                    Orientation="Horizontal"
-                                    Spacing="12">
-                          <TextBlock Classes="muted" FontSize="12" Text="{Binding MetaText}" />
-                          <TextBlock Classes="warn"
-                                     FontSize="12"
-                                     Text="即將到期"
-                                     IsVisible="{Binding IsExpiringSoon}" />
-                          <TextBlock Classes="error"
-                                     FontSize="12"
-                                     Text="已過期"
-                                     IsVisible="{Binding IsExpired}" />
+                        <StackPanel Spacing="4">
+                          <TextBlock Classes="muted" FontSize="12" Text="{Binding MetaText}" TextWrapping="Wrap" />
+                          <WrapPanel ItemSpacing="10" LineSpacing="4" IsVisible="{Binding IsExpiringSoon}">
+                            <TextBlock Classes="warn" FontSize="12" Text="即將到期，請更新 Cookie" TextWrapping="Wrap" />
+                          </WrapPanel>
+                          <TextBlock Classes="error" FontSize="12" Text="已過期，請重新匯出 Cookie" IsVisible="{Binding IsExpired}" TextWrapping="Wrap" />
                         </StackPanel>
-                      </Grid>
+                      </StackPanel>
                     </Border>
                   </DataTemplate>
                 </ItemsControl.ItemTemplate>
               </ItemsControl>
-            </Grid>
-              </StackPanel>
-            </ScrollViewer>
 
-            <Grid Grid.Row="1" Margin="12,12,12,4">
-              <StackPanel Spacing="8">
-                <WrapPanel ItemSpacing="6" LineSpacing="6">
-                  <Button Classes="secondary"
-                          Content="{Binding RevealButtonText}"
-                          Command="{Binding ToggleRevealCommand}" />
-                  <Button Classes="primary"
-                          Content="驗證登入"
-                          Command="{Binding VerifyLoginCommand}" />
-                </WrapPanel>
-                <WrapPanel ItemSpacing="2" LineSpacing="4">
-                  <Button Classes="ghost"
-                          Content="複製環境變數"
-                          Command="{Binding CopyAllEnvCommand}" />
-                  <Button Classes="ghost"
-                          Content="複製 Secrets"
-                          Command="{Binding CopyAllSecretsCommand}" />
-                  <Button Classes="ghost"
-                          Content="複製 Cookie 字串"
-                          Command="{Binding CopyCookieHeaderCommand}" />
-                  <Button Classes="ghost"
-                          Content="PowerShell"
-                          Command="{Binding CopyPowerShellCommand}" />
-                  <Button Classes="ghost"
-                          Content="bash"
-                          Command="{Binding CopyBashCommand}" />
-                </WrapPanel>
-                <TextBlock Classes="muted"
-                           FontSize="11"
-                           Text="SESSDATA 保持檔案原始值，不要 URL 解碼。更新 Secrets 無法讀回舊值。"
-                           TextWrapping="Wrap" />
-              </StackPanel>
-            </Grid>
-          </Grid>
-        </Border>
-      </Grid>
+              <Expander x:Name="AccountSection" Header="帳號資訊與推薦" IsVisible="{Binding HasAccountStatus}" HorizontalContentAlignment="Stretch">
+                <Border Classes="accountstatus" Margin="0,12,0,0" IsVisible="{Binding HasAccountStatus}">
+                  <StackPanel Spacing="16">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10" VerticalAlignment="Center">
+                      <Ellipse Width="44" Height="44" IsVisible="{Binding HasAccountAvatar}">
+                        <Ellipse.Fill>
+                          <ImageBrush Source="{Binding AccountAvatar}" Stretch="UniformToFill" />
+                        </Ellipse.Fill>
+                      </Ellipse>
+                      <StackPanel Grid.Column="1" Spacing="2" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding AccountUserName}" FontSize="14" FontWeight="SemiBold" TextWrapping="Wrap" />
+                        <TextBlock Classes="muted" Text="Bilibili 帳號狀態" FontSize="12" TextWrapping="Wrap" />
+                      </StackPanel>
+                    </Grid>
+                    <WrapPanel ItemSpacing="20" LineSpacing="6" VerticalAlignment="Center">
+                      <WrapPanel ItemSpacing="6" LineSpacing="4">
+                        <TextBlock Classes="muted" Text="等級" FontSize="12" TextWrapping="Wrap" />
+                        <TextBlock Text="{Binding AccountLevelText}" FontSize="13" FontWeight="SemiBold" TextWrapping="Wrap" />
+                      </WrapPanel>
+                      <WrapPanel ItemSpacing="6" LineSpacing="4">
+                        <TextBlock Classes="muted" Text="經驗" FontSize="12" TextWrapping="Wrap" />
+                        <TextBlock Text="{Binding AccountExperienceText}" FontSize="13" FontWeight="SemiBold" TextWrapping="Wrap" />
+                      </WrapPanel>
+                      <WrapPanel ItemSpacing="6" LineSpacing="4">
+                        <TextBlock Classes="muted" Text="硬幣" FontSize="12" TextWrapping="Wrap" />
+                        <TextBlock Text="{Binding AccountCoinsText}" FontSize="13" FontWeight="SemiBold" TextWrapping="Wrap" />
+                      </WrapPanel>
+                    </WrapPanel>
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8" IsVisible="{Binding HasAccountSignature}">
+                      <TextBlock Classes="muted" Text="個人簡介" FontSize="12" TextWrapping="Wrap" />
+                      <TextBlock Grid.Column="1" Text="{Binding AccountSignature}" FontSize="12" TextWrapping="Wrap" />
+                    </Grid>
+                    <Grid RowDefinitions="Auto,Auto" RowSpacing="8" IsVisible="{Binding HasLatestDynamic}">
+                      <Separator />
+                      <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <Image Width="112" Height="63" Stretch="UniformToFill" Source="{Binding LatestDynamicCover}" IsVisible="{Binding HasLatestDynamicCover}" />
+                        <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                          <WrapPanel ItemSpacing="8" LineSpacing="4">
+                            <TextBlock Text="最新動態" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap" />
+                            <TextBlock Classes="muted" Text="{Binding LatestDynamicType}" FontSize="12" TextWrapping="Wrap" />
+                            <TextBlock Classes="muted" Text="{Binding LatestDynamicPublishedText}" FontSize="12" TextWrapping="Wrap" />
+                          </WrapPanel>
+                          <TextBlock Text="{Binding LatestDynamicText}" FontSize="12" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Button Grid.Column="2" Classes="secondary" Content="開啟" VerticalAlignment="Center" Command="{Binding OpenLatestDynamicCommand}" />
+                      </Grid>
+                    </Grid>
+                    <Grid RowDefinitions="Auto,Auto" RowSpacing="8" IsVisible="{Binding HasLatestSubmission}">
+                      <Separator />
+                      <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <Image Width="112" Height="63" Stretch="UniformToFill" Source="{Binding LatestSubmissionCover}" IsVisible="{Binding HasLatestSubmissionCover}" />
+                        <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                          <WrapPanel ItemSpacing="8" LineSpacing="4">
+                            <TextBlock Text="{Binding LatestSubmissionHeading}" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap" />
+                            <TextBlock Classes="muted" Text="{Binding LatestSubmissionMetaText}" FontSize="12" TextWrapping="Wrap" />
+                          </WrapPanel>
+                          <TextBlock Text="{Binding LatestSubmissionTitle}" FontSize="12" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Button Grid.Column="2" Classes="secondary" Content="播放" VerticalAlignment="Center" Command="{Binding OpenLatestSubmissionCommand}" />
+                      </Grid>
+                    </Grid>
+                    <Grid RowDefinitions="Auto,Auto" RowSpacing="8" IsVisible="{Binding HasFavoriteInfo}">
+                      <Separator />
+                      <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <Image Width="96" Height="54" Stretch="UniformToFill" Source="{Binding LatestFavoriteCover}" IsVisible="{Binding HasLatestFavoriteCover}" />
+                        <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+                          <WrapPanel ItemSpacing="8" LineSpacing="4">
+                            <TextBlock Text="{Binding FavoriteHeading}" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap" />
+                            <TextBlock Classes="muted" Text="{Binding FavoriteFolderText}" FontSize="12" TextWrapping="Wrap" />
+                          </WrapPanel>
+                          <TextBlock Text="{Binding LatestFavoriteTitle}" FontSize="12" TextWrapping="Wrap" />
+                          <TextBlock Classes="muted" Text="{Binding LatestFavoriteMetaText}" FontSize="12" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Button Grid.Column="2" Classes="secondary" Content="播放" VerticalAlignment="Center" IsEnabled="{Binding HasLatestFavoriteLink}" Command="{Binding OpenLatestFavoriteCommand}" />
+                      </Grid>
+                    </Grid>
+                    <Grid RowDefinitions="Auto,Auto" RowSpacing="8" IsVisible="{Binding HasBangumiFollow}">
+                      <Separator />
+                      <Grid Grid.Row="1" RowDefinitions="Auto,Auto" RowSpacing="16">
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10" IsVisible="{Binding HasLatestAnime}">
+                          <Image Width="42" Height="58" Stretch="UniformToFill" Source="{Binding LatestAnimeCover}" IsVisible="{Binding HasLatestAnimeCover}" />
+                          <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding AnimeHeading}" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap" />
+                            <TextBlock Text="{Binding LatestAnimeTitle}" FontSize="12" TextWrapping="Wrap" />
+                            <TextBlock Classes="muted" Text="{Binding LatestAnimeProgress}" FontSize="12" TextWrapping="Wrap" />
+                          </StackPanel>
+                          <Button Grid.Column="2" Classes="secondary" Content="開啟" VerticalAlignment="Center" IsEnabled="{Binding HasLatestAnimeLink}" Command="{Binding OpenLatestAnimeCommand}" />
+                        </Grid>
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10" IsVisible="{Binding HasLatestDrama}" Grid.Row="1">
+                          <Image Width="42" Height="58" Stretch="UniformToFill" Source="{Binding LatestDramaCover}" IsVisible="{Binding HasLatestDramaCover}" />
+                          <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding DramaHeading}" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap" />
+                            <TextBlock Text="{Binding LatestDramaTitle}" FontSize="12" TextWrapping="Wrap" />
+                            <TextBlock Classes="muted" Text="{Binding LatestDramaProgress}" FontSize="12" TextWrapping="Wrap" />
+                          </StackPanel>
+                          <Button Grid.Column="2" Classes="secondary" Content="開啟" VerticalAlignment="Center" IsEnabled="{Binding HasLatestDramaLink}" Command="{Binding OpenLatestDramaCommand}" />
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                    <Grid RowDefinitions="Auto,Auto" RowSpacing="8" IsVisible="{Binding HasHomepageRecommendation}">
+                      <Separator />
+                      <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <Image Width="96" Height="54" Stretch="UniformToFill" Source="{Binding HomepageRecommendationCover}" IsVisible="{Binding HasHomepageRecommendationCover}" />
+                        <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+                          <TextBlock Text="首頁推薦" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap" />
+                          <TextBlock Text="{Binding HomepageRecommendationTitle}" FontSize="12" TextWrapping="Wrap" />
+                          <TextBlock Classes="muted" Text="{Binding HomepageRecommendationMetaText}" FontSize="12" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Button Grid.Column="2" Classes="secondary" Content="播放" VerticalAlignment="Center" Command="{Binding OpenHomepageRecommendationCommand}" />
+                      </Grid>
+                    </Grid>
+                    <Grid RowDefinitions="Auto,Auto" RowSpacing="8" IsVisible="{Binding HasDynamicFeed}">
+                      <Separator />
+                      <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <Image Width="96" Height="54" Stretch="UniformToFill" Source="{Binding DynamicFeedCover}" IsVisible="{Binding HasDynamicFeedCover}" />
+                        <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+                          <WrapPanel ItemSpacing="8" LineSpacing="4">
+                            <TextBlock Text="動態首頁" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap" />
+                            <TextBlock Classes="muted" Text="{Binding DynamicFeedHeading}" FontSize="12" TextWrapping="Wrap" />
+                            <TextBlock Classes="muted" Text="{Binding DynamicFeedMetaText}" FontSize="12" TextWrapping="Wrap" />
+                          </WrapPanel>
+                          <TextBlock Text="{Binding DynamicFeedText}" FontSize="12" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Button Grid.Column="2" Classes="secondary" Content="開啟" VerticalAlignment="Center" Command="{Binding OpenDynamicFeedCommand}" />
+                      </Grid>
+                    </Grid>
+                    <Grid RowDefinitions="Auto,Auto" RowSpacing="8" IsVisible="{Binding HasBangumiRecommendation}">
+                      <Separator />
+                      <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <Image Width="42" Height="58" Stretch="UniformToFill" Source="{Binding BangumiRecommendationCover}" IsVisible="{Binding HasBangumiRecommendationCover}" />
+                        <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+                          <WrapPanel ItemSpacing="8" LineSpacing="4">
+                            <TextBlock Text="番劇推薦" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap" />
+                            <TextBlock Classes="muted" Text="{Binding BangumiRecommendationMetaText}" FontSize="12" TextWrapping="Wrap" />
+                          </WrapPanel>
+                          <TextBlock Text="{Binding BangumiRecommendationTitle}" FontSize="12" TextWrapping="Wrap" />
+                          <TextBlock Classes="muted" Text="{Binding BangumiRecommendationSubtitle}" FontSize="12" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Button Grid.Column="2" Classes="secondary" Content="播放" VerticalAlignment="Center" Command="{Binding OpenBangumiRecommendationCommand}" />
+                      </Grid>
+                    </Grid>
+                    <Grid RowDefinitions="Auto,Auto" RowSpacing="8" IsVisible="{Binding HasLiveRecommendation}">
+                      <Separator />
+                      <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <Image Width="96" Height="54" Stretch="UniformToFill" Source="{Binding LiveRecommendationCover}" IsVisible="{Binding HasLiveRecommendationCover}" />
+                        <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+                          <TextBlock Text="直播推薦" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap" />
+                          <TextBlock Text="{Binding LiveRecommendationTitle}" FontSize="12" TextWrapping="Wrap" />
+                          <TextBlock Classes="muted" Text="{Binding LiveRecommendationMetaText}" FontSize="12" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Button Grid.Column="2" Classes="secondary" Content="進入" VerticalAlignment="Center" Command="{Binding OpenLiveRecommendationCommand}" />
+                      </Grid>
+                    </Grid>
+                    <Grid RowDefinitions="Auto,Auto" RowSpacing="8" IsVisible="{Binding HasPopularVideo}">
+                      <Separator />
+                      <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <Image Width="96" Height="54" Stretch="UniformToFill" Source="{Binding PopularVideoCover}" IsVisible="{Binding HasPopularVideoCover}" />
+                        <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+                          <TextBlock Text="綜合熱門" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap" />
+                          <TextBlock Text="{Binding PopularVideoTitle}" FontSize="12" TextWrapping="Wrap" />
+                          <TextBlock Classes="muted" Text="{Binding PopularVideoMetaText}" FontSize="12" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Button Grid.Column="2" Classes="secondary" Content="播放" VerticalAlignment="Center" Command="{Binding OpenPopularVideoCommand}" />
+                      </Grid>
+                    </Grid>
+                    <Grid RowDefinitions="Auto,Auto" RowSpacing="8" IsVisible="{Binding HasRankingVideo}">
+                      <Separator />
+                      <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <Image Width="96" Height="54" Stretch="UniformToFill" Source="{Binding RankingVideoCover}" IsVisible="{Binding HasRankingVideoCover}" />
+                        <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+                          <TextBlock Text="{Binding RankingVideoHeading}" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap" />
+                          <TextBlock Text="{Binding RankingVideoTitle}" FontSize="12" TextWrapping="Wrap" />
+                          <TextBlock Classes="muted" Text="{Binding RankingVideoMetaText}" FontSize="12" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Button Grid.Column="2" Classes="secondary" Content="播放" VerticalAlignment="Center" Command="{Binding OpenRankingVideoCommand}" />
+                      </Grid>
+                    </Grid>
+                    <Grid RowDefinitions="Auto,Auto" RowSpacing="8" IsVisible="{Binding HasHotSearch}">
+                      <Separator />
+                      <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <StackPanel Spacing="4">
+                          <TextBlock Text="Bilibili 熱搜" FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap" />
+                          <TextBlock Text="{Binding HotSearchSummary}" FontSize="12" TextWrapping="Wrap" LineHeight="20" />
+                        </StackPanel>
+                        <Button Grid.Column="1" Classes="secondary" Content="搜尋第 1 名" VerticalAlignment="Center" Command="{Binding OpenHotSearchCommand}" />
+                      </Grid>
+                    </Grid>
+                  </StackPanel>
+                </Border>
+
+
+              </Expander>
+            </StackPanel>
+          </ScrollViewer>
+
+          <Border x:Name="ActionBar" Grid.Row="2" Background="#FAFBFD" BorderBrush="#E2E7EE" BorderThickness="0,1,0,0" Padding="20,14">
+            <StackPanel Spacing="10">
+              <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                <StackPanel Spacing="4" VerticalAlignment="Center">
+                  <TextBlock Classes="label" Text="檢查與匯出" />
+                  <TextBlock Classes="muted" Text="SESSDATA 保留原始編碼。" FontSize="12" TextWrapping="Wrap" />
+                </StackPanel>
+                <Button Grid.Column="1" Classes="primary" Content="驗證登入" Command="{Binding VerifyLoginCommand}" VerticalAlignment="Center" />
+              </Grid>
+              <WrapPanel ItemSpacing="8" LineSpacing="8">
+                <Button Classes="secondary compact" Content="環境變數" Command="{Binding CopyAllEnvCommand}" ToolTip.Tip="複製全部環境變數" />
+                <Button Classes="secondary compact" Content="Secrets" Command="{Binding CopyAllSecretsCommand}" ToolTip.Tip="複製全部 Secrets" />
+                <Button Classes="secondary compact" Content="Cookie 字串" Command="{Binding CopyCookieHeaderCommand}" ToolTip.Tip="複製 Cookie 字串" />
+                <Button Classes="secondary compact" Content="PowerShell" Command="{Binding CopyPowerShellCommand}" />
+                <Button Classes="secondary compact" Content="bash" Command="{Binding CopyBashCommand}" />
+              </WrapPanel>
+            </StackPanel>
+          </Border>
+        </Grid>
+      </Border>
     </Grid>
-  </DockPanel>
+
+    <Border Grid.Row="2" Background="White" BorderBrush="#DCE2EA" BorderThickness="0,1,0,0" Padding="24,12">
+      <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+        <TextBlock Text="狀態" Classes="label" />
+        <TextBlock Grid.Column="1" x:Name="StatusText" Text="{Binding StatusMessage}" TextWrapping="Wrap"
+                   Classes.error="{Binding IsError}" Classes.ok="{Binding !IsError}" />
+      </Grid>
+    </Border>
+  </Grid>
 </Window>

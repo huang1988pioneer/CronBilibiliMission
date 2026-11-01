@@ -1,0 +1,105 @@
+name: Release Bilibili Cookie Reader
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cookie-reader-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+      - name: Check tag matches application version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          python3 - <<'PY'
+          import os
+          import xml.etree.ElementTree as ET
+          version = ET.parse("BilibiliCookieReader/BilibiliCookieReader.csproj").findtext("PropertyGroup/Version")
+          assert os.environ["RELEASE_TAG"] == f"v{version}", "Release tag must match the application version"
+          PY
+      - name: Run service and window layout tests
+        run: dotnet test BilibiliCookieReader.slnx -c Release --nologo
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runtime: [win-x64, osx-arm64, osx-x64, linux-x64]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+      - name: Publish self-contained application
+        run: >-
+          dotnet publish BilibiliCookieReader/BilibiliCookieReader.csproj
+          -c Release -r ${{ matrix.runtime }} --self-contained true
+          -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+          -p:DebugType=None -p:DebugSymbols=false -o publish/app
+      - name: Archive application
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+          RELEASE_RUNTIME: ${{ matrix.runtime }}
+        run: |
+          python3 - <<'PY'
+          import os
+          import pathlib
+          import shutil
+          app = pathlib.Path("publish/app")
+          if os.environ["RELEASE_RUNTIME"] != "win-x64":
+              executable = app / "BilibiliCookieReader"
+              executable.chmod(executable.stat().st_mode | 0o111)
+          pathlib.Path("artifacts").mkdir()
+          archive = f"artifacts/BilibiliCookieReader-{os.environ['RELEASE_TAG']}-{os.environ['RELEASE_RUNTIME']}"
+          shutil.make_archive(archive, "zip", app)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cookie-reader-${{ matrix.runtime }}
+          path: artifacts/*.zip
+          if-no-files-found: error
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cookie-reader-*
+          path: artifacts
+          merge-multiple: true
+      - name: Generate checksums
+        working-directory: artifacts
+        run: sha256sum *.zip > SHA256SUMS.txt
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          notes="docs/releases/${RELEASE_TAG}.md"
+          if [ -f "$notes" ]; then
+            gh release create "$RELEASE_TAG" artifacts/* --verify-tag \
+              --title "BilibiliCookieReader $RELEASE_TAG" --notes-file "$notes"
+          else
+            gh release create "$RELEASE_TAG" artifacts/* --verify-tag \
+              --title "BilibiliCookieReader $RELEASE_TAG" --generate-notes
+          fi

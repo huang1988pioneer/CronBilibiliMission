@@ -15,12 +15,12 @@ Avalonia 桌面工具：讀取瀏覽器匯出的 Netscape `cookies.txt`，取出
 
 ## 下載
 
-[BilibiliCookieReader v1.5.3](https://github.com/huang1988pioneer/CronBilibiliMission/releases/tag/v1.5.3)（自包含，無需另外安裝 .NET）：
+[BilibiliCookieReader v1.6.0](https://github.com/huang1988pioneer/CronBilibiliMission/releases/tag/v1.6.0)（自包含，無需另外安裝 .NET）：
 
-- [Windows x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.3/BilibiliCookieReader-v1.5.3-win-x64.zip)
-- [macOS Apple Silicon](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.3/BilibiliCookieReader-v1.5.3-osx-arm64.zip)
-- [macOS Intel](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.3/BilibiliCookieReader-v1.5.3-osx-x64.zip)
-- [Linux x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.5.3/BilibiliCookieReader-v1.5.3-linux-x64.zip)
+- [Windows x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.6.0/BilibiliCookieReader-v1.6.0-win-x64.zip)
+- [macOS Apple Silicon](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.6.0/BilibiliCookieReader-v1.6.0-osx-arm64.zip)
+- [macOS Intel](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.6.0/BilibiliCookieReader-v1.6.0-osx-x64.zip)
+- [Linux x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.6.0/BilibiliCookieReader-v1.6.0-linux-x64.zip)
 
 解壓後執行 `BilibiliCookieReader.exe`（Windows）或 `BilibiliCookieReader`（macOS / Linux）。
 
@@ -41,8 +41,8 @@ Windows 也可雙擊 `run.bat`。
 ## 操作
 
 1. 瀏覽或拖放 `.txt`（Ctrl+O）。
-2. 確認四個欄位都有值，必要時點「驗證登入」。
-3. 在「更新 GitHub Actions Secrets」填 repo（預設 `huang1988pioneer/CronBilibiliMission`）與 GitHub 權杖，勾選確認後按「更新 GitHub Secrets」。
+2. 在右側確認四個欄位都有值，必要時點「顯示明文」或「驗證登入」。長字串會自動換行，視窗較小時可捲動查看。
+3. 展開左側「02 更新 GitHub Secrets」，填入儲存庫（預設 `huang1988pioneer/CronBilibiliMission`）與 GitHub 權杖，勾選確認後按「更新 GitHub Secrets」。
 4. 或改複製後手動貼到 GitHub Repo `Settings` → `Secrets and variables` → `Actions`。
 
 權杖需要能寫入該 repo 的 Actions Secrets。也可按「使用 gh 權杖」（需已 `gh auth login`）。工具會依選取帳號更新：
@@ -60,3 +60,7 @@ dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=
 ```
 
 同樣可將 `-r` 換成 `osx-arm64`、`osx-x64`、`linux-x64`。
+
+## 自動發布 Release
+
+更新 `.csproj` 的版本與 `docs/releases/v版本.md`，將提交推送後，再推送對應的 `v版本` Git 標籤。`Release Bilibili Cookie Reader` 工作流程會驗證版本、執行服務與版面測試、建置四個平台的自包含 ZIP，並發布附有 `SHA256SUMS.txt` 的 GitHub Release。任一測試或建置失敗時不會發布。
