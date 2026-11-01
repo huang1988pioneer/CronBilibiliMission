@@ -3,7 +3,7 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
   "coin_task": {
     "coins_spent": 0,
@@ -13,15 +13,12 @@
     "target_experience": 50,
     "videos": []
   },
-  "completed": true,
-  "confirmations_done": [
-    1
-  ],
-  "confirmed_after_1h_at_taipei": "2026-11-01T22:57:06+08:00",
-  "date": "2026-11-01",
-  "dice": 4,
+  "completed": false,
+  "confirmations_done": [],
+  "date": "2026-11-02",
+  "dice": 2,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-11-01T15:21:40+08:00",
+  "initial_done_at_taipei": "2026-11-02T05:57:30+08:00",
   "level_info": {
     "current_exp": 34859,
     "current_level": 6,
@@ -30,25 +27,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-11-01",
+        "estimated_date": "2026-11-02",
         "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-11-01",
+        "estimated_date": "2026-11-02",
         "exp_remaining": 0,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-11-01",
+        "estimated_date": "2026-11-02",
         "exp_remaining": 0,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-11-01",
+        "estimated_date": "2026-11-02",
         "exp_remaining": 0,
         "required_exp": 28800
       }
@@ -60,7 +57,9 @@
     "status": "email_skipped"
   },
   "login_status": "logged_in",
-  "missing_after": [],
+  "missing_after": [
+    "share"
+  ],
   "reward_after": {
     "data": {
       "coins": 0,
@@ -68,23 +67,23 @@
       "identify_card": false,
       "login": true,
       "safe_question": true,
-      "share": true,
+      "share": false,
       "tel": true,
       "watch": true
     },
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 11,
+  "share_status": "share_reported",
+  "target_hour_24h": 3,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117505272121754,
-    "bvid": "BV1R2n96AEsH",
-    "cid": 43061414575,
-    "title": "根本没有这种视频😭😭😭"
+    "aid": 117533474559602,
+    "bvid": "BV1Nxxr6oES2",
+    "cid": 43198382106,
+    "title": "耗资上万！我重制了网页版MC！【B站AI创造公开赛】"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 7
+  "watch_status": "watch_reported",
+  "weekday": 1
 }
