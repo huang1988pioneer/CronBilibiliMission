@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-11-03T18:43:07+08:00",
   "date": "2026-11-03",
   "dice": 5,
   "initial_done": true,
   "initial_done_at_taipei": "2026-11-03T10:51:48+08:00",
   "level_info": {
-    "current_exp": 2735,
+    "current_exp": 2750,
     "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 118,
-    "exp_to_next_level": 1765,
+    "days_to_next_level_at_15_exp_per_day": 117,
+    "exp_to_next_level": 1750,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -32,21 +35,21 @@
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 118,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 1765,
+        "days_at_15_exp_per_day": 117,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 1750,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 538,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 8065,
+        "days_at_15_exp_per_day": 537,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 8050,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1738,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 26065,
+        "days_at_15_exp_per_day": 1737,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 26050,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 43271847954,
     "title": "【明日方舟】我把全部剧情做成了 3000 多册五语电子书｜可对照阅读｜可搜台词"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 2
 }
