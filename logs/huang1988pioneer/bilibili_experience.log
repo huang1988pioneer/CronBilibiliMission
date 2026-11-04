@@ -1499,3 +1499,6 @@
 2026-11-03T23:56:35+0000 INFO root: Watch task: watch_reported 0
 2026-11-03T23:56:36+0000 INFO root: Share task: share_reported OK
 2026-11-03T23:56:36+0000 INFO root: Daily summary written to logs/huang1988pioneer/daily_summary.md and GitHub Step Summary.
+2026-11-04T05:59:58+0000 INFO root: Logged in as 鋒三 (3706990272449316), account coins: 173, level: Lv3, exp: 2765, exp to next: 1735, days at 15 exp/day: 116
+2026-11-04T05:59:58+0000 INFO root: Daily experience tasks already complete.
+2026-11-04T05:59:58+0000 INFO root: Daily summary written to logs/huang1988pioneer/daily_summary.md and GitHub Step Summary.
