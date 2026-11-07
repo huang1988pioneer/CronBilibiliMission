@@ -14,13 +14,16 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-11-07T17:54:02+08:00",
   "date": "2026-11-07",
   "dice": 1,
   "initial_done": true,
   "initial_done_at_taipei": "2026-11-07T10:40:03+08:00",
   "level_info": {
-    "current_exp": 34934,
+    "current_exp": 34949,
     "current_level": 6,
     "days_to_next_level_at_15_exp_per_day": null,
     "exp_to_next_level": null,
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 43383980550,
     "title": "【小白必看】DeepSeek Harness零基础教程！附大肥鱼全套案例！"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 6
 }
