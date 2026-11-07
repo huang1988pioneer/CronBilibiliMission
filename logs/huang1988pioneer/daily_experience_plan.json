@@ -1,87 +1,10 @@
 {
-  "account_coins": 175,
-  "coin_balance_notification": {
-    "reason": "stagnant_coin_streak_below_threshold",
-    "status": "email_skipped",
-    "streak_days": 2
-  },
-  "coin_task": {
-    "coins_spent": 0,
-    "experience_before": 0,
-    "reason": "balance_not_over_333",
-    "status": "coin_skipped",
-    "target_experience": 50,
-    "videos": []
-  },
-  "completed": true,
   "confirmations_done": [],
-  "date": "2026-11-07",
+  "date": "2026-11-08",
   "dice": 6,
-  "initial_done": true,
-  "initial_done_at_taipei": "2026-11-07T17:53:58+08:00",
-  "level_info": {
-    "current_exp": 2795,
-    "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 114,
-    "exp_to_next_level": 1705,
-    "level_breakthrough_dates_at_15_exp_per_day": {
-      "lv3": {
-        "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-11-07",
-        "exp_remaining": 0,
-        "required_exp": 1500
-      },
-      "lv4": {
-        "days_at_15_exp_per_day": 114,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 1705,
-        "required_exp": 4500
-      },
-      "lv5": {
-        "days_at_15_exp_per_day": 534,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 8005,
-        "required_exp": 10800
-      },
-      "lv6": {
-        "days_at_15_exp_per_day": 1734,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 26005,
-        "required_exp": 28800
-      }
-    },
-    "next_level_exp": 4500
-  },
-  "level_upgrade_notification": {
-    "reason": "no_level_upgrade",
-    "status": "email_skipped"
-  },
-  "login_status": "logged_in",
-  "missing_after": [],
-  "reward_after": {
-    "data": {
-      "coins": 0,
-      "email": true,
-      "identify_card": false,
-      "login": true,
-      "safe_question": false,
-      "share": true,
-      "tel": true,
-      "watch": true
-    },
-    "message": "OK",
-    "status": "reward_checked"
-  },
-  "share_status": "share_reported",
-  "target_hour_24h": 12,
+  "initial_done": false,
+  "target_hour_24h": 13,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
-  "video": {
-    "aid": 117558288058954,
-    "bvid": "BV1sTx96tEN6",
-    "cid": 43327490011,
-    "title": "[本家投稿] ABM - '好きな隙間' (My Lovely Nook) feat. 音街ウナ"
-  },
-  "watch_status": "watch_reported",
-  "weekday": 6
+  "weekday": 7
 }
