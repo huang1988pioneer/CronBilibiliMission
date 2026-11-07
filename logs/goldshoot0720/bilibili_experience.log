@@ -1524,3 +1524,8 @@
 2026-11-06T22:59:06+0000 INFO root: Pruned 5 event log records older than 2026-10-09.
 2026-11-06T22:59:06+0000 INFO root: Waiting. Now 6:00 Taipei, target is 7:00.
 2026-11-06T22:59:06+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-11-07T02:40:03+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 554.4, level: Lv6, exp: 34934, exp to next: None, days at 15 exp/day: None
+2026-11-07T02:40:04+0000 INFO root: Selected video: BV1DY4v6DEtz 【小白必看】DeepSeek Harness零基础教程！附大肥鱼全套案例！
+2026-11-07T02:40:04+0000 INFO root: Watch task: watch_reported 0
+2026-11-07T02:40:05+0000 INFO root: Share task: share_reported OK
+2026-11-07T02:40:05+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
