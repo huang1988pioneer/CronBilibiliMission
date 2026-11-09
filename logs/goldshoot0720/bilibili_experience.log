@@ -1550,3 +1550,8 @@
 2026-11-08T21:57:08+0000 INFO root: Pruned 5 event log records older than 2026-10-11.
 2026-11-08T21:57:08+0000 INFO root: Waiting. Now 5:00 Taipei, target is 6:00.
 2026-11-08T21:57:08+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-11-09T01:36:34+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 556.4, level: Lv6, exp: 34974, exp to next: None, days at 15 exp/day: None
+2026-11-09T01:36:34+0000 INFO root: Selected video: BV1B7xS6NEw2 78分钟硬科幻AI电影《孤鲸》，华语科幻星云奖最佳短篇小说改编
+2026-11-09T01:36:34+0000 INFO root: Watch task: watch_reported 0
+2026-11-09T01:36:35+0000 INFO root: Share task: share_reported OK
+2026-11-09T01:36:35+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
