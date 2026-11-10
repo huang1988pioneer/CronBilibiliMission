@@ -1,9 +1,9 @@
 {
-  "account_coins": 178,
+  "account_coins": 179,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-11-10T20:27:37+08:00",
   "date": "2026-11-10",
   "dice": 5,
   "initial_done": true,
   "initial_done_at_taipei": "2026-11-10T11:23:49+08:00",
   "level_info": {
-    "current_exp": 2840,
+    "current_exp": 2855,
     "current_level": 3,
-    "days_to_next_level_at_15_exp_per_day": 111,
-    "exp_to_next_level": 1660,
+    "days_to_next_level_at_15_exp_per_day": 110,
+    "exp_to_next_level": 1645,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -32,21 +35,21 @@
         "required_exp": 1500
       },
       "lv4": {
-        "days_at_15_exp_per_day": 111,
-        "estimated_date": "2027-03-01",
-        "exp_remaining": 1660,
+        "days_at_15_exp_per_day": 110,
+        "estimated_date": "2027-02-28",
+        "exp_remaining": 1645,
         "required_exp": 4500
       },
       "lv5": {
-        "days_at_15_exp_per_day": 531,
-        "estimated_date": "2028-04-24",
-        "exp_remaining": 7960,
+        "days_at_15_exp_per_day": 530,
+        "estimated_date": "2028-04-23",
+        "exp_remaining": 7945,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 1731,
-        "estimated_date": "2031-08-07",
-        "exp_remaining": 25960,
+        "days_at_15_exp_per_day": 1730,
+        "estimated_date": "2031-08-06",
+        "exp_remaining": 25945,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 43433853456,
     "title": "耗时5个月，5万元成本，我用AI拍了一部68分钟的原创中国科幻长片《南天门计划：灰蚀危机》【ai全民制作人】"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 2
 }
