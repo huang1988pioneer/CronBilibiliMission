@@ -3,7 +3,7 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,14 +14,11 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [
-    1
-  ],
-  "confirmed_after_1h_at_taipei": "2026-11-10T20:27:37+08:00",
-  "date": "2026-11-10",
-  "dice": 5,
+  "confirmations_done": [],
+  "date": "2026-11-11",
+  "dice": 1,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-11-10T11:23:49+08:00",
+  "initial_done_at_taipei": "2026-11-11T07:09:13+08:00",
   "level_info": {
     "current_exp": 2855,
     "current_level": 3,
@@ -30,25 +27,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-11-10",
+        "estimated_date": "2026-11-11",
         "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 110,
-        "estimated_date": "2027-02-28",
+        "estimated_date": "2027-03-01",
         "exp_remaining": 1645,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 530,
-        "estimated_date": "2028-04-23",
+        "estimated_date": "2028-04-24",
         "exp_remaining": 7945,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 1730,
-        "estimated_date": "2031-08-06",
+        "estimated_date": "2031-08-07",
         "exp_remaining": 25945,
         "required_exp": 28800
       }
@@ -75,16 +72,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 7,
+  "share_status": "share_reported",
+  "target_hour_24h": 4,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117580031331697,
-    "bvid": "BV18GW76hEdg",
-    "cid": 43433853456,
-    "title": "耗时5个月，5万元成本，我用AI拍了一部68分钟的原创中国科幻长片《南天门计划：灰蚀危机》【ai全民制作人】"
+    "aid": 117581188959249,
+    "bvid": "BV1WvWH6wEAj",
+    "cid": 43440933379,
+    "title": "盘点那些被烂梗毁掉的神曲."
   },
-  "watch_status": "watch_skipped",
-  "weekday": 2
+  "watch_status": "watch_reported",
+  "weekday": 3
 }
