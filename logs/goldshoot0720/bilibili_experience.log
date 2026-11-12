@@ -1584,3 +1584,8 @@
 2026-11-12T00:29:39+0000 INFO root: Pruned 4 event log records older than 2026-10-14.
 2026-11-12T00:29:39+0000 INFO root: Waiting. Now 8:00 Taipei, target is 9:00.
 2026-11-12T00:29:39+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-11-12T08:10:41+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 559.4, level: Lv6, exp: 35019, exp to next: None, days at 15 exp/day: None
+2026-11-12T08:10:42+0000 INFO root: Selected video: BV1AcWG6eE1V 在公司修了个地铁…
+2026-11-12T08:10:42+0000 INFO root: Watch task: watch_reported 0
+2026-11-12T08:10:42+0000 INFO root: Share task: share_reported OK
+2026-11-12T08:10:43+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
