@@ -3,7 +3,7 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,11 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [
-    1,
-    3
-  ],
-  "confirmed_after_1h_at_taipei": "2026-11-11T13:55:17+08:00",
-  "confirmed_after_3h_at_taipei": "2026-11-11T22:01:05+08:00",
-  "date": "2026-11-11",
-  "dice": 1,
+  "confirmations_done": [],
+  "date": "2026-11-12",
+  "dice": 3,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-11-11T07:09:13+08:00",
+  "initial_done_at_taipei": "2026-11-12T08:29:34+08:00",
   "level_info": {
     "current_exp": 2870,
     "current_level": 3,
@@ -32,25 +27,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-11-11",
+        "estimated_date": "2026-11-12",
         "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 109,
-        "estimated_date": "2027-02-28",
+        "estimated_date": "2027-03-01",
         "exp_remaining": 1630,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 529,
-        "estimated_date": "2028-04-23",
+        "estimated_date": "2028-04-24",
         "exp_remaining": 7930,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 1729,
-        "estimated_date": "2031-08-06",
+        "estimated_date": "2031-08-07",
         "exp_remaining": 25930,
         "required_exp": 28800
       }
@@ -77,16 +72,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 4,
+  "share_status": "share_reported",
+  "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117581188959249,
-    "bvid": "BV1WvWH6wEAj",
-    "cid": 43440933379,
-    "title": "盘点那些被烂梗毁掉的神曲."
+    "aid": 117597160868495,
+    "bvid": "BV1mtWy6NEr9",
+    "cid": 43514072605,
+    "title": "【鸣潮小剧场】和萝莉们MMook JJi BBa！！"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 3
+  "watch_status": "watch_reported",
+  "weekday": 4
 }
