@@ -3,7 +3,7 @@
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,14 +14,11 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [
-    1
-  ],
-  "confirmed_after_1h_at_taipei": "2026-11-13T23:17:26+08:00",
-  "date": "2026-11-13",
-  "dice": 6,
+  "confirmations_done": [],
+  "date": "2026-11-14",
+  "dice": 1,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-11-13T14:23:36+08:00",
+  "initial_done_at_taipei": "2026-11-14T07:28:31+08:00",
   "level_info": {
     "current_exp": 2900,
     "current_level": 3,
@@ -30,25 +27,25 @@
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-11-13",
+        "estimated_date": "2026-11-14",
         "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 107,
-        "estimated_date": "2027-02-28",
+        "estimated_date": "2027-03-01",
         "exp_remaining": 1600,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 527,
-        "estimated_date": "2028-04-23",
+        "estimated_date": "2028-04-24",
         "exp_remaining": 7900,
         "required_exp": 10800
       },
       "lv6": {
         "days_at_15_exp_per_day": 1727,
-        "estimated_date": "2031-08-06",
+        "estimated_date": "2031-08-07",
         "exp_remaining": 25900,
         "required_exp": 28800
       }
@@ -75,16 +72,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 11,
+  "share_status": "share_reported",
+  "target_hour_24h": 7,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117575702812639,
-    "bvid": "BV1Xw4n61EWv",
-    "cid": 43415111102,
-    "title": "无法忘记和你一起度过的夏末"
+    "aid": 117608552603170,
+    "bvid": "BV16hWi6cEct",
+    "cid": 43569776353,
+    "title": "世界第一芙芙殿下"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 5
+  "watch_status": "watch_reported",
+  "weekday": 6
 }
