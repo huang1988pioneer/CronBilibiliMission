@@ -1,5 +1,5 @@
 {
-  "account_coins": 560.4,
+  "account_coins": 558.4,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
@@ -7,20 +7,23 @@
   },
   "coin_task": {
     "coins_spent": 0,
-    "experience_before": 0,
+    "experience_before": 20,
     "reason": "level_6",
     "status": "coin_skipped",
     "target_experience": 50,
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-11-13T23:17:28+08:00",
   "date": "2026-11-13",
   "dice": 3,
   "initial_done": true,
   "initial_done_at_taipei": "2026-11-13T14:23:40+08:00",
   "level_info": {
-    "current_exp": 35034,
+    "current_exp": 35059,
     "current_level": 6,
     "days_to_next_level_at_15_exp_per_day": null,
     "exp_to_next_level": null,
@@ -60,7 +63,7 @@
   "missing_after": [],
   "reward_after": {
     "data": {
-      "coins": 0,
+      "coins": 20,
       "email": true,
       "identify_card": false,
       "login": true,
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 8,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 43467869481,
     "title": "12岁虚报17岁当红军，91年后他是最后一位开国将军｜王扶之（1923—2026）"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 5
 }
