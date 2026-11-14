@@ -1703,3 +1703,8 @@
 2026-11-13T23:28:33+0000 INFO root: Pruned 5 event log records older than 2026-10-16.
 2026-11-13T23:28:33+0000 INFO root: Waiting. Now 7:00 Taipei, target is 10:00.
 2026-11-13T23:28:33+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
+2026-11-14T06:04:08+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 329.7, level: Lv5, exp: 16210, exp to next: 12590, days at 15 exp/day: 840
+2026-11-14T06:04:09+0000 INFO root: Selected video: BV1rTWq6iEdy 中国最贵vs最便宜！一碗盒饭，价格差100倍，有多大区别？
+2026-11-14T06:04:10+0000 INFO root: Watch task: watch_reported 0
+2026-11-14T06:04:10+0000 INFO root: Share task: share_reported OK
+2026-11-14T06:04:10+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.

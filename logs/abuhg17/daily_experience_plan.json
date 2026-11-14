@@ -1,10 +1,87 @@
 {
+  "account_coins": 329.7,
+  "coin_balance_notification": {
+    "reason": "stagnant_coin_streak_below_threshold",
+    "status": "email_skipped",
+    "streak_days": 2
+  },
+  "coin_task": {
+    "coins_spent": 0,
+    "experience_before": 0,
+    "reason": "balance_not_over_333",
+    "status": "coin_skipped",
+    "target_experience": 50,
+    "videos": []
+  },
+  "completed": true,
   "confirmations_done": [],
   "date": "2026-11-14",
   "dice": 4,
-  "initial_done": false,
+  "initial_done": true,
+  "initial_done_at_taipei": "2026-11-14T14:04:08+08:00",
+  "level_info": {
+    "current_exp": 16210,
+    "current_level": 5,
+    "days_to_next_level_at_15_exp_per_day": 840,
+    "exp_to_next_level": 12590,
+    "level_breakthrough_dates_at_15_exp_per_day": {
+      "lv3": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-11-14",
+        "exp_remaining": 0,
+        "required_exp": 1500
+      },
+      "lv4": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-11-14",
+        "exp_remaining": 0,
+        "required_exp": 4500
+      },
+      "lv5": {
+        "days_at_15_exp_per_day": 0,
+        "estimated_date": "2026-11-14",
+        "exp_remaining": 0,
+        "required_exp": 10800
+      },
+      "lv6": {
+        "days_at_15_exp_per_day": 840,
+        "estimated_date": "2029-03-03",
+        "exp_remaining": 12590,
+        "required_exp": 28800
+      }
+    },
+    "next_level_exp": 28800
+  },
+  "level_upgrade_notification": {
+    "reason": "no_level_upgrade",
+    "status": "email_skipped"
+  },
+  "login_status": "logged_in",
+  "missing_after": [],
+  "reward_after": {
+    "data": {
+      "coins": 0,
+      "email": true,
+      "identify_card": false,
+      "login": true,
+      "safe_question": true,
+      "share": true,
+      "tel": true,
+      "watch": true
+    },
+    "message": "OK",
+    "status": "reward_checked"
+  },
+  "share_status": "share_reported",
   "target_hour_24h": 10,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
+  "video": {
+    "aid": 117608418443892,
+    "bvid": "BV1rTWq6iEdy",
+    "cid": 43568595172,
+    "title": "中国最贵vs最便宜！一碗盒饭，价格差100倍，有多大区别？"
+  },
+  "watch_status": "watch_reported",
   "weekday": 6
 }
