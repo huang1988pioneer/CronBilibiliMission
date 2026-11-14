@@ -1,9 +1,9 @@
 {
-  "account_coins": 329.7,
+  "account_coins": 330.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 2
+    "streak_days": 1
   },
   "coin_task": {
     "coins_spent": 0,
@@ -14,16 +14,19 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-11-14T21:24:31+08:00",
   "date": "2026-11-14",
   "dice": 4,
   "initial_done": true,
   "initial_done_at_taipei": "2026-11-14T14:04:08+08:00",
   "level_info": {
-    "current_exp": 16210,
+    "current_exp": 16225,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 840,
-    "exp_to_next_level": 12590,
+    "days_to_next_level_at_15_exp_per_day": 839,
+    "exp_to_next_level": 12575,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
@@ -44,9 +47,9 @@
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 840,
-        "estimated_date": "2029-03-03",
-        "exp_remaining": 12590,
+        "days_at_15_exp_per_day": 839,
+        "estimated_date": "2029-03-02",
+        "exp_remaining": 12575,
         "required_exp": 28800
       }
     },
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 10,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 43568595172,
     "title": "中国最贵vs最便宜！一碗盒饭，价格差100倍，有多大区别？"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 6
 }
