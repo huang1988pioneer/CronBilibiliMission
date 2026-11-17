@@ -14,13 +14,16 @@
     "videos": []
   },
   "completed": true,
-  "confirmations_done": [],
+  "confirmations_done": [
+    1
+  ],
+  "confirmed_after_1h_at_taipei": "2026-11-17T11:40:34+08:00",
   "date": "2026-11-17",
   "dice": 1,
   "initial_done": true,
   "initial_done_at_taipei": "2026-11-17T04:55:09+08:00",
   "level_info": {
-    "current_exp": 35114,
+    "current_exp": 35119,
     "current_level": 6,
     "days_to_next_level_at_15_exp_per_day": null,
     "exp_to_next_level": null,
@@ -72,7 +75,7 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_reported",
+  "share_status": "share_skipped",
   "target_hour_24h": 3,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
@@ -82,6 +85,6 @@
     "cid": 43622271958,
     "title": "究竟怎样做才能活下去｜一口气看完9th末日生存合集 真实丧尸末日记录"
   },
-  "watch_status": "watch_reported",
+  "watch_status": "watch_skipped",
   "weekday": 2
 }
