@@ -1672,3 +1672,8 @@
 2026-11-19T18:10:19+0000 INFO root: Pruned 5 event log records older than 2026-10-22.
 2026-11-19T18:10:19+0000 INFO root: Waiting. Now 2:00 Taipei, target is 9:00.
 2026-11-19T18:10:19+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-11-20T01:10:38+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 565.4, level: Lv6, exp: 35159, exp to next: None, days at 15 exp/day: None
+2026-11-20T01:10:39+0000 INFO root: Selected video: BV1nVs16tESg 历史性峰会！为什么是APEC？是中国？是深圳？
+2026-11-20T01:10:39+0000 INFO root: Watch task: watch_reported 0
+2026-11-20T01:10:40+0000 INFO root: Share task: share_reported OK
+2026-11-20T01:10:40+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
