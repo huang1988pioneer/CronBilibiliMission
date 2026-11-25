@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
+import filecmp
 import json
 import logging
 import time
 from datetime import datetime
+from itertools import count
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from zoneinfo import ZoneInfo
 
 from requests import Session
@@ -15,6 +18,7 @@ NORMAL_RANKING_PATH = "/x/web-interface/ranking/v2"
 PGC_WEB_RANKING_PATH = "/pgc/web/rank/list"
 PGC_SEASON_RANKING_PATH = "/pgc/season/rank/web/list"
 RANKING_LOG = Path("logs") / "ranking.jsonl"
+MAX_RANKING_BYTES = 100 * 1024 * 1024
 TAIPEI = ZoneInfo("Asia/Taipei")
 USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -51,11 +55,12 @@ RANKING_CATEGORIES = (
 )
 
 
-def read_records(path=RANKING_LOG):
+def read_daily_record(path, date):
+    history = []
+    today = {"date": date, "categories": {}}
     if not path.exists():
-        return []
-    records = []
-    with path.open("r", encoding="utf-8") as file:
+        return history, today
+    with path.open("rb") as file:
         for line in file:
             try:
                 record = json.loads(line)
@@ -63,8 +68,11 @@ def read_records(path=RANKING_LOG):
                 logging.warning("Ignoring malformed ranking record: %s", line.rstrip())
                 continue
             if isinstance(record, dict):
-                records.append(record)
-    return records
+                if record.get("date") == date:
+                    today = record
+                else:
+                    history.append(line)
+    return history, today
 
 
 def optional_int(value):
@@ -197,24 +205,51 @@ def fetch_category(category, session, sleep=time.sleep):
     raise RuntimeError(f"Unable to fetch Bilibili ranking category {category['name']}: {last_error}") from last_error
 
 
-def write_records(records, path):
+def archive_history(staged, path, date):
+    for number in count(1):
+        prefix = date if number == 1 else f"{date}-{number}"
+        archive = path.with_name(f"{prefix}-{path.name}")
+        try:
+            archive.hardlink_to(staged)
+        except FileExistsError:
+            # A retry may find the archive already saved before the active file was replaced.
+            if not filecmp.cmp(archive, staged, shallow=False):
+                continue
+        logging.info("Archived previous rankings to %s.", archive)
+        return
+
+
+def write_daily_record(history, record, path):
+    entry = (json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n").encode("utf-8")
+    if len(entry) > MAX_RANKING_BYTES:
+        raise ValueError("One daily ranking exceeds the file size limit.")
+    separator = b"\n" if history and not history[-1].endswith(b"\n") else b""
+    history_size = sum(map(len, history))
+    rotate = history_size + len(separator) + len(entry) > MAX_RANKING_BYTES
+    if history_size > MAX_RANKING_BYTES:
+        raise ValueError("Ranking history already exceeds the archive size limit.")
+
     path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + ".tmp")
-    with temporary.open("w", encoding="utf-8") as file:
-        for record in records:
-            file.write(json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n")
-    temporary.replace(path)
+    with TemporaryDirectory(dir=path.parent) as directory:
+        active = Path(directory) / path.name
+        with active.open("wb") as file:
+            if not rotate:
+                file.writelines(history)
+                file.write(separator)
+            file.write(entry)
+        if rotate:
+            staged = Path(directory) / "history"
+            with staged.open("wb") as file:
+                file.writelines(history)
+            archive_history(staged, path, record["date"])
+        active.replace(path)
 
 
 def record_daily_ranking(now=None, path=RANKING_LOG, session=None, sleep=time.sleep):
     now = now or datetime.now(TAIPEI)
     now = now.replace(tzinfo=TAIPEI) if now.tzinfo is None else now.astimezone(TAIPEI)
     date = now.date().isoformat()
-    records = read_records(path)
-    record = next((item for item in records if item.get("date") == date), None)
-    if record is None:
-        record = {"date": date, "categories": {}}
-        records.append(record)
+    history, record = read_daily_record(path, date)
     categories = record.get("categories") if isinstance(record.get("categories"), dict) else {}
     record["categories"] = categories
 
@@ -244,7 +279,7 @@ def record_daily_ranking(now=None, path=RANKING_LOG, session=None, sleep=time.sl
     record["captured_at_taipei"] = now.isoformat(timespec="seconds")
     record["complete"] = expected_keys.issubset(categories)
     record["category_count"] = len(categories)
-    write_records(records, path)
+    write_daily_record(history, record, path)
     logging.info("Recorded %s/%s Bilibili ranking categories for %s.", len(categories), len(expected_keys), date)
     return successful > 0
 

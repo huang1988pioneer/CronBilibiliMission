@@ -3,6 +3,7 @@ import tempfile
 import unittest
 from datetime import datetime
 from pathlib import Path
+from unittest.mock import patch
 from zoneinfo import ZoneInfo
 
 import record_ranking
@@ -98,6 +99,65 @@ class RankingRecordTests(unittest.TestCase):
             )
             self.assertFalse(recorded)
             self.assertEqual([], session.calls)
+
+    def test_rotation_uses_utf8_bytes_and_allows_an_exact_fit(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "ranking.jsonl"
+            history = '{"date":"2026-08-13","title":"影片"}'.encode("utf-8")
+            record = {"date": "2026-08-14", "title": "動畫"}
+            entry = (json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n").encode("utf-8")
+            combined = history + b"\n" + entry
+            archive = path.with_name("2026-08-14-ranking.jsonl")
+            with patch.object(record_ranking, "MAX_RANKING_BYTES", len(combined)):
+                record_ranking.write_daily_record([history], record, path)
+            self.assertEqual(combined, path.read_bytes())
+            self.assertFalse(archive.exists())
+            with patch.object(record_ranking, "MAX_RANKING_BYTES", len(combined) - 1):
+                record_ranking.write_daily_record([history], record, path)
+            self.assertEqual(history, archive.read_bytes())
+            self.assertEqual(entry, path.read_bytes())
+
+    def test_rotation_during_retry_keeps_only_one_snapshot_for_today(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "ranking.jsonl"
+            history = json.dumps({"date": "2026-08-13", "padding": "x" * 20000}).encode() + b"\n"
+            partial = {"date": "2026-08-14", "categories": {"all": {"name": "全部", "entries": []}}}
+            path.write_bytes(history + json.dumps(partial).encode() + b"\n")
+            now = datetime(2026, 8, 13, 18, tzinfo=ZoneInfo("UTC"))
+            session = FakeSession()
+            with patch.object(record_ranking, "MAX_RANKING_BYTES", path.stat().st_size):
+                self.assertTrue(record_ranking.record_daily_ranking(now, path, session))
+                self.assertFalse(record_ranking.record_daily_ranking(now, path, session))
+            self.assertEqual(20, len(session.calls))
+            self.assertEqual(history, path.with_name("2026-08-14-ranking.jsonl").read_bytes())
+            record = json.loads(path.read_bytes())
+            self.assertTrue(record["complete"])
+            self.assertEqual(partial["categories"]["all"], record["categories"]["all"])
+
+    def test_existing_archive_is_preserved_and_retry_reuses_matching_archive(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "ranking.jsonl"
+            archive = path.with_name("2026-08-14-ranking.jsonl")
+            archive.write_bytes(b'{"date":"2026-08-12"}\n')
+            history = b'{"date":"2026-08-13"}\n'
+            record = {"date": "2026-08-14"}
+            with patch.object(record_ranking, "MAX_RANKING_BYTES", 30):
+                for _ in range(2):
+                    record_ranking.write_daily_record([history], record, path)
+            self.assertEqual(b'{"date":"2026-08-12"}\n', archive.read_bytes())
+            self.assertEqual(history, path.with_name("2026-08-14-2-ranking.jsonl").read_bytes())
+            self.assertEqual(3, len(list(path.parent.iterdir())))
+
+    def test_oversized_single_snapshot_leaves_the_old_log_intact(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "ranking.jsonl"
+            history = b'{"date":"2026-08-13"}\n'
+            path.write_bytes(history)
+            with patch.object(record_ranking, "MAX_RANKING_BYTES", len(history)):
+                with self.assertRaises(ValueError):
+                    record_ranking.write_daily_record([history], {"date": "2026-08-14", "title": "動畫"}, path)
+            self.assertEqual(history, path.read_bytes())
+            self.assertEqual([path], list(path.parent.iterdir()))
 
     def test_pgc_parser_keeps_rating_progress_and_followers(self):
         entry = record_ranking.parse_pgc_ranking(pgc_payload())[0]
