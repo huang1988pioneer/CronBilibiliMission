@@ -1806,3 +1806,9 @@
 2026-11-22T11:01:59+0000 INFO root: Gave 2 coin(s) to BV1NDsS6UE8D.
 2026-11-22T11:01:59+0000 INFO root: Gave 1 coin(s) to BV1nzsq6BERu.
 2026-11-22T11:02:00+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
+2026-11-25T12:46:24+0000 INFO root: Logged in as FENGTUINFO (2117627494), account coins: 331.7, level: Lv5, exp: 16490, exp to next: 12310, days at 15 exp/day: 821
+2026-11-25T12:46:24+0000 INFO root: Selected video: BV1EGydzmEFx 美国10岁男孩为救亲妈，开枪爆头16岁少女邻居
+2026-11-25T12:46:25+0000 INFO root: Watch task: watch_reported 0
+2026-11-25T12:46:25+0000 INFO root: Share task: share_reported OK
+2026-11-25T12:46:25+0000 INFO root: Pruned 17 event log records older than 2026-10-27.
+2026-11-25T12:46:25+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
