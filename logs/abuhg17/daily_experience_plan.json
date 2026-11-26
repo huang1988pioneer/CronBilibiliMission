@@ -1,80 +1,52 @@
 {
-  "account_coins": 333.7,
+  "account_coins": 331.7,
   "coin_balance_notification": {
     "reason": "stagnant_coin_streak_below_threshold",
     "status": "email_skipped",
-    "streak_days": 1
+    "streak_days": 2
   },
   "coin_task": {
-    "coins_spent": 5,
+    "coins_spent": 0,
     "experience_before": 0,
-    "reason": "completed",
-    "status": "coins_given",
+    "reason": "balance_not_over_333",
+    "status": "coin_skipped",
     "target_experience": 50,
-    "videos": [
-      {
-        "aid": 117649874881628,
-        "bvid": "BV1UGyszjEGX",
-        "coins": 2,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "为何去玩这个剧本杀的人都失踪了？"
-      },
-      {
-        "aid": 117637157751172,
-        "bvid": "BV1NDsS6UE8D",
-        "coins": 2,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "【侠盗猎车手6】4K 最高画质 全网首发 全任务 全剧情流程通关攻略 开放世界冒险游戏 GTA6 - Grand Theft Auto VI"
-      },
-      {
-        "aid": 117647375145944,
-        "bvid": "BV1nzsq6BERu",
-        "coins": 1,
-        "message": "OK",
-        "status": "coins_given",
-        "title": "长辈泡的“药酒”，里面到底有什么？"
-      }
-    ]
+    "videos": []
   },
   "completed": true,
-  "confirmations_done": [
-    1
-  ],
-  "confirmed_after_1h_at_taipei": "2026-11-22T19:01:57+08:00",
-  "date": "2026-11-22",
-  "dice": 3,
+  "confirmations_done": [],
+  "date": "2026-11-26",
+  "dice": 1,
   "initial_done": true,
-  "initial_done_at_taipei": "2026-11-22T10:58:55+08:00",
+  "initial_done_at_taipei": "2026-11-26T09:44:57+08:00",
   "level_info": {
-    "current_exp": 16395,
+    "current_exp": 16490,
     "current_level": 5,
-    "days_to_next_level_at_15_exp_per_day": 827,
-    "exp_to_next_level": 12405,
+    "days_to_next_level_at_15_exp_per_day": 821,
+    "exp_to_next_level": 12310,
     "level_breakthrough_dates_at_15_exp_per_day": {
       "lv3": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-11-22",
+        "estimated_date": "2026-11-26",
         "exp_remaining": 0,
         "required_exp": 1500
       },
       "lv4": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-11-22",
+        "estimated_date": "2026-11-26",
         "exp_remaining": 0,
         "required_exp": 4500
       },
       "lv5": {
         "days_at_15_exp_per_day": 0,
-        "estimated_date": "2026-11-22",
+        "estimated_date": "2026-11-26",
         "exp_remaining": 0,
         "required_exp": 10800
       },
       "lv6": {
-        "days_at_15_exp_per_day": 827,
-        "estimated_date": "2029-02-26",
-        "exp_remaining": 12405,
+        "days_at_15_exp_per_day": 821,
+        "estimated_date": "2029-02-24",
+        "exp_remaining": 12310,
         "required_exp": 28800
       }
     },
@@ -88,7 +60,7 @@
   "missing_after": [],
   "reward_after": {
     "data": {
-      "coins": 50,
+      "coins": 0,
       "email": true,
       "identify_card": false,
       "login": true,
@@ -100,16 +72,16 @@
     "message": "OK",
     "status": "reward_checked"
   },
-  "share_status": "share_skipped",
-  "target_hour_24h": 10,
+  "share_status": "share_reported",
+  "target_hour_24h": 5,
   "task": "daily_experience",
   "timezone": "Asia/Taipei",
   "video": {
-    "aid": 117645076599152,
-    "bvid": "BV1yKse6YE16",
-    "cid": 43750526600,
-    "title": "\"我在5:20入睡13:14准时起\""
+    "aid": 117665712642547,
+    "bvid": "BV1NuyDzLEEs",
+    "cid": 43860887511,
+    "title": "我发现两个人真的很喜欢彼此以后 会有一个特别幼稚的习惯"
   },
-  "watch_status": "watch_skipped",
-  "weekday": 7
+  "watch_status": "watch_reported",
+  "weekday": 4
 }
