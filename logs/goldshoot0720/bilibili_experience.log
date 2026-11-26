@@ -1719,3 +1719,6 @@
 2026-11-26T10:43:34+0000 INFO root: Logged in as 小毛的班鋒兄 (1875212), account coins: 571.4, level: Lv6, exp: 35254, exp to next: None, days at 15 exp/day: None
 2026-11-26T10:43:35+0000 INFO root: Daily experience tasks already complete.
 2026-11-26T10:43:35+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
+2026-11-26T20:04:51+0000 INFO root: Pruned 4 event log records older than 2026-10-29.
+2026-11-26T20:04:51+0000 INFO root: Waiting. Now 4:00 Taipei, target is 7:00.
+2026-11-26T20:04:51+0000 INFO root: Daily summary written to logs/goldshoot0720/daily_summary.md and GitHub Step Summary.
