@@ -4,6 +4,7 @@
         x:Class="BilibiliCookieReader.Views.MainWindow"
         x:DataType="vm:MainViewModel"
         Title="{Binding WindowTitle}"
+        Icon="/Assets/BilibiliCookieReader.png"
         Width="1180" Height="860"
         MinWidth="960" MinHeight="640"
         WindowStartupLocation="CenterScreen"
