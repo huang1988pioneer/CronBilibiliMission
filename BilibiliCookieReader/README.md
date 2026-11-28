@@ -64,3 +64,5 @@ dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=
 ## 自動發布 Release
 
 更新 `.csproj` 的版本與 `docs/releases/v版本.md`，將提交推送後，再推送對應的 `v版本` Git 標籤。`Release Bilibili Cookie Reader` 工作流程會驗證版本、執行服務與版面測試、建置四個平台的自包含 ZIP，並發布附有 `SHA256SUMS.txt` 的 GitHub Release。任一測試或建置失敗時不會發布。
+
+後續版本的 macOS ZIP 包含 `BilibiliCookieReader.app`。解壓後在 Finder 雙擊 App，即可直接開啟讀取器視窗。

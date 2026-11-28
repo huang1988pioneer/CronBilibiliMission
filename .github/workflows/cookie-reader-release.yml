@@ -35,7 +35,7 @@ jobs:
 
   build:
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: ${{ startsWith(matrix.runtime, 'osx-') && 'macos-latest' || 'ubuntu-latest' }}
     strategy:
       fail-fast: false
       matrix:
@@ -51,6 +51,11 @@ jobs:
           -c Release -r ${{ matrix.runtime }} --self-contained true
           -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
           -p:DebugType=None -p:DebugSymbols=false -o publish/app
+      - name: Assemble macOS application bundle
+        if: startsWith(matrix.runtime, 'osx-')
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: scripts/package_macos_app.sh publish/app publish/macos/BilibiliCookieReader.app "${RELEASE_TAG#v}"
       - name: Archive application
         env:
           RELEASE_TAG: ${{ github.ref_name }}
@@ -61,7 +66,9 @@ jobs:
           import pathlib
           import shutil
           app = pathlib.Path("publish/app")
-          if os.environ["RELEASE_RUNTIME"] != "win-x64":
+          if os.environ["RELEASE_RUNTIME"].startswith("osx-"):
+              app = pathlib.Path("publish/macos")
+          elif os.environ["RELEASE_RUNTIME"] == "linux-x64":
               executable = app / "BilibiliCookieReader"
               executable.chmod(executable.stat().st_mode | 0o111)
           pathlib.Path("artifacts").mkdir()
