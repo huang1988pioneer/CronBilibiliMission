@@ -1835,3 +1835,6 @@
 2026-11-27T11:59:34+0000 INFO root: Gave 2 coin(s) to BV17dy2z4E5f.
 2026-11-27T11:59:34+0000 INFO root: Gave 1 coin(s) to BV1j9ykzGEsK.
 2026-11-27T11:59:34+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
+2026-11-28T01:21:09+0000 INFO root: Pruned 5 event log records older than 2026-10-30.
+2026-11-28T01:21:09+0000 INFO root: Waiting. Now 9:00 Taipei, target is 10:00.
+2026-11-28T01:21:09+0000 INFO root: Daily summary written to logs/abuhg17/daily_summary.md and GitHub Step Summary.
