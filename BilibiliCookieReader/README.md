@@ -9,18 +9,18 @@ Avalonia 桌面工具：讀取瀏覽器匯出的 Netscape `cookies.txt`，取出
 | `DEDEUSERID` | `DEDEUSERID` | `DedeUserID` |
 | `BUVID3` | `BUVID3` | `buvid3` |
 
-預設選取帳號 1 `huang1988pioneer`，也可切換至帳號 2 `abuhg17` 或帳號 3 `goldshoot0720`。每次切換帳號時 Cookie 檔案路徑保持空白；請拖放檔案或按「瀏覽」選擇。只採用 `.bilibili.com` 的 Cookie，略過 `huasheng.cn`、`biligame.com` 等站的同名欄位。`SESSDATA` 保持檔案中的原始值，不要 URL 解碼。
+預設選取帳號 1 `huang1988pioneer`，也可切換至帳號 2 `abuhg17` 或帳號 3 `goldshoot0720`。每次切換帳號時 Cookie 檔案路徑保持空白；請拖放檔案或按「選擇 Cookie 檔案」。只採用 `.bilibili.com` 的 Cookie，略過 `huasheng.cn`、`biligame.com` 等站的同名欄位。`SESSDATA` 保持檔案中的原始值，不要 URL 解碼。
 
 讀取後會顯示 Cookie 檔與 SESSDATA 工作階段的預定過期日（台北時間），並依剩餘天數用顏色提醒：14 天內請預定更新，3 天內或已過期會加強警告。
 
 ## 下載
 
-[BilibiliCookieReader v1.6.0](https://github.com/huang1988pioneer/CronBilibiliMission/releases/tag/v1.6.0)（自包含，無需另外安裝 .NET）：
+[BilibiliCookieReader v1.7.0](https://github.com/huang1988pioneer/CronBilibiliMission/releases/tag/v1.7.0)（自包含，無需另外安裝 .NET）：
 
-- [Windows x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.6.0/BilibiliCookieReader-v1.6.0-win-x64.zip)
-- [macOS Apple Silicon](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.6.0/BilibiliCookieReader-v1.6.0-osx-arm64.zip)
-- [macOS Intel](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.6.0/BilibiliCookieReader-v1.6.0-osx-x64.zip)
-- [Linux x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.6.0/BilibiliCookieReader-v1.6.0-linux-x64.zip)
+- [Windows x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.7.0/BilibiliCookieReader-v1.7.0-win-x64.zip)
+- [macOS Apple Silicon](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.7.0/BilibiliCookieReader-v1.7.0-osx-arm64.zip)
+- [macOS Intel](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.7.0/BilibiliCookieReader-v1.7.0-osx-x64.zip)
+- [Linux x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.7.0/BilibiliCookieReader-v1.7.0-linux-x64.zip)
 
 解壓後執行 `BilibiliCookieReader.exe`（Windows）或 `BilibiliCookieReader`（macOS / Linux）。
 
