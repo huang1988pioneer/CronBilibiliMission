@@ -67,6 +67,32 @@ public sealed class MainWindowLayoutTests
     }
 
     [Fact]
+    public async Task Preview_and_export_actions_switch_when_results_change()
+    {
+        using var session = HeadlessUnitTestSession.StartNew(typeof(LayoutTestApp));
+        await session.Dispatch(() =>
+        {
+            var vm = CreateLoadedModel(reveal: false);
+            var window = OpenWindow(vm, 960, 640);
+            try
+            {
+                var preview = window.FindControl<Grid>("ImportPreview")!;
+                var results = window.FindControl<ScrollViewer>("ResultsScroll")!;
+                var actions = window.FindControl<Border>("ActionBar")!;
+                foreach (var hasResult in new[] { true, false, true })
+                {
+                    vm.HasResult = hasResult;
+                    Dispatcher.UIThread.RunJobs();
+                    Assert.Equal(!hasResult, preview.IsEffectivelyVisible);
+                    Assert.Equal(hasResult, results.IsEffectivelyVisible);
+                    Assert.Equal(hasResult, actions.IsEffectivelyVisible);
+                }
+            }
+            finally { window.Close(); }
+        }, CancellationToken.None);
+    }
+
+    [Fact]
     public async Task Very_long_revealed_values_and_metadata_grow_without_clipping()
     {
         using var session = HeadlessUnitTestSession.StartNew(typeof(LayoutTestApp));

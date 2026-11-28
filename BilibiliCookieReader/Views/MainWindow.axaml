@@ -7,7 +7,7 @@
         Width="1180" Height="860"
         MinWidth="960" MinHeight="640"
         WindowStartupLocation="CenterScreen"
-        Background="#EEF1F5"
+        Background="{StaticResource Paper}"
         DragDrop.AllowDrop="True">
   <Design.DataContext>
     <vm:MainViewModel />
@@ -17,27 +17,42 @@
     <KeyBinding Gesture="F5" Command="{Binding LoadCommand}" />
   </Window.KeyBindings>
 
+  <Window.Resources>
+    <DrawingBrush x:Key="DraftGrid" TileMode="Tile" DestinationRect="0,0,24,24" SourceRect="0,0,24,24">
+      <DrawingBrush.Drawing>
+        <GeometryDrawing Geometry="M0,0 V24 M0,0 H24">
+          <GeometryDrawing.Pen><Pen Brush="{StaticResource GridLine}" Thickness="1" /></GeometryDrawing.Pen>
+        </GeometryDrawing>
+      </DrawingBrush.Drawing>
+    </DrawingBrush>
+  </Window.Resources>
+
   <Grid RowDefinitions="Auto,*,Auto">
-    <Border Background="White" BorderBrush="#DCE2EA" BorderThickness="0,0,0,1" Padding="24,18">
-      <Grid ColumnDefinitions="*,Auto" ColumnSpacing="20">
-        <StackPanel Spacing="5">
-          <TextBlock Classes="title" Text="Bilibili Cookie 讀取器" />
-          <TextBlock Classes="muted" Text="匯入 Cookie → 檢查登入資訊 → 更新 GitHub Secrets" TextWrapping="Wrap" />
-        </StackPanel>
-        <Border Grid.Column="1" Classes="chip" VerticalAlignment="Center">
-          <TextBlock Text="Cookie 僅供本人使用" FontSize="12" Foreground="#943657" />
+    <Border Background="{StaticResource Surface}" BorderBrush="{StaticResource Line}" BorderThickness="0,0,0,1" Padding="28,16">
+      <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14" MaxWidth="1500">
+        <Border Width="44" Height="44" CornerRadius="11" Background="{StaticResource Ink}">
+          <Canvas Width="30" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Path Data="M2,10 L15,3 L28,10 L15,17 Z" Fill="{StaticResource MintWash}" />
+            <Path Data="M2,15 L15,22 L28,15 M2,20 L15,27 L28,20" Stroke="{StaticResource LayerMint}" StrokeThickness="2" />
+          </Canvas>
         </Border>
+        <TextBlock Grid.Column="1" Classes="title" Text="Bilibili Cookie 讀取器" VerticalAlignment="Center" />
+        <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+          <Path Data="M8,1 L14,3.2 V8 C14,11 11,14 8,15 C5,14 2,11 2,8 V3.2 Z M5,8 L7,10 L11,6"
+                Width="16" Height="16" Stroke="{StaticResource Trace}" StrokeThickness="1.5" />
+          <TextBlock Classes="muted" Text="本機解析" FontSize="13" />
+        </StackPanel>
       </Grid>
     </Border>
 
-    <Grid Grid.Row="1" Margin="24,20" ColumnDefinitions="328,*" ColumnSpacing="20">
+    <Grid Grid.Row="1" Margin="26,22" MaxWidth="1500" ColumnDefinitions="320,*" ColumnSpacing="14">
       <ScrollViewer x:Name="SettingsScroll" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-        <StackPanel Spacing="16" Margin="0,0,12,0">
+        <StackPanel Spacing="12" Margin="0,0,9,0">
           <Border x:Name="DropZone" Classes="dropzone">
-            <StackPanel Spacing="16">
+            <StackPanel Spacing="18">
               <StackPanel Spacing="5">
-                <TextBlock Classes="section" Text="01  匯入 Cookie" />
-                <TextBlock Classes="muted" Text="先選擇帳號，再讀取瀏覽器匯出的檔案。" TextWrapping="Wrap" />
+                <TextBlock Classes="section" Text="匯入 Cookie" />
+                <TextBlock Classes="muted" Text="選擇帳號與瀏覽器匯出的檔案。" TextWrapping="Wrap" />
               </StackPanel>
               <StackPanel Spacing="7">
                 <TextBlock Classes="label" Text="Bilibili 帳號" />
@@ -51,15 +66,20 @@
                 </ComboBox>
               </StackPanel>
               <StackPanel Spacing="7">
-                <TextBlock Classes="label" Text="Cookie 檔案" />
-                <TextBox x:Name="PathBox" Text="{Binding CookiePath}" PlaceholderText="選擇或拖放 cookies.txt"
-                         AutomationProperties.Name="Cookie 檔案路徑" KeyDown="OnPathKeyDown" />
-                <TextBlock Classes="muted" Text="支援拖放 Netscape .txt，只讀取 .bilibili.com。" TextWrapping="Wrap" FontSize="12" />
+                <TextBlock Classes="label" Text="檔案路徑" />
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="6">
+                  <TextBox x:Name="PathBox" Text="{Binding CookiePath}" PlaceholderText="貼上 cookies.txt 路徑"
+                           AutomationProperties.Name="Cookie 檔案路徑" KeyDown="OnPathKeyDown" />
+                  <Button Grid.Column="1" Classes="secondary" Content="讀取" Command="{Binding LoadCommand}" ToolTip.Tip="讀取此路徑（F5）" />
+                </Grid>
               </StackPanel>
-              <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
-                <Button Classes="secondary" Content="瀏覽檔案" Command="{Binding BrowseCommand}" ToolTip.Tip="Ctrl+O" />
-                <Button Grid.Column="1" Classes="primary" Content="讀取 Cookie" Command="{Binding LoadCommand}" ToolTip.Tip="F5" />
-              </Grid>
+              <Button Classes="primary" Command="{Binding BrowseCommand}" ToolTip.Tip="Ctrl+O" AutomationProperties.Name="選擇 Cookie 檔案">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                  <Path Data="M1,5 V3 H7 L9,5 H17 V7 M1,7 H18 L16,15 H1 Z" Stroke="{StaticResource Surface}"
+                        StrokeThickness="1.5" Width="19" Height="18" VerticalAlignment="Center" />
+                  <TextBlock Text="選擇 Cookie 檔案" Foreground="{StaticResource Surface}" />
+                </StackPanel>
+              </Button>
             </StackPanel>
           </Border>
 
@@ -73,73 +93,129 @@
             </StackPanel>
           </Border>
 
-          <Border Classes="panel" Padding="16">
-            <Expander x:Name="GitHubSection" Header="02  更新 GitHub Secrets" HorizontalContentAlignment="Stretch">
-              <StackPanel Spacing="14" Margin="0,16,0,0">
-                <TextBlock Classes="muted" Text="填入儲存庫與權杖，將四個 Cookie 更新為 Actions Secrets。" TextWrapping="Wrap" />
-                <StackPanel Spacing="6">
-                  <TextBlock Classes="label" Text="{Binding SelectedAccount.DisplayName}" TextWrapping="Wrap" />
-                  <TextBlock Classes="muted" Text="{Binding SelectedSecretNames}" FontSize="12" TextWrapping="Wrap" />
-                </StackPanel>
-                <StackPanel Spacing="7">
-                  <TextBlock Classes="label" Text="GitHub 儲存庫" />
-                  <TextBox Text="{Binding GitHubRepo}" PlaceholderText="owner/repository" AutomationProperties.Name="GitHub 儲存庫" />
-                </StackPanel>
-                <StackPanel Spacing="7">
-                  <TextBlock Classes="label" Text="存取權杖" />
-                  <TextBox Text="{Binding GitHubToken}" PasswordChar="•" PlaceholderText="ghp_… 或 github_pat_…" AutomationProperties.Name="GitHub 存取權杖" />
-                  <Button Classes="secondary" Content="使用 gh 權杖" Command="{Binding UseGhTokenCommand}" />
-                  <TextBlock Classes="muted" Text="權杖需具有此儲存庫的 Actions Secrets 寫入權限。" FontSize="12" TextWrapping="Wrap" />
-                </StackPanel>
-                <CheckBox IsChecked="{Binding RememberGitHubToken}">
-                  <TextBlock Text="記住權杖（只存在本機）" TextWrapping="Wrap" />
-                </CheckBox>
-                <CheckBox IsChecked="{Binding ConfirmOverwriteSecrets}">
-                  <TextBlock Text="確定覆寫此帳號的四個 Secrets" TextWrapping="Wrap" />
-                </CheckBox>
-                <Button Classes="primary" Content="更新 GitHub Secrets" Command="{Binding UpdateGitHubSecretsCommand}" />
-                <TextBlock Classes="muted" Text="更新後無法讀回舊值。" FontSize="12" TextWrapping="Wrap" />
+          <Expander x:Name="GitHubSection" AutomationProperties.Name="GitHub Secrets">
+            <Expander.Header>
+              <StackPanel Orientation="Horizontal" Spacing="10">
+                <Path Width="18" Height="18" VerticalAlignment="Center" Stroke="{StaticResource Trace}" StrokeThickness="1.6"
+                      Data="M10,8 A4.5,4.5 0 1 0 7,11 L12,16 H16 V13 L14,11 H12 Z M4,6 H6" />
+                <TextBlock Classes="label" Text="GitHub Secrets" />
               </StackPanel>
-            </Expander>
-          </Border>
+            </Expander.Header>
+            <StackPanel Spacing="14" Margin="0,16,0,0">
+              <TextBlock Classes="muted" Text="填入儲存庫與權杖，將四個 Cookie 更新為 Actions Secrets。" TextWrapping="Wrap" />
+              <StackPanel Spacing="6">
+                <TextBlock Classes="label" Text="{Binding SelectedAccount.DisplayName}" TextWrapping="Wrap" />
+                <TextBlock Classes="muted" Text="{Binding SelectedSecretNames}" FontSize="12" TextWrapping="Wrap" />
+              </StackPanel>
+              <StackPanel Spacing="7">
+                <TextBlock Classes="label" Text="GitHub 儲存庫" />
+                <TextBox Text="{Binding GitHubRepo}" PlaceholderText="owner/repository" AutomationProperties.Name="GitHub 儲存庫" />
+              </StackPanel>
+              <StackPanel Spacing="7">
+                <TextBlock Classes="label" Text="存取權杖" />
+                <TextBox Text="{Binding GitHubToken}" PasswordChar="•" PlaceholderText="ghp_… 或 github_pat_…" AutomationProperties.Name="GitHub 存取權杖" />
+                <Button Classes="secondary" Content="使用 gh 權杖" Command="{Binding UseGhTokenCommand}" />
+                <TextBlock Classes="muted" Text="權杖需具有此儲存庫的 Actions Secrets 寫入權限。" FontSize="12" TextWrapping="Wrap" />
+              </StackPanel>
+              <CheckBox IsChecked="{Binding RememberGitHubToken}">
+                <TextBlock Text="記住權杖（只存在本機）" TextWrapping="Wrap" />
+              </CheckBox>
+              <CheckBox IsChecked="{Binding ConfirmOverwriteSecrets}">
+                <TextBlock Text="確定覆寫此帳號的四個 Secrets" TextWrapping="Wrap" />
+              </CheckBox>
+              <Button Classes="primary" Content="更新 GitHub Secrets" Command="{Binding UpdateGitHubSecretsCommand}" />
+              <TextBlock Classes="muted" Text="更新後無法讀回舊值。" FontSize="12" TextWrapping="Wrap" />
+            </StackPanel>
+          </Expander>
 
-          <Border Classes="panel" Padding="16">
-            <Expander Header="背景記錄狀態" HorizontalContentAlignment="Stretch">
-              <StackPanel Spacing="12" Margin="0,14,0,0">
-                <TextBlock Text="{Binding BackgroundHotSearchStatus}" FontSize="12" TextWrapping="Wrap"
-                           Classes.error="{Binding IsBackgroundHotSearchError}" Classes.ok="{Binding !IsBackgroundHotSearchError}" />
-                <Separator />
-                <TextBlock Text="{Binding BackgroundRankingStatus}" FontSize="12" TextWrapping="Wrap"
-                           Classes.error="{Binding IsBackgroundRankingError}" Classes.ok="{Binding !IsBackgroundRankingError}" />
+          <Expander AutomationProperties.Name="背景記錄狀態">
+            <Expander.Header>
+              <StackPanel Orientation="Horizontal" Spacing="10">
+                <Path Width="18" Height="18" VerticalAlignment="Center" Stroke="{StaticResource Trace}" StrokeThickness="1.6"
+                      Data="M1,10 H5 L8,3 L11,15 L14,8 H17" />
+                <TextBlock Classes="label" Text="背景記錄狀態" />
               </StackPanel>
-            </Expander>
-          </Border>
+            </Expander.Header>
+            <StackPanel Spacing="12" Margin="0,14,0,0">
+              <TextBlock Text="{Binding BackgroundHotSearchStatus}" FontSize="12" TextWrapping="Wrap"
+                         Classes.error="{Binding IsBackgroundHotSearchError}" Classes.ok="{Binding !IsBackgroundHotSearchError}" />
+              <Separator />
+              <TextBlock Text="{Binding BackgroundRankingStatus}" FontSize="12" TextWrapping="Wrap"
+                         Classes.error="{Binding IsBackgroundRankingError}" Classes.ok="{Binding !IsBackgroundRankingError}" />
+            </StackPanel>
+          </Expander>
         </StackPanel>
       </ScrollViewer>
 
-      <Border Grid.Column="1" Classes="panel" Padding="0">
+      <Border Grid.Column="1" Classes="panel">
         <Grid RowDefinitions="Auto,*,Auto">
-          <Border BorderBrush="#E2E7EE" BorderThickness="0,0,0,1" Padding="20,16">
-            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
-              <StackPanel Spacing="4">
-                <TextBlock Classes="section" Text="Cookie 欄位" />
-                <TextBlock Classes="muted" Text="四個欄位分別顯示，可單獨複製。" TextWrapping="Wrap" FontSize="12" />
-              </StackPanel>
-              <Button Grid.Column="1" Classes="secondary compact" Content="{Binding RevealButtonText}"
-                      Command="{Binding ToggleRevealCommand}" VerticalAlignment="Center" IsEnabled="{Binding HasResult}" />
+          <Border BorderBrush="{StaticResource Line}" BorderThickness="0,0,0,1" Padding="22,16">
+            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+              <Border Width="36" Height="36" CornerRadius="8" Background="{StaticResource BlueWash}" VerticalAlignment="Center">
+                <Path Data="M6,2 H2 V16 H6 M14,2 H18 V16 H14 M7,7 H13 M7,11 H11"
+                      Width="20" Height="18" HorizontalAlignment="Center" VerticalAlignment="Center"
+                      Stroke="{StaticResource Accent}" StrokeThickness="1.6" />
+              </Border>
+              <TextBlock Grid.Column="1" Classes="section" Text="欄位檢視" VerticalAlignment="Center" />
+              <Button Grid.Column="2" Classes="secondary compact" Content="{Binding RevealButtonText}" IsVisible="{Binding HasResult}"
+                      Command="{Binding ToggleRevealCommand}" />
             </Grid>
           </Border>
+          <Grid x:Name="ImportPreview" Grid.Row="1" IsVisible="{Binding !HasResult}" RowDefinitions="*,Auto">
+            <Grid Background="{StaticResource Inset}">
+              <Border Background="{StaticResource DraftGrid}" IsHitTestVisible="False" />
+              <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="12" Margin="24">
+                <Viewbox MaxWidth="480" MaxHeight="222" Stretch="Uniform" StretchDirection="DownOnly">
+                  <Canvas Width="450" Height="211" IsHitTestVisible="False">
+                    <!-- File layers feed the four output terminals. -->
+                    <Path Data="M190,89 H218 L266,41 H300 M202,96 H233 L245,84 H300 M202,104 H236 L259,127 H300 M190,112 H220 L278,170 H300"
+                          Stroke="{StaticResource TraceLine}" StrokeThickness="1.6" />
+                    <Path Data="M30,121 L122,69 L214,121 V129 L122,182 L30,129 Z"
+                          Fill="{StaticResource LayerBlue}" Stroke="{StaticResource LayerEdge}" StrokeThickness="1.5" />
+                    <Path Data="M30,121 L122,174 L214,121 M122,174 V182" Stroke="{StaticResource LayerEdge}" StrokeThickness="1.5" />
+                    <Path Data="M30,99 L122,47 L214,99 V107 L122,160 L30,107 Z"
+                          Fill="{StaticResource LayerMint}" Stroke="{StaticResource TraceLine}" StrokeThickness="1.5" />
+                    <Path Data="M30,99 L122,152 L214,99 M122,152 V160" Stroke="{StaticResource TraceLine}" StrokeThickness="1.5" />
+                    <Path Data="M30,78 L122,26 L214,78 V85 L122,138 L30,85 Z"
+                          Fill="{StaticResource MintWash}" Stroke="{StaticResource Trace}" StrokeThickness="1.6" />
+                    <Path Data="M30,78 L122,26 L214,78 L122,131 Z"
+                          Fill="{StaticResource Surface}" Stroke="{StaticResource Trace}" StrokeThickness="1.6" />
+                    <Path Data="M41,78 L122,32 L202,78 L122,124 Z" Stroke="{StaticResource MintEdge}" StrokeThickness="1" />
+                    <Path Data="M86,73 L101,64 L119,74 L114,77 L144,94 L139,97 L133,94 L129,96 L122,92 L126,89 L107,79 L102,82 Z"
+                          Fill="{StaticResource Trace}" />
+                    <Path Data="M95,72 L101,69 L107,72 L101,76 Z" Fill="{StaticResource Surface}" />
+                    <Path Data="M147,60 L166,71 M152,57 L171,68 M157,54 L176,65" Stroke="{StaticResource MintEdge}" StrokeThickness="2" />
+                    <TextBlock Canvas.Left="82" Canvas.Top="189" Classes="code" FontSize="13" Foreground="{StaticResource InkMuted}" Text="cookies.txt" />
+                    <ItemsControl Canvas.Left="296" Canvas.Top="24" ItemsSource="{Binding Fields}">
+                      <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate><StackPanel Spacing="9" /></ItemsPanelTemplate>
+                      </ItemsControl.ItemsPanel>
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="vm:CookieFieldViewModel">
+                          <Grid Height="34" ColumnDefinitions="7,Auto" ColumnSpacing="10">
+                            <Rectangle Width="7" Height="7" VerticalAlignment="Center" Fill="{StaticResource Trace}" />
+                            <TextBlock Grid.Column="1" Classes="code" FontWeight="SemiBold" FontSize="15" VerticalAlignment="Center" Text="{Binding EnvName}" />
+                          </Grid>
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                  </Canvas>
+                </Viewbox>
+                <TextBlock Text="等待匯入 Cookie" FontSize="25" FontWeight="SemiBold" TextAlignment="Center" />
+                <TextBlock Classes="muted" Text="拖入 Netscape 格式的 cookies.txt，檢視欄位與到期時間。"
+                           TextAlignment="Center" TextWrapping="Wrap" />
+              </StackPanel>
+            </Grid>
+            <Border Grid.Row="1" Padding="20,12" BorderBrush="{StaticResource Line}" BorderThickness="0,1,0,0">
+              <WrapPanel ItemSpacing="20" LineSpacing="4">
+                <StackPanel Orientation="Horizontal" Spacing="8"><TextBlock Classes="code" Text="Ctrl+O" /><TextBlock Classes="muted" Text="選擇檔案" /></StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="8"><TextBlock Classes="code" Text="F5" /><TextBlock Classes="muted" Text="重讀路徑" /></StackPanel>
+              </WrapPanel>
+            </Border>
+          </Grid>
 
-          <ScrollViewer x:Name="ResultsScroll" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-            <StackPanel Margin="20,16" Spacing="12">
-              <Border Classes="empty" IsVisible="{Binding !HasResult}">
-                <StackPanel Spacing="10">
-                  <TextBlock Text="準備讀取 Cookie" FontSize="19" FontWeight="SemiBold" />
-                  <TextBlock Classes="muted" Text="從左側選擇 cookies.txt 並按「讀取 Cookie」。讀取後會在這裡顯示欄位與到期時間。" TextWrapping="Wrap" />
-                  <TextBlock Classes="muted" Text="支援拖放檔案 · Ctrl+O 瀏覽 · F5 讀取" FontSize="12" TextWrapping="Wrap" />
-                </StackPanel>
-              </Border>
-
+          <ScrollViewer x:Name="ResultsScroll" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" IsVisible="{Binding HasResult}">
+            <StackPanel Margin="10,8" Spacing="12">
               <ItemsControl x:Name="CookieFields" ItemsSource="{Binding Fields}" IsVisible="{Binding HasResult}">
                 <ItemsControl.ItemsPanel>
                   <ItemsPanelTemplate><StackPanel Spacing="12" /></ItemsPanelTemplate>
@@ -366,7 +442,7 @@
             </StackPanel>
           </ScrollViewer>
 
-          <Border x:Name="ActionBar" Grid.Row="2" Background="#FAFBFD" BorderBrush="#E2E7EE" BorderThickness="0,1,0,0" Padding="20,14">
+          <Border x:Name="ActionBar" Grid.Row="2" IsVisible="{Binding HasResult}" Background="{StaticResource Inset}" BorderBrush="{StaticResource Line}" BorderThickness="0,1,0,0" Padding="20,14">
             <StackPanel Spacing="10">
               <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
                 <StackPanel Spacing="4" VerticalAlignment="Center">
@@ -388,9 +464,9 @@
       </Border>
     </Grid>
 
-    <Border Grid.Row="2" Background="White" BorderBrush="#DCE2EA" BorderThickness="0,1,0,0" Padding="24,12">
+    <Border Grid.Row="2" Background="{StaticResource Surface}" BorderBrush="{StaticResource Line}" BorderThickness="0,1,0,0" Padding="24,12">
       <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
-        <TextBlock Text="狀態" Classes="label" />
+        <TextBlock Text="狀態" Classes="label" Foreground="{StaticResource InkMuted}" />
         <TextBlock Grid.Column="1" x:Name="StatusText" Text="{Binding StatusMessage}" TextWrapping="Wrap"
                    Classes.error="{Binding IsError}" Classes.ok="{Binding !IsError}" />
       </Grid>

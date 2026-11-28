@@ -3,187 +3,187 @@
              x:Class="BilibiliCookieReader.App"
              RequestedThemeVariant="Light">
   <Application.Resources>
-    <Color x:Key="Ink">#1A1D23</Color>
-    <Color x:Key="InkMuted">#4E5560</Color>
-    <Color x:Key="Paper">#E7E9ED</Color>
-    <Color x:Key="Surface">#F7F8FA</Color>
-    <Color x:Key="Line">#C9CED6</Color>
-    <Color x:Key="Accent">#D94877</Color>
-    <Color x:Key="AccentHover">#C13A68</Color>
-    <Color x:Key="Danger">#B42318</Color>
-    <Color x:Key="Warn">#8A5800</Color>
-    <Color x:Key="Ok">#176B42</Color>
+    <Color x:Key="AccentColor">#155CCA</Color>
+    <SolidColorBrush x:Key="Accent" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="AccentHover" Color="#104EA9" />
+    <SolidColorBrush x:Key="AccentPressed" Color="#123F80" />
+    <SolidColorBrush x:Key="Ink" Color="#152E49" />
+    <SolidColorBrush x:Key="InkMuted" Color="#496175" />
+    <SolidColorBrush x:Key="Paper" Color="#EDF3F7" />
+    <SolidColorBrush x:Key="Surface" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="Inset" Color="#F5F9FC" />
+    <SolidColorBrush x:Key="Line" Color="#CFDEE7" />
+    <SolidColorBrush x:Key="ControlLine" Color="#A8BECD" />
+    <SolidColorBrush x:Key="BlueWash" Color="#E7F1FF" />
+    <SolidColorBrush x:Key="DisabledFill" Color="#DEE7EF" />
+    <SolidColorBrush x:Key="Trace" Color="#197D83" />
+    <SolidColorBrush x:Key="TraceLine" Color="#73A6B5" />
+    <SolidColorBrush x:Key="MintWash" Color="#DEF4F0" />
+    <SolidColorBrush x:Key="MintEdge" Color="#A9D9D1" />
+    <SolidColorBrush x:Key="GridLine" Color="#E2ECF2" />
+    <SolidColorBrush x:Key="LayerEdge" Color="#91B4D0" />
+    <SolidColorBrush x:Key="LayerBlue" Color="#CEE2F5" />
+    <SolidColorBrush x:Key="LayerMint" Color="#BFE8E1" />
+    <SolidColorBrush x:Key="Danger" Color="#A73236" />
+    <SolidColorBrush x:Key="Warn" Color="#835215" />
+    <SolidColorBrush x:Key="Ok" Color="#146758" />
+    <SolidColorBrush x:Key="OkFill" Color="#E9F7F1" />
+    <SolidColorBrush x:Key="OkLine" Color="#A5CFC2" />
+    <SolidColorBrush x:Key="SoonFill" Color="#FFF6E2" />
+    <SolidColorBrush x:Key="SoonLine" Color="#D7BA77" />
+    <SolidColorBrush x:Key="UrgentFill" Color="#FEF0E5" />
+    <SolidColorBrush x:Key="UrgentLine" Color="#D9AB83" />
+    <SolidColorBrush x:Key="ExpiredFill" Color="#FCEDEF" />
+    <SolidColorBrush x:Key="ExpiredLine" Color="#DAA9AD" />
+    <FontFamily x:Key="InterfaceFont">Inter, PingFang TC, Microsoft JhengHei UI, Noto Sans CJK TC, sans-serif</FontFamily>
+    <FontFamily x:Key="CodeFont">Menlo, Cascadia Mono, Consolas, DejaVu Sans Mono, monospace</FontFamily>
   </Application.Resources>
   <Application.Styles>
-    <FluentTheme />
+    <FluentTheme>
+      <FluentTheme.Palettes>
+        <ColorPaletteResources x:Key="Light" Accent="{StaticResource AccentColor}" />
+      </FluentTheme.Palettes>
+    </FluentTheme>
     <Style Selector="Window">
-      <Setter Property="FontFamily" Value="Segoe UI, Microsoft JhengHei UI, Microsoft JhengHei, sans-serif" />
+      <Setter Property="FontFamily" Value="{StaticResource InterfaceFont}" />
       <Setter Property="FontSize" Value="14" />
-      <Setter Property="Foreground" Value="{DynamicResource Ink}" />
+      <Setter Property="Foreground" Value="{StaticResource Ink}" />
     </Style>
     <Style Selector="TextBlock">
-      <Setter Property="Foreground" Value="{DynamicResource Ink}" />
+      <Setter Property="Foreground" Value="{StaticResource Ink}" />
     </Style>
     <Style Selector="TextBlock.muted">
-      <Setter Property="Foreground" Value="{DynamicResource InkMuted}" />
+      <Setter Property="Foreground" Value="{StaticResource InkMuted}" />
       <Setter Property="LineHeight" Value="20" />
     </Style>
-    <Style Selector="TextBlock.error">
-      <Setter Property="Foreground" Value="{DynamicResource Danger}" />
-    </Style>
-    <Style Selector="TextBlock.ok">
-      <Setter Property="Foreground" Value="{DynamicResource Ok}" />
-    </Style>
-    <Style Selector="TextBlock.warn">
-      <Setter Property="Foreground" Value="{DynamicResource Warn}" />
-    </Style>
+    <Style Selector="TextBlock.error"><Setter Property="Foreground" Value="{StaticResource Danger}" /></Style>
+    <Style Selector="TextBlock.ok"><Setter Property="Foreground" Value="{StaticResource Ok}" /></Style>
+    <Style Selector="TextBlock.warn"><Setter Property="Foreground" Value="{StaticResource Warn}" /></Style>
     <Style Selector="TextBlock.title">
-      <Setter Property="FontSize" Value="24" />
+      <Setter Property="FontSize" Value="23" />
       <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
     <Style Selector="TextBlock.section">
-      <Setter Property="FontSize" Value="16" />
+      <Setter Property="FontSize" Value="20" />
       <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
-    <Style Selector="TextBlock.label">
+    <Style Selector="TextBlock.label, TextBlock.fieldname">
       <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
-    <Style Selector="TextBlock.fieldname">
-      <Setter Property="FontSize" Value="14" />
-      <Setter Property="FontWeight" Value="SemiBold" />
+    <Style Selector="TextBlock.fieldname, TextBlock.code">
+      <Setter Property="FontFamily" Value="{StaticResource CodeFont}" />
     </Style>
+    <Style Selector="TextBlock.fieldname"><Setter Property="Foreground" Value="{StaticResource AccentPressed}" /></Style>
     <Style Selector="Button">
-      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="CornerRadius" Value="6" />
       <Setter Property="Padding" Value="12,8" />
-      <Setter Property="FontSize" Value="13" />
-      <Setter Property="MinHeight" Value="40" />
+      <Setter Property="FontSize" Value="14" />
+      <Setter Property="MinHeight" Value="42" />
       <Setter Property="HorizontalAlignment" Value="Stretch" />
       <Setter Property="HorizontalContentAlignment" Value="Center" />
       <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
     <Style Selector="Button.compact">
       <Setter Property="MinHeight" Value="36" />
-      <Setter Property="HorizontalAlignment" Value="Left" />
       <Setter Property="Padding" Value="12,6" />
+      <Setter Property="FontSize" Value="13" />
     </Style>
     <Style Selector="Button.primary">
-      <Setter Property="Background" Value="{DynamicResource Accent}" />
-      <Setter Property="Foreground" Value="White" />
+      <Setter Property="Background" Value="{StaticResource Accent}" />
+      <Setter Property="Foreground" Value="{StaticResource Surface}" />
       <Setter Property="FontWeight" Value="SemiBold" />
-      <Setter Property="Padding" Value="16,9" />
     </Style>
     <Style Selector="Button.primary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-      <Setter Property="Background" Value="{DynamicResource AccentHover}" />
+      <Setter Property="Background" Value="{StaticResource AccentHover}" />
+      <Setter Property="Foreground" Value="{StaticResource Surface}" />
+    </Style>
+    <Style Selector="Button.primary:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{StaticResource AccentPressed}" />
+      <Setter Property="Foreground" Value="{StaticResource Surface}" />
     </Style>
     <Style Selector="Button.primary:disabled /template/ ContentPresenter#PART_ContentPresenter">
-      <Setter Property="Background" Value="#E2A4B8" />
-      <Setter Property="Foreground" Value="White" />
+      <Setter Property="Background" Value="{StaticResource DisabledFill}" />
+      <Setter Property="Foreground" Value="{StaticResource InkMuted}" />
     </Style>
     <Style Selector="Button.secondary">
-      <Setter Property="Background" Value="Transparent" />
-      <Setter Property="BorderBrush" Value="{DynamicResource Line}" />
+      <Setter Property="Background" Value="{StaticResource Surface}" />
+      <Setter Property="BorderBrush" Value="{StaticResource ControlLine}" />
       <Setter Property="BorderThickness" Value="1" />
-      <Setter Property="Foreground" Value="{DynamicResource Ink}" />
+      <Setter Property="Foreground" Value="{StaticResource Ink}" />
     </Style>
     <Style Selector="Button.secondary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-      <Setter Property="Background" Value="#EEF0F3" />
+      <Setter Property="Background" Value="{StaticResource BlueWash}" />
+      <Setter Property="BorderBrush" Value="{StaticResource Accent}" />
     </Style>
-    <Style Selector="Button.ghost">
-      <Setter Property="Background" Value="Transparent" />
-      <Setter Property="Foreground" Value="{DynamicResource InkMuted}" />
-      <Setter Property="Padding" Value="8,6" />
-      <Setter Property="FontSize" Value="12" />
+    <Style Selector="TextBox, ComboBox">
+      <Setter Property="MinHeight" Value="42" />
+      <Setter Property="CornerRadius" Value="6" />
+      <Setter Property="Background" Value="{StaticResource Surface}" />
+      <Setter Property="BorderBrush" Value="{StaticResource ControlLine}" />
     </Style>
-    <Style Selector="Button.ghost:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-      <Setter Property="Foreground" Value="{DynamicResource Ink}" />
-      <Setter Property="Background" Value="#EEF0F3" />
-    </Style>
+    <Style Selector="ComboBox"><Setter Property="VerticalContentAlignment" Value="Center" /></Style>
     <Style Selector="TextBox">
-      <Setter Property="MinHeight" Value="40" />
-      <Setter Property="CornerRadius" Value="8" />
-      <Setter Property="Padding" Value="10,8" />
+      <Setter Property="Padding" Value="11,8" />
       <Setter Property="VerticalContentAlignment" Value="Center" />
-      <Setter Property="Background" Value="White" />
-      <Setter Property="BorderBrush" Value="#BEC9D8" />
+      <Setter Property="PlaceholderForeground" Value="{StaticResource InkMuted}" />
     </Style>
-    <Style Selector="ComboBox">
-      <Setter Property="MinHeight" Value="40" />
-      <Setter Property="CornerRadius" Value="8" />
-      <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Style Selector="TextBox.mono">
+      <Setter Property="FontFamily" Value="{StaticResource CodeFont}" />
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="Background" Value="{StaticResource Inset}" />
     </Style>
     <Style Selector="Expander">
       <Setter Property="HorizontalAlignment" Value="Stretch" />
       <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+      <Setter Property="Background" Value="{StaticResource Surface}" />
+      <Setter Property="BorderBrush" Value="{StaticResource Line}" />
+      <Setter Property="CornerRadius" Value="8" />
     </Style>
     <Style Selector="CheckBox">
       <Setter Property="FontSize" Value="13" />
       <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>
-    <Style Selector="TextBox.mono">
-      <Setter Property="FontFamily" Value="Cascadia Mono, Consolas, Courier New" />
-      <Setter Property="FontSize" Value="12" />
-    </Style>
-    <Style Selector="Border.panel">
-      <Setter Property="Background" Value="White" />
-      <Setter Property="BorderBrush" Value="#DCE2EA" />
+    <Style Selector="Border.panel, Border.dropzone">
+      <Setter Property="Background" Value="{StaticResource Surface}" />
+      <Setter Property="BorderBrush" Value="{StaticResource Line}" />
       <Setter Property="BorderThickness" Value="1" />
       <Setter Property="CornerRadius" Value="12" />
-      <Setter Property="Padding" Value="20" />
+      <Setter Property="ClipToBounds" Value="True" />
     </Style>
-    <Style Selector="Border.dropzone">
-      <Setter Property="Background" Value="White" />
-      <Setter Property="BorderBrush" Value="#DCE2EA" />
-      <Setter Property="BorderThickness" Value="1" />
-      <Setter Property="CornerRadius" Value="12" />
-      <Setter Property="Padding" Value="20" />
-    </Style>
+    <Style Selector="Border.dropzone"><Setter Property="Padding" Value="20" /></Style>
     <Style Selector="Border.dropzone.active">
-      <Setter Property="BorderBrush" Value="{DynamicResource Accent}" />
-      <Setter Property="Background" Value="#FDF2F6" />
+      <Setter Property="BorderBrush" Value="{StaticResource Accent}" />
+      <Setter Property="Background" Value="{StaticResource BlueWash}" />
     </Style>
     <Style Selector="Border.expiry">
-      <Setter Property="CornerRadius" Value="10" />
+      <Setter Property="CornerRadius" Value="8" />
       <Setter Property="Padding" Value="16" />
       <Setter Property="BorderThickness" Value="1" />
     </Style>
     <Style Selector="Border.expiry.ok">
-      <Setter Property="Background" Value="#E7F4EC" />
-      <Setter Property="BorderBrush" Value="#B7D4C2" />
+      <Setter Property="Background" Value="{StaticResource OkFill}" />
+      <Setter Property="BorderBrush" Value="{StaticResource OkLine}" />
     </Style>
     <Style Selector="Border.expiry.soon">
-      <Setter Property="Background" Value="#FFF6E5" />
-      <Setter Property="BorderBrush" Value="#E4C48A" />
+      <Setter Property="Background" Value="{StaticResource SoonFill}" />
+      <Setter Property="BorderBrush" Value="{StaticResource SoonLine}" />
     </Style>
     <Style Selector="Border.expiry.urgent">
-      <Setter Property="Background" Value="#FFF1E8" />
-      <Setter Property="BorderBrush" Value="#E8B08A" />
+      <Setter Property="Background" Value="{StaticResource UrgentFill}" />
+      <Setter Property="BorderBrush" Value="{StaticResource UrgentLine}" />
     </Style>
     <Style Selector="Border.expiry.expired">
-      <Setter Property="Background" Value="#FDECEA" />
-      <Setter Property="BorderBrush" Value="#E8B4B0" />
-    </Style>
-    <Style Selector="Border.chip">
-      <Setter Property="Background" Value="#FBEAF0" />
-      <Setter Property="CornerRadius" Value="8" />
-      <Setter Property="Padding" Value="8,4" />
+      <Setter Property="Background" Value="{StaticResource ExpiredFill}" />
+      <Setter Property="BorderBrush" Value="{StaticResource ExpiredLine}" />
     </Style>
     <Style Selector="Border.row">
-      <Setter Property="Padding" Value="14,12" />
-      <Setter Property="Background" Value="#F5F7FA" />
-      <Setter Property="BorderBrush" Value="#E2E7EE" />
-      <Setter Property="BorderThickness" Value="1" />
-      <Setter Property="CornerRadius" Value="10" />
-    </Style>
-    <Style Selector="Border.empty">
-      <Setter Property="Padding" Value="20" />
-      <Setter Property="Background" Value="#FBEFF4" />
-      <Setter Property="CornerRadius" Value="10" />
+      <Setter Property="Padding" Value="16,14" />
+      <Setter Property="BorderBrush" Value="{StaticResource Line}" />
+      <Setter Property="BorderThickness" Value="0,0,0,1" />
     </Style>
     <Style Selector="Border.accountstatus">
-      <Setter Property="Background" Value="#EEF0F3" />
-      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="Background" Value="{StaticResource Inset}" />
       <Setter Property="Padding" Value="14,10" />
     </Style>
-
   </Application.Styles>
 </Application>

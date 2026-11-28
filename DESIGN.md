@@ -4,18 +4,18 @@ Traditional Chinese desktop workbench. The main task is to read four Cookie valu
 
 ## Layout
 
-- A compact white header contains the application name and the three-step task description.
-- The 328 px settings column contains file intake, expiry, expandable GitHub settings, and expandable background recorder status. It scrolls independently.
-- The results panel contains its own heading, a scrollable list of four fields, and a pinned verification/export action bar.
+- The white header pairs a layered-file mark with the application name and a local parsing indicator.
+- The 320 px settings column scrolls independently. Choose an account and open a file with the blue primary button, drop it into the window, or paste a path and press Enter. Expiry reminders, GitHub settings and recorder status sit below the intake controls.
+- Before import, a blueprint diagram connects `cookies.txt` to the four field names. The footer lists the file picker and reload shortcuts. After import, the diagram gives way to a scrollable field list with a pinned verification and export toolbar.
 - Each field uses a vertical stack: name, wrapping read-only value with a separate copy button, then wrapping metadata and expiry warnings. Content determines height.
 - Account information and recommendations remain available below the fields in an expander. Long titles and descriptions wrap without height caps.
 - The bottom status message wraps across the window width.
 
 ## Typography and color
 
-Segoe UI with Microsoft JhengHei fallbacks. Main text 14 px, headings 16/24 px, supporting metadata 12 px. Monospace is reserved for Cookie values. Controls have a minimum height of 40 px, with 36 px compact actions.
+Inter with system Traditional Chinese fallbacks. Body text is 14 px, headings are 20–25 px, and metadata is 12 px. Field names, values and keyboard shortcuts use monospace. Standard buttons and inputs are at least 42 px tall, with 36 px compact actions.
 
-Background `#EEF1F5`, white panels, field background `#F5F7FA`, ink `#1A1D23`, secondary text `#4E5560`, borders `#DCE2EA`. Rose `#D94877` marks primary actions. Expiry and status colors retain their existing meanings.
+The palette in `BilibiliCookieReader/App.axaml` uses an ice-blue workspace, white surfaces, navy text and cobalt primary actions. Teal traces connect the diagram to the field names. Expiry reminders pair their state colors with text.
 
 ## Verification
 
