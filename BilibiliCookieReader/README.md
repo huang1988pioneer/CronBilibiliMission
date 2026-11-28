@@ -15,14 +15,14 @@ Avalonia 桌面工具：讀取瀏覽器匯出的 Netscape `cookies.txt`，取出
 
 ## 下載
 
-[BilibiliCookieReader v1.7.0](https://github.com/huang1988pioneer/CronBilibiliMission/releases/tag/v1.7.0)（自包含，無需另外安裝 .NET）：
+[BilibiliCookieReader v1.7.1](https://github.com/huang1988pioneer/CronBilibiliMission/releases/tag/v1.7.1)（自包含，無需另外安裝 .NET）：
 
-- [Windows x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.7.0/BilibiliCookieReader-v1.7.0-win-x64.zip)
-- [macOS Apple Silicon](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.7.0/BilibiliCookieReader-v1.7.0-osx-arm64.zip)
-- [macOS Intel](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.7.0/BilibiliCookieReader-v1.7.0-osx-x64.zip)
-- [Linux x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.7.0/BilibiliCookieReader-v1.7.0-linux-x64.zip)
+- [Windows x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.7.1/BilibiliCookieReader-v1.7.1-win-x64.zip)
+- [macOS Apple Silicon](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.7.1/BilibiliCookieReader-v1.7.1-osx-arm64.zip)
+- [macOS Intel](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.7.1/BilibiliCookieReader-v1.7.1-osx-x64.zip)
+- [Linux x64](https://github.com/huang1988pioneer/CronBilibiliMission/releases/download/v1.7.1/BilibiliCookieReader-v1.7.1-linux-x64.zip)
 
-解壓後執行 `BilibiliCookieReader.exe`（Windows）或 `BilibiliCookieReader`（macOS / Linux）。
+macOS 解壓後，在 Finder 雙擊 `BilibiliCookieReader.app` 即可開啟讀取器。Windows 與 Linux 分別執行 `BilibiliCookieReader.exe` 與 `BilibiliCookieReader`。
 
 ## 需求
 
@@ -64,5 +64,3 @@ dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=
 ## 自動發布 Release
 
 更新 `.csproj` 的版本與 `docs/releases/v版本.md`，將提交推送後，再推送對應的 `v版本` Git 標籤。`Release Bilibili Cookie Reader` 工作流程會驗證版本、執行服務與版面測試、建置四個平台的自包含 ZIP，並發布附有 `SHA256SUMS.txt` 的 GitHub Release。任一測試或建置失敗時不會發布。
-
-後續版本的 macOS ZIP 包含 `BilibiliCookieReader.app`。解壓後在 Finder 雙擊 App，即可直接開啟讀取器視窗。
